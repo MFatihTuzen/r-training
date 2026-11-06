@@ -1,0 +1,34 @@
+---
+title: "Öğrenme Kaynakları"
+description: "R programlamayı öğrenirken başvurulabilecek kitap, video ve resmî dokümantasyon bağlantıları."
+---
+
+Bu sayfa, **uygulama odaklı eğitim materyallerini destekleyen** kaynakları bir araya getirir. Buradaki kaynakların tamamını 15 ders saatinde işlemeniz beklenmez. Eğitim sırasında ilgili başlıklara yönlendirmeler yapılır; eğitimden sonra kendi hızınızda çalışabilirsiniz.
+
+## Türkçe kitap ve ders notları
+
+- [R Programlama — Muhammed Fatih Tüzen](https://mfatihtuzen.github.io/r-programlama/): R temelleri, veri aktarımı, `dplyr`, `tidyr` ve veri analizine ilişkin ayrıntılı açıklamalar. Eğitim sitesindeki uygulamaların kavramsal tamamlayıcısıdır.
+
+## Video dersleri
+
+- [R İstatistik Akademi — YouTube kanalı](https://www.youtube.com/@RistatistikAkademi): R programlamaya giriş konusunda video anlatımları için başvurulabilecek kanal. Özellikle RStudio ile tanışma, temel R kullanımı ve ders tekrarları için değerlendirilebilir.
+
+> **Not:** Video içerikleri zamanla değişebilir. Burada kanal bağlantısı verilmiştir; belirli videoların başlıkları ve süreleri doğrulanmadan ders eşleştirmesi yapılmamıştır.
+
+## Modern R ve veri işleme
+
+- [R for Data Science, 2. baskı](https://r4ds.hadley.nz/): Veri içe aktarma, dönüştürme ve tekrarlanabilir analiz iş akışı.
+- [dplyr belgeleri](https://dplyr.tidyverse.org/): Filtreleme, seçme, değişken üretme, gruplama ve tablo birleştirme.
+- [tidyr belgeleri](https://tidyr.tidyverse.org/): Uzun/geniş veri biçimleri ve düzenli veri ilkeleri.
+- [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/) ve [haven](https://haven.tidyverse.org/): CSV, Excel, SAS ve SPSS aktarımı.
+- [DBI](https://dbi.r-dbi.org/): R ile veri tabanı bağlantılarının genel arayüzü.
+
+## Çalışma ortamı ve yayınlama
+
+- [R Project](https://www.r-project.org/): R yazılımı ve resmî belgeler.
+- [RStudio IDE](https://posit.co/products/open-source/rstudio/): Geliştirme ortamı.
+- [Quarto](https://quarto.org/docs/): R ile rapor, web sitesi ve sunum hazırlama.
+
+## Kaynakları nasıl kullanmalı?
+
+Bir konuda zorlandığınızda önce ilgili **eğitim scriptini** yeniden çalıştırın, sonra açıklamalar için **R Programlama Kitabı** bölümüne bakın. Farklı çözüm yolları veya fonksiyon ayrıntıları için resmî paket belgelerini kullanın. Video derslerini konuyu yeniden görmek için değerlendirebilirsiniz.

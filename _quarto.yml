@@ -4,6 +4,7 @@ project:
   render:
     - index.qmd
     - program/index.qmd
+    - resources/ogrenme-kaynaklari.qmd
 
 website:
   title: "R Programlama Eğitimi"
@@ -16,6 +17,8 @@ website:
         href: index.qmd
       - text: "Eğitim Programı"
         href: program/index.qmd
+      - text: "Öğrenme Kaynakları"
+        href: resources/ogrenme-kaynaklari.qmd  
     right:
       - text: "R Programlama Kitabı"
         href: https://mfatihtuzen.github.io/r-programlama/

@@ -1,5 +1,82 @@
 [
   {
+    "objectID": "resources/ogrenme-kaynaklari.html",
+    "href": "resources/ogrenme-kaynaklari.html",
+    "title": "Öğrenme Kaynakları",
+    "section": "",
+    "text": "Bu sayfa, uygulama odaklı eğitim materyallerini destekleyen kaynakları bir araya getirir. Buradaki kaynakların tamamını 15 ders saatinde işlemeniz beklenmez. Eğitim sırasında ilgili başlıklara yönlendirmeler yapılır; eğitimden sonra kendi hızınızda çalışabilirsiniz."
+  },
+  {
+    "objectID": "resources/ogrenme-kaynaklari.html#türkçe-kitap-ve-ders-notları",
+    "href": "resources/ogrenme-kaynaklari.html#türkçe-kitap-ve-ders-notları",
+    "title": "Öğrenme Kaynakları",
+    "section": "Türkçe kitap ve ders notları",
+    "text": "Türkçe kitap ve ders notları\n\nR Programlama — Muhammed Fatih Tüzen: R temelleri, veri aktarımı, dplyr, tidyr ve veri analizine ilişkin ayrıntılı açıklamalar. Eğitim sitesindeki uygulamaların kavramsal tamamlayıcısıdır."
+  },
+  {
+    "objectID": "resources/ogrenme-kaynaklari.html#video-dersleri",
+    "href": "resources/ogrenme-kaynaklari.html#video-dersleri",
+    "title": "Öğrenme Kaynakları",
+    "section": "Video dersleri",
+    "text": "Video dersleri\n\nR İstatistik Akademi — YouTube kanalı: R programlamaya giriş konusunda video anlatımları için başvurulabilecek kanal. Özellikle RStudio ile tanışma, temel R kullanımı ve ders tekrarları için değerlendirilebilir.\n\n\nNot: Video içerikleri zamanla değişebilir. Burada kanal bağlantısı verilmiştir; belirli videoların başlıkları ve süreleri doğrulanmadan ders eşleştirmesi yapılmamıştır."
+  },
+  {
+    "objectID": "resources/ogrenme-kaynaklari.html#modern-r-ve-veri-işleme",
+    "href": "resources/ogrenme-kaynaklari.html#modern-r-ve-veri-işleme",
+    "title": "Öğrenme Kaynakları",
+    "section": "Modern R ve veri işleme",
+    "text": "Modern R ve veri işleme\n\nR for Data Science, 2. baskı: Veri içe aktarma, dönüştürme ve tekrarlanabilir analiz iş akışı.\ndplyr belgeleri: Filtreleme, seçme, değişken üretme, gruplama ve tablo birleştirme.\ntidyr belgeleri: Uzun/geniş veri biçimleri ve düzenli veri ilkeleri.\nreadr, readxl ve haven: CSV, Excel, SAS ve SPSS aktarımı.\nDBI: R ile veri tabanı bağlantılarının genel arayüzü."
+  },
+  {
+    "objectID": "resources/ogrenme-kaynaklari.html#çalışma-ortamı-ve-yayınlama",
+    "href": "resources/ogrenme-kaynaklari.html#çalışma-ortamı-ve-yayınlama",
+    "title": "Öğrenme Kaynakları",
+    "section": "Çalışma ortamı ve yayınlama",
+    "text": "Çalışma ortamı ve yayınlama\n\nR Project: R yazılımı ve resmî belgeler.\nRStudio IDE: Geliştirme ortamı.\nQuarto: R ile rapor, web sitesi ve sunum hazırlama."
+  },
+  {
+    "objectID": "resources/ogrenme-kaynaklari.html#kaynakları-nasıl-kullanmalı",
+    "href": "resources/ogrenme-kaynaklari.html#kaynakları-nasıl-kullanmalı",
+    "title": "Öğrenme Kaynakları",
+    "section": "Kaynakları nasıl kullanmalı?",
+    "text": "Kaynakları nasıl kullanmalı?\nBir konuda zorlandığınızda önce ilgili eğitim scriptini yeniden çalıştırın, sonra açıklamalar için R Programlama Kitabı bölümüne bakın. Farklı çözüm yolları veya fonksiyon ayrıntıları için resmî paket belgelerini kullanın. Video derslerini konuyu yeniden görmek için değerlendirebilirsiniz."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "",
+    "text": "R ile veriyi okumaktan anlamlı bir çıktıya uzanan uygulamalı bir öğrenme yolu.\nBu açık eğitim sitesi, R’ye yeni başlayanlar ve veriyle çalışanlar için hazırlanmıştır. Konuları küçük örneklerle öğrenip R Programlama Kitabı için hazırlanmış Dünya Bankası (WDI) verileriyle pekiştireceğiz."
+  },
+  {
+    "objectID": "index.html#eğitim-hakkında",
+    "href": "index.html#eğitim-hakkında",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "Eğitim hakkında",
+    "text": "Eğitim hakkında\n\n\n\n\n\n\n\nÖzellik\nAçıklama\n\n\n\n\nDüzey\nBaşlangıç\n\n\nSüre\n5 yarım gün, 15 ders oturumu (45’er dakika)\n\n\nGünlük saat\n09.30–12.30 (aralar ve esnek zaman dahil)\n\n\nYaklaşım\nKısa anlatım, RStudio’da birlikte kodlama, egzersiz, mini proje\n\n\nAraçlar\nR, RStudio, Quarto; dplyr, tidyr ve veri okuma paketleri"
+  },
+  {
+    "objectID": "index.html#beş-günlük-öğrenme-yolu",
+    "href": "index.html#beş-günlük-öğrenme-yolu",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "Beş günlük öğrenme yolu",
+    "text": "Beş günlük öğrenme yolu\n\nR’ye giriş: RStudio, nesneler, veri tipleri, veri yapıları ve koşullar.\nProgramlama ve dosyalar: if/else, for, while, fonksiyonlar; CSV, Excel, RDS, SAS/SPSS ve veri tabanlarına giriş.\nVeri manipülasyonu I: Seçme, filtreleme, sıralama ve yeni değişken oluşturma.\nVeri manipülasyonu II: Gruplama, özetleme, birleştirme ve uzun/geniş veri dönüşümü.\nModern R iş akışı ve mini proje: Baştan sona bir WDI veri işleme uygulaması.\n\nAyrıntılı eğitim programını incele"
+  },
+  {
+    "objectID": "index.html#materyallerin-durumu",
+    "href": "index.html#materyallerin-durumu",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "Materyallerin durumu",
+    "text": "Materyallerin durumu\nBu site başlangıç iskeletidir. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir."
+  },
+  {
+    "objectID": "index.html#temel-kaynaklar",
+    "href": "index.html#temel-kaynaklar",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "Temel kaynaklar",
+    "text": "Temel kaynaklar\n\nR Programlama Kitabı\nR for Data Science, 2e\ndplyr belgeleri\nQuarto belgeleri"
+  },
+  {
     "objectID": "program/index.html",
     "href": "program/index.html",
     "title": "Eğitim Programı",
@@ -54,40 +131,5 @@
     "title": "Eğitim Programı",
     "section": "Eğitim yaklaşımı",
     "text": "Eğitim yaklaşımı\n\nA: Zorunlu çekirdek içerik.\nB: Zaman kalırsa pekiştirme ve ek alıştırma.\nC: Web sitesinde bağımsız çalışma kaynakları."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "",
-    "text": "R ile veriyi okumaktan anlamlı bir çıktıya uzanan uygulamalı bir öğrenme yolu.\nBu açık eğitim sitesi, R’ye yeni başlayanlar ve veriyle çalışanlar için hazırlanmıştır. Konuları küçük örneklerle öğrenip R Programlama Kitabı için hazırlanmış Dünya Bankası (WDI) verileriyle pekiştireceğiz."
-  },
-  {
-    "objectID": "index.html#eğitim-hakkında",
-    "href": "index.html#eğitim-hakkında",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "Eğitim hakkında",
-    "text": "Eğitim hakkında\n\n\n\n\n\n\n\nÖzellik\nAçıklama\n\n\n\n\nDüzey\nBaşlangıç\n\n\nSüre\n5 yarım gün, 15 ders oturumu (45’er dakika)\n\n\nGünlük saat\n09.30–12.30 (aralar ve esnek zaman dahil)\n\n\nYaklaşım\nKısa anlatım, RStudio’da birlikte kodlama, egzersiz, mini proje\n\n\nAraçlar\nR, RStudio, Quarto; dplyr, tidyr ve veri okuma paketleri"
-  },
-  {
-    "objectID": "index.html#beş-günlük-öğrenme-yolu",
-    "href": "index.html#beş-günlük-öğrenme-yolu",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "Beş günlük öğrenme yolu",
-    "text": "Beş günlük öğrenme yolu\n\nR’ye giriş: RStudio, nesneler, veri tipleri, veri yapıları ve koşullar.\nProgramlama ve dosyalar: if/else, for, while, fonksiyonlar; CSV, Excel, RDS, SAS/SPSS ve veri tabanlarına giriş.\nVeri manipülasyonu I: Seçme, filtreleme, sıralama ve yeni değişken oluşturma.\nVeri manipülasyonu II: Gruplama, özetleme, birleştirme ve uzun/geniş veri dönüşümü.\nModern R iş akışı ve mini proje: Baştan sona bir WDI veri işleme uygulaması.\n\nAyrıntılı eğitim programını incele"
-  },
-  {
-    "objectID": "index.html#materyallerin-durumu",
-    "href": "index.html#materyallerin-durumu",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "Materyallerin durumu",
-    "text": "Materyallerin durumu\nBu site başlangıç iskeletidir. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir."
-  },
-  {
-    "objectID": "index.html#temel-kaynaklar",
-    "href": "index.html#temel-kaynaklar",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "Temel kaynaklar",
-    "text": "Temel kaynaklar\n\nR Programlama Kitabı\nR for Data Science, 2e\ndplyr belgeleri\nQuarto belgeleri"
   }
 ]
