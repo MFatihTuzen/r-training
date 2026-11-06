@@ -1,43 +1,46 @@
-# =====================================================================
-# 01 | R Ortami ve Ilk Komutlar
-# Hedef: Console, Script, nesne, yardim, temel kontrol
-# Paket gerektirmez. RStudio Project icinde calistirilmasi onerilir.
-# =====================================================================
+# ====================================================================
+# R PROGRAMLAMA EGITIMI | 01 - R ortami ve ilk komutlar
+# On kosul: RStudio'da Console ve Script kavramlarini tanimak
+# Amac: Hesaplama -> atama -> fonksiyon kullanimi -> vektor
+# Bu dosyayi ustten alta, SATIR SATIR calistirin (Ctrl+Enter).
+# ====================================================================
 
-# A | R bir hesap makinesinden fazlasidir -------------------------------
-2 + 3 * 4             # Islem onceligi: beklenen cevap 14
-(2 + 3) * 4           # Parantez sonucu degistirir
+# 1) Ilk hesaplamalar: # isareti yorumdur, R tarafindan calistirilmaz.
+2 + 3
+10 - 4
+6 * 5
+12 / 3
+2 ^ 3
 
-# B | Nesne olusturma ---------------------------------------------------
-fiyat <- c(120, 150, 180, 210)
-adet <- c(2, 1, 3, 2)
-ciro <- fiyat * adet   # Vektorel hesap: her eleman kendi esleseniyle carpiliyor
+# ONCE TAHMIN: Iki komutun sonuclari ayni mi?
+2 + 3 * 4
+(2 + 3) * 4
 
-ciro
-sum(ciro)
-mean(ciro)
-length(ciro)
+# 2) Atama: <- sagdaki degeri soldaki adla saklar.
+fiyat <- 120
+adet <- 3
+tutar <- fiyat * adet
+tutar  # 360 beklenir
 
-# Kontrol: her vektorun uzunlugu ayni mi?
-stopifnot(length(fiyat) == length(adet))
+# DENEME: adet'i degistirdikten sonra 'tutar' otomatik degisir mi?
+adet <- 4
+tutar                    # Hala onceki hesaplamanin sonucu
+# Yeniden hesaplayalim.
+tutar <- fiyat * adet
+tutar                    # 480 beklenir
 
-# C | Eksik veri: NA ile tanisalim -------------------------------------
-notlar <- c(75, 80, NA, 95)
-mean(notlar)                 # NA verir; neden?
-mean(notlar, na.rm = TRUE)   # Eksikleri hesaplamadan cikar
-sum(is.na(notlar))          # Kac deger eksik?
+# 3) Hazir fonksiyon kullanimi; parantezdeki bilgiler argumandir.
+sqrt(16)
+round(3.14159, digits = 2)
 
-# D | R'nin yardim sistemi ---------------------------------------------
-# ?mean       # RStudio Help sekmesinde acmak icin yorumu kaldir
-args(mean)    # Fonksiyonun argumanlarini goster
+# 4) c() birden fazla degeri birlestirerek vektor olusturur.
+satis <- c(10, 15, 20)
+satis
+length(satis)  # Kac eleman var?
+sum(satis)     # Toplam
+mean(satis)    # Ortalama
 
-# E | Sik hata ornegi ---------------------------------------------------
-# toplam = toplam + 1
-# Yukaridaki satir nesne onceden olusturulmadiysa hata verir.
-# Hata mesajini okuyun: bulunamayan nesne hangisi?
+# ALISTIRMA: 8, 12, 16, 20 degerlerini vektor yapip ortalamasini bulun.
+# Kodu buraya yazin:
 
-# F | Egzersiz ---------------------------------------------------------
-# 1. 'gider' isimli, dort sayidan olusan bir vektor olusturun.
-# 2. Giderin toplamini ve ortalamasini hesaplayin.
-# 3. Bir degeri NA yaparak na.rm davranisini karsilastirin.
-# 4. Kodunuzu kaydedip R oturumunu yeniden baslatarak tekrar calistirin.
+# KONTROL: Sonuc 14 olmali. Kodun neden dogru oldugunu aciklayin.

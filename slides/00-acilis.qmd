@@ -1,122 +1,108 @@
 ---
-title: "R ile Veri Analizine İlk Adım"
-subtitle: "R Programlama ve Veri Manipülasyonu — Açılış"
+title: "R Programlamaya Giriş"
+subtitle: "R, RStudio ve ilk çalışma ortamımız"
 author: "Muhammed Fatih Tüzen"
 format:
   revealjs:
     theme: simple
     slide-number: true
     transition: fade
-    smaller: false
-    code-copy: true
-    footer: "R Programlama Eğitimi · r-training"
-execute:
-  eval: false
+    footer: "R Programlama Eğitimi"
 ---
 
-## Bu eğitimden ne beklemeliyiz?
+## Hoş geldiniz
 
-- RStudio'da kendi kodumuzu yazıp çalıştıracağız.
-- Veriyi **okuyacağız → inceleyeceğiz → dönüştüreceğiz → kontrol edeceğiz → kaydedeceğiz**.
-- Temel programlama mantığını anlayıp `dplyr` ile gerçek veri üzerinde çalışacağız.
-- Sonunda küçük bir veri işleme görevini tamamlayacağız.
+**R Programlama ve Veri Manipülasyonuna Giriş**
 
-::: {.notes}
-Katılımcılara hangi araçlarla veri işlediklerini ve daha önce programlama yapıp yapmadıklarını sorun. Ayrıntılı paket tarihi anlatmayın.
-:::
-
-## Önce problemi düşünelim
-
-Bir tabloda 2019 yılına ait işsizlik oranı %10'un üzerinde olan ülkeleri bulmamız gerekiyor.
-
-**Sorular:**
-
-1. Veri nerede?
-2. Hangi sütunlar gerekli?
-3. Sonucun doğru olduğunu nasıl kontrol edeceğiz?
+Amacımız komut ezberlemek değil: veriyi R ile okuyabilmek, işleyebilmek ve yaptığımız işlemleri tekrar edebilmek.
 
 ::: {.notes}
-Burada kod yazmayın; veri iş akışını sezdirin. İlgili WDI örneğini ileride dplyr dersinde işleyeceğiz.
+Katılımcıların mevcut yazılım ve analiz deneyimlerini kısaca öğrenin.
 :::
 
-## R, RStudio, paket: Hangisi ne yapar?
+## R nedir?
 
-| Araç | Görevi |
+- Ücretsiz ve açık kaynak bir **programlama dili**.
+- İstatistik, veri analizi ve görselleştirmede yaygın.
+- Analiz adımlarını **kod olarak kaydetmeyi ve yeniden çalıştırmayı** sağlar.
+
+**Temel soru:** Bir analizi gelecek ay aynı yöntemle nasıl tekrarlarız?
+
+## R ile neler yapabiliriz?
+
+- Veri dosyalarını okur ve düzenleriz.
+- Hesaplamalar, özet tablolar ve istatistiksel analizler yaparız.
+- Grafikler, raporlar ve otomatik iş akışları oluşturabiliriz.
+
+Bu eğitimde önce **temel programlama ve veri işleme** üzerinde duracağız.
+
+## R'nin güçlü yönleri ve dikkat edilmesi gerekenler
+
+**Güçlü yönleri:** Açık kaynak, geniş paket ekosistemi, tekrar üretilebilir analiz, farklı veri kaynakları.
+
+**Dikkat:** Kod yazmayı öğrenmek gerekir; veri tipi, eksik değer ve sonuç kontrolleri hâlâ bizim sorumluluğumuzdadır.
+
+## R ile RStudio aynı şey değil
+
+| R | RStudio |
 |---|---|
-| **R** | Hesaplama ve programlama dili |
-| **RStudio** | Kod yazma ve çalışma ortamı |
-| **Paketler** | Belirli işleri kolaylaştıran ek işlevler |
-| **Quarto** | Analizleri rapor, web sayfası ve sunuma dönüştürme |
+| Programlama dili ve hesaplama motoru | R için geliştirme ortamı |
+| Komutları çalıştırır | Kodu yazmayı, yönetmeyi ve çalıştırmayı kolaylaştırır |
 
-## Veriyi işlemenin akışı
+**Önce R, ardından RStudio kurulur.**
 
-**Dosya → R nesnesi → kontrol → dönüşüm → doğrulama → çıktı**
+## CRAN ve paketler
 
-- Girdiler değişmeden kalır.
-- Yaptığımız işlemler açıklamalı kodda görünür.
-- Aynı kod yeniden çalıştırılabilir.
+**CRAN (Comprehensive R Archive Network)**
 
-## Bu beş günlük programda
+- R'nin indirildiği resmî kaynak ağı.
+- Birçok R paketinin de dağıtım yeridir.
+- Paketler, hazır fonksiyonlar sağlayarak işimizi kolaylaştırır.
 
-| Aşama | Odağımız |
-|---|---|
-| Temeller | RStudio, nesneler, vektörler, tablolar |
-| Programlama | Koşullar, döngüler, fonksiyonlar |
-| Dosyalar | CSV, Excel, RDS, SAS, SPSS |
-| Veri işlemleri | `dplyr`, birleştirme, özetleme, `tidyr` |
-| Uygulama | WDI mini projesi |
+Paket kurma ve kullanma işlemini RStudio'da canlı göstereceğiz.
 
-## Nasıl çalışacağız?
+## R ve RStudio nereden indirilir?
 
-- **Önce soru**, sonra kısa açıklama ve canlı kod.
-- Çalıştırılan kodun sonucunu kontrol edeceğiz.
-- Yanlış sonuç veya hata mesajı: öğrenme fırsatı.
-- Bazı örnekler sınıfta, diğerleri ders sayfasında.
-
-## Modern R alışkanlıkları
-
-- Her çalışma için bir **RStudio Project**.
-- **Göreli dosya yolları**; bilgisayara özel sabit yollar değil.
-- Küçük, adlandırılmış ve açıklanmış kod parçaları.
-- `|>` ile okunur işlem sırası; uygun yerlerde vektörel işlemler.
-- Gizli veri ve parolalar asla herkese açık depoda bulunmaz.
-
-## İlk canlı deneme
-
-```r
-sayilar <- c(12, 18, 24, NA)
-mean(sayilar, na.rm = TRUE)
-length(sayilar)
-is.na(sayilar)
-```
-
-**Soru:** `na.rm = TRUE` olmazsa ne değişir?
+1. [R — CRAN](https://cran.r-project.org/)
+2. [RStudio Desktop — Posit](https://posit.co/download/rstudio-desktop/)
+3. RStudio'yu aç; Console'da `>` işaretini gör.
 
 ::: {.notes}
-Kodu sunumda uzun uzun açıklamak yerine RStudio'da çalıştırın. Katılımcılardan sonucu tahmin etmelerini isteyin.
+Kurulumların önceden tamamlandığını varsayın; BT kısıtlarını çözmeye uzun süre ayırmayın.
 :::
 
-## Yapay zekâ kullanımı
+## RStudio'yu tanıyalım
 
-**Serbest, ama sorgusuz değil.**
-
-- Kodu anlayabilmeli ve açıklayabilmeliyiz.
-- Çıktıyı bağımsız kontrol etmeliyiz.
-- Kurumsal, kişisel veya gizli verileri dış araçlara aktarmamalıyız.
-
-## Kaynaklar
-
-- [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/)
-- [R İstatistik Akademi — YouTube](https://www.youtube.com/@RistatistikAkademi)
-- [R for Data Science (2e)](https://r4ds.hadley.nz/)
-- [Quarto Rehberi](https://quarto.org/docs/guide/)
-
-## Başlayalım
-
-**RStudio'da ilk scriptimizi oluşturuyoruz.**
-
-`scripts/01-r-ortami-ve-ilk-komutlar.R`
+- **Source:** Script dosyası
+- **Console:** Çalışan komutlar ve sonuçları
+- **Environment:** Nesneler
+- **Files / Plots / Packages / Help:** Dosyalar, grafikler, paketler ve yardım
 
 ::: {.notes}
-Sunumu burada bitirin; doğrudan uygulamaya geçin. Bu slaytlar tam ders notu olarak değil, yönlendirme için tasarlandı.
+Burada RStudio'ya geçerek ekrandaki alanları gerçek arayüzde gösterin. Sunuma ekran görüntüsü eklemek şart değil; uygulama daha güncel kalır.
+:::
+
+## Bu eğitimde ilerleyeceğimiz yol
+
+**R ortamı → temel nesneler → koşullar/döngüler/fonksiyonlar → dosyalar → dplyr/tidyr → mini proje**
+
+- Açıklama ve canlı kodlama
+- Kısa egzersizler
+- WDI verileriyle uygulamalar
+
+## Materyallere nasıl erişeceğiz?
+
+- [Eğitim web sitesi](https://mfatihtuzen.github.io/r-training/): öğrenme sırası ve ders notları
+- [Materyaller](https://mfatihtuzen.github.io/r-training/materials/): R scriptleri ve egzersizler
+- [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/): ayrıntılı açıklamalar
+- [R İstatistik Akademi](https://www.youtube.com/@RistatistikAkademi): video destek
+
+## Şimdi RStudio'ya geçiyoruz
+
+**İlk denememiz:** Console'da `2 + 3` yazmak.
+
+Ardından aynı komutu `.R` scriptine kaydedip yeniden çalıştıracağız.
+
+::: {.notes}
+Slayt burada biter. Sonraki kod ve nesne örnekleri ders sayfasında aşamalı olarak verilir.
 :::

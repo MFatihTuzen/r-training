@@ -1,0 +1,90 @@
+---
+title: "02 · İlk R Komutları"
+subtitle: "Hesaplamadan nesnelere; nesnelerden vektörlere"
+description: "R'de dört işlem, atama, fonksiyon çağrısı ve temel vektör uygulamaları."
+execute:
+  eval: false
+---
+
+::: {.callout-note}
+## Ön koşul ve hedef
+[01 · R ve RStudio](01-r-ve-rstudio.qmd) bölümünde Console ve scripti tanıdık. Şimdi hesaplama yapacak, sonucu bir nesneye kaydedecek, ardından birden çok sayıyla işlem yapacağız. Kodları sırayla çalıştır.
+:::
+
+## 1. R'yi hesap makinesi gibi kullanalım
+
+```r
+2 + 3       # Toplama
+10 - 4      # Çıkarma
+6 * 5       # Çarpma
+12 / 3      # Bölme
+2 ^ 3       # Üs alma
+```
+
+`#` işaretinden sonrası **yorum satırıdır**; R o bölümü çalıştırmaz. Yorumlar kodun neden yazıldığını hatırlamamıza yardım eder.
+
+::: {.callout-tip}
+## Önce tahmin et
+`2 + 3 * 4` sonucu kaç olur? Önce işlem önceliğini düşün, sonra Console'da çalıştır. `(2 + 3) * 4` ile karşılaştır.
+:::
+
+## 2. Bir sonucu saklayalım: atama (`<-`)
+
+Bir sonucu tekrar kullanmak için **nesne** oluştururuz. `<-` operatörü sağdaki değeri soldaki isme atar.
+
+```r
+fiyat <- 120
+adet <- 3
+
+tutar <- fiyat * adet
+tutar
+```
+
+`fiyat`, `adet` ve `tutar` nesne adlarıdır. Bir isim verdiğimizde sonucu daha sonra yeniden hesaplayabilir veya kullanabiliriz.
+
+**Sıra sende:** `adet` değerini `4` yap ve `tutar` değerini tekrar hesapla. Sadece `adet` değişince `tutar` otomatik olarak güncellenir mi?
+
+## 3. Fonksiyon nedir?
+
+Fonksiyon, belli bir işi yapan hazır komuttur. Örneğin `sqrt()` sayının karekökünü hesaplar. Parantez içindeki değer **argümandır**.
+
+```r
+sqrt(16)
+round(3.14159, digits = 2)
+```
+
+Burada fonksiyon **kullanıyoruz**; kendi fonksiyonumuzu yazmayı ileriki bölümde öğreneceğiz.
+
+## 4. Birden fazla değeri bir araya getirelim: `c()`
+
+`c()` (combine) değerleri bir araya getirerek **vektör** oluşturur. Vektör, R'nin temel veri yapılarından biridir.
+
+```r
+satis <- c(10, 15, 20)
+satis
+length(satis)  # Kaç eleman var?
+sum(satis)     # Toplam
+mean(satis)    # Aritmetik ortalama
+```
+
+`length()`, `sum()` ve `mean()` hazır fonksiyonlardır. Hepsinin parantez içinde çalışacağı nesneyi belirtiyoruz.
+
+**Sıra sende:** Vektöre `25` değerini ekleyip ortalamayı yeniden hesapla.
+
+## Mini alıştırma
+
+1. `birim_fiyat <- 75` ve `miktar <- 6` nesnelerini oluştur; toplam tutarı hesapla.
+2. `c(8, 12, 16, 20)` vektörünün eleman sayısını, toplamını ve ortalamasını bul.
+3. Vektörünün ilk ve son elemanını köşeli parantez kullanarak seçmeyi dene. Bu işlemi bir sonraki bölümde ayrıntılandıracağız.
+
+[Alıştırma dosyasını indir](../exercises/01-ilk-adimlar.md){download="01-ilk-adimlar.md"} · [01 scriptini indir](../scripts/01-r-ortami-ve-ilk-komutlar.R){download="01-r-ortami-ve-ilk-komutlar.R"} 
+
+## Sık rastlanan hatalar
+
+- Nesne adını yanlış yazmak (`fiyat` ile `Fiyat` farklıdır).
+- Bir ifadenin sonucunu nesneye kaydettiğimiz halde eski bir nesneyi kullandığımızı fark etmemek.
+- `NA` varken sonucu açıklamadan `na.rm = TRUE` kullanmak.
+
+---
+
+**Sonraki bölüm:** [03 · Veri Tipleri ve Veri Yapıları →](03-veri-tipleri-ve-yapilari.qmd). Ayrıntılı açıklamalar için [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) kullanılabilir.

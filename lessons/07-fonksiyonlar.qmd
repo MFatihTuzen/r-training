@@ -1,0 +1,244 @@
+---
+title: "07 · Kullanıcı Tanımlı Fonksiyonlar"
+subtitle: "Tekrar eden kodu anlaşılır, test edilebilir ve yeniden kullanılabilir hâle getirmek"
+---
+
+::: {.callout-note}
+## Bu bölümün yeri
+Önceki derste [döngülerle](06-donguler.qmd) aynı işlemi tekrarlamayı öğrendik. Şimdi **aynı işlemi birden çok yerde kullanmak** için bir fonksiyon yazacağız. Ön koşullar: nesneler, vektörler, `if/else`, `for` ve temel hesaplama fonksiyonları.
+:::
+
+**Öğrenme hedefleri:** Bu ders sonunda bir fonksiyon tanımlayabilecek; parametre ve argümanı ayırt edebilecek; varsayılan değer, sonuç döndürme, basit girdi kontrolü ve değişken kapsamı kavramlarını örneklerle açıklayabileceksiniz.
+
+**Ders materyalleri:** [Uygulama scriptini indir (.R)](../scripts/06-fonksiyonlar.R){download="06-fonksiyonlar.R"} · [Alıştırmaları indir (.md)](../exercises/06-fonksiyonlar.md){download="06-fonksiyonlar.md"}
+
+## 1. Neden kendi fonksiyonumuzu yazalım?
+
+Bir işlemi farklı sayılar, kişiler veya dönemler için tekrar yapmamız gerekebilir. Her yerde aynı kodu kopyalamak hem yorucu hem de hata üretmeye açıktır. Önce bir hesaplama yapalım:
+
+```r
+fiyat <- 120
+adet <- 3
+fiyat * adet
+```
+
+Farklı fiyat ve adetler için aynı işlemi yeniden yazmak yerine hesaplamayı **isimlendirebiliriz**. R'deki `sum()` ve `mean()` gibi hazır fonksiyonlar da zaten aynı fikirle çalışır: girdileri alır ve sonuç üretir.
+
+::: {.callout-tip}
+## Sınıfta düşünün
+Aynı hesaplama on farklı yerde yazılıysa yöntemi değiştirmek gerektiğinde kaç kod parçasını güncellemek zorunda kalırsınız?
+:::
+
+## 2. İlk fonksiyon: `function()`
+
+Temel biçim şöyledir:
+
+```r
+hesapla <- function(girdi) {
+  # yapılacak işlem
+  sonuc
+}
+```
+
+Burada `hesapla` fonksiyonun **adı**, `girdi` bir **parametre**, süslü parantezler fonksiyonun **gövdesidir**. Fonksiyonu tanımlamak onu çalıştırmaz; çalıştırmak için adından sonra parantez kullanırız.
+
+```r
+tutar_hesapla <- function(fiyat, adet) {
+  fiyat * adet
+}
+
+tutar_hesapla(120, 3)
+tutar_hesapla(75, 4)
+```
+
+İlk çağrıda `fiyat = 120`, `adet = 3`; ikincisinde farklı değerler kullanılır. Fonksiyonun içindeki işlem ise aynıdır.
+
+**Tahmin edin:** `tutar_hesapla(50, 6)` hangi değeri döndürür? Kodu çalıştırmadan önce söyleyin.
+
+## 3. Parametre ve argüman farkı
+
+- `function(fiyat, adet)` tanımında `fiyat` ve `adet` **parametre** adlarıdır.
+- `tutar_hesapla(120, 3)` çağrısında `120` ve `3` **argüman** değerleridir.
+- Değerleri konumlarına göre veya adlarıyla verebiliriz.
+
+```r
+tutar_hesapla(adet = 3, fiyat = 120)
+```
+
+Adları açıkça yazmak, özellikle çok argümanlı fonksiyonlarda yanlış sıradan kaynaklanan sorunları azaltır.
+
+## 4. Varsayılan değerler
+
+Bir parametrenin çoğu zaman aynı değeri alması gerekiyorsa fonksiyon tanımında varsayılan değer belirleyebiliriz:
+
+```r
+indirimli_tutar <- function(fiyat, indirim_orani = 0.10) {
+  fiyat * (1 - indirim_orani)
+}
+
+indirimli_tutar(200)        # 180
+indirimli_tutar(200, 0.20)  # 160
+```
+
+Bu örnekte oranlar **öğretim amaçlıdır**. Fonksiyon çağrısında `indirim_orani` verilmezse `0.10` kullanılır; verilirse yeni değer geçerlidir.
+
+**Deneyin:** `indirimli_tutar(200, indirim_orani = 0)` ne döndürür? Neden?
+
+## 5. Fonksiyonun çıktısı: Son ifade ve `return()`
+
+R'de fonksiyonun sonunda hesaplanan ifade genellikle sonuç olarak döndürülür. `return()` ise sonucun nerede ve hangi koşulda döneceğini açıkça belirlememizi sağlar.
+
+```r
+kare_al <- function(x) {
+  x^2  # son ifade: sonuç
+}
+
+kare_al(4)
+```
+
+```r
+puan_durumu <- function(puan) {
+  if (puan >= 50) {
+    return("Gecti")
+  }
+  "Kaldi"
+}
+
+puan_durumu(75)
+puan_durumu(40)
+```
+
+::: {.callout-important}
+## Tek bir karar mı, birden çok değer mi?
+`if (kosul)` tek bir `TRUE`/`FALSE` bekler. `puan_durumu(c(40, 75))` bu hâliyle çalışmaz. Önce tek değerli fonksiyonları anlamalıyız; vektörle çalışma yaklaşımını aşağıda ele alacağız.
+:::
+
+## 6. `NA` ve hatalı girdileri düşünelim
+
+Kendi fonksiyonumuzu yazdığımızda yalnızca beklenen değerleri değil, sorunlu girdileri de düşünmemiz gerekir. Önce eksik değer için açık bir karar verelim:
+
+```r
+puan_durumu_guvenli <- function(puan) {
+  if (is.na(puan)) {
+    return(NA_character_)
+  }
+  if (puan >= 50) {
+    return("Gecti")
+  }
+  "Kaldi"
+}
+
+puan_durumu_guvenli(NA_real_)
+```
+
+Burada `NA_character_` karakter türünde eksik değer üretir. `is.na()` kontrolünü önce yapmak, `if (NA)` hatasını önler.
+
+Bir adım daha: Fonksiyonun yalnızca **tek sayısal değer** kabul etmesini istiyoruz. Bunun için `stopifnot()` gibi basit bir kontrol kullanabiliriz:
+
+```r
+puan_durumu_kontrollu <- function(puan) {
+  stopifnot(is.numeric(puan), length(puan) == 1L)
+  if (is.na(puan)) return(NA_character_)
+  if (puan >= 50) "Gecti" else "Kaldi"
+}
+
+puan_durumu_kontrollu(55)
+```
+
+**Not:** Girdi kontrolü ve hata mesajı tasarımı ileri seviyelerde geliştirilebilir. Bu derste amaç, fonksiyonun hangi veriyle çalışacağını açıkça belirlemektir.
+
+## 7. Değişken kapsamı: İçerideki ve dışarıdaki nesneler
+
+Fonksiyon içinde oluşturulan yerel nesneler normalde dışarıdaki çalışma alanında bulunmaz:
+
+```r
+iki_kat <- function(x) {
+  sonuc <- x * 2
+  sonuc
+}
+
+iki_kat(8)
+# 'sonuc' nesnesi fonksiyonun yerel ortamındadır.
+```
+
+Fonksiyonun dışındaki değişkenlere bağımlı kod, başka bilgisayarda veya temiz bir R oturumunda sorun çıkarabilir. Daha güvenilir yöntem, gereken bilgiyi **argüman olarak vermektir**.
+
+```r
+# Tercih edilen yaklaşım:
+vergi_ekle <- function(tutar, oran) {
+  tutar * (1 + oran)
+}
+vergi_ekle(100, 0.20)
+```
+
+Buradaki oran örnek amaçlıdır. Dışarıdaki rastgele bir `oran` nesnesine güvenmiyoruz.
+
+## 8. Fonksiyonlar vektörlerle de çalışabilir
+
+R'de temel aritmetik vektörel çalıştığı için aynı fonksiyon bir sayı vektörünü de işleyebilir:
+
+```r
+artis_uygula <- function(deger, oran = 0.05) {
+  deger * (1 + oran)
+}
+
+artis_uygula(c(100, 120, 150))
+```
+
+Burada `for` yazmaya gerek yoktur. Ancak **bütün fonksiyonlar kendiliğinden vektörel değildir**. Özellikle tek bir koşul değerlendiren `if` ifadeleri için dikkatli olunmalıdır.
+
+## 9. Bir küçük veri uygulaması
+
+Daha önce öğrendiğimiz `data.frame()` yapısını kullanarak bir çalışma yapalım. Veri tamamen yapaydır:
+
+```r
+satislar <- data.frame(
+  urun = c("A", "B", "C"),
+  adet = c(2, 4, 3),
+  birim_fiyat = c(100, 75, 150)
+)
+
+tutar_hesapla <- function(fiyat, adet) {
+  fiyat * adet
+}
+
+satislar$tutar <- tutar_hesapla(satislar$birim_fiyat, satislar$adet)
+satislar
+```
+
+**Kontrol edin:** Üçüncü ürünün toplam tutarı neden `450`? Veri tablosundaki satırları değiştirdiğinizde sonuç nasıl etkileniyor?
+
+::: {.callout-tip}
+## Modern R alışkanlığı
+Fonksiyonlara anlaşılır isimler verin (`artis_uygula` gibi), girdileri açık tutun, tek bir sorumluluğa odaklanın ve küçük örneklerle test edin. İleride `dplyr::mutate()` içinde aynı fonksiyonları tekrar kullanabiliriz. Fonksiyon yazarken her şeyi `for` döngüsüne dönüştürmek zorunda değiliz.
+:::
+
+## 10. Sık yapılan hatalar
+
+- Fonksiyonu tanımlamakla çağırmayı aynı şey sanmak.
+- Argüman sırasını karıştırmak; gerektiğinde argümanları adlarıyla vermemek.
+- Fonksiyon içinde oluşan bir nesnenin dışarıdan da erişilebilir olduğunu düşünmek.
+- Eksik değeri (`NA`) `if` içinde kontrol etmeden kullanmak.
+- Tek değer için tasarlanan `if` fonksiyonuna vektör göndermek.
+- Her hesaplamaya gereksiz döngü eklemek veya fonksiyonu dış ortamdaki nesnelere bağımlı bırakmak.
+
+## 11. Kendi kendini kontrol et
+
+1. Fonksiyonu tanımlamak ve çağırmak arasındaki fark nedir?
+2. Varsayılan argüman hangi durumda kullanılır?
+3. Son ifade ile `return()` arasında hangi fark vardır?
+4. `puan_durumu(NA)` ilk sürümünde neden hata verir?
+5. `artis_uygula(c(100, 200))` için neden `for` döngüsü gerekli değildir?
+
+[**Egzersizleri indir (.md)**](../exercises/06-fonksiyonlar.md){download="06-fonksiyonlar.md"} · [**Tam uygulama scriptini indir (.R)**](../scripts/06-fonksiyonlar.R){download="06-fonksiyonlar.R"}
+
+## Özet ve sonraki adım
+
+Bir fonksiyon, girdilerle yapılan belirli bir işi tekrar kullanılabilir hâle getirir. `function()`, argümanlar, varsayılan değerler, sonuç döndürme, basit kontrol ve değişken kapsamını öğrendik. Bir sonraki bölümde farklı dosyalardaki verileri R'ye alıp bu bilgileri gerçek veri işleme sürecine taşıyacağız.
+
+**Derinleşmek için:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [R: Writing Your Own Functions](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Writing-your-own-functions)
+
+---
+
+**Önceki:** [06 · Döngüler](06-donguler.qmd)  
+**Sonraki:** Veri İçe / Dışa Aktarma — sonraki modülde bağlantı eklenecek.

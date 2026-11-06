@@ -1,80 +1,388 @@
 [
   {
-    "objectID": "slides/00-acilis.html#bu-eğitimden-ne-beklemeliyiz",
-    "href": "slides/00-acilis.html#bu-eğitimden-ne-beklemeliyiz",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Bu eğitimden ne beklemeliyiz?",
-    "text": "Bu eğitimden ne beklemeliyiz?\n\nRStudio’da kendi kodumuzu yazıp çalıştıracağız.\nVeriyi okuyacağız → inceleyeceğiz → dönüştüreceğiz → kontrol edeceğiz → kaydedeceğiz.\nTemel programlama mantığını anlayıp dplyr ile gerçek veri üzerinde çalışacağız.\nSonunda küçük bir veri işleme görevini tamamlayacağız.\n\n\nKatılımcılara hangi araçlarla veri işlediklerini ve daha önce programlama yapıp yapmadıklarını sorun. Ayrıntılı paket tarihi anlatmayın."
+    "objectID": "slides/00-acilis.html#hoş-geldiniz",
+    "href": "slides/00-acilis.html#hoş-geldiniz",
+    "title": "R Programlamaya Giriş",
+    "section": "Hoş geldiniz",
+    "text": "Hoş geldiniz\nR Programlama ve Veri Manipülasyonuna Giriş\nAmacımız komut ezberlemek değil: veriyi R ile okuyabilmek, işleyebilmek ve yaptığımız işlemleri tekrar edebilmek.\n\nKatılımcıların mevcut yazılım ve analiz deneyimlerini kısaca öğrenin."
   },
   {
-    "objectID": "slides/00-acilis.html#önce-problemi-düşünelim",
-    "href": "slides/00-acilis.html#önce-problemi-düşünelim",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Önce problemi düşünelim",
-    "text": "Önce problemi düşünelim\nBir tabloda 2019 yılına ait işsizlik oranı %10’un üzerinde olan ülkeleri bulmamız gerekiyor.\nSorular:\n\nVeri nerede?\nHangi sütunlar gerekli?\nSonucun doğru olduğunu nasıl kontrol edeceğiz?\n\n\nBurada kod yazmayın; veri iş akışını sezdirin. İlgili WDI örneğini ileride dplyr dersinde işleyeceğiz."
+    "objectID": "slides/00-acilis.html#r-nedir",
+    "href": "slides/00-acilis.html#r-nedir",
+    "title": "R Programlamaya Giriş",
+    "section": "R nedir?",
+    "text": "R nedir?\n\nÜcretsiz ve açık kaynak bir programlama dili.\nİstatistik, veri analizi ve görselleştirmede yaygın.\nAnaliz adımlarını kod olarak kaydetmeyi ve yeniden çalıştırmayı sağlar.\n\nTemel soru: Bir analizi gelecek ay aynı yöntemle nasıl tekrarlarız?"
   },
   {
-    "objectID": "slides/00-acilis.html#r-rstudio-paket-hangisi-ne-yapar",
-    "href": "slides/00-acilis.html#r-rstudio-paket-hangisi-ne-yapar",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "R, RStudio, paket: Hangisi ne yapar?",
-    "text": "R, RStudio, paket: Hangisi ne yapar?\n\n\n\nAraç\nGörevi\n\n\n\n\nR\nHesaplama ve programlama dili\n\n\nRStudio\nKod yazma ve çalışma ortamı\n\n\nPaketler\nBelirli işleri kolaylaştıran ek işlevler\n\n\nQuarto\nAnalizleri rapor, web sayfası ve sunuma dönüştürme"
+    "objectID": "slides/00-acilis.html#r-ile-neler-yapabiliriz",
+    "href": "slides/00-acilis.html#r-ile-neler-yapabiliriz",
+    "title": "R Programlamaya Giriş",
+    "section": "R ile neler yapabiliriz?",
+    "text": "R ile neler yapabiliriz?\n\nVeri dosyalarını okur ve düzenleriz.\nHesaplamalar, özet tablolar ve istatistiksel analizler yaparız.\nGrafikler, raporlar ve otomatik iş akışları oluşturabiliriz.\n\nBu eğitimde önce temel programlama ve veri işleme üzerinde duracağız."
   },
   {
-    "objectID": "slides/00-acilis.html#veriyi-işlemenin-akışı",
-    "href": "slides/00-acilis.html#veriyi-işlemenin-akışı",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Veriyi işlemenin akışı",
-    "text": "Veriyi işlemenin akışı\nDosya → R nesnesi → kontrol → dönüşüm → doğrulama → çıktı\n\nGirdiler değişmeden kalır.\nYaptığımız işlemler açıklamalı kodda görünür.\nAynı kod yeniden çalıştırılabilir."
+    "objectID": "slides/00-acilis.html#rnin-güçlü-yönleri-ve-dikkat-edilmesi-gerekenler",
+    "href": "slides/00-acilis.html#rnin-güçlü-yönleri-ve-dikkat-edilmesi-gerekenler",
+    "title": "R Programlamaya Giriş",
+    "section": "R’nin güçlü yönleri ve dikkat edilmesi gerekenler",
+    "text": "R’nin güçlü yönleri ve dikkat edilmesi gerekenler\nGüçlü yönleri: Açık kaynak, geniş paket ekosistemi, tekrar üretilebilir analiz, farklı veri kaynakları.\nDikkat: Kod yazmayı öğrenmek gerekir; veri tipi, eksik değer ve sonuç kontrolleri hâlâ bizim sorumluluğumuzdadır."
   },
   {
-    "objectID": "slides/00-acilis.html#bu-beş-günlük-programda",
-    "href": "slides/00-acilis.html#bu-beş-günlük-programda",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Bu beş günlük programda",
-    "text": "Bu beş günlük programda\n\n\n\nAşama\nOdağımız\n\n\n\n\nTemeller\nRStudio, nesneler, vektörler, tablolar\n\n\nProgramlama\nKoşullar, döngüler, fonksiyonlar\n\n\nDosyalar\nCSV, Excel, RDS, SAS, SPSS\n\n\nVeri işlemleri\ndplyr, birleştirme, özetleme, tidyr\n\n\nUygulama\nWDI mini projesi"
+    "objectID": "slides/00-acilis.html#r-ile-rstudio-aynı-şey-değil",
+    "href": "slides/00-acilis.html#r-ile-rstudio-aynı-şey-değil",
+    "title": "R Programlamaya Giriş",
+    "section": "R ile RStudio aynı şey değil",
+    "text": "R ile RStudio aynı şey değil\n\n\n\n\n\n\n\nR\nRStudio\n\n\n\n\nProgramlama dili ve hesaplama motoru\nR için geliştirme ortamı\n\n\nKomutları çalıştırır\nKodu yazmayı, yönetmeyi ve çalıştırmayı kolaylaştırır\n\n\n\nÖnce R, ardından RStudio kurulur."
   },
   {
-    "objectID": "slides/00-acilis.html#nasıl-çalışacağız",
-    "href": "slides/00-acilis.html#nasıl-çalışacağız",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Nasıl çalışacağız?",
-    "text": "Nasıl çalışacağız?\n\nÖnce soru, sonra kısa açıklama ve canlı kod.\nÇalıştırılan kodun sonucunu kontrol edeceğiz.\nYanlış sonuç veya hata mesajı: öğrenme fırsatı.\nBazı örnekler sınıfta, diğerleri ders sayfasında."
+    "objectID": "slides/00-acilis.html#cran-ve-paketler",
+    "href": "slides/00-acilis.html#cran-ve-paketler",
+    "title": "R Programlamaya Giriş",
+    "section": "CRAN ve paketler",
+    "text": "CRAN ve paketler\nCRAN (Comprehensive R Archive Network)\n\nR’nin indirildiği resmî kaynak ağı.\nBirçok R paketinin de dağıtım yeridir.\nPaketler, hazır fonksiyonlar sağlayarak işimizi kolaylaştırır.\n\nPaket kurma ve kullanma işlemini RStudio’da canlı göstereceğiz."
   },
   {
-    "objectID": "slides/00-acilis.html#modern-r-alışkanlıkları",
-    "href": "slides/00-acilis.html#modern-r-alışkanlıkları",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Modern R alışkanlıkları",
-    "text": "Modern R alışkanlıkları\n\nHer çalışma için bir RStudio Project.\nGöreli dosya yolları; bilgisayara özel sabit yollar değil.\nKüçük, adlandırılmış ve açıklanmış kod parçaları.\n|&gt; ile okunur işlem sırası; uygun yerlerde vektörel işlemler.\nGizli veri ve parolalar asla herkese açık depoda bulunmaz."
+    "objectID": "slides/00-acilis.html#r-ve-rstudio-nereden-indirilir",
+    "href": "slides/00-acilis.html#r-ve-rstudio-nereden-indirilir",
+    "title": "R Programlamaya Giriş",
+    "section": "R ve RStudio nereden indirilir?",
+    "text": "R ve RStudio nereden indirilir?\n\nR — CRAN\nRStudio Desktop — Posit\nRStudio’yu aç; Console’da &gt; işaretini gör.\n\n\nKurulumların önceden tamamlandığını varsayın; BT kısıtlarını çözmeye uzun süre ayırmayın."
   },
   {
-    "objectID": "slides/00-acilis.html#ilk-canlı-deneme",
-    "href": "slides/00-acilis.html#ilk-canlı-deneme",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "İlk canlı deneme",
-    "text": "İlk canlı deneme\nsayilar &lt;- c(12, 18, 24, NA)\nmean(sayilar, na.rm = TRUE)\nlength(sayilar)\nis.na(sayilar)\nSoru: na.rm = TRUE olmazsa ne değişir?\n\nKodu sunumda uzun uzun açıklamak yerine RStudio’da çalıştırın. Katılımcılardan sonucu tahmin etmelerini isteyin."
+    "objectID": "slides/00-acilis.html#rstudioyu-tanıyalım",
+    "href": "slides/00-acilis.html#rstudioyu-tanıyalım",
+    "title": "R Programlamaya Giriş",
+    "section": "RStudio’yu tanıyalım",
+    "text": "RStudio’yu tanıyalım\n\nSource: Script dosyası\nConsole: Çalışan komutlar ve sonuçları\nEnvironment: Nesneler\nFiles / Plots / Packages / Help: Dosyalar, grafikler, paketler ve yardım\n\n\nBurada RStudio’ya geçerek ekrandaki alanları gerçek arayüzde gösterin. Sunuma ekran görüntüsü eklemek şart değil; uygulama daha güncel kalır."
   },
   {
-    "objectID": "slides/00-acilis.html#yapay-zekâ-kullanımı",
-    "href": "slides/00-acilis.html#yapay-zekâ-kullanımı",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Yapay zekâ kullanımı",
-    "text": "Yapay zekâ kullanımı\nSerbest, ama sorgusuz değil.\n\nKodu anlayabilmeli ve açıklayabilmeliyiz.\nÇıktıyı bağımsız kontrol etmeliyiz.\nKurumsal, kişisel veya gizli verileri dış araçlara aktarmamalıyız."
+    "objectID": "slides/00-acilis.html#bu-eğitimde-ilerleyeceğimiz-yol",
+    "href": "slides/00-acilis.html#bu-eğitimde-ilerleyeceğimiz-yol",
+    "title": "R Programlamaya Giriş",
+    "section": "Bu eğitimde ilerleyeceğimiz yol",
+    "text": "Bu eğitimde ilerleyeceğimiz yol\nR ortamı → temel nesneler → koşullar/döngüler/fonksiyonlar → dosyalar → dplyr/tidyr → mini proje\n\nAçıklama ve canlı kodlama\nKısa egzersizler\nWDI verileriyle uygulamalar"
   },
   {
-    "objectID": "slides/00-acilis.html#kaynaklar",
-    "href": "slides/00-acilis.html#kaynaklar",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Kaynaklar",
-    "text": "Kaynaklar\n\nR Programlama Kitabı\nR İstatistik Akademi — YouTube\nR for Data Science (2e)\nQuarto Rehberi"
+    "objectID": "slides/00-acilis.html#materyallere-nasıl-erişeceğiz",
+    "href": "slides/00-acilis.html#materyallere-nasıl-erişeceğiz",
+    "title": "R Programlamaya Giriş",
+    "section": "Materyallere nasıl erişeceğiz?",
+    "text": "Materyallere nasıl erişeceğiz?\n\nEğitim web sitesi: öğrenme sırası ve ders notları\nMateryaller: R scriptleri ve egzersizler\nR Programlama Kitabı: ayrıntılı açıklamalar\nR İstatistik Akademi: video destek"
   },
   {
-    "objectID": "slides/00-acilis.html#başlayalım",
-    "href": "slides/00-acilis.html#başlayalım",
-    "title": "R ile Veri Analizine İlk Adım",
-    "section": "Başlayalım",
-    "text": "Başlayalım\nRStudio’da ilk scriptimizi oluşturuyoruz.\nscripts/01-r-ortami-ve-ilk-komutlar.R\n\nSunumu burada bitirin; doğrudan uygulamaya geçin. Bu slaytlar tam ders notu olarak değil, yönlendirme için tasarlandı."
+    "objectID": "slides/00-acilis.html#şimdi-rstudioya-geçiyoruz",
+    "href": "slides/00-acilis.html#şimdi-rstudioya-geçiyoruz",
+    "title": "R Programlamaya Giriş",
+    "section": "Şimdi RStudio’ya geçiyoruz",
+    "text": "Şimdi RStudio’ya geçiyoruz\nİlk denememiz: Console’da 2 + 3 yazmak.\nArdından aynı komutu .R scriptine kaydedip yeniden çalıştıracağız.\n\nSlayt burada biter. Sonraki kod ve nesne örnekleri ders sayfasında aşamalı olarak verilir."
+  },
+  {
+    "objectID": "lessons/06-donguler.html",
+    "href": "lessons/06-donguler.html",
+    "title": "06 · Döngüler: for ve while",
+    "section": "",
+    "text": "Bu konudan önce\n\n\n\nKoşullu ifadeler bölümünü bitirdiğinizi varsayıyoruz. Özellikle karşılaştırma, if/else, vektör ve indeksleme bilgisini kullanacağız. Buradaki kodları yukarıdan aşağıya sırasıyla çalıştırın.\nBu bölümün sonunda: bir for döngüsünü okuyabilecek, while döngüsünde durma koşulunu açıklayabilecek, sonuçları saklayabilecek ve bir döngünün gerçekten gerekli olup olmadığını değerlendirebileceksiniz.\nUygulama scriptini indir (.R) · Alıştırmaları indir (.md) · Materyallerin tamamı",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#neden-döngü-kullanırız",
+    "href": "lessons/06-donguler.html#neden-döngü-kullanırız",
+    "title": "06 · Döngüler: for ve while",
+    "section": "1. Neden döngü kullanırız?",
+    "text": "1. Neden döngü kullanırız?\nBir raporun beş farklı bölgesine aynı kontrolü uyguladığınızı düşünün. Her işlem için aynı kodu tekrar yazmak hem zahmetlidir hem de hata riskini artırır. Döngü, bir kod bloğunu belirli bir sırayla veya bir koşul sağlandığı sürece çalıştırır.\nİlk olarak tekrarsız işlemi düşünelim:\nprint(\"1. dönem kontrol edildi\")\nprint(\"2. dönem kontrol edildi\")\nprint(\"3. dönem kontrol edildi\")\nÜç satır yerine her dönem için aynı adımı tekrarlamak istiyoruz. Önce for, sonra while öğreneceğiz.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#for-kaç-kez-tekrarlanacağını-biliyorsak",
+    "href": "lessons/06-donguler.html#for-kaç-kez-tekrarlanacağını-biliyorsak",
+    "title": "06 · Döngüler: for ve while",
+    "section": "2. for: Kaç kez tekrarlanacağını biliyorsak",
+    "text": "2. for: Kaç kez tekrarlanacağını biliyorsak\nGenel yapı:\nfor (degisken in degerler) {\n  # Her değer için çalışacak işlemler\n}\nÖrneğin:\nfor (donem in 1:3) {\n  print(paste(\"Kontrol edilen dönem:\", donem))\n}\nAdım adım okuyalım: 1:3 ifadesi 1, 2, 3 değerlerini üretir. donem sırasıyla bu değerleri alır. Süslü parantezler arasındaki işlem her değer için bir kez çalışır. paste() metinleri birleştirir; print() sonucu gösterir.\n\n\n\nAdım\ndonem değeri\nEkranda ne olur?\n\n\n\n\n1\n1\nKontrol edilen dönem: 1\n\n\n2\n2\nKontrol edilen dönem: 2\n\n\n3\n3\nKontrol edilen dönem: 3\n\n\n\n\n\n\n\n\n\nŞimdi değiştir\n\n\n\n1:3 yerine 4:6 yaz. Çıktının kaç satır olacağını kodu çalıştırmadan önce tahmin et.\n\n\n\nVektördeki değerleri gezmek\nbolgeler &lt;- c(\"Kuzey\", \"Guney\", \"Dogu\")\nfor (bolge in bolgeler) {\n  print(paste(\"Bölge:\", bolge))\n}\nDöngü mutlaka 1, 2, 3 gibi sayılar üzerinden gitmez. Her eleman üzerinde sırayla çalışabilir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#hesaplanan-sonuçları-neden-saklamalıyız",
+    "href": "lessons/06-donguler.html#hesaplanan-sonuçları-neden-saklamalıyız",
+    "title": "06 · Döngüler: for ve while",
+    "section": "3. Hesaplanan sonuçları neden saklamalıyız?",
+    "text": "3. Hesaplanan sonuçları neden saklamalıyız?\nSadece print() ile göstermek çoğu zaman yeterli değildir: Sonuçları daha sonra tabloya yazmak veya karşılaştırmak isteriz. Bunun için önce sonucu tutacak bir vektör oluştururuz.\nsatis &lt;- c(80, 100, 120, 90)\nkdv_dahil &lt;- numeric(length(satis))  # Dört elemanlı boş sonuç vektörü\n\nfor (i in seq_along(satis)) {\n  kdv_dahil[i] &lt;- satis[i] * 1.20\n}\nkdv_dahil\nBuradaki yeni öğeler:\n\nlength(satis): kaç eleman bulunduğunu verir.\nnumeric(4): dört sayılık başlangıç vektörü oluşturur.\nseq_along(satis): vektördeki geçerli indislerin sırasını oluşturur. Boş vektörlerde 1:length(satis) kalıbından daha güvenlidir.\n[i]: i konumundaki elemana ulaşır; &lt;- ile sonucun aynı konumuna yazılır.\n\nSonuç kontrolü: İlk elemanın 96, üçüncü elemanın 144 olmasını bekleriz. Hesapta kullanılan 1.20 katsayısı öğretici varsayımdır, gerçek bir vergi oranı beyanı değildir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#koşulları-döngünün-içine-koymak",
+    "href": "lessons/06-donguler.html#koşulları-döngünün-içine-koymak",
+    "title": "06 · Döngüler: for ve while",
+    "section": "4. Koşulları döngünün içine koymak",
+    "text": "4. Koşulları döngünün içine koymak\nÖnceki dersteki if/else bilgisini kullanıyoruz:\npuanlar &lt;- c(45, 68, 82, 39)\ndurumlar &lt;- character(length(puanlar))\n\nfor (i in seq_along(puanlar)) {\n  if (puanlar[i] &gt;= 50) {\n    durumlar[i] &lt;- \"Gecti\"\n  } else {\n    durumlar[i] &lt;- \"Kaldi\"\n  }\n}\ndurumlar\nSoru: 50 puan sınır değerinde hangi dal çalışır? &gt;= yerine &gt; yazılırsa ne değişir?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#while-durma-koşulu-gerçekleşene-kadar",
+    "href": "lessons/06-donguler.html#while-durma-koşulu-gerçekleşene-kadar",
+    "title": "06 · Döngüler: for ve while",
+    "section": "5. while: Durma koşulu gerçekleşene kadar",
+    "text": "5. while: Durma koşulu gerçekleşene kadar\nfor çoğunlukla belirli bir eleman kümesi üzerinde dolaşır. while ise koşul doğru olduğu sürece çalışır. Döngüye girmeden önce koşul kontrol edilir.\nsayac &lt;- 1\nwhile (sayac &lt;= 3) {\n  print(paste(\"Adım:\", sayac))\n  sayac &lt;- sayac + 1\n}\nwhile döngüsünün güvenli olması için koşulu değiştiren adımın bulunması gerekir. Burada sayaç her tekrar sonunda 1 artar; dördüncü kontrole gelindiğinde koşul yanlış olur.\n\n\n\n\n\n\nSonsuz döngü tehlikesi\n\n\n\nSayaç artırma satırı çıkarılırsa koşul hep TRUE kalabilir. Böyle bir döngüyü çalıştırmayın. Yanlışlıkla başladıysa RStudio’da Esc veya Stop ile durdurun. Her while yazarken “Bu koşul hangi durumda FALSE olacak?” sorusunu sorun.\n\n\n\nwhile ile küçük bir hedef örneği\nbirikim &lt;- 0\nhedef &lt;- 350\nay &lt;- 0\n\nwhile (birikim &lt; hedef) {\n  ay &lt;- ay + 1\n  birikim &lt;- birikim + 100\n}\n\nay       # 4\nbirikim  # 400\nGerçekte faiz, gelir, harcama ve başka unsurlar olabilir; bu sadece döngü mantığını göstermek için yapay bir örnektir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#break-ve-next-döngü-akışını-yönetmek",
+    "href": "lessons/06-donguler.html#break-ve-next-döngü-akışını-yönetmek",
+    "title": "06 · Döngüler: for ve while",
+    "section": "6. break ve next: Döngü akışını yönetmek",
+    "text": "6. break ve next: Döngü akışını yönetmek\nbreak döngüyü tamamen durdurur. next ise yalnızca geçerli tekrarı atlayıp bir sonrakine geçer.\nfor (sayi in 1:6) {\n  if (sayi == 4) break\n  print(sayi)\n}\n# 1, 2, 3 yazdırılır.\nfor (sayi in 1:6) {\n  if (sayi == 4) next\n  print(sayi)\n}\n# 4 hariç bütün değerler yazdırılır.\nİki örneği yan yana çalıştırıp farkı gözlemleyin. İleri kullanımlarda bu komutlar yararlıdır, fakat akış kontrolünü gereksiz yere karmaşıklaştırmayın.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#modern-r-yaklaşımı-her-iş-için-döngü-mü",
+    "href": "lessons/06-donguler.html#modern-r-yaklaşımı-her-iş-için-döngü-mü",
+    "title": "06 · Döngüler: for ve while",
+    "section": "7. Modern R yaklaşımı: Her iş için döngü mü?",
+    "text": "7. Modern R yaklaşımı: Her iş için döngü mü?\nR’de birçok işlem vektörel yapılabilir. Aşağıdaki iki kod aynı sayısal sonucu verir:\nsatis &lt;- c(80, 100, 120, 90)\n\n# Döngülü yaklaşım\nsonuc &lt;- numeric(length(satis))\nfor (i in seq_along(satis)) {\n  sonuc[i] &lt;- satis[i] * 1.20\n}\n\n# Vektörel yaklaşım\nsonuc_vektorel &lt;- satis * 1.20\n\nidentical(sonuc, sonuc_vektorel)\nNe zaman hangisi? Eleman bazında bir aritmetik işlem yapmak için çoğu zaman doğrudan vektörel kod daha kısa ve anlaşılırdır. Ancak ardışık adımların birbirine bağlı olduğu, durma koşulu gereken veya her adımda farklı bir işlem yürütülen durumlarda döngü uygun olabilir. Amaç for kullanmamak değil, uygun aracı seçmektir.\n\n\n\n\n\n\nİleride dplyr ile\n\n\n\nSütun bazında hesaplar için mutate(), gruplar için group_by() ve summarise() gibi fonksiyonları öğreneceğiz. Döngü kurmadan çözülebilen birçok veri işleme görevi vardır.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#uygulama-sınır-kontrolü",
+    "href": "lessons/06-donguler.html#uygulama-sınır-kontrolü",
+    "title": "06 · Döngüler: for ve while",
+    "section": "8. Uygulama: Sınır kontrolü",
+    "text": "8. Uygulama: Sınır kontrolü\nBir sensörden gelen dört ölçümün 100 sınırını geçip geçmediğini inceleyelim. Veri yapaydır.\nolcumler &lt;- c(98, 105, 100, 111)\netiket &lt;- character(length(olcumler))\n\nfor (i in seq_along(olcumler)) {\n  if (olcumler[i] &gt; 100) {\n    etiket[i] &lt;- \"Ustunde\"\n  } else {\n    etiket[i] &lt;- \"Sinirda veya altinda\"\n  }\n}\n\ndata.frame(olcum = olcumler, durum = etiket)\nBurada data.frame() konusunu üçüncü bölümde öğrenmiştik. Kodun sonunda oluşan dört satırlık tabloyu inceleyin. Sonraki adım olarak olcumler içine NA eklerseniz ne olur? Bu soruyu eksik değerler konusunu hatırlayarak çözün; ipucu: is.na() kontrolü gereklidir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#sık-yapılan-hatalar",
+    "href": "lessons/06-donguler.html#sık-yapılan-hatalar",
+    "title": "06 · Döngüler: for ve while",
+    "section": "9. Sık yapılan hatalar",
+    "text": "9. Sık yapılan hatalar\n\nfor (i in 1:length(x)) kalıbını boş vektörlerde düşünmeden kullanmak; seq_along(x) daha güvenlidir.\nSonuç vektörünü hazırlamadan, yalnızca ekrana yazdırarak ilerlemek.\nwhile içinde sayaç güncellemeyi unutmak.\nbreak ile next komutlarını karıştırmak.\nVektörle yapılabilecek basit hesabı gereksiz bir döngüye dönüştürmek.\nSıfırdan başlanan indeksleme varsaymak (R’de ilk indis 1’dir).",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#kendi-kendini-kontrol-et",
+    "href": "lessons/06-donguler.html#kendi-kendini-kontrol-et",
+    "title": "06 · Döngüler: for ve while",
+    "section": "10. Kendi kendini kontrol et",
+    "text": "10. Kendi kendini kontrol et\n\nfor ile while arasındaki fark nedir?\nYukarıdaki satış örneğinde sonuç vektörü niçin önceden oluşturuldu?\nbreak kullanıldığında sonraki elemanlar işlenir mi?\nsatis * 1.20 ile döngü ne zaman aynı sonucu verir?\nwhile (sayac &lt;= 3) koşulunun bir gün yanlış olmasını ne sağlar?\n\nAlıştırmaları indirip çöz (.md) · Uygulama scripti (.R)",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/06-donguler.html#özet-ve-devam",
+    "href": "lessons/06-donguler.html#özet-ve-devam",
+    "title": "06 · Döngüler: for ve while",
+    "section": "Özet ve devam",
+    "text": "Özet ve devam\nBu bölümde tekrarlama mantığını, sayaçları, sonuç biriktirmeyi ve döngü kontrolünü öğrendik. Sonraki bölümde kendi fonksiyonumuzu yazarak tekrar kullanılan kodu tek yerde toplamayı öğreneceğiz.\nDaha ayrıntılı okuma: R Programlama Kitabı · R Language Definition — Control structures\n\nÖnceki: 05 · Koşullu İfadeler\nSonraki: 07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "06 · Döngüler"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html",
+    "href": "lessons/04-r-paketleri.html",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "",
+    "text": "Bu konunun eğitimdeki yeri\n\n\n\nÖnce 03 · Veri Tipleri ve Yapıları bölümünü tamamladık. Şimdi yeni fonksiyonlara ulaşmak için kullanılan paket kavramını öğreneceğiz. Bu modül, dplyr ile veri işlemeye geçmeden önce kısa bir hazırlıktır. Sınıfta çekirdek örnekleri çalıştıracağız; ileri ayrıntılar bağımsız öğrenme içindir.\nUygulama scriptini indir (.R) · Alıştırmaları indir (.md)",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html#r-ile-gelen-fonksiyonlar-ve-paketler",
+    "href": "lessons/04-r-paketleri.html#r-ile-gelen-fonksiyonlar-ve-paketler",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "1. R ile gelen fonksiyonlar ve paketler",
+    "text": "1. R ile gelen fonksiyonlar ve paketler\nR’yi kurduğumuzda sum(), mean(), data.frame() gibi pek çok fonksiyon hazır gelir. Buna temel R diyoruz. Başka ihtiyaçlar için ek fonksiyon grupları kullanılabilir. Bunlar paket olarak dağıtılır. Örneğin readr CSV dosyaları, dplyr veri manipülasyonu için kullanılır.\n\nCRAN: R paketlerini bulabileceğimiz ana depolardan biridir.\nPaket kurulumu: Dosyaları bilgisayara indirme işlemi; genellikle bir defa yapılır.\nPaket yükleme: Kurulu paketi o R oturumunda erişilebilir hâle getirme işlemi; yeni oturumda yeniden gerekebilir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html#önce-kurulu-mu-diye-kontrol-edelim",
+    "href": "lessons/04-r-paketleri.html#önce-kurulu-mu-diye-kontrol-edelim",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "2. Önce kurulu mu diye kontrol edelim",
+    "text": "2. Önce kurulu mu diye kontrol edelim\n# Kurulum gerektirmeyen kontroller\n\"dplyr\" %in% rownames(installed.packages())\n\"utils\" %in% rownames(installed.packages())\nSonucu yorumla: TRUE kurulu, FALSE kurulu değil demektir. Bilgisayarınızda kurulu paketlerin listesi başkalarınınkinden farklı olabilir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html#paket-kurma-ile-paketi-yükleme-farklıdır",
+    "href": "lessons/04-r-paketleri.html#paket-kurma-ile-paketi-yükleme-farklıdır",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "3. Paket kurma ile paketi yükleme farklıdır",
+    "text": "3. Paket kurma ile paketi yükleme farklıdır\nİnternet erişimi ve kurulum izni varsa aşağıdaki komut yalnızca ilk kurulumda kullanılabilir. Eğitim sırasında herkesin aynı anda kurulum yapmasını zorunlu tutmayacağız.\n# Bu satır bir kez kurulum içindir; sınıfta otomatik çalıştırmayın.\n# install.packages(\"dplyr\")\n\n# Kuruluysa bu R oturumuna yükler:\n# library(dplyr)\n\n\n\n\n\n\nSık hata\n\n\n\nlibrary(dplyr) çalıştırıldığında there is no package called ‘dplyr’ hatası alınıyorsa çoğu zaman paket kurulu değildir ya da R’nin kullandığı paket kitaplığında bulunmuyordur. Kurulum hatalarında internet, proxy, izin veya sürüm uyumunu kontrol etmeden aynı komutu tekrar tekrar çalıştırma.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html#paketfonksiyon-yazımı",
+    "href": "lessons/04-r-paketleri.html#paketfonksiyon-yazımı",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "4. paket::fonksiyon() yazımı",
+    "text": "4. paket::fonksiyon() yazımı\nBazı durumlarda paketin tamamını library() ile yüklemeden belirli bir fonksiyonu çağırmak isteriz.\n# utils, R ile gelen paketlerdendir\nutils::head(iris, 3)\n\n# Paketin adı ve fonksiyonun adı birbirinden ayrı yazılır:\n# dplyr::filter(veri, yas &gt; 30)\nBuradaki iris R ile gelen örnek tablodur; yalnızca paket çağrısı biçimini göstermek için kullanıyoruz. dplyr örneğini henüz çalıştırmıyoruz; filter() sonraki veri manipülasyonu dersinde anlatılacak.\nNeden yararlı? Kodun hangi paketteki fonksiyonu kullandığı daha açık olur. Aynı adlı fonksiyonlar olduğunda karışıklığı azaltabilir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html#fonksiyonu-ve-paketi-nasıl-öğrenebiliriz",
+    "href": "lessons/04-r-paketleri.html#fonksiyonu-ve-paketi-nasıl-öğrenebiliriz",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "5. Fonksiyonu ve paketi nasıl öğrenebiliriz?",
+    "text": "5. Fonksiyonu ve paketi nasıl öğrenebiliriz?\n?mean\nhelp(\"head\", package = \"utils\")\npackageVersion(\"utils\")\nAçılan yardım sayfasında Description, Usage, Arguments, Value ve Examples bölümlerine bak. Fonksiyonun her argümanını ezberlemek yerine yardım belgesini okuyabilmek önemlidir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html#uygulama-yeni-bir-pakete-hazırlanırken-kontrol-listesi",
+    "href": "lessons/04-r-paketleri.html#uygulama-yeni-bir-pakete-hazırlanırken-kontrol-listesi",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "6. Uygulama: Yeni bir pakete hazırlanırken kontrol listesi",
+    "text": "6. Uygulama: Yeni bir pakete hazırlanırken kontrol listesi\n\nPaket gerçekten gerekli mi; temel R ile çözüm var mı?\nPaket kurulu mu? Kurulum yetkisi ve internet var mı?\nlibrary() mi, yoksa paket::fonksiyon() mu uygun?\nKullanacağımız fonksiyonun argümanlarını nereden kontrol ederiz?\nKullanılan paketi proje notuna yazdık mı?\n\nZaman kalırsa: sessionInfo() ile R sürümünü ve yüklü paketleri incele. İleri düzeyde bağımlılık sabitlemenin (renv) ne işe yaradığını öğren; bu eğitimde kurulumunu yapmamız gerekmiyor.\n\n\n\n\n\n\nKendin dene\n\n\n\nutils::head(iris, 2) komutunu çalıştır ve head() fonksiyonunun yardım sayfasına ulaş. Ardından utils paketinin sürümünü sorgula.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html#sık-yapılan-hatalar",
+    "href": "lessons/04-r-paketleri.html#sık-yapılan-hatalar",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "Sık yapılan hatalar",
+    "text": "Sık yapılan hatalar\n\nHer kod çalıştırmada install.packages() çağırmak\nKurulu olmayan bir paketi library() ile açmaya çalışmak\nBir paketin adını, fonksiyonun adıyla karıştırmak\nBilinmeyen kaynaklardan kod veya paket yüklemek\nHata mesajındaki ilk açıklamayı okumadan tahminle ilerlemek",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/04-r-paketleri.html#kısa-tekrar",
+    "href": "lessons/04-r-paketleri.html#kısa-tekrar",
+    "title": "04 · R Paketleri ve Yardım Kaynakları",
+    "section": "Kısa tekrar",
+    "text": "Kısa tekrar\nPaket, ek fonksiyonların bir araya getirildiği bir yapıdır. Kurma ≠ oturumda yükleme. Yardım belgelerini okumayı ve kullanılan paketleri belirtmeyi alışkanlık hâline getir.\nEk kaynaklar: R Programlama Kitabı · CRAN · R Packages\n\nÖnceki: 03 · Veri Tipleri ve Yapıları\nSonraki: 05 · Koşullu İfadeler",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "04 · Paketler ve yardım"
+    ]
+  },
+  {
+    "objectID": "lessons/02-ilk-r-komutlari.html",
+    "href": "lessons/02-ilk-r-komutlari.html",
+    "title": "02 · İlk R Komutları",
+    "section": "",
+    "text": "Ön koşul ve hedef\n\n\n\n01 · R ve RStudio bölümünde Console ve scripti tanıdık. Şimdi hesaplama yapacak, sonucu bir nesneye kaydedecek, ardından birden çok sayıyla işlem yapacağız. Kodları sırayla çalıştır.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "02 · İlk R komutları"
+    ]
+  },
+  {
+    "objectID": "lessons/02-ilk-r-komutlari.html#ryi-hesap-makinesi-gibi-kullanalım",
+    "href": "lessons/02-ilk-r-komutlari.html#ryi-hesap-makinesi-gibi-kullanalım",
+    "title": "02 · İlk R Komutları",
+    "section": "1. R’yi hesap makinesi gibi kullanalım",
+    "text": "1. R’yi hesap makinesi gibi kullanalım\n2 + 3       # Toplama\n10 - 4      # Çıkarma\n6 * 5       # Çarpma\n12 / 3      # Bölme\n2 ^ 3       # Üs alma\n# işaretinden sonrası yorum satırıdır; R o bölümü çalıştırmaz. Yorumlar kodun neden yazıldığını hatırlamamıza yardım eder.\n\n\n\n\n\n\nÖnce tahmin et\n\n\n\n2 + 3 * 4 sonucu kaç olur? Önce işlem önceliğini düşün, sonra Console’da çalıştır. (2 + 3) * 4 ile karşılaştır.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "02 · İlk R komutları"
+    ]
+  },
+  {
+    "objectID": "lessons/02-ilk-r-komutlari.html#bir-sonucu-saklayalım-atama--",
+    "href": "lessons/02-ilk-r-komutlari.html#bir-sonucu-saklayalım-atama--",
+    "title": "02 · İlk R Komutları",
+    "section": "2. Bir sonucu saklayalım: atama (<-)",
+    "text": "2. Bir sonucu saklayalım: atama (&lt;-)\nBir sonucu tekrar kullanmak için nesne oluştururuz. &lt;- operatörü sağdaki değeri soldaki isme atar.\nfiyat &lt;- 120\nadet &lt;- 3\n\ntutar &lt;- fiyat * adet\ntutar\nfiyat, adet ve tutar nesne adlarıdır. Bir isim verdiğimizde sonucu daha sonra yeniden hesaplayabilir veya kullanabiliriz.\nSıra sende: adet değerini 4 yap ve tutar değerini tekrar hesapla. Sadece adet değişince tutar otomatik olarak güncellenir mi?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "02 · İlk R komutları"
+    ]
+  },
+  {
+    "objectID": "lessons/02-ilk-r-komutlari.html#fonksiyon-nedir",
+    "href": "lessons/02-ilk-r-komutlari.html#fonksiyon-nedir",
+    "title": "02 · İlk R Komutları",
+    "section": "3. Fonksiyon nedir?",
+    "text": "3. Fonksiyon nedir?\nFonksiyon, belli bir işi yapan hazır komuttur. Örneğin sqrt() sayının karekökünü hesaplar. Parantez içindeki değer argümandır.\nsqrt(16)\nround(3.14159, digits = 2)\nBurada fonksiyon kullanıyoruz; kendi fonksiyonumuzu yazmayı ileriki bölümde öğreneceğiz.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "02 · İlk R komutları"
+    ]
+  },
+  {
+    "objectID": "lessons/02-ilk-r-komutlari.html#birden-fazla-değeri-bir-araya-getirelim-c",
+    "href": "lessons/02-ilk-r-komutlari.html#birden-fazla-değeri-bir-araya-getirelim-c",
+    "title": "02 · İlk R Komutları",
+    "section": "4. Birden fazla değeri bir araya getirelim: c()",
+    "text": "4. Birden fazla değeri bir araya getirelim: c()\nc() (combine) değerleri bir araya getirerek vektör oluşturur. Vektör, R’nin temel veri yapılarından biridir.\nsatis &lt;- c(10, 15, 20)\nsatis\nlength(satis)  # Kaç eleman var?\nsum(satis)     # Toplam\nmean(satis)    # Aritmetik ortalama\nlength(), sum() ve mean() hazır fonksiyonlardır. Hepsinin parantez içinde çalışacağı nesneyi belirtiyoruz.\nSıra sende: Vektöre 25 değerini ekleyip ortalamayı yeniden hesapla.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "02 · İlk R komutları"
+    ]
+  },
+  {
+    "objectID": "lessons/02-ilk-r-komutlari.html#mini-alıştırma",
+    "href": "lessons/02-ilk-r-komutlari.html#mini-alıştırma",
+    "title": "02 · İlk R Komutları",
+    "section": "Mini alıştırma",
+    "text": "Mini alıştırma\n\nbirim_fiyat &lt;- 75 ve miktar &lt;- 6 nesnelerini oluştur; toplam tutarı hesapla.\nc(8, 12, 16, 20) vektörünün eleman sayısını, toplamını ve ortalamasını bul.\nVektörünün ilk ve son elemanını köşeli parantez kullanarak seçmeyi dene. Bu işlemi bir sonraki bölümde ayrıntılandıracağız.\n\nAlıştırma dosyasını indir · 01 scriptini indir",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "02 · İlk R komutları"
+    ]
+  },
+  {
+    "objectID": "lessons/02-ilk-r-komutlari.html#sık-rastlanan-hatalar",
+    "href": "lessons/02-ilk-r-komutlari.html#sık-rastlanan-hatalar",
+    "title": "02 · İlk R Komutları",
+    "section": "Sık rastlanan hatalar",
+    "text": "Sık rastlanan hatalar\n\nNesne adını yanlış yazmak (fiyat ile Fiyat farklıdır).\nBir ifadenin sonucunu nesneye kaydettiğimiz halde eski bir nesneyi kullandığımızı fark etmemek.\nNA varken sonucu açıklamadan na.rm = TRUE kullanmak.\n\n\nSonraki bölüm: 03 · Veri Tipleri ve Veri Yapıları →. Ayrıntılı açıklamalar için R Programlama Kitabı kullanılabilir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "02 · İlk R komutları"
+    ]
   },
   {
     "objectID": "resources/ogrenme-kaynaklari.html",
@@ -117,34 +425,6 @@
     "title": "Öğrenme Kaynakları",
     "section": "Nasıl kullanmalı?",
     "text": "Nasıl kullanmalı?\nÖnce ilgili eğitim scriptini çalıştırın. Kavramsal ayrıntı gerektiğinde kitaba, fonksiyonun güncel argümanları için paket belgelerine, tekrar için video derslerine bakın."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "",
-    "text": "R ile veriyi okumaktan anlamlı bir çıktıya uzanan uygulamalı bir öğrenme yolu.\nBu açık eğitim sitesi, R’ye yeni başlayanlar ve veriyle çalışanlar için hazırlanmıştır. Konuları küçük örneklerle öğrenip R Programlama Kitabı için hazırlanmış Dünya Bankası (WDI) verileriyle pekiştireceğiz."
-  },
-  {
-    "objectID": "index.html#eğitim-hakkında",
-    "href": "index.html#eğitim-hakkında",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "Eğitim hakkında",
-    "text": "Eğitim hakkında\n\n\n\n\n\n\n\nÖzellik\nAçıklama\n\n\n\n\nDüzey\nBaşlangıç\n\n\nSüre\n5 yarım gün, 15 ders oturumu (45’er dakika)\n\n\nGünlük saat\n09.30–12.30 (aralar ve esnek zaman dahil)\n\n\nYaklaşım\nKısa anlatım, RStudio’da birlikte kodlama, egzersiz, mini proje\n\n\nAraçlar\nR, RStudio, Quarto; dplyr, tidyr ve veri okuma paketleri"
-  },
-  {
-    "objectID": "index.html#beş-günlük-öğrenme-yolu",
-    "href": "index.html#beş-günlük-öğrenme-yolu",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "Beş günlük öğrenme yolu",
-    "text": "Beş günlük öğrenme yolu\n\nR’ye giriş: RStudio, nesneler, veri tipleri, veri yapıları ve koşullar.\nProgramlama ve dosyalar: if/else, for, while, fonksiyonlar; CSV, Excel, RDS, SAS/SPSS ve veri tabanlarına giriş.\nVeri manipülasyonu I: Seçme, filtreleme, sıralama ve yeni değişken oluşturma.\nVeri manipülasyonu II: Gruplama, özetleme, birleştirme ve uzun/geniş veri dönüşümü.\nModern R iş akışı ve mini proje: Baştan sona bir WDI veri işleme uygulaması.\n\nAyrıntılı eğitim programını incele"
-  },
-  {
-    "objectID": "index.html#materyallerin-durumu",
-    "href": "index.html#materyallerin-durumu",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "Materyallerin durumu",
-    "text": "Materyallerin durumu\nBu site başlangıç iskeletidir. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir.\nAyrıntılı kitap, video ve paket belgeleri için [Öğrenme Kaynakları](resources/ogrenme-kaynaklari.qmd) sayfasına bakın."
   },
   {
     "objectID": "program/index.html",
@@ -203,45 +483,564 @@
     "text": "Eğitim yaklaşımı\n\nA: Zorunlu çekirdek içerik.\nB: Zaman kalırsa pekiştirme ve ek alıştırma.\nC: Web sitesinde bağımsız çalışma kaynakları."
   },
   {
-    "objectID": "lessons/01-r-ile-ilk-adimlar.html",
-    "href": "lessons/01-r-ile-ilk-adimlar.html",
-    "title": "R ile İlk Adımlar",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Programlama Eğitimi",
     "section": "",
-    "text": "Bu bölüm sonunda RStudio projesini açıp açıklamalı bir .R scripti çalıştırabilir; nesne, vektör, NA ve data.frame kavramlarını basit örneklerle kullanabilirsiniz.\n\n\n\n\n\n\nÖnce deneyin\n\n\n\nÖnce aşağıdaki işlemin sonucunu tahmin edin; ardından RStudio Console’da çalıştırın.\n\n\nsatis &lt;- c(10, 15, 20, NA)\nsum(satis)\nsum(satis, na.rm = TRUE)\nNeyi fark ettiniz? Bir eksik değer, varsayılan toplamı da eksik hale getirebilir. na.rm = TRUE eksikleri dışarıda bırakarak hesaplama yapar. Bu işlem kayıp verinin nedenini çözmez; sadece hesaplamanın nasıl yapılacağını belirler."
+    "text": "R ile ilk komuttan başlayarak veri okuma, dönüştürme ve sonuç üretmeye uzanan uygulamalı bir öğrenme yolu. Konular mantıklı bir sırayla ilerler; örnekleri kendi RStudio ortamında çalıştırabilir, eğitime katıldıktan sonra da burada tekrar edebilirsin."
   },
   {
-    "objectID": "lessons/01-r-ile-ilk-adimlar.html#hedef",
-    "href": "lessons/01-r-ile-ilk-adimlar.html#hedef",
-    "title": "R ile İlk Adımlar",
+    "objectID": "index.html#öğren-dene-kontrol-et",
+    "href": "index.html#öğren-dene-kontrol-et",
+    "title": "R Programlama Eğitimi",
     "section": "",
-    "text": "Bu bölüm sonunda RStudio projesini açıp açıklamalı bir .R scripti çalıştırabilir; nesne, vektör, NA ve data.frame kavramlarını basit örneklerle kullanabilirsiniz.\n\n\n\n\n\n\nÖnce deneyin\n\n\n\nÖnce aşağıdaki işlemin sonucunu tahmin edin; ardından RStudio Console’da çalıştırın.\n\n\nsatis &lt;- c(10, 15, 20, NA)\nsum(satis)\nsum(satis, na.rm = TRUE)\nNeyi fark ettiniz? Bir eksik değer, varsayılan toplamı da eksik hale getirebilir. na.rm = TRUE eksikleri dışarıda bırakarak hesaplama yapar. Bu işlem kayıp verinin nedenini çözmez; sadece hesaplamanın nasıl yapılacağını belirler."
+    "text": "R ile ilk komuttan başlayarak veri okuma, dönüştürme ve sonuç üretmeye uzanan uygulamalı bir öğrenme yolu. Konular mantıklı bir sırayla ilerler; örnekleri kendi RStudio ortamında çalıştırabilir, eğitime katıldıktan sonra da burada tekrar edebilirsin."
   },
   {
-    "objectID": "lessons/01-r-ile-ilk-adimlar.html#rstudioda-temel-iş-akışı",
-    "href": "lessons/01-r-ile-ilk-adimlar.html#rstudioda-temel-iş-akışı",
-    "title": "R ile İlk Adımlar",
-    "section": "RStudio’da temel iş akışı",
-    "text": "RStudio’da temel iş akışı\n\nr-training.Rproj dosyasını açın.\nFile → New File → R Script ile yeni bir script oluşturun.\nKomutları scriptte yazıp Ctrl+Enter ile çalıştırın.\nGirdi dosyalarını data/, kendi sonuçlarınızı outputs/ altında saklayın.\nScriptin baştan sona yeniden çalıştığını kontrol edin."
+    "objectID": "index.html#nereden-başlamalıyım",
+    "href": "index.html#nereden-başlamalıyım",
+    "title": "R Programlama Eğitimi",
+    "section": "Nereden başlamalıyım?",
+    "text": "Nereden başlamalıyım?\nR’yi hiç bilmiyorsan: Önce 01 · R ve RStudio ile çalışma ortamını tanı, sonra 02 · İlk R komutları ile uygulamaya geç.\nEğitime katılıyorsan: Eğitim Programı sayfasından sınıfta işlenecek akışı gör. Materyaller sayfasından ilgili .R dosyasını al ve RStudio’da eğitmenle birlikte çalıştır."
   },
   {
-    "objectID": "lessons/01-r-ile-ilk-adimlar.html#birlikte-kodlayalım-ilk-nesneler",
-    "href": "lessons/01-r-ile-ilk-adimlar.html#birlikte-kodlayalım-ilk-nesneler",
-    "title": "R ile İlk Adımlar",
-    "section": "Birlikte kodlayalım: İlk nesneler",
-    "text": "Birlikte kodlayalım: İlk nesneler\nfiyat &lt;- c(120, 150, 180)\nadet  &lt;- c(2, 1, 3)\ntutar &lt;- fiyat * adet\nsum(tutar)\nKontrol sorusu: Fiyat ve adetlerin uzunlukları farklı olsaydı R nasıl davranırdı? Her zaman güvenilir bir sonuç beklememeliyiz."
+    "objectID": "index.html#nasıl-öğreniyoruz",
+    "href": "index.html#nasıl-öğreniyoruz",
+    "title": "R Programlama Eğitimi",
+    "section": "Nasıl öğreniyoruz?",
+    "text": "Nasıl öğreniyoruz?\n\n\n\n\n\n\n\nAdım\nNe yapıyoruz?\n\n\n\n\n1. Kavram\nYeni kavramı kısa bir açıklamayla tanıyoruz.\n\n\n2. Tahmin\nKodun ne yapacağını çalıştırmadan önce düşünüyoruz.\n\n\n3. Birlikte uygulama\nKodu RStudio’da satır satır çalıştırıyoruz.\n\n\n4. Kontrol\nSonucu doğruluyor, olası hataları tartışıyoruz.\n\n\n5. Sıra sende\nKüçük bir görevi kendimiz çözüyoruz."
   },
   {
-    "objectID": "lessons/01-r-ile-ilk-adimlar.html#veri-yapısını-inceleyelim",
-    "href": "lessons/01-r-ile-ilk-adimlar.html#veri-yapısını-inceleyelim",
-    "title": "R ile İlk Adımlar",
-    "section": "Veri yapısını inceleyelim",
-    "text": "Veri yapısını inceleyelim\npersonel &lt;- data.frame(\n  ad = c(\"Ali\", \"Ayşe\", \"Deniz\"),\n  yas = c(25, NA, 36)\n)\nstr(personel)\ndim(personel)\nsum(is.na(personel$yas))\n\nİndirilebilir uygulama dosyaları\n\n01 — R ortamı ve ilk komutlar\n02 — Veri tipleri ve yapıları\nKüçük alıştırmalar\n\n\n\n\n\n\n\nSık yapılan hata\n\n\n\nConsole’a yazılan komut, kaydedilmiş bir script yerine geçmez. İşlemin yeniden yapılabilmesi için kodu dosyaya kaydedin. Yerel bilgisayara özgü C:/... yollarını scriptlere sabitlemeyin."
+    "objectID": "index.html#içerik-ve-eğitim-süresi",
+    "href": "index.html#içerik-ve-eğitim-süresi",
+    "title": "R Programlama Eğitimi",
+    "section": "İçerik ve eğitim süresi",
+    "text": "İçerik ve eğitim süresi\nWeb sitesindeki kaynaklar, sınıfta ayrılan zamandan daha kapsamlı olabilir. 5 günlük program, bu kaynaklardan seçilen temel uygulamaları kapsar. Diğer örnekler bireysel tekrar ve farklı sürelerdeki eğitimler için tutulur. Günlere bağlı olmayan konu sırası korunur."
   },
   {
-    "objectID": "lessons/01-r-ile-ilk-adimlar.html#isteğe-bağlı-öğrenme",
-    "href": "lessons/01-r-ile-ilk-adimlar.html#isteğe-bağlı-öğrenme",
-    "title": "R ile İlk Adımlar",
-    "section": "İsteğe bağlı öğrenme",
-    "text": "İsteğe bağlı öğrenme\nDaha ayrıntılı kavramsal açıklamalar için R Programlama Kitabı, video tekrar için R İstatistik Akademi ve araçlarla ilgili belgeler için RStudio kullanılabilir."
+    "objectID": "index.html#kaynaklar",
+    "href": "index.html#kaynaklar",
+    "title": "R Programlama Eğitimi",
+    "section": "Kaynaklar",
+    "text": "Kaynaklar\nKavramsal ayrıntılar için R Programlama Kitabı, video tekrarları için R İstatistik Akademi ve diğer belgeler için Öğrenme Kaynakları sayfasını kullanabilirsin.\nÖğrenmeye başla: R ve RStudio →"
+  },
+  {
+    "objectID": "materials/index.html",
+    "href": "materials/index.html",
+    "title": "Eğitim Materyalleri",
+    "section": "",
+    "text": "Nasıl kullanılır?\n\n\n\nÖnce Dersi aç, örnekleri sırayla takip et. Ardından ilgili R scriptini indirip RStudio’da aç ve satırları Ctrl + Enter ile çalıştır. Alıştırmalar, konuyu kendi başına uygulayabilmen için hazırlandı. İndirme bağlantısı tarayıcıda metin açarsa Sağ tık → Bağlantıyı farklı kaydet seçeneğini kullan."
+  },
+  {
+    "objectID": "materials/index.html#başlangıç-ve-programlama-temelleri",
+    "href": "materials/index.html#başlangıç-ve-programlama-temelleri",
+    "title": "Eğitim Materyalleri",
+    "section": "Başlangıç ve programlama temelleri",
+    "text": "Başlangıç ve programlama temelleri\n\n\n\n\n01–02 · RStudio ve ilk R komutları\nR ortamını tanıma, ilk hesaplamalar, atama ve vektörler.\nDersi aç · İlk komutlar\nR scriptini indir · Alıştırmalar\n\n\n\n\n\n\n03 · Veri tipleri ve yapıları\nVektör, NA, data frame, matris, liste ve tibble.\nDersi aç\nR scriptini indir · Alıştırmalar\n\n\n\n\n\n\n04 · R paketleri ve yardım\nPaket kurma/yükleme, :: ve yardım sistemine başvurma.\nDersi aç\nR scriptini indir · Alıştırmalar\n\n\n\n\n\n\n05 · Koşullu ifadeler\nif, else if, else, sınır değerler ve vektörel kararlar.\nDersi aç\nR scriptini indir · Alıştırmalar\n\n\n\n\n\n\n06 · for ve while döngüleri\nTekrarlama, sayaç, sonuç saklama, döngüyü sonlandırma ve vektörel alternatifler.\nDersi aç\nR scriptini indir · Alıştırmalar\n\n\n\n\n\n\n07 · Kullanıcı tanımlı fonksiyonlar\nfunction(), argümanlar, varsayılan değerler, return(), değişken kapsamı ve tekrar kullanılabilir kod.\nDersi aç\nR scriptini indir · Alıştırmalar"
+  },
+  {
+    "objectID": "materials/index.html#sunumlar",
+    "href": "materials/index.html#sunumlar",
+    "title": "Eğitim Materyalleri",
+    "section": "Sunumlar",
+    "text": "Sunumlar\nAçılış sunumunu görüntüle — R, RStudio, CRAN ve eğitimin kapsamı."
+  },
+  {
+    "objectID": "materials/index.html#veri-aktarımı-henüz-geliştirme-aşamasında",
+    "href": "materials/index.html#veri-aktarımı-henüz-geliştirme-aşamasında",
+    "title": "Eğitim Materyalleri",
+    "section": "Veri aktarımı: Henüz geliştirme aşamasında",
+    "text": "Veri aktarımı: Henüz geliştirme aşamasında\nAşağıdaki iki script ilk taslaktır; veri içe/dışa aktarma dersindeki kapsamlı örneklerin yerini henüz tutmaz.\n\n08 · CSV, Excel ve RDS\n09 · SAS ve SPSS"
+  },
+  {
+    "objectID": "materials/index.html#eğitim-veri-setleri",
+    "href": "materials/index.html#eğitim-veri-setleri",
+    "title": "Eğitim Materyalleri",
+    "section": "Eğitim veri setleri",
+    "text": "Eğitim veri setleri\nAçık kaynak ve sentetik örnekler GitHub’daki data klasöründe bulunur. İlgili uygulama derslerinde veri dosyalarına doğrudan indirme bağlantıları da eklenecektir.\nTüm çalışma dosyalarını almak: GitHub deposu → Code → Download ZIP. GitHub’daki güncel sürümün yerel önizleme ile aynı olması için değişikliklerin önce push edilmiş olması gerekir."
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html",
+    "href": "lessons/01-r-ve-rstudio.html",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "",
+    "text": "Bu bölümün sonunda\n\n\n\nR ve RStudio arasındaki farkı açıklayabilecek; CRAN’ın ne işe yaradığını bilecek; RStudio’nun temel panellerini tanıyıp bir R scripti açabileceksin. Henüz programlama bilgisi gerekmiyor.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html#r-nedir",
+    "href": "lessons/01-r-ve-rstudio.html#r-nedir",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "R nedir?",
+    "text": "R nedir?\nR, istatistiksel hesaplama, veri analizi, görselleştirme ve programlama için kullanılan ücretsiz ve açık kaynak bir dildir. Veriyi işlemek için komutlarımızı R’ye veririz; R bu komutları çalıştırır.\nR’yi Excel veya SPSS’ten ayıran temel noktalardan biri, yapılan işlemlerin kodla kaydedilebilmesi ve tekrar çalıştırılabilmesidir. Bir dosyayı düzenlerken hangi adımların uygulandığını görebiliriz.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html#rstudio-nedir-rden-farkı-ne",
+    "href": "lessons/01-r-ve-rstudio.html#rstudio-nedir-rden-farkı-ne",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "RStudio nedir? R’den farkı ne?",
+    "text": "RStudio nedir? R’den farkı ne?\n\nR: Komutları işleyen programlama dili ve çalışma ortamı.\nRStudio: R kodunu yazmayı, çalıştırmayı ve dosyaları yönetmeyi kolaylaştıran geliştirme ortamı (IDE).\nPaket: R’ye ek işlevler kazandıran fonksiyon ve veri koleksiyonu.\nCRAN: R ve çok sayıda R paketinin dağıtıldığı resmî arşiv ağı.\n\nBenzetme: R motor, RStudio çalışma masasıdır. RStudio’yu kullanırken arka planda R çalışır. RStudio, R’nin yerine geçmez.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html#indirme-ve-kurulum",
+    "href": "lessons/01-r-ve-rstudio.html#indirme-ve-kurulum",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "İndirme ve kurulum",
+    "text": "İndirme ve kurulum\n\nÖnce R’nin resmî indirme sayfası üzerinden işletim sistemine uygun R sürümünü yükle.\nArdından RStudio Desktop sayfasından RStudio’yu kur.\nRStudio’yu aç; Console alanında &gt; işaretini görüyorsan R komut almaya hazırdır.\n\n\n\n\n\n\n\nKurum bilgisayarlarında\n\n\n\nYükleme yetkisi ve paket indirme erişimi kuruma göre değişebilir. Eğitim öncesinde kurulum yapılması önerilir. Kurumsal ağ kısıtlarını aşmaya çalışmak yerine BT biriminden destek al.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html#rstudionun-bölümleri",
+    "href": "lessons/01-r-ve-rstudio.html#rstudionun-bölümleri",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "RStudio’nun bölümleri",
+    "text": "RStudio’nun bölümleri\n\n\n\n\n\n\n\nBölüm\nNe işe yarar?\n\n\n\n\nSource / Editor\nKaydedilebilir .R scriptlerini yazdığımız yer\n\n\nConsole\nKomutların çalıştığı ve sonuçların göründüğü yer\n\n\nEnvironment / History\nOluşturulan nesneleri ve komut geçmişini inceleme\n\n\nFiles / Plots / Packages / Help\nDosyalar, grafikler, paketler ve yardım belgeleri\n\n\n\nPanellerin konumu RStudio ayarlarına göre değişebilir; önemli olan görevleridir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html#ilk-küçük-deneme",
+    "href": "lessons/01-r-ve-rstudio.html#ilk-küçük-deneme",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "İlk küçük deneme",
+    "text": "İlk küçük deneme\nConsole’a şu ifadeyi yazıp Enter tuşuna bas:\n2 + 3\nSonuç 5 olmalı. Burada henüz nesne oluşturmadık; yalnızca R’ye basit bir hesap yaptırdık.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html#console-ile-script-arasındaki-fark",
+    "href": "lessons/01-r-ve-rstudio.html#console-ile-script-arasındaki-fark",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "Console ile script arasındaki fark",
+    "text": "Console ile script arasındaki fark\nConsole hızlı denemeler içindir. Script, kodları saklayıp tekrar çalıştırmak içindir.\n\nRStudio’da File → New File → R Script seç.\nAçılan editöre 2 + 3 yaz.\nİmleç satırdayken Ctrl + Enter ile çalıştır.\nDosyayı deneme.R adıyla kaydet.\n\n\n\n\n\n\n\nModern çalışma alışkanlığı\n\n\n\nHer analiz için bir RStudio Project kullanmak, dosyaları aynı proje altında tutmayı kolaylaştırır. Eğitim reposunu r-training.Rproj ile açabilirsin. Proje kavramını ilk derste tanıyoruz; ayrıntılı dosya yolu kullanımını veri aktarımı bölümünde uygulayacağız.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html#kontrol-et",
+    "href": "lessons/01-r-ve-rstudio.html#kontrol-et",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "Kontrol et",
+    "text": "Kontrol et\n\nR ile RStudio aynı program mı?\nKodun ileride yeniden çalıştırılabilmesi için Console yeterli mi?\nYeni bir paket hakkında bilgi aramak için CRAN neden faydalı olabilir?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/01-r-ve-rstudio.html#ders-materyalleri",
+    "href": "lessons/01-r-ve-rstudio.html#ders-materyalleri",
+    "title": "01 · R ve RStudio ile Tanışma",
+    "section": "Ders materyalleri",
+    "text": "Ders materyalleri\n\nAçılış sunumunu aç\n01 · İlk komutlar scriptini indir\nUygulama ve alıştırmalar\n\nDaha fazla bilgi: R Programlama Kitabı · R İstatistik Akademi\n\nSıradaki bölüm: 02 · İlk R komutları: işlemler, atama ve vektörler →",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "01 · R ve RStudio"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "",
+    "text": "Başlamadan önce\n\n\n\n02 · İlk R Komutları bölümünde atamayı (&lt;-), hazır fonksiyonları ve c() ile vektör oluşturmayı gördük. Bu derste değerlerin türlerini, eksik bilgiyi ve tabloları öğreneceğiz. Örnekleri sırayla RStudio’da çalıştır.\nUygulama scriptini indir (.R) · Alıştırmaları indir (.md)",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#neden-veri-tipleriyle-ilgileniyoruz",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#neden-veri-tipleriyle-ilgileniyoruz",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "1. Neden veri tipleriyle ilgileniyoruz?",
+    "text": "1. Neden veri tipleriyle ilgileniyoruz?\nBir sayı, bir metin ve bir doğru/yanlış değeri R için aynı şey değildir. Örneğin \"25\" bir metin, 25 ise hesaplama yapabildiğimiz bir sayıdır. Veri aktarırken sütun tipleri yanlış anlaşılırsa hesaplamalar da yanlış veya hatalı olabilir.\nyas &lt;- 25\nsehir &lt;- \"Ankara\"\ncalisiyor &lt;- TRUE\n\nclass(yas)\nclass(sehir)\nclass(calisiyor)\n\nnumeric (çoğunlukla double): ondalıklı veya tam görünümlü sayılar\ncharacter: karakter dizileri, yani metinler\nlogical: TRUE / FALSE (mantıksal değerler)\ninteger: özel L son ekiyle oluşturulabilen tam sayı tipi (ör. 25L)\n\nclass(25)\nclass(25L)\ntypeof(25)\ntypeof(25L)\nSonucu kontrol et: class() ile typeof() her zaman aynı bilgiye mi işaret ediyor? Şimdilik class() ile başlamak yeterli; daha teknik ayrımı kitabımızdan okuyabilirsin.\n\n\n\n\n\n\nSıra sende\n\n\n\n\"150\" ve 150 nesneleri oluştur. Her birinin class() sonucunu incele. \"150\" + 10 ifadesini çalıştırınca neden hata alırsın?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#vektörler-ve-aynı-tipte-olma-kuralı",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#vektörler-ve-aynı-tipte-olma-kuralı",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "2. Vektörler ve aynı tipte olma kuralı",
+    "text": "2. Vektörler ve aynı tipte olma kuralı\nÖnceki bölümde c() ile vektör oluşturmuştuk. Atomik vektörde elemanlar ortak bir temel tipe sahiptir. Bu nedenle farklı tipleri bir araya getirmek bazen beklenmedik dönüşüm yapar.\npuanlar &lt;- c(60, 75, 90)\nclass(puanlar)\nlength(puanlar)\n\nkarisik &lt;- c(1, 2, \"uc\")\nkarisik\nclass(karisik)\nBurada 1 ve 2 de karaktere çevrilir. Bu, özellikle CSV’den veriler okunurken dikkat edilmesi gereken bir durumdur.\n\nVektörden eleman seçimi\npuanlar[1]          # İlk eleman\npuanlar[c(1, 3)]    # Birinci ve üçüncü eleman\npuanlar[puanlar &gt; 70] # Koşulu sağlayan elemanlar\nR’de indeksler 1’den başlar. Köşeli parantez [], nesnenin bir kısmını seçmek için kullanılır.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#eksik-değer-na",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#eksik-değer-na",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "3. Eksik değer: NA",
+    "text": "3. Eksik değer: NA\nGerçek verilerde bazı alanlar boş olabilir. R’de bilinmeyen/eksik değer çoğunlukla NA ile gösterilir.\nnotlar &lt;- c(60, 75, NA, 90)\nnotlar\nis.na(notlar)             # Hangi elemanlar eksik?\nsum(is.na(notlar))        # Kaç eksik var?\nmean(notlar)              # NA\nmean(notlar, na.rm = TRUE) # Sadece mevcut değerlerin ortalaması\nna.rm = TRUE eksik veriyi tamamlamaz, yalnızca o hesaplamada dışarıda bırakır. Eksik gözlemlerin neden oluştuğu ve hesaplamayı nasıl etkilediği ayrı olarak değerlendirilmelidir.\n\n\n\n\n\n\nSık hata\n\n\n\nnotlar == NA kullanma. Eksikliği kontrol etmek için is.na(notlar) kullan. NA sıradan bir sayı değildir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#data-frame-satır-ve-sütunlardan-oluşan-tablo",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#data-frame-satır-ve-sütunlardan-oluşan-tablo",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "4. Data frame: satır ve sütunlardan oluşan tablo",
+    "text": "4. Data frame: satır ve sütunlardan oluşan tablo\nData frame, aynı uzunluktaki sütunlardan oluşur; her sütunun tipi farklı olabilir. Burada ilk kez birden fazla değişkeni olan bir veri tablosu oluşturuyoruz.\npersonel &lt;- data.frame(\n  ad = c(\"Ali\", \"Ayşe\", \"Deniz\", \"Ece\"),\n  yas = c(28, 35, 31, NA),\n  birim = c(\"A\", \"B\", \"A\", \"B\"),\n  aktif = c(TRUE, TRUE, FALSE, TRUE)\n)\n\npersonel\nstr(personel)      # Sütunların tipi ve yapı\nnames(personel)    # Sütun adları\ndim(personel)      # Satır ve sütun sayısı\nhead(personel)     # İlk gözlemler\nBir veri setini ilk gördüğümüzde önce yapısını kontrol etmek, doğrudan analiz komutlarına geçmekten daha güvenlidir.\n\nSütun ve satır seçmek\npersonel$yas             # Tek sütun\npersonel[1, ]            # İlk satır\npersonel[, \"ad\"]         # Ad sütunu\npersonel[1:2, c(\"ad\", \"yas\")]  # İlk iki satır, iki sütun\n$ bir sütunu adıyla seçer. tablo[satır, sütun] ise tablo içindeki konumu belirtir. 1:2 ifadesi 1 ve 2 tamsayılarından oluşan sıralamadır.\n\n\n\n\n\n\nBirlikte deneyelim\n\n\n\npersonel tablosunun kaç satır ve kaç sütundan oluştuğunu bul. aktif sütununun tipini kontrol et. yas sütunundaki eksik gözlemlerin sayısını hesapla.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#matris-ve-liste-aynı-tablo-değiller",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#matris-ve-liste-aynı-tablo-değiller",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "5. Matris ve liste: aynı tablo değiller",
+    "text": "5. Matris ve liste: aynı tablo değiller\nMatris, iki boyutlu ve tek bir temel tipteki elemanlardan oluşur. Liste ise farklı türde nesneleri aynı yapı içinde saklayabilir.\nmatris &lt;- matrix(1:6, nrow = 2)\nmatris\nclass(matris)\n\nsonuc &lt;- list(\n  ortalama_yas = mean(personel$yas, na.rm = TRUE),\n  personel_tablosu = personel,\n  aciklama = \"Eğitim örneği\"\n)\n\nnames(sonuc)\nsonuc$ortalama_yas\nBu derste matris ve listeleri tanımak yeterli. Karmaşık liste işlemlerine veya çok boyutlu dizilere girmeyeceğiz.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#tibble-modern-veri-iş-akışında-tablo",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#tibble-modern-veri-iş-akışında-tablo",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "6. Tibble: modern veri iş akışında tablo",
+    "text": "6. Tibble: modern veri iş akışında tablo\ntibble, data.frame ile aynı temel amaca hizmet eden, yazdırma ve alt küme davranışlarında farklılıkları olan modern tablo sınıfıdır. dplyr derslerinde sık göreceğiz.\n# Önce tibble paketinin kurulu olduğundan emin olun.\n# Gerekirse bir kez: install.packages(\"tibble\")\n\n# personel_tbl &lt;- tibble::as_tibble(personel)\n# personel_tbl\n# class(personel_tbl)\nBu üç satır isteğe bağlıdır. Paket kuruluyken başındaki # işaretlerini kaldırıp çalıştırabilirsiniz. Paket yüklemediyseniz bu bölümü atlayın; sonraki konulara engel değildir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#mini-uygulama-veriyi-okumadan-önce-incelemek",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#mini-uygulama-veriyi-okumadan-önce-incelemek",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "7. Mini uygulama: veriyi okumadan önce incelemek",
+    "text": "7. Mini uygulama: veriyi okumadan önce incelemek\nÖnümüzde küçük bir personel tablosu var. Birlikte şu soruları cevaplayalım:\n\nVeri kaç satır ve kaç sütundan oluşuyor?\nHangi sütunlar sayısal, hangileri metin veya mantıksal?\nYaş değişkeninde eksik değer var mı?\nEksik değerleri çıkarmadan yaş ortalaması kaç? na.rm = TRUE kullanınca ne değişiyor?\n\nBağımsız çalışma: 02 · Veri tipleri ve yapıları alıştırmaları",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#sık-yapılan-hatalar",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#sık-yapılan-hatalar",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "Sık yapılan hatalar",
+    "text": "Sık yapılan hatalar\n\nMetin olarak saklanmış sayılarla hesap yapmaya çalışmak\nNA ile 0 değerini aynı kabul etmek\ndata.frame ile matrisin her zaman aynı şekilde davrandığını sanmak\nİlk sonucu kontrol etmeden çok sayıda dönüşümü art arda yapmak",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/03-veri-tipleri-ve-yapilari.html#kısa-özet",
+    "href": "lessons/03-veri-tipleri-ve-yapilari.html#kısa-özet",
+    "title": "03 · Veri Tipleri ve Veri Yapıları",
+    "section": "Kısa özet",
+    "text": "Kısa özet\nBir veriyi işlerken önce veri tipini, yapısını, boyutunu ve eksiklerini kontrol ederiz. Bu alışkanlık, ileride dplyr ile analiz yaparken hataları erken fark etmemizi sağlar.\nDaha fazla öğren: R Programlama Kitabı · R İstatistik Akademi\n\nÖnceki bölüm: 02 · İlk R Komutları\nSonraki bölüm: 04 · R Paketleri ve Yardım — kısa bir hazırlığın ardından koşullu ifadelere geçeceğiz.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "03 · Veri tipleri ve yapıları"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html",
+    "href": "lessons/05-kosullu-ifadeler.html",
+    "title": "05 · Koşullu İfadeler",
+    "section": "",
+    "text": "Başlamadan önce\n\n\n\n02 · İlk R Komutları ve 03 · Veri Tipleri ve Yapıları bölümlerindeki nesne, karşılaştırma ve TRUE/FALSE kavramlarını kullanacağız. Paketler bölümünü de gördük. Bu konu temel R ile çalışır; paket kurulumu gerekmez.\nUygulama scriptini indir (.R) · Alıştırmaları indir (.md)",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#problem-bir-karar-kuralını-koda-nasıl-dönüştürürüz",
+    "href": "lessons/05-kosullu-ifadeler.html#problem-bir-karar-kuralını-koda-nasıl-dönüştürürüz",
+    "title": "05 · Koşullu İfadeler",
+    "section": "1. Problem: Bir karar kuralını koda nasıl dönüştürürüz?",
+    "text": "1. Problem: Bir karar kuralını koda nasıl dönüştürürüz?\nÖrneğin bir ürünün toplam tutarı 500 TL’nin üzerindeyse kargo ücretsiz olsun. Önce soruyu yazalım: Koşul doğru mu, yanlış mı?\nsiparis_tutari &lt;- 650\nsiparis_tutari &gt; 500\n&gt; karşılaştırma operatörü, tek bir mantıksal sonuç üretir. Ayrıca &gt;=, &lt;, &lt;=, == ve != operatörlerini kullanırız. = ile == aynı şey değildir: ilki bazı yerlerde argüman veya atama için, ikincisi karşılaştırma için kullanılır.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#ilk-if-koşul-doğruysa-işlemi-yap",
+    "href": "lessons/05-kosullu-ifadeler.html#ilk-if-koşul-doğruysa-işlemi-yap",
+    "title": "05 · Koşullu İfadeler",
+    "section": "2. İlk if: Koşul doğruysa işlemi yap",
+    "text": "2. İlk if: Koşul doğruysa işlemi yap\nsiparis_tutari &lt;- 650\n\nif (siparis_tutari &gt; 500) {\n  print(\"Kargo ücretsiz\")\n}\nif (koşul) içindeki koşul uzunluğu 1 olan, eksik olmayan bir TRUE veya FALSE olmalıdır. Süslü parantez { }, koşul sağlanırsa çalışacak kod bloğunu belirler. RStudio’da bu bloğu birlikte satır satır çalıştır.\nÖnce tahmin et: siparis_tutari &lt;- 450 yaparsan ekranda ne görürsün?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#else-koşul-yanlışsa-diğer-yolu-izle",
+    "href": "lessons/05-kosullu-ifadeler.html#else-koşul-yanlışsa-diğer-yolu-izle",
+    "title": "05 · Koşullu İfadeler",
+    "section": "3. else: Koşul yanlışsa diğer yolu izle",
+    "text": "3. else: Koşul yanlışsa diğer yolu izle\nsiparis_tutari &lt;- 450\n\nif (siparis_tutari &gt; 500) {\n  kargo &lt;- 0\n} else {\n  kargo &lt;- 50\n}\n\nkargo\nelse kısmı if ile aynı karar yapısına aittir. R Console’da } ve else satırlarını ayrı komutlar gibi çalıştırmak hata yaratabilir; scriptte bloğun tamamını birlikte çalıştır.\n\n\n\n\n\n\nSınır değer kontrolü\n\n\n\nTutar tam 500 ise ne olmalı? Kural “500 TL ve üzeri” ise &gt; yerine &gt;= gerekir. Küçük bir işaret farkı, farklı sonuç verir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#else-if-ikiden-çok-seçenek",
+    "href": "lessons/05-kosullu-ifadeler.html#else-if-ikiden-çok-seçenek",
+    "title": "05 · Koşullu İfadeler",
+    "section": "4. else if: İkiden çok seçenek",
+    "text": "4. else if: İkiden çok seçenek\nÖnce kuralı yazalım: 85 ve üzeri pekiyi, 70–84 iyi, 50–69 geçer, daha düşük başarısız.\npuan &lt;- 78\n\nif (puan &gt;= 85) {\n  durum &lt;- \"Pekiyi\"\n} else if (puan &gt;= 70) {\n  durum &lt;- \"İyi\"\n} else if (puan &gt;= 50) {\n  durum &lt;- \"Geçer\"\n} else {\n  durum &lt;- \"Başarısız\"\n}\n\ndurum\nKoşullar üstten alta değerlendirilir. İlk doğru koşuldan sonraki diğer seçeneklere geçilmez. Sıra neden önemli? puan &gt;= 50 kontrolünü en başa taşısaydık 78 için hangi sonuç çıkardı?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#birden-çok-koşul",
+    "href": "lessons/05-kosullu-ifadeler.html#birden-çok-koşul",
+    "title": "05 · Koşullu İfadeler",
+    "section": "5. Birden çok koşul: &, |, !",
+    "text": "5. Birden çok koşul: &, |, !\nyas &lt;- 25\nsinava_girdi &lt;- TRUE\n\n(yas &gt;= 18) & sinava_girdi  # Her ikisi de doğru mu?\n(yas &lt; 18) | sinava_girdi   # En az biri doğru mu?\n!sinava_girdi              # Mantıksal tersini al\nBu örneklerde koşullar tek değerli olduğundan sonuçlar da tek değerlidir. Tek bir karar sınarken && ve || operatörlerini de görebilirsiniz; vektörlerde ise & ve | eleman bazlı çalışır. Şimdilik temel ayrımı bilmek yeterli.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#eksik-bilgi-varsa-karar-veremeyebiliriz",
+    "href": "lessons/05-kosullu-ifadeler.html#eksik-bilgi-varsa-karar-veremeyebiliriz",
+    "title": "05 · Koşullu İfadeler",
+    "section": "6. Eksik bilgi varsa karar veremeyebiliriz",
+    "text": "6. Eksik bilgi varsa karar veremeyebiliriz\nÖnceki bölümde NA eksik değeri öğrenmiştik:\npuan &lt;- NA\nis.na(puan)\n\nif (is.na(puan)) {\n  durum &lt;- \"Bilgi eksik\"\n} else if (puan &gt;= 50) {\n  durum &lt;- \"Geçti\"\n} else {\n  durum &lt;- \"Kaldı\"\n}\n\ndurum\nSık hata: Doğrudan if (puan &gt;= 50) yazılırsa sonuç NA olduğu için hata oluşur. Eksik veriyi karar kuralı içinde ayrıca ele almak gerekir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#tek-değer-için-if-vektör-için-hangi-yaklaşım",
+    "href": "lessons/05-kosullu-ifadeler.html#tek-değer-için-if-vektör-için-hangi-yaklaşım",
+    "title": "05 · Koşullu İfadeler",
+    "section": "7. Tek değer için if, vektör için hangi yaklaşım?",
+    "text": "7. Tek değer için if, vektör için hangi yaklaşım?\npuanlar &lt;- c(45, 60, 82, NA)\n\n# Her gözlem için ayrı bir sonuç istiyoruz.\nsonuc &lt;- ifelse(is.na(puanlar), \"Eksik\",\n                ifelse(puanlar &gt;= 50, \"Geçti\", \"Kaldı\"))\nsonuc\nNeden if kullanmadık? puanlar &gt;= 50 dört elemanlı bir sonuç üretir. if tek koşul bekler; ifelse() ise eleman bazlı sonuç verir. ifelse() ile tip dönüşümü ve eksik değer davranışına dikkat etmek gerekir. Daha sonra dplyr::if_else() ve dplyr::case_when() kullanacağız.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#minik-veri-senaryosu-ücret-kuralı",
+    "href": "lessons/05-kosullu-ifadeler.html#minik-veri-senaryosu-ücret-kuralı",
+    "title": "05 · Koşullu İfadeler",
+    "section": "8. Minik veri senaryosu: ücret kuralı",
+    "text": "8. Minik veri senaryosu: ücret kuralı\nucret &lt;- 900\nuyelik &lt;- TRUE\n\nif (ucret &gt;= 1000 & uyelik) {\n  indirim_orani &lt;- 0.15\n} else if (ucret &gt;= 500) {\n  indirim_orani &lt;- 0.05\n} else {\n  indirim_orani &lt;- 0\n}\n\nodenecek &lt;- ucret * (1 - indirim_orani)\nodenecek\nKoşul sırası ve sınır değerlerini değiştirerek farklı müşteri senaryolarını kontrol edin. Gerçek kurumsal indirim veya mevzuat kuralı değil, öğretici yapay örnek olduğunu unutmayın.\n\n\n\n\n\n\nÖğrendim mi? Kısa kontrol\n\n\n\n\nif ile ifelse() arasındaki farkı açıklayabiliyor musun?\nelse if sırasında ilk doğru koşulun seçilmesini gösterebiliyor musun?\nNA bulunan bir değerde karar vermeden önce nasıl kontrol yaparsın?\n500 sınır değerinde &gt; ve &gt;= farkını gösterebiliyor musun?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#alıştırma-kendi-karar-kuralını-yaz",
+    "href": "lessons/05-kosullu-ifadeler.html#alıştırma-kendi-karar-kuralını-yaz",
+    "title": "05 · Koşullu İfadeler",
+    "section": "Alıştırma: Kendi karar kuralını yaz",
+    "text": "Alıştırma: Kendi karar kuralını yaz\nAlıştırma dosyasını indir. Önce kolay bir if/else, sonra çoklu else if, en son eksik veriyi de içeren bir kural yaz. Çözüm sırasında kodu sadece çalıştırma; en az bir sınır değeri ayrıca test et.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#sık-yapılan-hatalar",
+    "href": "lessons/05-kosullu-ifadeler.html#sık-yapılan-hatalar",
+    "title": "05 · Koşullu İfadeler",
+    "section": "Sık yapılan hatalar",
+    "text": "Sık yapılan hatalar\n\n== yerine = yazmak\nKoşulları yanlış sıraya koymak\nif içine uzunluğu birden büyük bir vektör vermek\nNA kontrolünü unutmak\nelse satırını Console’da bağımsız yürütmek\nSınır değerleri (50, 70, 85) hiç test etmemek",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/05-kosullu-ifadeler.html#kısa-özet-ve-sonraki-adım",
+    "href": "lessons/05-kosullu-ifadeler.html#kısa-özet-ve-sonraki-adım",
+    "title": "05 · Koşullu İfadeler",
+    "section": "Kısa özet ve sonraki adım",
+    "text": "Kısa özet ve sonraki adım\nKarar yapısında önce kuralı sözle kur, sonra koşulları sırala ve sınır durumlarını kontrol et. Sıradaki döngüler bölümünde aynı işlemi birden fazla kez tekrarlamayı öğreneceğiz.\nDaha fazla bilgi: R Programlama Kitabı · R Language Definition — Control structures\n\nÖnceki: 04 · R Paketleri\nSonraki: 06 · Döngüler (for, while)",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "05 · Koşullu ifadeler"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html",
+    "href": "lessons/07-fonksiyonlar.html",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "",
+    "text": "Bu bölümün yeri\n\n\n\nÖnceki derste döngülerle aynı işlemi tekrarlamayı öğrendik. Şimdi aynı işlemi birden çok yerde kullanmak için bir fonksiyon yazacağız. Ön koşullar: nesneler, vektörler, if/else, for ve temel hesaplama fonksiyonları.\nÖğrenme hedefleri: Bu ders sonunda bir fonksiyon tanımlayabilecek; parametre ve argümanı ayırt edebilecek; varsayılan değer, sonuç döndürme, basit girdi kontrolü ve değişken kapsamı kavramlarını örneklerle açıklayabileceksiniz.\nDers materyalleri: Uygulama scriptini indir (.R) · Alıştırmaları indir (.md)",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#neden-kendi-fonksiyonumuzu-yazalım",
+    "href": "lessons/07-fonksiyonlar.html#neden-kendi-fonksiyonumuzu-yazalım",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "1. Neden kendi fonksiyonumuzu yazalım?",
+    "text": "1. Neden kendi fonksiyonumuzu yazalım?\nBir işlemi farklı sayılar, kişiler veya dönemler için tekrar yapmamız gerekebilir. Her yerde aynı kodu kopyalamak hem yorucu hem de hata üretmeye açıktır. Önce bir hesaplama yapalım:\nfiyat &lt;- 120\nadet &lt;- 3\nfiyat * adet\nFarklı fiyat ve adetler için aynı işlemi yeniden yazmak yerine hesaplamayı isimlendirebiliriz. R’deki sum() ve mean() gibi hazır fonksiyonlar da zaten aynı fikirle çalışır: girdileri alır ve sonuç üretir.\n\n\n\n\n\n\nSınıfta düşünün\n\n\n\nAynı hesaplama on farklı yerde yazılıysa yöntemi değiştirmek gerektiğinde kaç kod parçasını güncellemek zorunda kalırsınız?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#ilk-fonksiyon-function",
+    "href": "lessons/07-fonksiyonlar.html#ilk-fonksiyon-function",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "2. İlk fonksiyon: function()",
+    "text": "2. İlk fonksiyon: function()\nTemel biçim şöyledir:\nhesapla &lt;- function(girdi) {\n  # yapılacak işlem\n  sonuc\n}\nBurada hesapla fonksiyonun adı, girdi bir parametre, süslü parantezler fonksiyonun gövdesidir. Fonksiyonu tanımlamak onu çalıştırmaz; çalıştırmak için adından sonra parantez kullanırız.\ntutar_hesapla &lt;- function(fiyat, adet) {\n  fiyat * adet\n}\n\ntutar_hesapla(120, 3)\ntutar_hesapla(75, 4)\nİlk çağrıda fiyat = 120, adet = 3; ikincisinde farklı değerler kullanılır. Fonksiyonun içindeki işlem ise aynıdır.\nTahmin edin: tutar_hesapla(50, 6) hangi değeri döndürür? Kodu çalıştırmadan önce söyleyin.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#parametre-ve-argüman-farkı",
+    "href": "lessons/07-fonksiyonlar.html#parametre-ve-argüman-farkı",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "3. Parametre ve argüman farkı",
+    "text": "3. Parametre ve argüman farkı\n\nfunction(fiyat, adet) tanımında fiyat ve adet parametre adlarıdır.\ntutar_hesapla(120, 3) çağrısında 120 ve 3 argüman değerleridir.\nDeğerleri konumlarına göre veya adlarıyla verebiliriz.\n\ntutar_hesapla(adet = 3, fiyat = 120)\nAdları açıkça yazmak, özellikle çok argümanlı fonksiyonlarda yanlış sıradan kaynaklanan sorunları azaltır.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#varsayılan-değerler",
+    "href": "lessons/07-fonksiyonlar.html#varsayılan-değerler",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "4. Varsayılan değerler",
+    "text": "4. Varsayılan değerler\nBir parametrenin çoğu zaman aynı değeri alması gerekiyorsa fonksiyon tanımında varsayılan değer belirleyebiliriz:\nindirimli_tutar &lt;- function(fiyat, indirim_orani = 0.10) {\n  fiyat * (1 - indirim_orani)\n}\n\nindirimli_tutar(200)        # 180\nindirimli_tutar(200, 0.20)  # 160\nBu örnekte oranlar öğretim amaçlıdır. Fonksiyon çağrısında indirim_orani verilmezse 0.10 kullanılır; verilirse yeni değer geçerlidir.\nDeneyin: indirimli_tutar(200, indirim_orani = 0) ne döndürür? Neden?",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#fonksiyonun-çıktısı-son-ifade-ve-return",
+    "href": "lessons/07-fonksiyonlar.html#fonksiyonun-çıktısı-son-ifade-ve-return",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "5. Fonksiyonun çıktısı: Son ifade ve return()",
+    "text": "5. Fonksiyonun çıktısı: Son ifade ve return()\nR’de fonksiyonun sonunda hesaplanan ifade genellikle sonuç olarak döndürülür. return() ise sonucun nerede ve hangi koşulda döneceğini açıkça belirlememizi sağlar.\nkare_al &lt;- function(x) {\n  x^2  # son ifade: sonuç\n}\n\nkare_al(4)\npuan_durumu &lt;- function(puan) {\n  if (puan &gt;= 50) {\n    return(\"Gecti\")\n  }\n  \"Kaldi\"\n}\n\npuan_durumu(75)\npuan_durumu(40)\n\n\n\n\n\n\nTek bir karar mı, birden çok değer mi?\n\n\n\nif (kosul) tek bir TRUE/FALSE bekler. puan_durumu(c(40, 75)) bu hâliyle çalışmaz. Önce tek değerli fonksiyonları anlamalıyız; vektörle çalışma yaklaşımını aşağıda ele alacağız.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#na-ve-hatalı-girdileri-düşünelim",
+    "href": "lessons/07-fonksiyonlar.html#na-ve-hatalı-girdileri-düşünelim",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "6. NA ve hatalı girdileri düşünelim",
+    "text": "6. NA ve hatalı girdileri düşünelim\nKendi fonksiyonumuzu yazdığımızda yalnızca beklenen değerleri değil, sorunlu girdileri de düşünmemiz gerekir. Önce eksik değer için açık bir karar verelim:\npuan_durumu_guvenli &lt;- function(puan) {\n  if (is.na(puan)) {\n    return(NA_character_)\n  }\n  if (puan &gt;= 50) {\n    return(\"Gecti\")\n  }\n  \"Kaldi\"\n}\n\npuan_durumu_guvenli(NA_real_)\nBurada NA_character_ karakter türünde eksik değer üretir. is.na() kontrolünü önce yapmak, if (NA) hatasını önler.\nBir adım daha: Fonksiyonun yalnızca tek sayısal değer kabul etmesini istiyoruz. Bunun için stopifnot() gibi basit bir kontrol kullanabiliriz:\npuan_durumu_kontrollu &lt;- function(puan) {\n  stopifnot(is.numeric(puan), length(puan) == 1L)\n  if (is.na(puan)) return(NA_character_)\n  if (puan &gt;= 50) \"Gecti\" else \"Kaldi\"\n}\n\npuan_durumu_kontrollu(55)\nNot: Girdi kontrolü ve hata mesajı tasarımı ileri seviyelerde geliştirilebilir. Bu derste amaç, fonksiyonun hangi veriyle çalışacağını açıkça belirlemektir.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#değişken-kapsamı-içerideki-ve-dışarıdaki-nesneler",
+    "href": "lessons/07-fonksiyonlar.html#değişken-kapsamı-içerideki-ve-dışarıdaki-nesneler",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "7. Değişken kapsamı: İçerideki ve dışarıdaki nesneler",
+    "text": "7. Değişken kapsamı: İçerideki ve dışarıdaki nesneler\nFonksiyon içinde oluşturulan yerel nesneler normalde dışarıdaki çalışma alanında bulunmaz:\niki_kat &lt;- function(x) {\n  sonuc &lt;- x * 2\n  sonuc\n}\n\niki_kat(8)\n# 'sonuc' nesnesi fonksiyonun yerel ortamındadır.\nFonksiyonun dışındaki değişkenlere bağımlı kod, başka bilgisayarda veya temiz bir R oturumunda sorun çıkarabilir. Daha güvenilir yöntem, gereken bilgiyi argüman olarak vermektir.\n# Tercih edilen yaklaşım:\nvergi_ekle &lt;- function(tutar, oran) {\n  tutar * (1 + oran)\n}\nvergi_ekle(100, 0.20)\nBuradaki oran örnek amaçlıdır. Dışarıdaki rastgele bir oran nesnesine güvenmiyoruz.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#fonksiyonlar-vektörlerle-de-çalışabilir",
+    "href": "lessons/07-fonksiyonlar.html#fonksiyonlar-vektörlerle-de-çalışabilir",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "8. Fonksiyonlar vektörlerle de çalışabilir",
+    "text": "8. Fonksiyonlar vektörlerle de çalışabilir\nR’de temel aritmetik vektörel çalıştığı için aynı fonksiyon bir sayı vektörünü de işleyebilir:\nartis_uygula &lt;- function(deger, oran = 0.05) {\n  deger * (1 + oran)\n}\n\nartis_uygula(c(100, 120, 150))\nBurada for yazmaya gerek yoktur. Ancak bütün fonksiyonlar kendiliğinden vektörel değildir. Özellikle tek bir koşul değerlendiren if ifadeleri için dikkatli olunmalıdır.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#bir-küçük-veri-uygulaması",
+    "href": "lessons/07-fonksiyonlar.html#bir-küçük-veri-uygulaması",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "9. Bir küçük veri uygulaması",
+    "text": "9. Bir küçük veri uygulaması\nDaha önce öğrendiğimiz data.frame() yapısını kullanarak bir çalışma yapalım. Veri tamamen yapaydır:\nsatislar &lt;- data.frame(\n  urun = c(\"A\", \"B\", \"C\"),\n  adet = c(2, 4, 3),\n  birim_fiyat = c(100, 75, 150)\n)\n\ntutar_hesapla &lt;- function(fiyat, adet) {\n  fiyat * adet\n}\n\nsatislar$tutar &lt;- tutar_hesapla(satislar$birim_fiyat, satislar$adet)\nsatislar\nKontrol edin: Üçüncü ürünün toplam tutarı neden 450? Veri tablosundaki satırları değiştirdiğinizde sonuç nasıl etkileniyor?\n\n\n\n\n\n\nModern R alışkanlığı\n\n\n\nFonksiyonlara anlaşılır isimler verin (artis_uygula gibi), girdileri açık tutun, tek bir sorumluluğa odaklanın ve küçük örneklerle test edin. İleride dplyr::mutate() içinde aynı fonksiyonları tekrar kullanabiliriz. Fonksiyon yazarken her şeyi for döngüsüne dönüştürmek zorunda değiliz.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#sık-yapılan-hatalar",
+    "href": "lessons/07-fonksiyonlar.html#sık-yapılan-hatalar",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "10. Sık yapılan hatalar",
+    "text": "10. Sık yapılan hatalar\n\nFonksiyonu tanımlamakla çağırmayı aynı şey sanmak.\nArgüman sırasını karıştırmak; gerektiğinde argümanları adlarıyla vermemek.\nFonksiyon içinde oluşan bir nesnenin dışarıdan da erişilebilir olduğunu düşünmek.\nEksik değeri (NA) if içinde kontrol etmeden kullanmak.\nTek değer için tasarlanan if fonksiyonuna vektör göndermek.\nHer hesaplamaya gereksiz döngü eklemek veya fonksiyonu dış ortamdaki nesnelere bağımlı bırakmak.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#kendi-kendini-kontrol-et",
+    "href": "lessons/07-fonksiyonlar.html#kendi-kendini-kontrol-et",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "11. Kendi kendini kontrol et",
+    "text": "11. Kendi kendini kontrol et\n\nFonksiyonu tanımlamak ve çağırmak arasındaki fark nedir?\nVarsayılan argüman hangi durumda kullanılır?\nSon ifade ile return() arasında hangi fark vardır?\npuan_durumu(NA) ilk sürümünde neden hata verir?\nartis_uygula(c(100, 200)) için neden for döngüsü gerekli değildir?\n\nEgzersizleri indir (.md) · Tam uygulama scriptini indir (.R)",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/07-fonksiyonlar.html#özet-ve-sonraki-adım",
+    "href": "lessons/07-fonksiyonlar.html#özet-ve-sonraki-adım",
+    "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
+    "section": "Özet ve sonraki adım",
+    "text": "Özet ve sonraki adım\nBir fonksiyon, girdilerle yapılan belirli bir işi tekrar kullanılabilir hâle getirir. function(), argümanlar, varsayılan değerler, sonuç döndürme, basit kontrol ve değişken kapsamını öğrendik. Bir sonraki bölümde farklı dosyalardaki verileri R’ye alıp bu bilgileri gerçek veri işleme sürecine taşıyacağız.\nDerinleşmek için: R Programlama Kitabı · R: Writing Your Own Functions\n\nÖnceki: 06 · Döngüler\nSonraki: Veri İçe / Dışa Aktarma — sonraki modülde bağlantı eklenecek.",
+    "crumbs": [
+      "Eğitim İçeriği",
+      "07 · Fonksiyonlar"
+    ]
   }
 ]

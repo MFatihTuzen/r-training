@@ -1,0 +1,251 @@
+---
+title: "06 · Döngüler: for ve while"
+subtitle: "Tekrarlanan işlemlerden kontrollü ve anlaşılır kodlara"
+description: "for, while, sayaç, sonuç biriktirme, break, next, sonsuz döngü ve vektörel alternatifleri uygulamalarla öğrenin."
+execute:
+  eval: false
+---
+
+::: {.callout-note}
+## Bu konudan önce
+[Koşullu ifadeler](05-kosullu-ifadeler.qmd) bölümünü bitirdiğinizi varsayıyoruz. Özellikle karşılaştırma, `if/else`, vektör ve indeksleme bilgisini kullanacağız. Buradaki kodları yukarıdan aşağıya sırasıyla çalıştırın.
+:::
+
+**Bu bölümün sonunda:** bir `for` döngüsünü okuyabilecek, `while` döngüsünde durma koşulunu açıklayabilecek, sonuçları saklayabilecek ve bir döngünün gerçekten gerekli olup olmadığını değerlendirebileceksiniz.
+
+[**Uygulama scriptini indir (.R)**](../scripts/05-donguler.R){download="05-donguler.R"} · [**Alıştırmaları indir (.md)**](../exercises/05-donguler.md){download="05-donguler.md"} · [Materyallerin tamamı](../materials/index.qmd)
+
+## 1. Neden döngü kullanırız?
+
+Bir raporun beş farklı bölgesine aynı kontrolü uyguladığınızı düşünün. Her işlem için aynı kodu tekrar yazmak hem zahmetlidir hem de hata riskini artırır. **Döngü**, bir kod bloğunu belirli bir sırayla veya bir koşul sağlandığı sürece çalıştırır.
+
+İlk olarak tekrarsız işlemi düşünelim:
+
+```r
+print("1. dönem kontrol edildi")
+print("2. dönem kontrol edildi")
+print("3. dönem kontrol edildi")
+```
+
+Üç satır yerine her dönem için aynı adımı tekrarlamak istiyoruz. Önce `for`, sonra `while` öğreneceğiz.
+
+## 2. `for`: Kaç kez tekrarlanacağını biliyorsak
+
+Genel yapı:
+
+```r
+for (degisken in degerler) {
+  # Her değer için çalışacak işlemler
+}
+```
+
+Örneğin:
+
+```r
+for (donem in 1:3) {
+  print(paste("Kontrol edilen dönem:", donem))
+}
+```
+
+**Adım adım okuyalım:** `1:3` ifadesi `1, 2, 3` değerlerini üretir. `donem` sırasıyla bu değerleri alır. Süslü parantezler arasındaki işlem her değer için bir kez çalışır. `paste()` metinleri birleştirir; `print()` sonucu gösterir.
+
+| Adım | `donem` değeri | Ekranda ne olur? |
+|---|---:|---|
+| 1 | 1 | Kontrol edilen dönem: 1 |
+| 2 | 2 | Kontrol edilen dönem: 2 |
+| 3 | 3 | Kontrol edilen dönem: 3 |
+
+::: {.callout-tip}
+## Şimdi değiştir
+`1:3` yerine `4:6` yaz. Çıktının kaç satır olacağını kodu çalıştırmadan önce tahmin et.
+:::
+
+### Vektördeki değerleri gezmek
+
+```r
+bolgeler <- c("Kuzey", "Guney", "Dogu")
+for (bolge in bolgeler) {
+  print(paste("Bölge:", bolge))
+}
+```
+
+Döngü mutlaka 1, 2, 3 gibi sayılar üzerinden gitmez. **Her eleman** üzerinde sırayla çalışabilir.
+
+## 3. Hesaplanan sonuçları neden saklamalıyız?
+
+Sadece `print()` ile göstermek çoğu zaman yeterli değildir: Sonuçları daha sonra tabloya yazmak veya karşılaştırmak isteriz. Bunun için önce sonucu tutacak bir vektör oluştururuz.
+
+```r
+satis <- c(80, 100, 120, 90)
+kdv_dahil <- numeric(length(satis))  # Dört elemanlı boş sonuç vektörü
+
+for (i in seq_along(satis)) {
+  kdv_dahil[i] <- satis[i] * 1.20
+}
+kdv_dahil
+```
+
+Buradaki yeni öğeler:
+
+- `length(satis)`: kaç eleman bulunduğunu verir.
+- `numeric(4)`: dört sayılık başlangıç vektörü oluşturur.
+- `seq_along(satis)`: vektördeki geçerli indislerin sırasını oluşturur. Boş vektörlerde `1:length(satis)` kalıbından daha güvenlidir.
+- `[i]`: `i` konumundaki elemana ulaşır; `<-` ile sonucun aynı konumuna yazılır.
+
+**Sonuç kontrolü:** İlk elemanın `96`, üçüncü elemanın `144` olmasını bekleriz. Hesapta kullanılan `1.20` katsayısı öğretici varsayımdır, gerçek bir vergi oranı beyanı değildir.
+
+## 4. Koşulları döngünün içine koymak
+
+Önceki dersteki `if/else` bilgisini kullanıyoruz:
+
+```r
+puanlar <- c(45, 68, 82, 39)
+durumlar <- character(length(puanlar))
+
+for (i in seq_along(puanlar)) {
+  if (puanlar[i] >= 50) {
+    durumlar[i] <- "Gecti"
+  } else {
+    durumlar[i] <- "Kaldi"
+  }
+}
+durumlar
+```
+
+**Soru:** 50 puan sınır değerinde hangi dal çalışır? `>=` yerine `>` yazılırsa ne değişir?
+
+## 5. `while`: Durma koşulu gerçekleşene kadar
+
+`for` çoğunlukla belirli bir eleman kümesi üzerinde dolaşır. `while` ise **koşul doğru olduğu sürece** çalışır. Döngüye girmeden önce koşul kontrol edilir.
+
+```r
+sayac <- 1
+while (sayac <= 3) {
+  print(paste("Adım:", sayac))
+  sayac <- sayac + 1
+}
+```
+
+`while` döngüsünün güvenli olması için **koşulu değiştiren adımın** bulunması gerekir. Burada sayaç her tekrar sonunda 1 artar; dördüncü kontrole gelindiğinde koşul yanlış olur.
+
+::: {.callout-warning}
+## Sonsuz döngü tehlikesi
+Sayaç artırma satırı çıkarılırsa koşul hep `TRUE` kalabilir. Böyle bir döngüyü **çalıştırmayın**. Yanlışlıkla başladıysa RStudio'da *Esc* veya *Stop* ile durdurun. Her `while` yazarken “Bu koşul hangi durumda `FALSE` olacak?” sorusunu sorun.
+:::
+
+### `while` ile küçük bir hedef örneği
+
+```r
+birikim <- 0
+hedef <- 350
+ay <- 0
+
+while (birikim < hedef) {
+  ay <- ay + 1
+  birikim <- birikim + 100
+}
+
+ay       # 4
+birikim  # 400
+```
+
+Gerçekte faiz, gelir, harcama ve başka unsurlar olabilir; bu sadece döngü mantığını göstermek için yapay bir örnektir.
+
+## 6. `break` ve `next`: Döngü akışını yönetmek
+
+`break` döngüyü tamamen durdurur. `next` ise **yalnızca geçerli tekrarı** atlayıp bir sonrakine geçer.
+
+```r
+for (sayi in 1:6) {
+  if (sayi == 4) break
+  print(sayi)
+}
+# 1, 2, 3 yazdırılır.
+```
+
+```r
+for (sayi in 1:6) {
+  if (sayi == 4) next
+  print(sayi)
+}
+# 4 hariç bütün değerler yazdırılır.
+```
+
+İki örneği yan yana çalıştırıp farkı gözlemleyin. İleri kullanımlarda bu komutlar yararlıdır, fakat akış kontrolünü gereksiz yere karmaşıklaştırmayın.
+
+## 7. Modern R yaklaşımı: Her iş için döngü mü?
+
+R'de birçok işlem **vektörel** yapılabilir. Aşağıdaki iki kod aynı sayısal sonucu verir:
+
+```r
+satis <- c(80, 100, 120, 90)
+
+# Döngülü yaklaşım
+sonuc <- numeric(length(satis))
+for (i in seq_along(satis)) {
+  sonuc[i] <- satis[i] * 1.20
+}
+
+# Vektörel yaklaşım
+sonuc_vektorel <- satis * 1.20
+
+identical(sonuc, sonuc_vektorel)
+```
+
+**Ne zaman hangisi?** Eleman bazında bir aritmetik işlem yapmak için çoğu zaman doğrudan vektörel kod daha kısa ve anlaşılırdır. Ancak ardışık adımların birbirine bağlı olduğu, durma koşulu gereken veya her adımda farklı bir işlem yürütülen durumlarda döngü uygun olabilir. Amaç `for` kullanmamak değil, **uygun aracı seçmektir**.
+
+::: {.callout-note}
+## İleride `dplyr` ile
+Sütun bazında hesaplar için `mutate()`, gruplar için `group_by()` ve `summarise()` gibi fonksiyonları öğreneceğiz. Döngü kurmadan çözülebilen birçok veri işleme görevi vardır.
+:::
+
+## 8. Uygulama: Sınır kontrolü
+
+Bir sensörden gelen dört ölçümün `100` sınırını geçip geçmediğini inceleyelim. Veri yapaydır.
+
+```r
+olcumler <- c(98, 105, 100, 111)
+etiket <- character(length(olcumler))
+
+for (i in seq_along(olcumler)) {
+  if (olcumler[i] > 100) {
+    etiket[i] <- "Ustunde"
+  } else {
+    etiket[i] <- "Sinirda veya altinda"
+  }
+}
+
+data.frame(olcum = olcumler, durum = etiket)
+```
+
+Burada `data.frame()` konusunu üçüncü bölümde öğrenmiştik. Kodun sonunda oluşan dört satırlık tabloyu inceleyin. Sonraki adım olarak `olcumler` içine `NA` eklerseniz ne olur? Bu soruyu [eksik değerler](03-veri-tipleri-ve-yapilari.qmd) konusunu hatırlayarak çözün; ipucu: `is.na()` kontrolü gereklidir.
+
+## 9. Sık yapılan hatalar
+
+- `for (i in 1:length(x))` kalıbını boş vektörlerde düşünmeden kullanmak; `seq_along(x)` daha güvenlidir.
+- Sonuç vektörünü hazırlamadan, yalnızca ekrana yazdırarak ilerlemek.
+- `while` içinde sayaç güncellemeyi unutmak.
+- `break` ile `next` komutlarını karıştırmak.
+- Vektörle yapılabilecek basit hesabı gereksiz bir döngüye dönüştürmek.
+- Sıfırdan başlanan indeksleme varsaymak (R'de ilk indis 1'dir).
+
+## 10. Kendi kendini kontrol et
+
+1. `for` ile `while` arasındaki fark nedir?
+2. Yukarıdaki satış örneğinde sonuç vektörü niçin önceden oluşturuldu?
+3. `break` kullanıldığında sonraki elemanlar işlenir mi?
+4. `satis * 1.20` ile döngü ne zaman aynı sonucu verir?
+5. `while (sayac <= 3)` koşulunun bir gün yanlış olmasını ne sağlar?
+
+[**Alıştırmaları indirip çöz (.md)**](../exercises/05-donguler.md){download="05-donguler.md"} · [**Uygulama scripti (.R)**](../scripts/05-donguler.R){download="05-donguler.R"}
+
+## Özet ve devam
+
+Bu bölümde tekrarlama mantığını, sayaçları, sonuç biriktirmeyi ve döngü kontrolünü öğrendik. Sonraki bölümde **kendi fonksiyonumuzu** yazarak tekrar kullanılan kodu tek yerde toplamayı öğreneceğiz.
+
+**Daha ayrıntılı okuma:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [R Language Definition — Control structures](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Control-structures)
+
+---
+
+**Önceki:** [05 · Koşullu İfadeler](05-kosullu-ifadeler.qmd)  
+**Sonraki:** [07 · Kullanıcı Tanımlı Fonksiyonlar](07-fonksiyonlar.qmd)

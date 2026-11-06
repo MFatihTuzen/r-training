@@ -1,10 +1,13 @@
-# 01 — İlk adımlar: bağımsız alıştırmalar
+# 01 — İlk R Komutları: Alıştırmalar
 
-**Çalışma biçimi:** Önce sonucu tahmin edin, sonra RStudio'da çalıştırın. Yanıtlarınızı kendi `.R` dosyanıza kaydedin.
+Önce **01 · R ve RStudio**, sonra **02 · İlk R Komutları** sayfasını tamamlayın.
 
-1. `urun_fiyat` ve `urun_adet` adında dört elemanlı iki vektör oluşturun; ürün bazında tutar ve toplam tutarı bulun.
-2. Üçüncü ürünün adedini `NA` olarak değiştirin. Toplam sonucu nasıl değişiyor? `na.rm = TRUE` neyi çözüyor, neyi çözmüyor?
-3. `ad`, `yas` ve `birim` değişkenleri olan dört satırlık bir `data.frame` oluşturun. Satır sayısını, sütun adlarını ve `yas` değişkeninin tipini gösterin.
-4. **Ek görev:** Bir RStudio oturumunu yeniden başlatıp scripti en baştan çalıştırın. Önceden bellekteki nesnelere bağımlı kod var mı?
+1. Console'da `7 + 5 * 2` ve `(7 + 5) * 2` ifadelerini hesaplayın. Sonuçlar neden farklı?
+2. `birim_fiyat <- 75` ve `miktar <- 6` nesneleri oluşturun. Toplam tutarı saklayın ve sonucu yazdırın.
+3. `puan <- c(8, 12, 16, 20)` vektörünü oluşturun; `length()`, `sum()` ve `mean()` ile inceleyin.
+4. `puan` vektörüne `24` değerini de ekleyin, ortalamasını yeniden hesaplayın.
+5. `miktar` değişkeninin değerini değiştir. Önceki `toplam` nesnesi otomatik güncelleniyor mu? Neden?
 
-**Eğitmen kontrolü:** Katılımcı nesneleri, sonucu ve eksik veri davranışını açıklayabiliyor mu?
+**Düşünme sorusu:** Scripti yeniden çalıştırmak ile Environment bölümündeki eski nesnelere güvenmek arasında ne fark var?
+
+> Eksik değerler ve tablolar (`data.frame`) bir sonraki bölümde sistemli biçimde ele alınacaktır.

@@ -1,55 +1,100 @@
 # =====================================================================
-# 02 | Veri Tipleri ve Yapilari
-# Hedef: tip, vektor, data.frame, liste, temel indeksleme
+# R PROGRAMLAMA EGITIMI | 02 - VERI TIPLERI VE VERI YAPILARI
+# Ilgili sayfa: lessons/03-veri-tipleri-ve-yapilari.qmd
+# On kosul: 01 numarali script (atama, c(), hazir fonksiyonlar)
+# Uygulama: Ustten alta, bolum bolum (Ctrl+Enter).
+# Not: Bu dosya base R ile tamamen calisir; tibble istege baglidir.
 # =====================================================================
 
-# A | Veri tipi --------------------------------------------------------
-yas <- c(24, 32, 45)           # numeric
-isim <- c("Ali", "Ayse", "Deniz") # character
-calisiyor <- c(TRUE, FALSE, TRUE) # logical
+# 1. Veri tipleri -------------------------------------------------------
+yas <- 25
+sehir <- "Ankara"
+calisiyor <- TRUE
 
 class(yas)
-class(isim)
+class(sehir)
 class(calisiyor)
+class(25)
+class(25L)
+typeof(25)
+typeof(25L)
 
-# Bu ifadede ne oluyor? Vektorde elemanlar ortak bir tipe donusebilir.
-karisik <- c(10, "20", 30)
-class(karisik)
+# DENEME: Bunlar ayni tipte mi?
+sayi_metin <- "150"
+sayi <- 150
+class(sayi_metin)
+class(sayi)
+# sayi_metin + 10  # Bilerek hatali ornek: sayi yerine metin
 
-# B | Data frame: farkli tipte sutunlar --------------------------------
+# 2. Vektorler ve tip donusumu -----------------------------------------
+puanlar <- c(60, 75, 90)
+class(puanlar)
+length(puanlar)
+
+karisik <- c(1, 2, "uc")
+karisik
+class(karisik)  # Sayilar da metne donusturulmustur
+
+puanlar[1]
+puanlar[c(1, 3)]
+puanlar[puanlar > 70]
+
+# 3. Eksik degerler -----------------------------------------------------
+notlar <- c(60, 75, NA, 90)
+is.na(notlar)
+sum(is.na(notlar))
+mean(notlar)
+mean(notlar, na.rm = TRUE)
+# notlar == NA  # Yanlis; eksik kontrolu icin is.na() kullan
+
+# 4. Data frame: tablosal veri -----------------------------------------
 personel <- data.frame(
-  ad = c("Ali", "Ayse", "Deniz", "Ece"),
-  yas = c(24, 32, 45, NA),
+  ad = c("Ali", "Ayşe", "Deniz", "Ece"),
+  yas = c(28, 35, 31, NA),
   birim = c("A", "B", "A", "B"),
   aktif = c(TRUE, TRUE, FALSE, TRUE)
 )
 
+personel
 str(personel)
-dim(personel)
 names(personel)
+dim(personel)
 head(personel)
 
-# C | Satir-sutun secimi ------------------------------------------------
-personel$yas             # Bir sutun
-personel[1:2, ]         # Ilk iki satir
-personel[, c("ad", "birim")] # Iki sutun
+personel$yas
+personel[1, ]
+personel[, "ad"]
+personel[1:2, c("ad", "yas")]
 
-# D | Liste: farkli nesneleri bir arada saklama -------------------------
-ozet <- list(
-  veri = personel,
-  olusturma_amaci = "Egitim ornegi",
-  kayit_sayisi = nrow(personel)
+# KONTROL 1: Kac gozlem ve degisken var?
+nrow(personel)
+ncol(personel)
+# KONTROL 2: Yas icin kac eksik var?
+sum(is.na(personel$yas))
+# KONTROL 3: Eksik degerleri cikardigimizda ortalama yas?
+mean(personel$yas, na.rm = TRUE)
+
+# 5. Matris ve liste ----------------------------------------------------
+matris <- matrix(1:6, nrow = 2)
+matris
+class(matris)
+
+sonuc <- list(
+  ortalama_yas = mean(personel$yas, na.rm = TRUE),
+  personel_tablosu = personel,
+  aciklama = "Egitim ornegi"
 )
+names(sonuc)
+sonuc$ortalama_yas
 
-ozet$kayit_sayisi
+# 6. Tibble: istege bagli ----------------------------------------------
+# Bu ornek tibble paketi kuruluysa calisir; sinifta zorunlu degildir.
+# Gerekirse tek seferlik: install.packages("tibble")
+# personel_tbl <- tibble::as_tibble(personel)
+# personel_tbl
+# class(personel_tbl)
 
-# E | Matris ile data frame farki ---------------------------------------
-sayisal_matris <- matrix(1:6, nrow = 2)
-class(sayisal_matris)
-class(personel)
-
-# F | Egzersiz ---------------------------------------------------------
-# 1. 'personel' tablosundaki eksik yas sayisini bulun.
-# 2. Yalnizca ilk 3 kisinin adlarini secin.
-# 3. 'aktif' degiskeninin tipini sorgulayin.
-# 4. Veri tibble olsaydi ne degisirdi? (Web dersinde tartisin.)
+# GOREV: Asagidaki sorulari kendiniz cevaplayin.
+# A) personel tablosunda aktif sutununun sinifi nedir?
+# B) Birinci ve ucuncu satirdaki ad ve birim bilgilerini secin.
+# C) personel$yas vektorunde kac eksik deger bulunuyor?

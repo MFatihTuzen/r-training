@@ -1,0 +1,117 @@
+---
+title: "Eğitim Materyalleri"
+subtitle: "İhtiyacınız olan ders, R scripti ve alıştırmaya tek yerden ulaşın"
+---
+
+::: {.callout-note}
+## Nasıl kullanılır?
+Önce **Dersi aç**, örnekleri sırayla takip et. Ardından ilgili **R scriptini indirip RStudio'da aç** ve satırları `Ctrl + Enter` ile çalıştır. **Alıştırmalar**, konuyu kendi başına uygulayabilmen için hazırlandı. İndirme bağlantısı tarayıcıda metin açarsa *Sağ tık → Bağlantıyı farklı kaydet* seçeneğini kullan.
+:::
+
+## Başlangıç ve programlama temelleri
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 01–02 · RStudio ve ilk R komutları
+
+R ortamını tanıma, ilk hesaplamalar, atama ve vektörler.
+
+[**Dersi aç**](../lessons/01-r-ve-rstudio.qmd) · [**İlk komutlar**](../lessons/02-ilk-r-komutlari.qmd)
+
+[R scriptini indir](../scripts/01-r-ortami-ve-ilk-komutlar.R){download="01-r-ortami-ve-ilk-komutlar.R"} · [Alıştırmalar](../exercises/01-ilk-adimlar.md){download="01-ilk-adimlar.md"}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 03 · Veri tipleri ve yapıları
+
+Vektör, `NA`, data frame, matris, liste ve tibble.
+
+[**Dersi aç**](../lessons/03-veri-tipleri-ve-yapilari.qmd)
+
+[**R scriptini indir**](../scripts/02-veri-tipleri-ve-yapilari.R){download="02-veri-tipleri-ve-yapilari.R"} · [Alıştırmalar](../exercises/02-veri-tipleri-ve-yapilari.md){download="02-veri-tipleri-ve-yapilari.md"}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 04 · R paketleri ve yardım
+
+Paket kurma/yükleme, `::` ve yardım sistemine başvurma.
+
+[**Dersi aç**](../lessons/04-r-paketleri.qmd)
+
+[**R scriptini indir**](../scripts/03-paketler-ve-yardim.R){download="03-paketler-ve-yardim.R"} · [Alıştırmalar](../exercises/03-paketler-ve-yardim.md){download="03-paketler-ve-yardim.md"}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 05 · Koşullu ifadeler
+
+`if`, `else if`, `else`, sınır değerler ve vektörel kararlar.
+
+[**Dersi aç**](../lessons/05-kosullu-ifadeler.qmd)
+
+[**R scriptini indir**](../scripts/04-kosullu-ifadeler.R){download="04-kosullu-ifadeler.R"} · [Alıştırmalar](../exercises/04-kosullu-ifadeler.md){download="04-kosullu-ifadeler.md"}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 06 · `for` ve `while` döngüleri
+
+Tekrarlama, sayaç, sonuç saklama, döngüyü sonlandırma ve vektörel alternatifler.
+
+[**Dersi aç**](../lessons/06-donguler.qmd)
+
+[**R scriptini indir**](../scripts/05-donguler.R){download="05-donguler.R"} · [Alıştırmalar](../exercises/05-donguler.md){download="05-donguler.md"}
+:::
+:::
+:::
+
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 07 · Kullanıcı tanımlı fonksiyonlar
+
+`function()`, argümanlar, varsayılan değerler, `return()`, değişken kapsamı ve tekrar kullanılabilir kod.
+
+[**Dersi aç**](../lessons/07-fonksiyonlar.qmd)
+
+[**R scriptini indir**](../scripts/06-fonksiyonlar.R){download="06-fonksiyonlar.R"} · [Alıştırmalar](../exercises/06-fonksiyonlar.md){download="06-fonksiyonlar.md"}
+:::
+:::
+:::
+
+:::
+
+## Sunumlar
+
+[**Açılış sunumunu görüntüle**](../slides/00-acilis.html) — R, RStudio, CRAN ve eğitimin kapsamı.
+
+## Veri aktarımı: Henüz geliştirme aşamasında
+
+Aşağıdaki iki script **ilk taslaktır**; veri içe/dışa aktarma dersindeki kapsamlı örneklerin yerini henüz tutmaz.
+
+- [08 · CSV, Excel ve RDS](../scripts/08-csv-excel-rds-aktarimi.R){download="08-csv-excel-rds-aktarimi.R"}
+- [09 · SAS ve SPSS](../scripts/09-sas-spss-aktarimi.R){download="09-sas-spss-aktarimi.R"}
+
+## Eğitim veri setleri
+
+Açık kaynak ve sentetik örnekler [GitHub'daki data klasöründe](https://github.com/MFatihTuzen/r-training/tree/main/data) bulunur. İlgili uygulama derslerinde veri dosyalarına doğrudan indirme bağlantıları da eklenecektir.
+
+**Tüm çalışma dosyalarını almak:** [GitHub deposu](https://github.com/MFatihTuzen/r-training) → **Code → Download ZIP**. GitHub'daki güncel sürümün yerel önizleme ile aynı olması için değişikliklerin önce push edilmiş olması gerekir.

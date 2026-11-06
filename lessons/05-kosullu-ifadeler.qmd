@@ -1,0 +1,181 @@
+---
+title: "05 · Koşullu İfadeler"
+subtitle: "Karar vermek: if, else if ve else"
+description: "Mantıksal koşulları, tek değerli karar yapısını, sınır durumlarını ve vektörlere uygun alternatifleri uygulamalı öğrenin."
+execute:
+  eval: false
+---
+
+::: {.callout-note}
+## Başlamadan önce
+[02 · İlk R Komutları](02-ilk-r-komutlari.qmd) ve [03 · Veri Tipleri ve Yapıları](03-veri-tipleri-ve-yapilari.qmd) bölümlerindeki nesne, karşılaştırma ve `TRUE`/`FALSE` kavramlarını kullanacağız. [Paketler](04-r-paketleri.qmd) bölümünü de gördük. Bu konu **temel R** ile çalışır; paket kurulumu gerekmez.
+:::
+
+[**Uygulama scriptini indir (.R)**](../scripts/04-kosullu-ifadeler.R){download="04-kosullu-ifadeler.R"} · [**Alıştırmaları indir (.md)**](../exercises/04-kosullu-ifadeler.md){download="04-kosullu-ifadeler.md"}
+
+## 1. Problem: Bir karar kuralını koda nasıl dönüştürürüz?
+
+Örneğin bir ürünün toplam tutarı 500 TL'nin üzerindeyse kargo ücretsiz olsun. Önce soruyu yazalım: **Koşul doğru mu, yanlış mı?**
+
+```r
+siparis_tutari <- 650
+siparis_tutari > 500
+```
+
+`>` karşılaştırma operatörü, tek bir mantıksal sonuç üretir. Ayrıca `>=`, `<`, `<=`, `==` ve `!=` operatörlerini kullanırız. **`=` ile `==` aynı şey değildir:** ilki bazı yerlerde argüman veya atama için, ikincisi karşılaştırma için kullanılır.
+
+## 2. İlk `if`: Koşul doğruysa işlemi yap
+
+```r
+siparis_tutari <- 650
+
+if (siparis_tutari > 500) {
+  print("Kargo ücretsiz")
+}
+```
+
+`if (koşul)` içindeki koşul **uzunluğu 1 olan, eksik olmayan bir `TRUE` veya `FALSE`** olmalıdır. Süslü parantez `{ }`, koşul sağlanırsa çalışacak kod bloğunu belirler. RStudio'da bu bloğu birlikte satır satır çalıştır.
+
+**Önce tahmin et:** `siparis_tutari <- 450` yaparsan ekranda ne görürsün?
+
+## 3. `else`: Koşul yanlışsa diğer yolu izle
+
+```r
+siparis_tutari <- 450
+
+if (siparis_tutari > 500) {
+  kargo <- 0
+} else {
+  kargo <- 50
+}
+
+kargo
+```
+
+`else` kısmı `if` ile **aynı karar yapısına** aittir. R Console'da `}` ve `else` satırlarını ayrı komutlar gibi çalıştırmak hata yaratabilir; scriptte bloğun tamamını birlikte çalıştır.
+
+::: {.callout-tip}
+## Sınır değer kontrolü
+Tutar tam **500** ise ne olmalı? Kural “500 TL ve üzeri” ise `>` yerine `>=` gerekir. Küçük bir işaret farkı, farklı sonuç verir.
+:::
+
+## 4. `else if`: İkiden çok seçenek
+
+Önce kuralı yazalım: 85 ve üzeri **pekiyi**, 70–84 **iyi**, 50–69 **geçer**, daha düşük **başarısız**.
+
+```r
+puan <- 78
+
+if (puan >= 85) {
+  durum <- "Pekiyi"
+} else if (puan >= 70) {
+  durum <- "İyi"
+} else if (puan >= 50) {
+  durum <- "Geçer"
+} else {
+  durum <- "Başarısız"
+}
+
+durum
+```
+
+Koşullar **üstten alta** değerlendirilir. İlk doğru koşuldan sonraki diğer seçeneklere geçilmez. **Sıra neden önemli?** `puan >= 50` kontrolünü en başa taşısaydık `78` için hangi sonuç çıkardı?
+
+## 5. Birden çok koşul: `&`, `|`, `!`
+
+```r
+yas <- 25
+sinava_girdi <- TRUE
+
+(yas >= 18) & sinava_girdi  # Her ikisi de doğru mu?
+(yas < 18) | sinava_girdi   # En az biri doğru mu?
+!sinava_girdi              # Mantıksal tersini al
+```
+
+Bu örneklerde koşullar tek değerli olduğundan sonuçlar da tek değerlidir. Tek bir karar sınarken `&&` ve `||` operatörlerini de görebilirsiniz; vektörlerde ise `&` ve `|` eleman bazlı çalışır. **Şimdilik temel ayrımı bilmek yeterli.**
+
+## 6. Eksik bilgi varsa karar veremeyebiliriz
+
+Önceki bölümde `NA` eksik değeri öğrenmiştik:
+
+```r
+puan <- NA
+is.na(puan)
+
+if (is.na(puan)) {
+  durum <- "Bilgi eksik"
+} else if (puan >= 50) {
+  durum <- "Geçti"
+} else {
+  durum <- "Kaldı"
+}
+
+durum
+```
+
+**Sık hata:** Doğrudan `if (puan >= 50)` yazılırsa sonuç `NA` olduğu için hata oluşur. Eksik veriyi karar kuralı içinde ayrıca ele almak gerekir.
+
+## 7. Tek değer için `if`, vektör için hangi yaklaşım?
+
+```r
+puanlar <- c(45, 60, 82, NA)
+
+# Her gözlem için ayrı bir sonuç istiyoruz.
+sonuc <- ifelse(is.na(puanlar), "Eksik",
+                ifelse(puanlar >= 50, "Geçti", "Kaldı"))
+sonuc
+```
+
+**Neden `if` kullanmadık?** `puanlar >= 50` dört elemanlı bir sonuç üretir. `if` tek koşul bekler; `ifelse()` ise eleman bazlı sonuç verir. `ifelse()` ile tip dönüşümü ve eksik değer davranışına dikkat etmek gerekir. Daha sonra `dplyr::if_else()` ve `dplyr::case_when()` kullanacağız.
+
+## 8. Minik veri senaryosu: ücret kuralı
+
+```r
+ucret <- 900
+uyelik <- TRUE
+
+if (ucret >= 1000 & uyelik) {
+  indirim_orani <- 0.15
+} else if (ucret >= 500) {
+  indirim_orani <- 0.05
+} else {
+  indirim_orani <- 0
+}
+
+odenecek <- ucret * (1 - indirim_orani)
+odenecek
+```
+
+Koşul sırası ve sınır değerlerini değiştirerek farklı müşteri senaryolarını kontrol edin. Gerçek kurumsal indirim veya mevzuat kuralı değil, **öğretici yapay örnek** olduğunu unutmayın.
+
+::: {.callout-important}
+## Öğrendim mi? Kısa kontrol
+- `if` ile `ifelse()` arasındaki farkı açıklayabiliyor musun?
+- `else if` sırasında ilk doğru koşulun seçilmesini gösterebiliyor musun?
+- `NA` bulunan bir değerde karar vermeden önce nasıl kontrol yaparsın?
+- `500` sınır değerinde `>` ve `>=` farkını gösterebiliyor musun?
+:::
+
+## Alıştırma: Kendi karar kuralını yaz
+
+[Alıştırma dosyasını indir](../exercises/04-kosullu-ifadeler.md){download="04-kosullu-ifadeler.md"}. Önce kolay bir `if/else`, sonra çoklu `else if`, en son eksik veriyi de içeren bir kural yaz. Çözüm sırasında kodu sadece çalıştırma; **en az bir sınır değeri ayrıca test et**.
+
+## Sık yapılan hatalar
+
+- `==` yerine `=` yazmak
+- Koşulları yanlış sıraya koymak
+- `if` içine uzunluğu birden büyük bir vektör vermek
+- `NA` kontrolünü unutmak
+- `else` satırını Console'da bağımsız yürütmek
+- Sınır değerleri (`50`, `70`, `85`) hiç test etmemek
+
+## Kısa özet ve sonraki adım
+
+Karar yapısında önce **kuralı sözle kur**, sonra koşulları sırala ve sınır durumlarını kontrol et. Sıradaki **döngüler** bölümünde aynı işlemi birden fazla kez tekrarlamayı öğreneceğiz.
+
+**Daha fazla bilgi:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [R Language Definition — Control structures](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Control-structures)
+
+---
+
+**Önceki:** [04 · R Paketleri](04-r-paketleri.qmd)  
+**Sonraki:** [06 · Döngüler (`for`, `while`)](06-donguler.qmd)

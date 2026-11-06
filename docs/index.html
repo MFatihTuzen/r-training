@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Programlama ve Veri Manipülasyonuna Giriş – R Programlama Eğitimi</title>
+<title>R Programlama Eğitimi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b5c8dc5ccac1a9e382699e1d2b4be2b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0b13ac9fc854dcb8cf8b2d419753c653.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,20 +93,20 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Ana Sayfa</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./lessons/01-r-ve-rstudio.html"> 
+<span class="menu-text">Eğitim İçeriği</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./program/index.html"> 
 <span class="menu-text">Eğitim Programı</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./materials/index.html"> 
+<span class="menu-text">Materyaller</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./resources/ogrenme-kaynaklari.html"> 
 <span class="menu-text">Öğrenme Kaynakları</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./lessons/01-r-ile-ilk-adimlar.html"> 
-<span class="menu-text">İlk Ders</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./slides/00-acilis.html"> 
-<span class="menu-text">Açılış Sunumu</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -134,10 +134,12 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Bu sayfada</h2>
    
-  <ul class="collapse">
-  <li><a href="#eğitim-hakkında" id="toc-eğitim-hakkında" class="nav-link active" data-scroll-target="#eğitim-hakkında">Eğitim hakkında</a></li>
-  <li><a href="#beş-günlük-öğrenme-yolu" id="toc-beş-günlük-öğrenme-yolu" class="nav-link" data-scroll-target="#beş-günlük-öğrenme-yolu">Beş günlük öğrenme yolu</a></li>
-  <li><a href="#materyallerin-durumu" id="toc-materyallerin-durumu" class="nav-link" data-scroll-target="#materyallerin-durumu">Materyallerin durumu</a></li>
+  <ul>
+  <li><a href="#öğren-dene-kontrol-et" id="toc-öğren-dene-kontrol-et" class="nav-link active" data-scroll-target="#öğren-dene-kontrol-et">Öğren, dene, kontrol et</a></li>
+  <li><a href="#nereden-başlamalıyım" id="toc-nereden-başlamalıyım" class="nav-link" data-scroll-target="#nereden-başlamalıyım">Nereden başlamalıyım?</a></li>
+  <li><a href="#nasıl-öğreniyoruz" id="toc-nasıl-öğreniyoruz" class="nav-link" data-scroll-target="#nasıl-öğreniyoruz">Nasıl öğreniyoruz?</a></li>
+  <li><a href="#içerik-ve-eğitim-süresi" id="toc-içerik-ve-eğitim-süresi" class="nav-link" data-scroll-target="#içerik-ve-eğitim-süresi">İçerik ve eğitim süresi</a></li>
+  <li><a href="#kaynaklar" id="toc-kaynaklar" class="nav-link" data-scroll-target="#kaynaklar">Kaynaklar</a></li>
   </ul>
 </nav>
     </div>
@@ -146,8 +148,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R Programlama ve Veri Manipülasyonuna Giriş</h1>
-<p class="subtitle lead">Başlangıç düzeyinde, uygulamalı R eğitimi</p>
+<h1 class="title">R Programlama Eğitimi</h1>
+<p class="subtitle lead">R programlama ve veri manipülasyonuna uygulamalı giriş</p>
 </div>
 
 
@@ -164,12 +166,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="hero-intro">
-<p><strong>R ile veriyi okumaktan anlamlı bir çıktıya uzanan uygulamalı bir öğrenme yolu.</strong></p>
-<p>Bu açık eğitim sitesi, R’ye yeni başlayanlar ve veriyle çalışanlar için hazırlanmıştır. Konuları küçük örneklerle öğrenip <a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama Kitabı</a> için hazırlanmış Dünya Bankası (WDI) verileriyle pekiştireceğiz.</p>
-</div>
-<section id="eğitim-hakkında" class="level2">
-<h2 class="anchored" data-anchor-id="eğitim-hakkında">Eğitim hakkında</h2>
+<section id="öğren-dene-kontrol-et" class="level2 hero-intro">
+<h2 class="anchored" data-anchor-id="öğren-dene-kontrol-et">Öğren, dene, kontrol et</h2>
+<p>R ile ilk komuttan başlayarak veri okuma, dönüştürme ve sonuç üretmeye uzanan <strong>uygulamalı bir öğrenme yolu</strong>. Konular mantıklı bir sırayla ilerler; örnekleri kendi RStudio ortamında çalıştırabilir, eğitime katıldıktan sonra da burada tekrar edebilirsin.</p>
+</section>
+<section id="nereden-başlamalıyım" class="level2">
+<h2 class="anchored" data-anchor-id="nereden-başlamalıyım">Nereden başlamalıyım?</h2>
+<p><strong>R’yi hiç bilmiyorsan:</strong> Önce <a href="./lessons/01-r-ve-rstudio.html">01 · R ve RStudio</a> ile çalışma ortamını tanı, sonra <a href="./lessons/02-ilk-r-komutlari.html">02 · İlk R komutları</a> ile uygulamaya geç.</p>
+<p><strong>Eğitime katılıyorsan:</strong> <a href="./program/index.html">Eğitim Programı</a> sayfasından sınıfta işlenecek akışı gör. <a href="./materials/index.html">Materyaller</a> sayfasından ilgili <code>.R</code> dosyasını al ve RStudio’da eğitmenle birlikte çalıştır.</p>
+</section>
+<section id="nasıl-öğreniyoruz" class="level2">
+<h2 class="anchored" data-anchor-id="nasıl-öğreniyoruz">Nasıl öğreniyoruz?</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -177,49 +184,42 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Özellik</th>
-<th>Açıklama</th>
+<th>Adım</th>
+<th>Ne yapıyoruz?</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Düzey</td>
-<td>Başlangıç</td>
+<td><strong>1. Kavram</strong></td>
+<td>Yeni kavramı kısa bir açıklamayla tanıyoruz.</td>
 </tr>
 <tr class="even">
-<td>Süre</td>
-<td>5 yarım gün, 15 ders oturumu (45’er dakika)</td>
+<td><strong>2. Tahmin</strong></td>
+<td>Kodun ne yapacağını çalıştırmadan önce düşünüyoruz.</td>
 </tr>
 <tr class="odd">
-<td>Günlük saat</td>
-<td>09.30–12.30 (aralar ve esnek zaman dahil)</td>
+<td><strong>3. Birlikte uygulama</strong></td>
+<td>Kodu RStudio’da satır satır çalıştırıyoruz.</td>
 </tr>
 <tr class="even">
-<td>Yaklaşım</td>
-<td>Kısa anlatım, RStudio’da birlikte kodlama, egzersiz, mini proje</td>
+<td><strong>4. Kontrol</strong></td>
+<td>Sonucu doğruluyor, olası hataları tartışıyoruz.</td>
 </tr>
 <tr class="odd">
-<td>Araçlar</td>
-<td>R, RStudio, Quarto; <code>dplyr</code>, <code>tidyr</code> ve veri okuma paketleri</td>
+<td><strong>5. Sıra sende</strong></td>
+<td>Küçük bir görevi kendimiz çözüyoruz.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="beş-günlük-öğrenme-yolu" class="level2">
-<h2 class="anchored" data-anchor-id="beş-günlük-öğrenme-yolu">Beş günlük öğrenme yolu</h2>
-<ol type="1">
-<li><strong>R’ye giriş:</strong> RStudio, nesneler, veri tipleri, veri yapıları ve koşullar.</li>
-<li><strong>Programlama ve dosyalar:</strong> <code>if/else</code>, <code>for</code>, <code>while</code>, fonksiyonlar; CSV, Excel, RDS, SAS/SPSS ve veri tabanlarına giriş.</li>
-<li><strong>Veri manipülasyonu I:</strong> Seçme, filtreleme, sıralama ve yeni değişken oluşturma.</li>
-<li><strong>Veri manipülasyonu II:</strong> Gruplama, özetleme, birleştirme ve uzun/geniş veri dönüşümü.</li>
-<li><strong>Modern R iş akışı ve mini proje:</strong> Baştan sona bir WDI veri işleme uygulaması.</li>
-</ol>
-<p><a href="./program/index.html"><strong>Ayrıntılı eğitim programını incele</strong></a></p>
+<section id="içerik-ve-eğitim-süresi" class="level2">
+<h2 class="anchored" data-anchor-id="içerik-ve-eğitim-süresi">İçerik ve eğitim süresi</h2>
+<p>Web sitesindeki kaynaklar, sınıfta ayrılan zamandan daha kapsamlı olabilir. <strong>5 günlük program</strong>, bu kaynaklardan seçilen temel uygulamaları kapsar. Diğer örnekler bireysel tekrar ve farklı sürelerdeki eğitimler için tutulur. Günlere bağlı olmayan konu sırası korunur.</p>
 </section>
-<section id="materyallerin-durumu" class="level2">
-<h2 class="anchored" data-anchor-id="materyallerin-durumu">Materyallerin durumu</h2>
-<p>Bu site <strong>başlangıç iskeletidir</strong>. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir.</p>
-<p><code>Ayrıntılı kitap, video ve paket belgeleri için [Öğrenme Kaynakları](resources/ogrenme-kaynaklari.qmd) sayfasına bakın.</code></p>
+<section id="kaynaklar" class="level2">
+<h2 class="anchored" data-anchor-id="kaynaklar">Kaynaklar</h2>
+<p>Kavramsal ayrıntılar için <a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama Kitabı</a>, video tekrarları için <a href="https://www.youtube.com/@RistatistikAkademi">R İstatistik Akademi</a> ve diğer belgeler için <a href="./resources/ogrenme-kaynaklari.html">Öğrenme Kaynakları</a> sayfasını kullanabilirsin.</p>
+<p><a href="./lessons/01-r-ve-rstudio.html"><strong>Öğrenmeye başla: R ve RStudio →</strong></a></p>
 
 
 </section>
@@ -651,7 +651,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2026 Muhammed Fatih Tuzen</p>
+<p>© 2026 Muhammed Fatih Tüzen</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

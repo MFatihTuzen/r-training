@@ -1,0 +1,91 @@
+---
+title: "01 · R ve RStudio ile Tanışma"
+subtitle: "İlk komuttan önce: neyi, neden ve nerede kullanıyoruz?"
+description: "R, RStudio, CRAN, kurulum ve ilk çalışma ortamı."
+execute:
+  eval: false
+---
+
+::: {.callout-note}
+## Bu bölümün sonunda
+R ve RStudio arasındaki farkı açıklayabilecek; CRAN'ın ne işe yaradığını bilecek; RStudio'nun temel panellerini tanıyıp bir R scripti açabileceksin. **Henüz programlama bilgisi gerekmiyor.**
+:::
+
+## R nedir?
+
+**R**, istatistiksel hesaplama, veri analizi, görselleştirme ve programlama için kullanılan ücretsiz ve açık kaynak bir dildir. Veriyi işlemek için komutlarımızı R'ye veririz; R bu komutları çalıştırır.
+
+R'yi Excel veya SPSS'ten ayıran temel noktalardan biri, yapılan işlemlerin **kodla kaydedilebilmesi ve tekrar çalıştırılabilmesidir**. Bir dosyayı düzenlerken hangi adımların uygulandığını görebiliriz.
+
+## RStudio nedir? R'den farkı ne?
+
+- **R:** Komutları işleyen programlama dili ve çalışma ortamı.
+- **RStudio:** R kodunu yazmayı, çalıştırmayı ve dosyaları yönetmeyi kolaylaştıran geliştirme ortamı (IDE).
+- **Paket:** R'ye ek işlevler kazandıran fonksiyon ve veri koleksiyonu.
+- **CRAN:** R ve çok sayıda R paketinin dağıtıldığı resmî arşiv ağı.
+
+**Benzetme:** R motor, RStudio çalışma masasıdır. RStudio'yu kullanırken arka planda R çalışır. RStudio, R'nin yerine geçmez.
+
+## İndirme ve kurulum
+
+1. Önce [R'nin resmî indirme sayfası](https://cran.r-project.org/) üzerinden işletim sistemine uygun R sürümünü yükle.
+2. Ardından [RStudio Desktop](https://posit.co/download/rstudio-desktop/) sayfasından RStudio'yu kur.
+3. RStudio'yu aç; **Console** alanında `>` işaretini görüyorsan R komut almaya hazırdır.
+
+::: {.callout-warning}
+## Kurum bilgisayarlarında
+Yükleme yetkisi ve paket indirme erişimi kuruma göre değişebilir. Eğitim öncesinde kurulum yapılması önerilir. Kurumsal ağ kısıtlarını aşmaya çalışmak yerine BT biriminden destek al.
+:::
+
+## RStudio'nun bölümleri
+
+| Bölüm | Ne işe yarar? |
+|---|---|
+| **Source / Editor** | Kaydedilebilir `.R` scriptlerini yazdığımız yer |
+| **Console** | Komutların çalıştığı ve sonuçların göründüğü yer |
+| **Environment / History** | Oluşturulan nesneleri ve komut geçmişini inceleme |
+| **Files / Plots / Packages / Help** | Dosyalar, grafikler, paketler ve yardım belgeleri |
+
+Panellerin konumu RStudio ayarlarına göre değişebilir; önemli olan görevleridir.
+
+## İlk küçük deneme
+
+Console'a şu ifadeyi yazıp **Enter** tuşuna bas:
+
+```r
+2 + 3
+```
+
+Sonuç `5` olmalı. Burada henüz nesne oluşturmadık; yalnızca R'ye basit bir hesap yaptırdık.
+
+## Console ile script arasındaki fark
+
+Console hızlı denemeler içindir. **Script**, kodları saklayıp tekrar çalıştırmak içindir.
+
+1. RStudio'da **File → New File → R Script** seç.
+2. Açılan editöre `2 + 3` yaz.
+3. İmleç satırdayken **Ctrl + Enter** ile çalıştır.
+4. Dosyayı `deneme.R` adıyla kaydet.
+
+::: {.callout-tip}
+## Modern çalışma alışkanlığı
+Her analiz için bir **RStudio Project** kullanmak, dosyaları aynı proje altında tutmayı kolaylaştırır. Eğitim reposunu `r-training.Rproj` ile açabilirsin. Proje kavramını ilk derste tanıyoruz; ayrıntılı dosya yolu kullanımını veri aktarımı bölümünde uygulayacağız.
+:::
+
+## Kontrol et
+
+1. R ile RStudio aynı program mı?
+2. Kodun ileride yeniden çalıştırılabilmesi için Console yeterli mi?
+3. Yeni bir paket hakkında bilgi aramak için CRAN neden faydalı olabilir?
+
+## Ders materyalleri
+
+- [Açılış sunumunu aç](../slides/00-acilis.html)
+- [01 · İlk komutlar scriptini indir](../scripts/01-r-ortami-ve-ilk-komutlar.R){download="01-r-ortami-ve-ilk-komutlar.R"}
+- [Uygulama ve alıştırmalar](../materials/index.qmd)
+
+**Daha fazla bilgi:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [R İstatistik Akademi](https://www.youtube.com/@RistatistikAkademi)
+
+---
+
+**Sıradaki bölüm:** [02 · İlk R komutları: işlemler, atama ve vektörler →](02-ilk-r-komutlari.qmd)

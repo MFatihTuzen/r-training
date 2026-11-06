@@ -2,48 +2,77 @@ project:
   type: website
   output-dir: docs
   render:
-    - index.qmd
-    - program/index.qmd
-    - resources/ogrenme-kaynaklari.qmd
-    - lessons/01-r-ile-ilk-adimlar.qmd
-    - slides/00-acilis.qmd
-
+  - index.qmd
+  - program/index.qmd
+  - materials/index.qmd
+  - resources/ogrenme-kaynaklari.qmd
+  - lessons/01-r-ve-rstudio.qmd
+  - lessons/02-ilk-r-komutlari.qmd
+  - lessons/03-veri-tipleri-ve-yapilari.qmd
+  - lessons/04-r-paketleri.qmd
+  - lessons/05-kosullu-ifadeler.qmd
+  - lessons/06-donguler.qmd
+  - lessons/07-fonksiyonlar.qmd
+  - slides/00-acilis.qmd
+  resources:
+  - scripts/*.R
+  - exercises/*.md
 website:
-  title: "R Programlama Eğitimi"
+  title: R Programlama Eğitimi
   site-url: https://mfatihtuzen.github.io/r-training/
-  description: "R programlama ve veri manipülasyonuna uygulamalı giriş eğitimi"
+  description: 'R programlama ve veri manipülasyonu: uygulama odaklı öğrenme kaynakları'
   navbar:
     background: primary
     left:
-      - text: "Ana Sayfa"
-        href: index.qmd
-      - text: "Eğitim Programı"
-        href: program/index.qmd
-      - text: "Öğrenme Kaynakları"
-        href: resources/ogrenme-kaynaklari.qmd
-      - text: "İlk Ders"
-        href: lessons/01-r-ile-ilk-adimlar.qmd
-      - text: "Açılış Sunumu"
-        href: slides/00-acilis.qmd
+    - text: Ana Sayfa
+      href: index.qmd
+    - text: Eğitim İçeriği
+      href: lessons/01-r-ve-rstudio.qmd
+    - text: Eğitim Programı
+      href: program/index.qmd
+    - text: Materyaller
+      href: materials/index.qmd
+    - text: Öğrenme Kaynakları
+      href: resources/ogrenme-kaynaklari.qmd
     right:
-      - text: "R Programlama Kitabı"
-        href: https://mfatihtuzen.github.io/r-programlama/
-      - icon: github
-        href: https://github.com/MFatihTuzen/r-training
-        aria-label: GitHub deposu
+    - text: R Programlama Kitabı
+      href: https://mfatihtuzen.github.io/r-programlama/
+    - icon: github
+      href: https://github.com/MFatihTuzen/r-training
+      aria-label: GitHub deposu
+  sidebar:
+  - id: lessons
+    title: Eğitim İçeriği
+    style: docked
+    contents:
+    - text: 01 · R ve RStudio
+      href: lessons/01-r-ve-rstudio.qmd
+    - text: 02 · İlk R komutları
+      href: lessons/02-ilk-r-komutlari.qmd
+    - text: 03 · Veri tipleri ve yapıları
+      href: lessons/03-veri-tipleri-ve-yapilari.qmd
+    - text: 04 · Paketler ve yardım
+      href: lessons/04-r-paketleri.qmd
+    - text: 05 · Koşullu ifadeler
+      href: lessons/05-kosullu-ifadeler.qmd
+    - text: 06 · Döngüler
+      href: lessons/06-donguler.qmd
+    - text: 07 · Fonksiyonlar
+      href: lessons/07-fonksiyonlar.qmd
   page-footer:
-    left: "© 2026 Muhammed Fatih Tuzen"
-    right: "Quarto ile hazırlanmıştır."
-
+    left: © 2026 Muhammed Fatih Tüzen
+    right: Quarto ile hazırlanmıştır.
+  page-navigation: true
 format:
   html:
     lang: tr
     theme: cosmo
     css: styles.css
     toc: true
-    toc-depth: 2
+    toc-depth: 3
     code-copy: true
     link-external-newwindow: true
-
+    anchor-sections: true
+    page-navigation: true
 execute:
   freeze: false

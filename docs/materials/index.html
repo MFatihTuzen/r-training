@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="RStudio’da ilk script, nesneler, vektörler ve veri yapılarıyla uygulamalı başlangıç.">
 
-<title>R ile İlk Adımlar – R Programlama Eğitimi</title>
+<title>Eğitim Materyalleri – R Programlama Eğitimi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -73,7 +38,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9b5c8dc5ccac1a9e382699e1d2b4be2b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0b13ac9fc854dcb8cf8b2d419753c653.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,20 +93,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Ana Sayfa</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../lessons/01-r-ve-rstudio.html"> 
+<span class="menu-text">Eğitim İçeriği</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../program/index.html"> 
 <span class="menu-text">Eğitim Programı</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link active" href="../materials/index.html" aria-current="page"> 
+<span class="menu-text">Materyaller</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../resources/ogrenme-kaynaklari.html"> 
 <span class="menu-text">Öğrenme Kaynakları</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../lessons/01-r-ile-ilk-adimlar.html" aria-current="page"> 
-<span class="menu-text">İlk Ders</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../slides/00-acilis.html"> 
-<span class="menu-text">Açılış Sunumu</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -169,12 +134,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Bu sayfada</h2>
    
-  <ul class="collapse">
-  <li><a href="#hedef" id="toc-hedef" class="nav-link active" data-scroll-target="#hedef">Hedef</a></li>
-  <li><a href="#rstudioda-temel-iş-akışı" id="toc-rstudioda-temel-iş-akışı" class="nav-link" data-scroll-target="#rstudioda-temel-iş-akışı">RStudio’da temel iş akışı</a></li>
-  <li><a href="#birlikte-kodlayalım-ilk-nesneler" id="toc-birlikte-kodlayalım-ilk-nesneler" class="nav-link" data-scroll-target="#birlikte-kodlayalım-ilk-nesneler">Birlikte kodlayalım: İlk nesneler</a></li>
-  <li><a href="#veri-yapısını-inceleyelim" id="toc-veri-yapısını-inceleyelim" class="nav-link" data-scroll-target="#veri-yapısını-inceleyelim">Veri yapısını inceleyelim</a></li>
-  <li><a href="#isteğe-bağlı-öğrenme" id="toc-isteğe-bağlı-öğrenme" class="nav-link" data-scroll-target="#isteğe-bağlı-öğrenme">İsteğe bağlı öğrenme</a></li>
+  <ul>
+  <li><a href="#başlangıç-ve-programlama-temelleri" id="toc-başlangıç-ve-programlama-temelleri" class="nav-link active" data-scroll-target="#başlangıç-ve-programlama-temelleri">Başlangıç ve programlama temelleri</a></li>
+  <li><a href="#sunumlar" id="toc-sunumlar" class="nav-link" data-scroll-target="#sunumlar">Sunumlar</a></li>
+  <li><a href="#veri-aktarımı-henüz-geliştirme-aşamasında" id="toc-veri-aktarımı-henüz-geliştirme-aşamasında" class="nav-link" data-scroll-target="#veri-aktarımı-henüz-geliştirme-aşamasında">Veri aktarımı: Henüz geliştirme aşamasında</a></li>
+  <li><a href="#eğitim-veri-setleri" id="toc-eğitim-veri-setleri" class="nav-link" data-scroll-target="#eğitim-veri-setleri">Eğitim veri setleri</a></li>
   </ul>
 </nav>
     </div>
@@ -183,14 +147,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R ile İlk Adımlar</h1>
+<h1 class="title">Eğitim Materyalleri</h1>
+<p class="subtitle lead">İhtiyacınız olan ders, R scripti ve alıştırmaya tek yerden ulaşın</p>
 </div>
 
-<div>
-  <div class="description">
-    RStudio’da ilk script, nesneler, vektörler ve veri yapılarıyla uygulamalı başlangıç.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -205,79 +165,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="hedef" class="level2">
-<h2 class="anchored" data-anchor-id="hedef">Hedef</h2>
-<p>Bu bölüm sonunda RStudio projesini açıp açıklamalı bir <code>.R</code> scripti çalıştırabilir; nesne, vektör, <code>NA</code> ve <code>data.frame</code> kavramlarını basit örneklerle kullanabilirsiniz.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Önce deneyin
+Nasıl kullanılır?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Önce aşağıdaki işlemin sonucunu tahmin edin; ardından RStudio Console’da çalıştırın.</p>
+<p>Önce <strong>Dersi aç</strong>, örnekleri sırayla takip et. Ardından ilgili <strong>R scriptini indirip RStudio’da aç</strong> ve satırları <code>Ctrl + Enter</code> ile çalıştır. <strong>Alıştırmalar</strong>, konuyu kendi başına uygulayabilmen için hazırlandı. İndirme bağlantısı tarayıcıda metin açarsa <em>Sağ tık → Bağlantıyı farklı kaydet</em> seçeneğini kullan.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>satis <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="cn">NA</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(satis)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(satis, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Neyi fark ettiniz?</strong> Bir eksik değer, varsayılan toplamı da eksik hale getirebilir. <code>na.rm = TRUE</code> eksikleri dışarıda bırakarak hesaplama yapar. Bu işlem kayıp verinin nedenini çözmez; sadece hesaplamanın nasıl yapılacağını belirler.</p>
+<section id="başlangıç-ve-programlama-temelleri" class="level2">
+<h2 class="anchored" data-anchor-id="başlangıç-ve-programlama-temelleri">Başlangıç ve programlama temelleri</h2>
+<div class="grid">
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="rstudio-ve-ilk-r-komutları" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="rstudio-ve-ilk-r-komutları">01–02 · RStudio ve ilk R komutları</h3>
+<p>R ortamını tanıma, ilk hesaplamalar, atama ve vektörler.</p>
+<p><a href="../lessons/01-r-ve-rstudio.html"><strong>Dersi aç</strong></a> · <a href="../lessons/02-ilk-r-komutlari.html"><strong>İlk komutlar</strong></a></p>
+<p><a href="../scripts/01-r-ortami-ve-ilk-komutlar.R" download="01-r-ortami-ve-ilk-komutlar.R">R scriptini indir</a> · <a href="../exercises/01-ilk-adimlar.md" download="01-ilk-adimlar.md">Alıştırmalar</a></p>
 </section>
-<section id="rstudioda-temel-iş-akışı" class="level2">
-<h2 class="anchored" data-anchor-id="rstudioda-temel-iş-akışı">RStudio’da temel iş akışı</h2>
-<ol type="1">
-<li><code>r-training.Rproj</code> dosyasını açın.</li>
-<li><strong>File → New File → R Script</strong> ile yeni bir script oluşturun.</li>
-<li>Komutları scriptte yazıp <code>Ctrl+Enter</code> ile çalıştırın.</li>
-<li>Girdi dosyalarını <code>data/</code>, kendi sonuçlarınızı <code>outputs/</code> altında saklayın.</li>
-<li>Scriptin baştan sona yeniden çalıştığını kontrol edin.</li>
-</ol>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="veri-tipleri-ve-yapıları" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="veri-tipleri-ve-yapıları">03 · Veri tipleri ve yapıları</h3>
+<p>Vektör, <code>NA</code>, data frame, matris, liste ve tibble.</p>
+<p><a href="../lessons/03-veri-tipleri-ve-yapilari.html"><strong>Dersi aç</strong></a></p>
+<p><a href="../scripts/02-veri-tipleri-ve-yapilari.R" download="02-veri-tipleri-ve-yapilari.R"><strong>R scriptini indir</strong></a> · <a href="../exercises/02-veri-tipleri-ve-yapilari.md" download="02-veri-tipleri-ve-yapilari.md">Alıştırmalar</a></p>
 </section>
-<section id="birlikte-kodlayalım-ilk-nesneler" class="level2">
-<h2 class="anchored" data-anchor-id="birlikte-kodlayalım-ilk-nesneler">Birlikte kodlayalım: İlk nesneler</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fiyat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">180</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>adet  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>tutar <span class="ot">&lt;-</span> fiyat <span class="sc">*</span> adet</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(tutar)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Kontrol sorusu:</strong> Fiyat ve adetlerin uzunlukları farklı olsaydı R nasıl davranırdı? Her zaman güvenilir bir sonuç beklememeliyiz.</p>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="r-paketleri-ve-yardım" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="r-paketleri-ve-yardım">04 · R paketleri ve yardım</h3>
+<p>Paket kurma/yükleme, <code>::</code> ve yardım sistemine başvurma.</p>
+<p><a href="../lessons/04-r-paketleri.html"><strong>Dersi aç</strong></a></p>
+<p><a href="../scripts/03-paketler-ve-yardim.R" download="03-paketler-ve-yardim.R"><strong>R scriptini indir</strong></a> · <a href="../exercises/03-paketler-ve-yardim.md" download="03-paketler-ve-yardim.md">Alıştırmalar</a></p>
 </section>
-<section id="veri-yapısını-inceleyelim" class="level2">
-<h2 class="anchored" data-anchor-id="veri-yapısını-inceleyelim">Veri yapısını inceleyelim</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>personel <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ad =</span> <span class="fu">c</span>(<span class="st">"Ali"</span>, <span class="st">"Ayşe"</span>, <span class="st">"Deniz"</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">yas =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="cn">NA</span>, <span class="dv">36</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(personel)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(personel)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(personel<span class="sc">$</span>yas))</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="indirilebilir-uygulama-dosyaları" class="level3">
-<h3 class="anchored" data-anchor-id="indirilebilir-uygulama-dosyaları">İndirilebilir uygulama dosyaları</h3>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="koşullu-ifadeler" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="koşullu-ifadeler">05 · Koşullu ifadeler</h3>
+<p><code>if</code>, <code>else if</code>, <code>else</code>, sınır değerler ve vektörel kararlar.</p>
+<p><a href="../lessons/05-kosullu-ifadeler.html"><strong>Dersi aç</strong></a></p>
+<p><a href="../scripts/04-kosullu-ifadeler.R" download="04-kosullu-ifadeler.R"><strong>R scriptini indir</strong></a> · <a href="../exercises/04-kosullu-ifadeler.md" download="04-kosullu-ifadeler.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="for-ve-while-döngüleri" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="for-ve-while-döngüleri">06 · <code>for</code> ve <code>while</code> döngüleri</h3>
+<p>Tekrarlama, sayaç, sonuç saklama, döngüyü sonlandırma ve vektörel alternatifler.</p>
+<p><a href="../lessons/06-donguler.html"><strong>Dersi aç</strong></a></p>
+<p><a href="../scripts/05-donguler.R" download="05-donguler.R"><strong>R scriptini indir</strong></a> · <a href="../exercises/05-donguler.md" download="05-donguler.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="kullanıcı-tanımlı-fonksiyonlar" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="kullanıcı-tanımlı-fonksiyonlar">07 · Kullanıcı tanımlı fonksiyonlar</h3>
+<p><code>function()</code>, argümanlar, varsayılan değerler, <code>return()</code>, değişken kapsamı ve tekrar kullanılabilir kod.</p>
+<p><a href="../lessons/07-fonksiyonlar.html"><strong>Dersi aç</strong></a></p>
+<p><a href="../scripts/06-fonksiyonlar.R" download="06-fonksiyonlar.R"><strong>R scriptini indir</strong></a> · <a href="../exercises/06-fonksiyonlar.md" download="06-fonksiyonlar.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="sunumlar" class="level2">
+<h2 class="anchored" data-anchor-id="sunumlar">Sunumlar</h2>
+<p><a href="../slides/00-acilis.html"><strong>Açılış sunumunu görüntüle</strong></a> — R, RStudio, CRAN ve eğitimin kapsamı.</p>
+</section>
+<section id="veri-aktarımı-henüz-geliştirme-aşamasında" class="level2">
+<h2 class="anchored" data-anchor-id="veri-aktarımı-henüz-geliştirme-aşamasında">Veri aktarımı: Henüz geliştirme aşamasında</h2>
+<p>Aşağıdaki iki script <strong>ilk taslaktır</strong>; veri içe/dışa aktarma dersindeki kapsamlı örneklerin yerini henüz tutmaz.</p>
 <ul>
-<li><a href="https://github.com/MFatihTuzen/r-training/blob/main/scripts/01-r-ortami-ve-ilk-komutlar.R">01 — R ortamı ve ilk komutlar</a></li>
-<li><a href="https://github.com/MFatihTuzen/r-training/blob/main/scripts/02-veri-tipleri-ve-yapilari.R">02 — Veri tipleri ve yapıları</a></li>
-<li><a href="https://github.com/MFatihTuzen/r-training/blob/main/exercises/01-ilk-adimlar.md">Küçük alıştırmalar</a></li>
+<li><a href="../scripts/08-csv-excel-rds-aktarimi.R" download="08-csv-excel-rds-aktarimi.R">08 · CSV, Excel ve RDS</a></li>
+<li><a href="../scripts/09-sas-spss-aktarimi.R" download="09-sas-spss-aktarimi.R">09 · SAS ve SPSS</a></li>
 </ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Sık yapılan hata
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Console’a yazılan komut, kaydedilmiş bir script yerine geçmez. İşlemin yeniden yapılabilmesi için kodu dosyaya kaydedin. Yerel bilgisayara özgü <code>C:/...</code> yollarını scriptlere sabitlemeyin.</p>
-</div>
-</div>
 </section>
-</section>
-<section id="isteğe-bağlı-öğrenme" class="level2">
-<h2 class="anchored" data-anchor-id="isteğe-bağlı-öğrenme">İsteğe bağlı öğrenme</h2>
-<p>Daha ayrıntılı kavramsal açıklamalar için <a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama Kitabı</a>, video tekrar için <a href="https://www.youtube.com/@RistatistikAkademi">R İstatistik Akademi</a> ve araçlarla ilgili belgeler için <a href="https://posit.co/products/open-source/rstudio/">RStudio</a> kullanılabilir.</p>
+<section id="eğitim-veri-setleri" class="level2">
+<h2 class="anchored" data-anchor-id="eğitim-veri-setleri">Eğitim veri setleri</h2>
+<p>Açık kaynak ve sentetik örnekler <a href="https://github.com/MFatihTuzen/r-training/tree/main/data">GitHub’daki data klasöründe</a> bulunur. İlgili uygulama derslerinde veri dosyalarına doğrudan indirme bağlantıları da eklenecektir.</p>
+<p><strong>Tüm çalışma dosyalarını almak:</strong> <a href="https://github.com/MFatihTuzen/r-training">GitHub deposu</a> → <strong>Code → Download ZIP</strong>. GitHub’daki güncel sürümün yerel önizleme ile aynı olması için değişikliklerin önce push edilmiş olması gerekir.</p>
 
 
 </section>
@@ -709,7 +690,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2026 Muhammed Fatih Tuzen</p>
+<p>© 2026 Muhammed Fatih Tüzen</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

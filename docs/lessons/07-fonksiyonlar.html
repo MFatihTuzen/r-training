@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr" xml:lang="tr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>07 · Kullanıcı Tanımlı Fonksiyonlar – R Programlama Eğitimi</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lessons/06-donguler.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0b13ac9fc854dcb8cf8b2d419753c653.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sonuç yok",
+    "search-matching-documents-text": "eşleşen belgeler",
+    "search-copy-link-title": "Aramak için bağlantıyı kopyalayın",
+    "search-hide-matches-text": "Ek eşleşmeleri gizle",
+    "search-more-match-text": "bu belgede daha fazla eşleşme",
+    "search-more-matches-text": "bu belgede daha fazla eşleşmeler",
+    "search-clear-button-title": "Temizle",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "İptal et",
+    "search-submit-button-title": "Göndermek",
+    "search-label": "Aramak"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">R Programlama Eğitimi</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Aramak"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Gezinmeyi değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Ana Sayfa</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../lessons/01-r-ve-rstudio.html" aria-current="page"> 
+<span class="menu-text">Eğitim İçeriği</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../program/index.html"> 
+<span class="menu-text">Eğitim Programı</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../materials/index.html"> 
+<span class="menu-text">Materyaller</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources/ogrenme-kaynaklari.html"> 
+<span class="menu-text">Öğrenme Kaynakları</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://mfatihtuzen.github.io/r-programlama/"> 
+<span class="menu-text">R Programlama Kitabı</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MFatihTuzen/r-training"> <i class="bi bi-github" role="img" aria-label="GitHub deposu">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-fonksiyonlar.html">07 · Fonksiyonlar</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01-r-ve-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01 · R ve RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02-ilk-r-komutlari.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 · İlk R komutları</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-veri-tipleri-ve-yapilari.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03 · Veri tipleri ve yapıları</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04-r-paketleri.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04 · Paketler ve yardım</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05-kosullu-ifadeler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05 · Koşullu ifadeler</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-donguler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06 · Döngüler</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/07-fonksiyonlar.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">07 · Fonksiyonlar</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Bu sayfada</h2>
+   
+  <ul>
+  <li><a href="#neden-kendi-fonksiyonumuzu-yazalım" id="toc-neden-kendi-fonksiyonumuzu-yazalım" class="nav-link active" data-scroll-target="#neden-kendi-fonksiyonumuzu-yazalım">1. Neden kendi fonksiyonumuzu yazalım?</a></li>
+  <li><a href="#ilk-fonksiyon-function" id="toc-ilk-fonksiyon-function" class="nav-link" data-scroll-target="#ilk-fonksiyon-function">2. İlk fonksiyon: <code>function()</code></a></li>
+  <li><a href="#parametre-ve-argüman-farkı" id="toc-parametre-ve-argüman-farkı" class="nav-link" data-scroll-target="#parametre-ve-argüman-farkı">3. Parametre ve argüman farkı</a></li>
+  <li><a href="#varsayılan-değerler" id="toc-varsayılan-değerler" class="nav-link" data-scroll-target="#varsayılan-değerler">4. Varsayılan değerler</a></li>
+  <li><a href="#fonksiyonun-çıktısı-son-ifade-ve-return" id="toc-fonksiyonun-çıktısı-son-ifade-ve-return" class="nav-link" data-scroll-target="#fonksiyonun-çıktısı-son-ifade-ve-return">5. Fonksiyonun çıktısı: Son ifade ve <code>return()</code></a></li>
+  <li><a href="#na-ve-hatalı-girdileri-düşünelim" id="toc-na-ve-hatalı-girdileri-düşünelim" class="nav-link" data-scroll-target="#na-ve-hatalı-girdileri-düşünelim">6. <code>NA</code> ve hatalı girdileri düşünelim</a></li>
+  <li><a href="#değişken-kapsamı-içerideki-ve-dışarıdaki-nesneler" id="toc-değişken-kapsamı-içerideki-ve-dışarıdaki-nesneler" class="nav-link" data-scroll-target="#değişken-kapsamı-içerideki-ve-dışarıdaki-nesneler">7. Değişken kapsamı: İçerideki ve dışarıdaki nesneler</a></li>
+  <li><a href="#fonksiyonlar-vektörlerle-de-çalışabilir" id="toc-fonksiyonlar-vektörlerle-de-çalışabilir" class="nav-link" data-scroll-target="#fonksiyonlar-vektörlerle-de-çalışabilir">8. Fonksiyonlar vektörlerle de çalışabilir</a></li>
+  <li><a href="#bir-küçük-veri-uygulaması" id="toc-bir-küçük-veri-uygulaması" class="nav-link" data-scroll-target="#bir-küçük-veri-uygulaması">9. Bir küçük veri uygulaması</a></li>
+  <li><a href="#sık-yapılan-hatalar" id="toc-sık-yapılan-hatalar" class="nav-link" data-scroll-target="#sık-yapılan-hatalar">10. Sık yapılan hatalar</a></li>
+  <li><a href="#kendi-kendini-kontrol-et" id="toc-kendi-kendini-kontrol-et" class="nav-link" data-scroll-target="#kendi-kendini-kontrol-et">11. Kendi kendini kontrol et</a></li>
+  <li><a href="#özet-ve-sonraki-adım" id="toc-özet-ve-sonraki-adım" class="nav-link" data-scroll-target="#özet-ve-sonraki-adım">Özet ve sonraki adım</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">07 · Kullanıcı Tanımlı Fonksiyonlar</h1>
+<p class="subtitle lead">Tekrar eden kodu anlaşılır, test edilebilir ve yeniden kullanılabilir hâle getirmek</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Bu bölümün yeri
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Önceki derste <a href="../lessons/06-donguler.html">döngülerle</a> aynı işlemi tekrarlamayı öğrendik. Şimdi <strong>aynı işlemi birden çok yerde kullanmak</strong> için bir fonksiyon yazacağız. Ön koşullar: nesneler, vektörler, <code>if/else</code>, <code>for</code> ve temel hesaplama fonksiyonları.</p>
+</div>
+</div>
+<p><strong>Öğrenme hedefleri:</strong> Bu ders sonunda bir fonksiyon tanımlayabilecek; parametre ve argümanı ayırt edebilecek; varsayılan değer, sonuç döndürme, basit girdi kontrolü ve değişken kapsamı kavramlarını örneklerle açıklayabileceksiniz.</p>
+<p><strong>Ders materyalleri:</strong> <a href="../scripts/06-fonksiyonlar.R" download="06-fonksiyonlar.R">Uygulama scriptini indir (.R)</a> · <a href="../exercises/06-fonksiyonlar.md" download="06-fonksiyonlar.md">Alıştırmaları indir (.md)</a></p>
+<section id="neden-kendi-fonksiyonumuzu-yazalım" class="level2">
+<h2 class="anchored" data-anchor-id="neden-kendi-fonksiyonumuzu-yazalım">1. Neden kendi fonksiyonumuzu yazalım?</h2>
+<p>Bir işlemi farklı sayılar, kişiler veya dönemler için tekrar yapmamız gerekebilir. Her yerde aynı kodu kopyalamak hem yorucu hem de hata üretmeye açıktır. Önce bir hesaplama yapalım:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fiyat <span class="ot">&lt;-</span> <span class="dv">120</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>adet <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fiyat <span class="sc">*</span> adet</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Farklı fiyat ve adetler için aynı işlemi yeniden yazmak yerine hesaplamayı <strong>isimlendirebiliriz</strong>. R’deki <code>sum()</code> ve <code>mean()</code> gibi hazır fonksiyonlar da zaten aynı fikirle çalışır: girdileri alır ve sonuç üretir.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sınıfta düşünün
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aynı hesaplama on farklı yerde yazılıysa yöntemi değiştirmek gerektiğinde kaç kod parçasını güncellemek zorunda kalırsınız?</p>
+</div>
+</div>
+</section>
+<section id="ilk-fonksiyon-function" class="level2">
+<h2 class="anchored" data-anchor-id="ilk-fonksiyon-function">2. İlk fonksiyon: <code>function()</code></h2>
+<p>Temel biçim şöyledir:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hesapla <span class="ot">&lt;-</span> <span class="cf">function</span>(girdi) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># yapılacak işlem</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  sonuc</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Burada <code>hesapla</code> fonksiyonun <strong>adı</strong>, <code>girdi</code> bir <strong>parametre</strong>, süslü parantezler fonksiyonun <strong>gövdesidir</strong>. Fonksiyonu tanımlamak onu çalıştırmaz; çalıştırmak için adından sonra parantez kullanırız.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tutar_hesapla <span class="ot">&lt;-</span> <span class="cf">function</span>(fiyat, adet) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  fiyat <span class="sc">*</span> adet</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tutar_hesapla</span>(<span class="dv">120</span>, <span class="dv">3</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tutar_hesapla</span>(<span class="dv">75</span>, <span class="dv">4</span>)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>İlk çağrıda <code>fiyat = 120</code>, <code>adet = 3</code>; ikincisinde farklı değerler kullanılır. Fonksiyonun içindeki işlem ise aynıdır.</p>
+<p><strong>Tahmin edin:</strong> <code>tutar_hesapla(50, 6)</code> hangi değeri döndürür? Kodu çalıştırmadan önce söyleyin.</p>
+</section>
+<section id="parametre-ve-argüman-farkı" class="level2">
+<h2 class="anchored" data-anchor-id="parametre-ve-argüman-farkı">3. Parametre ve argüman farkı</h2>
+<ul>
+<li><code>function(fiyat, adet)</code> tanımında <code>fiyat</code> ve <code>adet</code> <strong>parametre</strong> adlarıdır.</li>
+<li><code>tutar_hesapla(120, 3)</code> çağrısında <code>120</code> ve <code>3</code> <strong>argüman</strong> değerleridir.</li>
+<li>Değerleri konumlarına göre veya adlarıyla verebiliriz.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tutar_hesapla</span>(<span class="at">adet =</span> <span class="dv">3</span>, <span class="at">fiyat =</span> <span class="dv">120</span>)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Adları açıkça yazmak, özellikle çok argümanlı fonksiyonlarda yanlış sıradan kaynaklanan sorunları azaltır.</p>
+</section>
+<section id="varsayılan-değerler" class="level2">
+<h2 class="anchored" data-anchor-id="varsayılan-değerler">4. Varsayılan değerler</h2>
+<p>Bir parametrenin çoğu zaman aynı değeri alması gerekiyorsa fonksiyon tanımında varsayılan değer belirleyebiliriz:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>indirimli_tutar <span class="ot">&lt;-</span> <span class="cf">function</span>(fiyat, <span class="at">indirim_orani =</span> <span class="fl">0.10</span>) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  fiyat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> indirim_orani)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">indirimli_tutar</span>(<span class="dv">200</span>)        <span class="co"># 180</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">indirimli_tutar</span>(<span class="dv">200</span>, <span class="fl">0.20</span>)  <span class="co"># 160</span></span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Bu örnekte oranlar <strong>öğretim amaçlıdır</strong>. Fonksiyon çağrısında <code>indirim_orani</code> verilmezse <code>0.10</code> kullanılır; verilirse yeni değer geçerlidir.</p>
+<p><strong>Deneyin:</strong> <code>indirimli_tutar(200, indirim_orani = 0)</code> ne döndürür? Neden?</p>
+</section>
+<section id="fonksiyonun-çıktısı-son-ifade-ve-return" class="level2">
+<h2 class="anchored" data-anchor-id="fonksiyonun-çıktısı-son-ifade-ve-return">5. Fonksiyonun çıktısı: Son ifade ve <code>return()</code></h2>
+<p>R’de fonksiyonun sonunda hesaplanan ifade genellikle sonuç olarak döndürülür. <code>return()</code> ise sonucun nerede ve hangi koşulda döneceğini açıkça belirlememizi sağlar.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>kare_al <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">^</span><span class="dv">2</span>  <span class="co"># son ifade: sonuç</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kare_al</span>(<span class="dv">4</span>)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>puan_durumu <span class="ot">&lt;-</span> <span class="cf">function</span>(puan) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (puan <span class="sc">&gt;=</span> <span class="dv">50</span>) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"Gecti"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Kaldi"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">puan_durumu</span>(<span class="dv">75</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">puan_durumu</span>(<span class="dv">40</span>)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tek bir karar mı, birden çok değer mi?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>if (kosul)</code> tek bir <code>TRUE</code>/<code>FALSE</code> bekler. <code>puan_durumu(c(40, 75))</code> bu hâliyle çalışmaz. Önce tek değerli fonksiyonları anlamalıyız; vektörle çalışma yaklaşımını aşağıda ele alacağız.</p>
+</div>
+</div>
+</section>
+<section id="na-ve-hatalı-girdileri-düşünelim" class="level2">
+<h2 class="anchored" data-anchor-id="na-ve-hatalı-girdileri-düşünelim">6. <code>NA</code> ve hatalı girdileri düşünelim</h2>
+<p>Kendi fonksiyonumuzu yazdığımızda yalnızca beklenen değerleri değil, sorunlu girdileri de düşünmemiz gerekir. Önce eksik değer için açık bir karar verelim:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>puan_durumu_guvenli <span class="ot">&lt;-</span> <span class="cf">function</span>(puan) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(puan)) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA_character_</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (puan <span class="sc">&gt;=</span> <span class="dv">50</span>) {</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"Gecti"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Kaldi"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">puan_durumu_guvenli</span>(<span class="cn">NA_real_</span>)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Burada <code>NA_character_</code> karakter türünde eksik değer üretir. <code>is.na()</code> kontrolünü önce yapmak, <code>if (NA)</code> hatasını önler.</p>
+<p>Bir adım daha: Fonksiyonun yalnızca <strong>tek sayısal değer</strong> kabul etmesini istiyoruz. Bunun için <code>stopifnot()</code> gibi basit bir kontrol kullanabiliriz:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>puan_durumu_kontrollu <span class="ot">&lt;-</span> <span class="cf">function</span>(puan) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(puan), <span class="fu">length</span>(puan) <span class="sc">==</span> <span class="dv">1</span>L)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(puan)) <span class="fu">return</span>(<span class="cn">NA_character_</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (puan <span class="sc">&gt;=</span> <span class="dv">50</span>) <span class="st">"Gecti"</span> <span class="cf">else</span> <span class="st">"Kaldi"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">puan_durumu_kontrollu</span>(<span class="dv">55</span>)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Not:</strong> Girdi kontrolü ve hata mesajı tasarımı ileri seviyelerde geliştirilebilir. Bu derste amaç, fonksiyonun hangi veriyle çalışacağını açıkça belirlemektir.</p>
+</section>
+<section id="değişken-kapsamı-içerideki-ve-dışarıdaki-nesneler" class="level2">
+<h2 class="anchored" data-anchor-id="değişken-kapsamı-içerideki-ve-dışarıdaki-nesneler">7. Değişken kapsamı: İçerideki ve dışarıdaki nesneler</h2>
+<p>Fonksiyon içinde oluşturulan yerel nesneler normalde dışarıdaki çalışma alanında bulunmaz:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>iki_kat <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  sonuc <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  sonuc</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">iki_kat</span>(<span class="dv">8</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 'sonuc' nesnesi fonksiyonun yerel ortamındadır.</span></span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Fonksiyonun dışındaki değişkenlere bağımlı kod, başka bilgisayarda veya temiz bir R oturumunda sorun çıkarabilir. Daha güvenilir yöntem, gereken bilgiyi <strong>argüman olarak vermektir</strong>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tercih edilen yaklaşım:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>vergi_ekle <span class="ot">&lt;-</span> <span class="cf">function</span>(tutar, oran) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  tutar <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> oran)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">vergi_ekle</span>(<span class="dv">100</span>, <span class="fl">0.20</span>)</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Buradaki oran örnek amaçlıdır. Dışarıdaki rastgele bir <code>oran</code> nesnesine güvenmiyoruz.</p>
+</section>
+<section id="fonksiyonlar-vektörlerle-de-çalışabilir" class="level2">
+<h2 class="anchored" data-anchor-id="fonksiyonlar-vektörlerle-de-çalışabilir">8. Fonksiyonlar vektörlerle de çalışabilir</h2>
+<p>R’de temel aritmetik vektörel çalıştığı için aynı fonksiyon bir sayı vektörünü de işleyebilir:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>artis_uygula <span class="ot">&lt;-</span> <span class="cf">function</span>(deger, <span class="at">oran =</span> <span class="fl">0.05</span>) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  deger <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> oran)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">artis_uygula</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">150</span>))</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Burada <code>for</code> yazmaya gerek yoktur. Ancak <strong>bütün fonksiyonlar kendiliğinden vektörel değildir</strong>. Özellikle tek bir koşul değerlendiren <code>if</code> ifadeleri için dikkatli olunmalıdır.</p>
+</section>
+<section id="bir-küçük-veri-uygulaması" class="level2">
+<h2 class="anchored" data-anchor-id="bir-küçük-veri-uygulaması">9. Bir küçük veri uygulaması</h2>
+<p>Daha önce öğrendiğimiz <code>data.frame()</code> yapısını kullanarak bir çalışma yapalım. Veri tamamen yapaydır:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>satislar <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">urun =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">adet =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">birim_fiyat =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">75</span>, <span class="dv">150</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>tutar_hesapla <span class="ot">&lt;-</span> <span class="cf">function</span>(fiyat, adet) {</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  fiyat <span class="sc">*</span> adet</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>satislar<span class="sc">$</span>tutar <span class="ot">&lt;-</span> <span class="fu">tutar_hesapla</span>(satislar<span class="sc">$</span>birim_fiyat, satislar<span class="sc">$</span>adet)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>satislar</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Kontrol edin:</strong> Üçüncü ürünün toplam tutarı neden <code>450</code>? Veri tablosundaki satırları değiştirdiğinizde sonuç nasıl etkileniyor?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Modern R alışkanlığı
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Fonksiyonlara anlaşılır isimler verin (<code>artis_uygula</code> gibi), girdileri açık tutun, tek bir sorumluluğa odaklanın ve küçük örneklerle test edin. İleride <code>dplyr::mutate()</code> içinde aynı fonksiyonları tekrar kullanabiliriz. Fonksiyon yazarken her şeyi <code>for</code> döngüsüne dönüştürmek zorunda değiliz.</p>
+</div>
+</div>
+</section>
+<section id="sık-yapılan-hatalar" class="level2">
+<h2 class="anchored" data-anchor-id="sık-yapılan-hatalar">10. Sık yapılan hatalar</h2>
+<ul>
+<li>Fonksiyonu tanımlamakla çağırmayı aynı şey sanmak.</li>
+<li>Argüman sırasını karıştırmak; gerektiğinde argümanları adlarıyla vermemek.</li>
+<li>Fonksiyon içinde oluşan bir nesnenin dışarıdan da erişilebilir olduğunu düşünmek.</li>
+<li>Eksik değeri (<code>NA</code>) <code>if</code> içinde kontrol etmeden kullanmak.</li>
+<li>Tek değer için tasarlanan <code>if</code> fonksiyonuna vektör göndermek.</li>
+<li>Her hesaplamaya gereksiz döngü eklemek veya fonksiyonu dış ortamdaki nesnelere bağımlı bırakmak.</li>
+</ul>
+</section>
+<section id="kendi-kendini-kontrol-et" class="level2">
+<h2 class="anchored" data-anchor-id="kendi-kendini-kontrol-et">11. Kendi kendini kontrol et</h2>
+<ol type="1">
+<li>Fonksiyonu tanımlamak ve çağırmak arasındaki fark nedir?</li>
+<li>Varsayılan argüman hangi durumda kullanılır?</li>
+<li>Son ifade ile <code>return()</code> arasında hangi fark vardır?</li>
+<li><code>puan_durumu(NA)</code> ilk sürümünde neden hata verir?</li>
+<li><code>artis_uygula(c(100, 200))</code> için neden <code>for</code> döngüsü gerekli değildir?</li>
+</ol>
+<p><a href="../exercises/06-fonksiyonlar.md" download="06-fonksiyonlar.md"><strong>Egzersizleri indir (.md)</strong></a> · <a href="../scripts/06-fonksiyonlar.R" download="06-fonksiyonlar.R"><strong>Tam uygulama scriptini indir (.R)</strong></a></p>
+</section>
+<section id="özet-ve-sonraki-adım" class="level2">
+<h2 class="anchored" data-anchor-id="özet-ve-sonraki-adım">Özet ve sonraki adım</h2>
+<p>Bir fonksiyon, girdilerle yapılan belirli bir işi tekrar kullanılabilir hâle getirir. <code>function()</code>, argümanlar, varsayılan değerler, sonuç döndürme, basit kontrol ve değişken kapsamını öğrendik. Bir sonraki bölümde farklı dosyalardaki verileri R’ye alıp bu bilgileri gerçek veri işleme sürecine taşıyacağız.</p>
+<p><strong>Derinleşmek için:</strong> <a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama Kitabı</a> · <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Writing-your-own-functions">R: Writing Your Own Functions</a></p>
+<hr>
+<p><strong>Önceki:</strong> <a href="../lessons/06-donguler.html">06 · Döngüler</a><br>
+<strong>Sonraki:</strong> Veri İçe / Dışa Aktarma — sonraki modülde bağlantı eklenecek.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopyalandı");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopyalandı");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mfatihtuzen\.github\.io\/r-training\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lessons/06-donguler.html" class="pagination-link" aria-label="06 · Döngüler">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">06 · Döngüler</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Muhammed Fatih Tüzen</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Quarto ile hazırlanmıştır.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

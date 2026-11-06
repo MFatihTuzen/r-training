@@ -1,12 +1,12 @@
-/* Minimal, erişilebilir Quarto eğitim sitesi stilleri */
+/* R Training — onceki temel stilleri korur; materyal kartlarini duzenler. */
 body { line-height: 1.65; }
-.hero-intro {
-  padding: 1.1rem 1.35rem;
-  border-left: 4px solid #2563eb;
-  border-radius: 0.3rem;
-  background: rgba(37, 99, 235, 0.055);
-  margin: 1.25rem 0 1.75rem;
-}
-.hero-intro p:last-child { margin-bottom: 0; }
-main table { font-size: 0.94rem; }
 main h2 { margin-top: 2rem; }
+main h3 { margin-top: 1.5rem; }
+main pre { border-radius: .45rem; }
+.hero-intro { padding: 1.15rem 1.35rem; border-left: 4px solid #2b72b9; background: rgba(43,114,185,.06); margin: 1rem 0 2rem; border-radius: .35rem; }
+.hero-intro p:last-child { margin-bottom: 0; }
+main table { font-size: .96rem; }
+main .card { border: 1px solid var(--bs-border-color, #d9e1e8); border-radius: .75rem; box-shadow: 0 2px 8px rgba(20,40,60,.055); margin-bottom: 1rem; }
+main .card-body { padding: 1.25rem; }
+main .card-body h3 { margin-top: 0; font-size: 1.13rem; }
+main .card-body p { margin-bottom: .7rem; }

@@ -1,0 +1,195 @@
+---
+title: "03 · Veri Tipleri ve Veri Yapıları"
+subtitle: "R veriyi nasıl saklar, nasıl inceleriz?"
+description: "Temel veri tipleri, eksik değerler, vektör, data frame, liste, matris ve tibble ile uygulamalar."
+execute:
+  eval: false
+---
+
+::: {.callout-note}
+## Başlamadan önce
+[02 · İlk R Komutları](02-ilk-r-komutlari.qmd) bölümünde atamayı (`<-`), hazır fonksiyonları ve `c()` ile vektör oluşturmayı gördük. **Bu derste** değerlerin türlerini, eksik bilgiyi ve tabloları öğreneceğiz. Örnekleri sırayla RStudio'da çalıştır.
+:::
+
+[**Uygulama scriptini indir (.R)**](../scripts/02-veri-tipleri-ve-yapilari.R){download="02-veri-tipleri-ve-yapilari.R"} · [**Alıştırmaları indir (.md)**](../exercises/02-veri-tipleri-ve-yapilari.md){download="02-veri-tipleri-ve-yapilari.md"}
+
+## 1. Neden veri tipleriyle ilgileniyoruz?
+
+Bir sayı, bir metin ve bir doğru/yanlış değeri R için aynı şey değildir. Örneğin `"25"` bir *metin*, `25` ise hesaplama yapabildiğimiz bir *sayıdır*. Veri aktarırken sütun tipleri yanlış anlaşılırsa hesaplamalar da yanlış veya hatalı olabilir.
+
+```r
+yas <- 25
+sehir <- "Ankara"
+calisiyor <- TRUE
+
+class(yas)
+class(sehir)
+class(calisiyor)
+```
+
+- `numeric` (çoğunlukla `double`): ondalıklı veya tam görünümlü sayılar
+- `character`: karakter dizileri, yani metinler
+- `logical`: `TRUE` / `FALSE` (mantıksal değerler)
+- `integer`: özel `L` son ekiyle oluşturulabilen tam sayı tipi (ör. `25L`)
+
+```r
+class(25)
+class(25L)
+typeof(25)
+typeof(25L)
+```
+
+**Sonucu kontrol et:** `class()` ile `typeof()` her zaman aynı bilgiye mi işaret ediyor? Şimdilik `class()` ile başlamak yeterli; daha teknik ayrımı kitabımızdan okuyabilirsin.
+
+::: {.callout-tip}
+## Sıra sende
+`"150"` ve `150` nesneleri oluştur. Her birinin `class()` sonucunu incele. `"150" + 10` ifadesini çalıştırınca neden hata alırsın?
+:::
+
+## 2. Vektörler ve aynı tipte olma kuralı
+
+Önceki bölümde `c()` ile vektör oluşturmuştuk. **Atomik vektörde** elemanlar ortak bir temel tipe sahiptir. Bu nedenle farklı tipleri bir araya getirmek bazen beklenmedik dönüşüm yapar.
+
+```r
+puanlar <- c(60, 75, 90)
+class(puanlar)
+length(puanlar)
+
+karisik <- c(1, 2, "uc")
+karisik
+class(karisik)
+```
+
+Burada `1` ve `2` de karaktere çevrilir. Bu, özellikle CSV'den veriler okunurken dikkat edilmesi gereken bir durumdur.
+
+### Vektörden eleman seçimi
+
+```r
+puanlar[1]          # İlk eleman
+puanlar[c(1, 3)]    # Birinci ve üçüncü eleman
+puanlar[puanlar > 70] # Koşulu sağlayan elemanlar
+```
+
+R'de indeksler **1'den başlar**. Köşeli parantez `[]`, nesnenin bir kısmını seçmek için kullanılır.
+
+## 3. Eksik değer: `NA`
+
+Gerçek verilerde bazı alanlar boş olabilir. R'de bilinmeyen/eksik değer çoğunlukla `NA` ile gösterilir.
+
+```r
+notlar <- c(60, 75, NA, 90)
+notlar
+is.na(notlar)             # Hangi elemanlar eksik?
+sum(is.na(notlar))        # Kaç eksik var?
+mean(notlar)              # NA
+mean(notlar, na.rm = TRUE) # Sadece mevcut değerlerin ortalaması
+```
+
+`na.rm = TRUE` eksik veriyi tamamlamaz, yalnızca o hesaplamada dışarıda bırakır. Eksik gözlemlerin neden oluştuğu ve hesaplamayı nasıl etkilediği ayrı olarak değerlendirilmelidir.
+
+::: {.callout-warning}
+## Sık hata
+`notlar == NA` kullanma. Eksikliği kontrol etmek için `is.na(notlar)` kullan. `NA` sıradan bir sayı değildir.
+:::
+
+## 4. Data frame: satır ve sütunlardan oluşan tablo
+
+**Data frame**, aynı uzunluktaki sütunlardan oluşur; her sütunun tipi farklı olabilir. Burada ilk kez *birden fazla değişkeni olan bir veri tablosu* oluşturuyoruz.
+
+```r
+personel <- data.frame(
+  ad = c("Ali", "Ayşe", "Deniz", "Ece"),
+  yas = c(28, 35, 31, NA),
+  birim = c("A", "B", "A", "B"),
+  aktif = c(TRUE, TRUE, FALSE, TRUE)
+)
+
+personel
+str(personel)      # Sütunların tipi ve yapı
+names(personel)    # Sütun adları
+dim(personel)      # Satır ve sütun sayısı
+head(personel)     # İlk gözlemler
+```
+
+Bir veri setini ilk gördüğümüzde **önce yapısını kontrol etmek**, doğrudan analiz komutlarına geçmekten daha güvenlidir.
+
+### Sütun ve satır seçmek
+
+```r
+personel$yas             # Tek sütun
+personel[1, ]            # İlk satır
+personel[, "ad"]         # Ad sütunu
+personel[1:2, c("ad", "yas")]  # İlk iki satır, iki sütun
+```
+
+`$` bir sütunu adıyla seçer. `tablo[satır, sütun]` ise tablo içindeki konumu belirtir. `1:2` ifadesi 1 ve 2 tamsayılarından oluşan sıralamadır.
+
+::: {.callout-tip}
+## Birlikte deneyelim
+`personel` tablosunun kaç satır ve kaç sütundan oluştuğunu bul. `aktif` sütununun tipini kontrol et. `yas` sütunundaki eksik gözlemlerin sayısını hesapla.
+:::
+
+## 5. Matris ve liste: aynı tablo değiller
+
+**Matris**, iki boyutlu ve tek bir temel tipteki elemanlardan oluşur. **Liste** ise farklı türde nesneleri aynı yapı içinde saklayabilir.
+
+```r
+matris <- matrix(1:6, nrow = 2)
+matris
+class(matris)
+
+sonuc <- list(
+  ortalama_yas = mean(personel$yas, na.rm = TRUE),
+  personel_tablosu = personel,
+  aciklama = "Eğitim örneği"
+)
+
+names(sonuc)
+sonuc$ortalama_yas
+```
+
+Bu derste matris ve listeleri tanımak yeterli. Karmaşık liste işlemlerine veya çok boyutlu dizilere girmeyeceğiz.
+
+## 6. Tibble: modern veri iş akışında tablo
+
+`tibble`, `data.frame` ile aynı temel amaca hizmet eden, yazdırma ve alt küme davranışlarında farklılıkları olan modern tablo sınıfıdır. `dplyr` derslerinde sık göreceğiz.
+
+```r
+# Önce tibble paketinin kurulu olduğundan emin olun.
+# Gerekirse bir kez: install.packages("tibble")
+
+# personel_tbl <- tibble::as_tibble(personel)
+# personel_tbl
+# class(personel_tbl)
+```
+
+Bu üç satır **isteğe bağlıdır**. Paket kuruluyken başındaki `#` işaretlerini kaldırıp çalıştırabilirsiniz. Paket yüklemediyseniz bu bölümü atlayın; sonraki konulara engel değildir.
+
+## 7. Mini uygulama: veriyi okumadan önce incelemek
+
+Önümüzde küçük bir personel tablosu var. Birlikte şu soruları cevaplayalım:
+
+1. Veri kaç satır ve kaç sütundan oluşuyor?
+2. Hangi sütunlar sayısal, hangileri metin veya mantıksal?
+3. Yaş değişkeninde eksik değer var mı?
+4. Eksik değerleri çıkarmadan yaş ortalaması kaç? `na.rm = TRUE` kullanınca ne değişiyor?
+
+**Bağımsız çalışma:** [02 · Veri tipleri ve yapıları alıştırmaları](../exercises/02-veri-tipleri-ve-yapilari.md){download="02-veri-tipleri-ve-yapilari.md"}
+
+## Sık yapılan hatalar
+
+- Metin olarak saklanmış sayılarla hesap yapmaya çalışmak
+- `NA` ile `0` değerini aynı kabul etmek
+- `data.frame` ile matrisin her zaman aynı şekilde davrandığını sanmak
+- İlk sonucu kontrol etmeden çok sayıda dönüşümü art arda yapmak
+
+## Kısa özet
+
+Bir veriyi işlerken **önce veri tipini, yapısını, boyutunu ve eksiklerini kontrol ederiz.** Bu alışkanlık, ileride `dplyr` ile analiz yaparken hataları erken fark etmemizi sağlar.
+
+**Daha fazla öğren:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [R İstatistik Akademi](https://www.youtube.com/@RistatistikAkademi)
+
+---
+
+**Önceki bölüm:** [02 · İlk R Komutları](02-ilk-r-komutlari.qmd)  
+**Sonraki bölüm:** [04 · R Paketleri ve Yardım](04-r-paketleri.qmd) — kısa bir hazırlığın ardından koşullu ifadelere geçeceğiz.

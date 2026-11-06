@@ -1,37 +1,37 @@
 ---
-title: "R Programlama ve Veri Manipülasyonuna Giriş"
-subtitle: "Başlangıç düzeyinde, uygulamalı R eğitimi"
+title: "R Programlama Eğitimi"
+subtitle: "R programlama ve veri manipülasyonuna uygulamalı giriş"
 page-layout: full
 ---
 
 ::: {.hero-intro}
-**R ile veriyi okumaktan anlamlı bir çıktıya uzanan uygulamalı bir öğrenme yolu.**
+## Öğren, dene, kontrol et
 
-Bu açık eğitim sitesi, R'ye yeni başlayanlar ve veriyle çalışanlar için hazırlanmıştır. Konuları küçük örneklerle öğrenip [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) için hazırlanmış Dünya Bankası (WDI) verileriyle pekiştireceğiz.
+R ile ilk komuttan başlayarak veri okuma, dönüştürme ve sonuç üretmeye uzanan **uygulamalı bir öğrenme yolu**. Konular mantıklı bir sırayla ilerler; örnekleri kendi RStudio ortamında çalıştırabilir, eğitime katıldıktan sonra da burada tekrar edebilirsin.
 :::
 
-## Eğitim hakkında
+## Nereden başlamalıyım?
 
-| Özellik | Açıklama |
+**R'yi hiç bilmiyorsan:** Önce [01 · R ve RStudio](lessons/01-r-ve-rstudio.qmd) ile çalışma ortamını tanı, sonra [02 · İlk R komutları](lessons/02-ilk-r-komutlari.qmd) ile uygulamaya geç.
+
+**Eğitime katılıyorsan:** [Eğitim Programı](program/index.qmd) sayfasından sınıfta işlenecek akışı gör. [Materyaller](materials/index.qmd) sayfasından ilgili `.R` dosyasını al ve RStudio'da eğitmenle birlikte çalıştır.
+
+## Nasıl öğreniyoruz?
+
+| Adım | Ne yapıyoruz? |
 |---|---|
-| Düzey | Başlangıç |
-| Süre | 5 yarım gün, 15 ders oturumu (45'er dakika) |
-| Günlük saat | 09.30–12.30 (aralar ve esnek zaman dahil) |
-| Yaklaşım | Kısa anlatım, RStudio'da birlikte kodlama, egzersiz, mini proje |
-| Araçlar | R, RStudio, Quarto; `dplyr`, `tidyr` ve veri okuma paketleri |
+| **1. Kavram** | Yeni kavramı kısa bir açıklamayla tanıyoruz. |
+| **2. Tahmin** | Kodun ne yapacağını çalıştırmadan önce düşünüyoruz. |
+| **3. Birlikte uygulama** | Kodu RStudio'da satır satır çalıştırıyoruz. |
+| **4. Kontrol** | Sonucu doğruluyor, olası hataları tartışıyoruz. |
+| **5. Sıra sende** | Küçük bir görevi kendimiz çözüyoruz. |
 
-## Beş günlük öğrenme yolu
+## İçerik ve eğitim süresi
 
-1. **R'ye giriş:** RStudio, nesneler, veri tipleri, veri yapıları ve koşullar.
-2. **Programlama ve dosyalar:** `if/else`, `for`, `while`, fonksiyonlar; CSV, Excel, RDS, SAS/SPSS ve veri tabanlarına giriş.
-3. **Veri manipülasyonu I:** Seçme, filtreleme, sıralama ve yeni değişken oluşturma.
-4. **Veri manipülasyonu II:** Gruplama, özetleme, birleştirme ve uzun/geniş veri dönüşümü.
-5. **Modern R iş akışı ve mini proje:** Baştan sona bir WDI veri işleme uygulaması.
+Web sitesindeki kaynaklar, sınıfta ayrılan zamandan daha kapsamlı olabilir. **5 günlük program**, bu kaynaklardan seçilen temel uygulamaları kapsar. Diğer örnekler bireysel tekrar ve farklı sürelerdeki eğitimler için tutulur. Günlere bağlı olmayan konu sırası korunur.
 
-[**Ayrıntılı eğitim programını incele**](program/index.qmd)
+## Kaynaklar
 
-## Materyallerin durumu
+Kavramsal ayrıntılar için [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/), video tekrarları için [R İstatistik Akademi](https://www.youtube.com/@RistatistikAkademi) ve diğer belgeler için [Öğrenme Kaynakları](resources/ogrenme-kaynaklari.qmd) sayfasını kullanabilirsin.
 
-Bu site **başlangıç iskeletidir**. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir.
-
-`Ayrıntılı kitap, video ve paket belgeleri için [Öğrenme Kaynakları](resources/ogrenme-kaynaklari.qmd) sayfasına bakın.`
+[**Öğrenmeye başla: R ve RStudio →**](lessons/01-r-ve-rstudio.qmd)

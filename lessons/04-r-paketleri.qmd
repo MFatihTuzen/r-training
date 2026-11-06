@@ -1,0 +1,109 @@
+---
+title: "04 · R Paketleri ve Yardım Kaynakları"
+subtitle: "Fonksiyonları nereden buluruz, nasıl kurar ve kullanırız?"
+description: "Paket kurma, yükleme, isim alanı, sürüm, yardım ve güvenli paket kullanımı için uygulamalı giriş."
+execute:
+  eval: false
+---
+
+::: {.callout-note}
+## Bu konunun eğitimdeki yeri
+Önce [03 · Veri Tipleri ve Yapıları](03-veri-tipleri-ve-yapilari.qmd) bölümünü tamamladık. Şimdi yeni fonksiyonlara ulaşmak için kullanılan **paket** kavramını öğreneceğiz. Bu modül, `dplyr` ile veri işlemeye geçmeden önce kısa bir hazırlıktır. Sınıfta **çekirdek örnekleri** çalıştıracağız; ileri ayrıntılar bağımsız öğrenme içindir.
+:::
+
+[**Uygulama scriptini indir (.R)**](../scripts/03-paketler-ve-yardim.R){download="03-paketler-ve-yardim.R"} · [**Alıştırmaları indir (.md)**](../exercises/03-paketler-ve-yardim.md){download="03-paketler-ve-yardim.md"}
+
+## 1. R ile gelen fonksiyonlar ve paketler
+
+R'yi kurduğumuzda `sum()`, `mean()`, `data.frame()` gibi pek çok fonksiyon hazır gelir. Buna **temel R** diyoruz. Başka ihtiyaçlar için ek fonksiyon grupları kullanılabilir. Bunlar **paket** olarak dağıtılır. Örneğin `readr` CSV dosyaları, `dplyr` veri manipülasyonu için kullanılır.
+
+- **CRAN:** R paketlerini bulabileceğimiz ana depolardan biridir.
+- **Paket kurulumu:** Dosyaları bilgisayara indirme işlemi; genellikle bir defa yapılır.
+- **Paket yükleme:** Kurulu paketi o R oturumunda erişilebilir hâle getirme işlemi; yeni oturumda yeniden gerekebilir.
+
+## 2. Önce kurulu mu diye kontrol edelim
+
+```r
+# Kurulum gerektirmeyen kontroller
+"dplyr" %in% rownames(installed.packages())
+"utils" %in% rownames(installed.packages())
+```
+
+**Sonucu yorumla:** `TRUE` kurulu, `FALSE` kurulu değil demektir. Bilgisayarınızda kurulu paketlerin listesi başkalarınınkinden farklı olabilir.
+
+## 3. Paket kurma ile paketi yükleme farklıdır
+
+İnternet erişimi ve kurulum izni varsa aşağıdaki komut **yalnızca ilk kurulumda** kullanılabilir. Eğitim sırasında herkesin aynı anda kurulum yapmasını zorunlu tutmayacağız.
+
+```r
+# Bu satır bir kez kurulum içindir; sınıfta otomatik çalıştırmayın.
+# install.packages("dplyr")
+
+# Kuruluysa bu R oturumuna yükler:
+# library(dplyr)
+```
+
+::: {.callout-warning}
+## Sık hata
+`library(dplyr)` çalıştırıldığında **there is no package called 'dplyr'** hatası alınıyorsa çoğu zaman paket kurulu değildir ya da R'nin kullandığı paket kitaplığında bulunmuyordur. Kurulum hatalarında internet, proxy, izin veya sürüm uyumunu kontrol etmeden aynı komutu tekrar tekrar çalıştırma.
+:::
+
+## 4. `paket::fonksiyon()` yazımı
+
+Bazı durumlarda paketin tamamını `library()` ile yüklemeden belirli bir fonksiyonu çağırmak isteriz.
+
+```r
+# utils, R ile gelen paketlerdendir
+utils::head(iris, 3)
+
+# Paketin adı ve fonksiyonun adı birbirinden ayrı yazılır:
+# dplyr::filter(veri, yas > 30)
+```
+
+Buradaki `iris` R ile gelen örnek tablodur; **yalnızca paket çağrısı biçimini göstermek** için kullanıyoruz. `dplyr` örneğini henüz çalıştırmıyoruz; `filter()` sonraki veri manipülasyonu dersinde anlatılacak.
+
+**Neden yararlı?** Kodun hangi paketteki fonksiyonu kullandığı daha açık olur. Aynı adlı fonksiyonlar olduğunda karışıklığı azaltabilir.
+
+## 5. Fonksiyonu ve paketi nasıl öğrenebiliriz?
+
+```r
+?mean
+help("head", package = "utils")
+packageVersion("utils")
+```
+
+Açılan yardım sayfasında **Description**, **Usage**, **Arguments**, **Value** ve **Examples** bölümlerine bak. Fonksiyonun her argümanını ezberlemek yerine yardım belgesini okuyabilmek önemlidir.
+
+## 6. Uygulama: Yeni bir pakete hazırlanırken kontrol listesi
+
+1. Paket gerçekten gerekli mi; temel R ile çözüm var mı?
+2. Paket kurulu mu? Kurulum yetkisi ve internet var mı?
+3. `library()` mi, yoksa `paket::fonksiyon()` mu uygun?
+4. Kullanacağımız fonksiyonun argümanlarını nereden kontrol ederiz?
+5. Kullanılan paketi proje notuna yazdık mı?
+
+**Zaman kalırsa:** `sessionInfo()` ile R sürümünü ve yüklü paketleri incele. İleri düzeyde bağımlılık sabitlemenin (`renv`) ne işe yaradığını öğren; bu eğitimde kurulumunu yapmamız gerekmiyor.
+
+::: {.callout-tip}
+## Kendin dene
+`utils::head(iris, 2)` komutunu çalıştır ve `head()` fonksiyonunun yardım sayfasına ulaş. Ardından `utils` paketinin sürümünü sorgula.
+:::
+
+## Sık yapılan hatalar
+
+- Her kod çalıştırmada `install.packages()` çağırmak
+- Kurulu olmayan bir paketi `library()` ile açmaya çalışmak
+- Bir paketin adını, fonksiyonun adıyla karıştırmak
+- Bilinmeyen kaynaklardan kod veya paket yüklemek
+- Hata mesajındaki ilk açıklamayı okumadan tahminle ilerlemek
+
+## Kısa tekrar
+
+Paket, ek fonksiyonların bir araya getirildiği bir yapıdır. **Kurma ≠ oturumda yükleme**. Yardım belgelerini okumayı ve kullanılan paketleri belirtmeyi alışkanlık hâline getir.
+
+**Ek kaynaklar:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [CRAN](https://cran.r-project.org/) · [R Packages](https://r-pkgs.org/)
+
+---
+
+**Önceki:** [03 · Veri Tipleri ve Yapıları](03-veri-tipleri-ve-yapilari.qmd)  
+**Sonraki:** [05 · Koşullu İfadeler](05-kosullu-ifadeler.qmd)
