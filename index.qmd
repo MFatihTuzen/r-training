@@ -34,9 +34,4 @@ Bu açık eğitim sitesi, R'ye yeni başlayanlar ve veriyle çalışanlar için 
 
 Bu site **başlangıç iskeletidir**. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir.
 
-## Temel kaynaklar
-
-- [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/)
-- [R for Data Science, 2e](https://r4ds.hadley.nz/)
-- [dplyr belgeleri](https://dplyr.tidyverse.org/)
-- [Quarto belgeleri](https://quarto.org/docs/)
+`Ayrıntılı kitap, video ve paket belgeleri için [Öğrenme Kaynakları](resources/ogrenme-kaynaklari.qmd) sayfasına bakın.`

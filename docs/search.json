@@ -1,45 +1,122 @@
 [
   {
+    "objectID": "slides/00-acilis.html#bu-eğitimden-ne-beklemeliyiz",
+    "href": "slides/00-acilis.html#bu-eğitimden-ne-beklemeliyiz",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Bu eğitimden ne beklemeliyiz?",
+    "text": "Bu eğitimden ne beklemeliyiz?\n\nRStudio’da kendi kodumuzu yazıp çalıştıracağız.\nVeriyi okuyacağız → inceleyeceğiz → dönüştüreceğiz → kontrol edeceğiz → kaydedeceğiz.\nTemel programlama mantığını anlayıp dplyr ile gerçek veri üzerinde çalışacağız.\nSonunda küçük bir veri işleme görevini tamamlayacağız.\n\n\nKatılımcılara hangi araçlarla veri işlediklerini ve daha önce programlama yapıp yapmadıklarını sorun. Ayrıntılı paket tarihi anlatmayın."
+  },
+  {
+    "objectID": "slides/00-acilis.html#önce-problemi-düşünelim",
+    "href": "slides/00-acilis.html#önce-problemi-düşünelim",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Önce problemi düşünelim",
+    "text": "Önce problemi düşünelim\nBir tabloda 2019 yılına ait işsizlik oranı %10’un üzerinde olan ülkeleri bulmamız gerekiyor.\nSorular:\n\nVeri nerede?\nHangi sütunlar gerekli?\nSonucun doğru olduğunu nasıl kontrol edeceğiz?\n\n\nBurada kod yazmayın; veri iş akışını sezdirin. İlgili WDI örneğini ileride dplyr dersinde işleyeceğiz."
+  },
+  {
+    "objectID": "slides/00-acilis.html#r-rstudio-paket-hangisi-ne-yapar",
+    "href": "slides/00-acilis.html#r-rstudio-paket-hangisi-ne-yapar",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "R, RStudio, paket: Hangisi ne yapar?",
+    "text": "R, RStudio, paket: Hangisi ne yapar?\n\n\n\nAraç\nGörevi\n\n\n\n\nR\nHesaplama ve programlama dili\n\n\nRStudio\nKod yazma ve çalışma ortamı\n\n\nPaketler\nBelirli işleri kolaylaştıran ek işlevler\n\n\nQuarto\nAnalizleri rapor, web sayfası ve sunuma dönüştürme"
+  },
+  {
+    "objectID": "slides/00-acilis.html#veriyi-işlemenin-akışı",
+    "href": "slides/00-acilis.html#veriyi-işlemenin-akışı",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Veriyi işlemenin akışı",
+    "text": "Veriyi işlemenin akışı\nDosya → R nesnesi → kontrol → dönüşüm → doğrulama → çıktı\n\nGirdiler değişmeden kalır.\nYaptığımız işlemler açıklamalı kodda görünür.\nAynı kod yeniden çalıştırılabilir."
+  },
+  {
+    "objectID": "slides/00-acilis.html#bu-beş-günlük-programda",
+    "href": "slides/00-acilis.html#bu-beş-günlük-programda",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Bu beş günlük programda",
+    "text": "Bu beş günlük programda\n\n\n\nAşama\nOdağımız\n\n\n\n\nTemeller\nRStudio, nesneler, vektörler, tablolar\n\n\nProgramlama\nKoşullar, döngüler, fonksiyonlar\n\n\nDosyalar\nCSV, Excel, RDS, SAS, SPSS\n\n\nVeri işlemleri\ndplyr, birleştirme, özetleme, tidyr\n\n\nUygulama\nWDI mini projesi"
+  },
+  {
+    "objectID": "slides/00-acilis.html#nasıl-çalışacağız",
+    "href": "slides/00-acilis.html#nasıl-çalışacağız",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Nasıl çalışacağız?",
+    "text": "Nasıl çalışacağız?\n\nÖnce soru, sonra kısa açıklama ve canlı kod.\nÇalıştırılan kodun sonucunu kontrol edeceğiz.\nYanlış sonuç veya hata mesajı: öğrenme fırsatı.\nBazı örnekler sınıfta, diğerleri ders sayfasında."
+  },
+  {
+    "objectID": "slides/00-acilis.html#modern-r-alışkanlıkları",
+    "href": "slides/00-acilis.html#modern-r-alışkanlıkları",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Modern R alışkanlıkları",
+    "text": "Modern R alışkanlıkları\n\nHer çalışma için bir RStudio Project.\nGöreli dosya yolları; bilgisayara özel sabit yollar değil.\nKüçük, adlandırılmış ve açıklanmış kod parçaları.\n|&gt; ile okunur işlem sırası; uygun yerlerde vektörel işlemler.\nGizli veri ve parolalar asla herkese açık depoda bulunmaz."
+  },
+  {
+    "objectID": "slides/00-acilis.html#ilk-canlı-deneme",
+    "href": "slides/00-acilis.html#ilk-canlı-deneme",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "İlk canlı deneme",
+    "text": "İlk canlı deneme\nsayilar &lt;- c(12, 18, 24, NA)\nmean(sayilar, na.rm = TRUE)\nlength(sayilar)\nis.na(sayilar)\nSoru: na.rm = TRUE olmazsa ne değişir?\n\nKodu sunumda uzun uzun açıklamak yerine RStudio’da çalıştırın. Katılımcılardan sonucu tahmin etmelerini isteyin."
+  },
+  {
+    "objectID": "slides/00-acilis.html#yapay-zekâ-kullanımı",
+    "href": "slides/00-acilis.html#yapay-zekâ-kullanımı",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Yapay zekâ kullanımı",
+    "text": "Yapay zekâ kullanımı\nSerbest, ama sorgusuz değil.\n\nKodu anlayabilmeli ve açıklayabilmeliyiz.\nÇıktıyı bağımsız kontrol etmeliyiz.\nKurumsal, kişisel veya gizli verileri dış araçlara aktarmamalıyız."
+  },
+  {
+    "objectID": "slides/00-acilis.html#kaynaklar",
+    "href": "slides/00-acilis.html#kaynaklar",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Kaynaklar",
+    "text": "Kaynaklar\n\nR Programlama Kitabı\nR İstatistik Akademi — YouTube\nR for Data Science (2e)\nQuarto Rehberi"
+  },
+  {
+    "objectID": "slides/00-acilis.html#başlayalım",
+    "href": "slides/00-acilis.html#başlayalım",
+    "title": "R ile Veri Analizine İlk Adım",
+    "section": "Başlayalım",
+    "text": "Başlayalım\nRStudio’da ilk scriptimizi oluşturuyoruz.\nscripts/01-r-ortami-ve-ilk-komutlar.R\n\nSunumu burada bitirin; doğrudan uygulamaya geçin. Bu slaytlar tam ders notu olarak değil, yönlendirme için tasarlandı."
+  },
+  {
     "objectID": "resources/ogrenme-kaynaklari.html",
     "href": "resources/ogrenme-kaynaklari.html",
     "title": "Öğrenme Kaynakları",
     "section": "",
-    "text": "Bu sayfa, uygulama odaklı eğitim materyallerini destekleyen kaynakları bir araya getirir. Buradaki kaynakların tamamını 15 ders saatinde işlemeniz beklenmez. Eğitim sırasında ilgili başlıklara yönlendirmeler yapılır; eğitimden sonra kendi hızınızda çalışabilirsiniz."
+    "text": "Bu sayfa, eğitimde kullanılan uygulamaları destekler. Eğitim süresince bütün kaynakların okunması gerekmez; ihtiyaç duyduğunuz konuyu daha ayrıntılı öğrenmek için kullanabilirsiniz."
   },
   {
-    "objectID": "resources/ogrenme-kaynaklari.html#türkçe-kitap-ve-ders-notları",
-    "href": "resources/ogrenme-kaynaklari.html#türkçe-kitap-ve-ders-notları",
+    "objectID": "resources/ogrenme-kaynaklari.html#türkçe-başvuru-kaynağı",
+    "href": "resources/ogrenme-kaynaklari.html#türkçe-başvuru-kaynağı",
     "title": "Öğrenme Kaynakları",
-    "section": "Türkçe kitap ve ders notları",
-    "text": "Türkçe kitap ve ders notları\n\nR Programlama — Muhammed Fatih Tüzen: R temelleri, veri aktarımı, dplyr, tidyr ve veri analizine ilişkin ayrıntılı açıklamalar. Eğitim sitesindeki uygulamaların kavramsal tamamlayıcısıdır."
+    "section": "Türkçe başvuru kaynağı",
+    "text": "Türkçe başvuru kaynağı\n\nR Programlama Kitabı — Muhammed Fatih Tüzen: R temelleri, dosya aktarma, dplyr, tidyr ve veri analizi için ayrıntılı anlatımlar."
   },
   {
     "objectID": "resources/ogrenme-kaynaklari.html#video-dersleri",
     "href": "resources/ogrenme-kaynaklari.html#video-dersleri",
     "title": "Öğrenme Kaynakları",
     "section": "Video dersleri",
-    "text": "Video dersleri\n\nR İstatistik Akademi — YouTube kanalı: R programlamaya giriş konusunda video anlatımları için başvurulabilecek kanal. Özellikle RStudio ile tanışma, temel R kullanımı ve ders tekrarları için değerlendirilebilir.\n\n\nNot: Video içerikleri zamanla değişebilir. Burada kanal bağlantısı verilmiştir; belirli videoların başlıkları ve süreleri doğrulanmadan ders eşleştirmesi yapılmamıştır."
+    "text": "Video dersleri\n\nR İstatistik Akademi — YouTube: R programlamaya giriş videoları ve video ile tekrar için kanal bağlantısı. Tekil video ve süreler doğrulanmadan burada listelenmez."
   },
   {
-    "objectID": "resources/ogrenme-kaynaklari.html#modern-r-ve-veri-işleme",
-    "href": "resources/ogrenme-kaynaklari.html#modern-r-ve-veri-işleme",
+    "objectID": "resources/ogrenme-kaynaklari.html#veri-işleme-ve-paket-belgeleri",
+    "href": "resources/ogrenme-kaynaklari.html#veri-işleme-ve-paket-belgeleri",
     "title": "Öğrenme Kaynakları",
-    "section": "Modern R ve veri işleme",
-    "text": "Modern R ve veri işleme\n\nR for Data Science, 2. baskı: Veri içe aktarma, dönüştürme ve tekrarlanabilir analiz iş akışı.\ndplyr belgeleri: Filtreleme, seçme, değişken üretme, gruplama ve tablo birleştirme.\ntidyr belgeleri: Uzun/geniş veri biçimleri ve düzenli veri ilkeleri.\nreadr, readxl ve haven: CSV, Excel, SAS ve SPSS aktarımı.\nDBI: R ile veri tabanı bağlantılarının genel arayüzü."
+    "section": "Veri işleme ve paket belgeleri",
+    "text": "Veri işleme ve paket belgeleri\n\nR for Data Science (2e): Modern R ile veri iş akışı.\ndplyr ve tidyr: Veri dönüştürme ve düzenleme.\nreadr, readxl, haven: Dosya içe aktarma.\nDBI: Veri tabanı arayüzü."
   },
   {
     "objectID": "resources/ogrenme-kaynaklari.html#çalışma-ortamı-ve-yayınlama",
     "href": "resources/ogrenme-kaynaklari.html#çalışma-ortamı-ve-yayınlama",
     "title": "Öğrenme Kaynakları",
     "section": "Çalışma ortamı ve yayınlama",
-    "text": "Çalışma ortamı ve yayınlama\n\nR Project: R yazılımı ve resmî belgeler.\nRStudio IDE: Geliştirme ortamı.\nQuarto: R ile rapor, web sitesi ve sunum hazırlama."
+    "text": "Çalışma ortamı ve yayınlama\n\nR: R yazılımı ve belgeleri.\nRStudio: Geliştirme ortamı.\nQuarto Rehberi: Quarto belgeleri (web sayfaları ve sunumlar dahil)."
   },
   {
-    "objectID": "resources/ogrenme-kaynaklari.html#kaynakları-nasıl-kullanmalı",
-    "href": "resources/ogrenme-kaynaklari.html#kaynakları-nasıl-kullanmalı",
+    "objectID": "resources/ogrenme-kaynaklari.html#nasıl-kullanmalı",
+    "href": "resources/ogrenme-kaynaklari.html#nasıl-kullanmalı",
     "title": "Öğrenme Kaynakları",
-    "section": "Kaynakları nasıl kullanmalı?",
-    "text": "Kaynakları nasıl kullanmalı?\nBir konuda zorlandığınızda önce ilgili eğitim scriptini yeniden çalıştırın, sonra açıklamalar için R Programlama Kitabı bölümüne bakın. Farklı çözüm yolları veya fonksiyon ayrıntıları için resmî paket belgelerini kullanın. Video derslerini konuyu yeniden görmek için değerlendirebilirsiniz."
+    "section": "Nasıl kullanmalı?",
+    "text": "Nasıl kullanmalı?\nÖnce ilgili eğitim scriptini çalıştırın. Kavramsal ayrıntı gerektiğinde kitaba, fonksiyonun güncel argümanları için paket belgelerine, tekrar için video derslerine bakın."
   },
   {
     "objectID": "index.html",
@@ -67,14 +144,7 @@
     "href": "index.html#materyallerin-durumu",
     "title": "R Programlama ve Veri Manipülasyonuna Giriş",
     "section": "Materyallerin durumu",
-    "text": "Materyallerin durumu\nBu site başlangıç iskeletidir. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir."
-  },
-  {
-    "objectID": "index.html#temel-kaynaklar",
-    "href": "index.html#temel-kaynaklar",
-    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
-    "section": "Temel kaynaklar",
-    "text": "Temel kaynaklar\n\nR Programlama Kitabı\nR for Data Science, 2e\ndplyr belgeleri\nQuarto belgeleri"
+    "text": "Materyallerin durumu\nBu site başlangıç iskeletidir. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir.\nAyrıntılı kitap, video ve paket belgeleri için [Öğrenme Kaynakları](resources/ogrenme-kaynaklari.qmd) sayfasına bakın."
   },
   {
     "objectID": "program/index.html",
@@ -131,5 +201,47 @@
     "title": "Eğitim Programı",
     "section": "Eğitim yaklaşımı",
     "text": "Eğitim yaklaşımı\n\nA: Zorunlu çekirdek içerik.\nB: Zaman kalırsa pekiştirme ve ek alıştırma.\nC: Web sitesinde bağımsız çalışma kaynakları."
+  },
+  {
+    "objectID": "lessons/01-r-ile-ilk-adimlar.html",
+    "href": "lessons/01-r-ile-ilk-adimlar.html",
+    "title": "R ile İlk Adımlar",
+    "section": "",
+    "text": "Bu bölüm sonunda RStudio projesini açıp açıklamalı bir .R scripti çalıştırabilir; nesne, vektör, NA ve data.frame kavramlarını basit örneklerle kullanabilirsiniz.\n\n\n\n\n\n\nÖnce deneyin\n\n\n\nÖnce aşağıdaki işlemin sonucunu tahmin edin; ardından RStudio Console’da çalıştırın.\n\n\nsatis &lt;- c(10, 15, 20, NA)\nsum(satis)\nsum(satis, na.rm = TRUE)\nNeyi fark ettiniz? Bir eksik değer, varsayılan toplamı da eksik hale getirebilir. na.rm = TRUE eksikleri dışarıda bırakarak hesaplama yapar. Bu işlem kayıp verinin nedenini çözmez; sadece hesaplamanın nasıl yapılacağını belirler."
+  },
+  {
+    "objectID": "lessons/01-r-ile-ilk-adimlar.html#hedef",
+    "href": "lessons/01-r-ile-ilk-adimlar.html#hedef",
+    "title": "R ile İlk Adımlar",
+    "section": "",
+    "text": "Bu bölüm sonunda RStudio projesini açıp açıklamalı bir .R scripti çalıştırabilir; nesne, vektör, NA ve data.frame kavramlarını basit örneklerle kullanabilirsiniz.\n\n\n\n\n\n\nÖnce deneyin\n\n\n\nÖnce aşağıdaki işlemin sonucunu tahmin edin; ardından RStudio Console’da çalıştırın.\n\n\nsatis &lt;- c(10, 15, 20, NA)\nsum(satis)\nsum(satis, na.rm = TRUE)\nNeyi fark ettiniz? Bir eksik değer, varsayılan toplamı da eksik hale getirebilir. na.rm = TRUE eksikleri dışarıda bırakarak hesaplama yapar. Bu işlem kayıp verinin nedenini çözmez; sadece hesaplamanın nasıl yapılacağını belirler."
+  },
+  {
+    "objectID": "lessons/01-r-ile-ilk-adimlar.html#rstudioda-temel-iş-akışı",
+    "href": "lessons/01-r-ile-ilk-adimlar.html#rstudioda-temel-iş-akışı",
+    "title": "R ile İlk Adımlar",
+    "section": "RStudio’da temel iş akışı",
+    "text": "RStudio’da temel iş akışı\n\nr-training.Rproj dosyasını açın.\nFile → New File → R Script ile yeni bir script oluşturun.\nKomutları scriptte yazıp Ctrl+Enter ile çalıştırın.\nGirdi dosyalarını data/, kendi sonuçlarınızı outputs/ altında saklayın.\nScriptin baştan sona yeniden çalıştığını kontrol edin."
+  },
+  {
+    "objectID": "lessons/01-r-ile-ilk-adimlar.html#birlikte-kodlayalım-ilk-nesneler",
+    "href": "lessons/01-r-ile-ilk-adimlar.html#birlikte-kodlayalım-ilk-nesneler",
+    "title": "R ile İlk Adımlar",
+    "section": "Birlikte kodlayalım: İlk nesneler",
+    "text": "Birlikte kodlayalım: İlk nesneler\nfiyat &lt;- c(120, 150, 180)\nadet  &lt;- c(2, 1, 3)\ntutar &lt;- fiyat * adet\nsum(tutar)\nKontrol sorusu: Fiyat ve adetlerin uzunlukları farklı olsaydı R nasıl davranırdı? Her zaman güvenilir bir sonuç beklememeliyiz."
+  },
+  {
+    "objectID": "lessons/01-r-ile-ilk-adimlar.html#veri-yapısını-inceleyelim",
+    "href": "lessons/01-r-ile-ilk-adimlar.html#veri-yapısını-inceleyelim",
+    "title": "R ile İlk Adımlar",
+    "section": "Veri yapısını inceleyelim",
+    "text": "Veri yapısını inceleyelim\npersonel &lt;- data.frame(\n  ad = c(\"Ali\", \"Ayşe\", \"Deniz\"),\n  yas = c(25, NA, 36)\n)\nstr(personel)\ndim(personel)\nsum(is.na(personel$yas))\n\nİndirilebilir uygulama dosyaları\n\n01 — R ortamı ve ilk komutlar\n02 — Veri tipleri ve yapıları\nKüçük alıştırmalar\n\n\n\n\n\n\n\nSık yapılan hata\n\n\n\nConsole’a yazılan komut, kaydedilmiş bir script yerine geçmez. İşlemin yeniden yapılabilmesi için kodu dosyaya kaydedin. Yerel bilgisayara özgü C:/... yollarını scriptlere sabitlemeyin."
+  },
+  {
+    "objectID": "lessons/01-r-ile-ilk-adimlar.html#isteğe-bağlı-öğrenme",
+    "href": "lessons/01-r-ile-ilk-adimlar.html#isteğe-bağlı-öğrenme",
+    "title": "R ile İlk Adımlar",
+    "section": "İsteğe bağlı öğrenme",
+    "text": "İsteğe bağlı öğrenme\nDaha ayrıntılı kavramsal açıklamalar için R Programlama Kitabı, video tekrar için R İstatistik Akademi ve araçlarla ilgili belgeler için RStudio kullanılabilir."
   }
 ]

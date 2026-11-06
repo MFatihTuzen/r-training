@@ -5,6 +5,8 @@ project:
     - index.qmd
     - program/index.qmd
     - resources/ogrenme-kaynaklari.qmd
+    - lessons/01-r-ile-ilk-adimlar.qmd
+    - slides/00-acilis.qmd
 
 website:
   title: "R Programlama Eğitimi"
@@ -18,7 +20,11 @@ website:
       - text: "Eğitim Programı"
         href: program/index.qmd
       - text: "Öğrenme Kaynakları"
-        href: resources/ogrenme-kaynaklari.qmd  
+        href: resources/ogrenme-kaynaklari.qmd
+      - text: "İlk Ders"
+        href: lessons/01-r-ile-ilk-adimlar.qmd
+      - text: "Açılış Sunumu"
+        href: slides/00-acilis.qmd
     right:
       - text: "R Programlama Kitabı"
         href: https://mfatihtuzen.github.io/r-programlama/

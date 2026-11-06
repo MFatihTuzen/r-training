@@ -1,0 +1,69 @@
+---
+title: "R ile İlk Adımlar"
+description: "RStudio'da ilk script, nesneler, vektörler ve veri yapılarıyla uygulamalı başlangıç."
+execute:
+  eval: false
+---
+
+## Hedef
+
+Bu bölüm sonunda RStudio projesini açıp açıklamalı bir `.R` scripti çalıştırabilir; nesne, vektör, `NA` ve `data.frame` kavramlarını basit örneklerle kullanabilirsiniz.
+
+::: {.callout-tip}
+## Önce deneyin
+Önce aşağıdaki işlemin sonucunu tahmin edin; ardından RStudio Console'da çalıştırın.
+:::
+
+```r
+satis <- c(10, 15, 20, NA)
+sum(satis)
+sum(satis, na.rm = TRUE)
+```
+
+**Neyi fark ettiniz?** Bir eksik değer, varsayılan toplamı da eksik hale getirebilir. `na.rm = TRUE` eksikleri dışarıda bırakarak hesaplama yapar. Bu işlem kayıp verinin nedenini çözmez; sadece hesaplamanın nasıl yapılacağını belirler.
+
+## RStudio'da temel iş akışı
+
+1. `r-training.Rproj` dosyasını açın.
+2. **File → New File → R Script** ile yeni bir script oluşturun.
+3. Komutları scriptte yazıp `Ctrl+Enter` ile çalıştırın.
+4. Girdi dosyalarını `data/`, kendi sonuçlarınızı `outputs/` altında saklayın.
+5. Scriptin baştan sona yeniden çalıştığını kontrol edin.
+
+## Birlikte kodlayalım: İlk nesneler
+
+```r
+fiyat <- c(120, 150, 180)
+adet  <- c(2, 1, 3)
+tutar <- fiyat * adet
+sum(tutar)
+```
+
+**Kontrol sorusu:** Fiyat ve adetlerin uzunlukları farklı olsaydı R nasıl davranırdı? Her zaman güvenilir bir sonuç beklememeliyiz.
+
+## Veri yapısını inceleyelim
+
+```r
+personel <- data.frame(
+  ad = c("Ali", "Ayşe", "Deniz"),
+  yas = c(25, NA, 36)
+)
+str(personel)
+dim(personel)
+sum(is.na(personel$yas))
+```
+
+### İndirilebilir uygulama dosyaları
+
+- [01 — R ortamı ve ilk komutlar](https://github.com/MFatihTuzen/r-training/blob/main/scripts/01-r-ortami-ve-ilk-komutlar.R)
+- [02 — Veri tipleri ve yapıları](https://github.com/MFatihTuzen/r-training/blob/main/scripts/02-veri-tipleri-ve-yapilari.R)
+- [Küçük alıştırmalar](https://github.com/MFatihTuzen/r-training/blob/main/exercises/01-ilk-adimlar.md)
+
+::: {.callout-important}
+## Sık yapılan hata
+Console'a yazılan komut, kaydedilmiş bir script yerine geçmez. İşlemin yeniden yapılabilmesi için kodu dosyaya kaydedin. Yerel bilgisayara özgü `C:/...` yollarını scriptlere sabitlemeyin.
+:::
+
+## İsteğe bağlı öğrenme
+
+Daha ayrıntılı kavramsal açıklamalar için [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/), video tekrar için [R İstatistik Akademi](https://www.youtube.com/@RistatistikAkademi) ve araçlarla ilgili belgeler için [RStudio](https://posit.co/products/open-source/rstudio/) kullanılabilir.

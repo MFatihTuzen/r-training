@@ -1,34 +1,31 @@
 ---
 title: "Öğrenme Kaynakları"
-description: "R programlamayı öğrenirken başvurulabilecek kitap, video ve resmî dokümantasyon bağlantıları."
+description: "Uygulamalı R eğitimi için seçilmiş kitap, video ve resmî dokümantasyon bağlantıları."
 ---
 
-Bu sayfa, **uygulama odaklı eğitim materyallerini destekleyen** kaynakları bir araya getirir. Buradaki kaynakların tamamını 15 ders saatinde işlemeniz beklenmez. Eğitim sırasında ilgili başlıklara yönlendirmeler yapılır; eğitimden sonra kendi hızınızda çalışabilirsiniz.
+Bu sayfa, eğitimde kullanılan uygulamaları destekler. Eğitim süresince bütün kaynakların okunması gerekmez; ihtiyaç duyduğunuz konuyu daha ayrıntılı öğrenmek için kullanabilirsiniz.
 
-## Türkçe kitap ve ders notları
+## Türkçe başvuru kaynağı
 
-- [R Programlama — Muhammed Fatih Tüzen](https://mfatihtuzen.github.io/r-programlama/): R temelleri, veri aktarımı, `dplyr`, `tidyr` ve veri analizine ilişkin ayrıntılı açıklamalar. Eğitim sitesindeki uygulamaların kavramsal tamamlayıcısıdır.
+- [R Programlama Kitabı — Muhammed Fatih Tüzen](https://mfatihtuzen.github.io/r-programlama/): R temelleri, dosya aktarma, `dplyr`, `tidyr` ve veri analizi için ayrıntılı anlatımlar.
 
 ## Video dersleri
 
-- [R İstatistik Akademi — YouTube kanalı](https://www.youtube.com/@RistatistikAkademi): R programlamaya giriş konusunda video anlatımları için başvurulabilecek kanal. Özellikle RStudio ile tanışma, temel R kullanımı ve ders tekrarları için değerlendirilebilir.
+- [R İstatistik Akademi — YouTube](https://www.youtube.com/@RistatistikAkademi): R programlamaya giriş videoları ve video ile tekrar için kanal bağlantısı. Tekil video ve süreler doğrulanmadan burada listelenmez.
 
-> **Not:** Video içerikleri zamanla değişebilir. Burada kanal bağlantısı verilmiştir; belirli videoların başlıkları ve süreleri doğrulanmadan ders eşleştirmesi yapılmamıştır.
+## Veri işleme ve paket belgeleri
 
-## Modern R ve veri işleme
-
-- [R for Data Science, 2. baskı](https://r4ds.hadley.nz/): Veri içe aktarma, dönüştürme ve tekrarlanabilir analiz iş akışı.
-- [dplyr belgeleri](https://dplyr.tidyverse.org/): Filtreleme, seçme, değişken üretme, gruplama ve tablo birleştirme.
-- [tidyr belgeleri](https://tidyr.tidyverse.org/): Uzun/geniş veri biçimleri ve düzenli veri ilkeleri.
-- [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/) ve [haven](https://haven.tidyverse.org/): CSV, Excel, SAS ve SPSS aktarımı.
-- [DBI](https://dbi.r-dbi.org/): R ile veri tabanı bağlantılarının genel arayüzü.
+- [R for Data Science (2e)](https://r4ds.hadley.nz/): Modern R ile veri iş akışı.
+- [dplyr](https://dplyr.tidyverse.org/) ve [tidyr](https://tidyr.tidyverse.org/): Veri dönüştürme ve düzenleme.
+- [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/), [haven](https://haven.tidyverse.org/): Dosya içe aktarma.
+- [DBI](https://dbi.r-dbi.org/): Veri tabanı arayüzü.
 
 ## Çalışma ortamı ve yayınlama
 
-- [R Project](https://www.r-project.org/): R yazılımı ve resmî belgeler.
-- [RStudio IDE](https://posit.co/products/open-source/rstudio/): Geliştirme ortamı.
-- [Quarto](https://quarto.org/docs/): R ile rapor, web sitesi ve sunum hazırlama.
+- [R](https://www.r-project.org/): R yazılımı ve belgeleri.
+- [RStudio](https://posit.co/products/open-source/rstudio/): Geliştirme ortamı.
+- [Quarto Rehberi](https://quarto.org/docs/guide/): Quarto belgeleri (web sayfaları ve sunumlar dahil).
 
-## Kaynakları nasıl kullanmalı?
+## Nasıl kullanmalı?
 
-Bir konuda zorlandığınızda önce ilgili **eğitim scriptini** yeniden çalıştırın, sonra açıklamalar için **R Programlama Kitabı** bölümüne bakın. Farklı çözüm yolları veya fonksiyon ayrıntıları için resmî paket belgelerini kullanın. Video derslerini konuyu yeniden görmek için değerlendirebilirsiniz.
+Önce ilgili eğitim scriptini çalıştırın. Kavramsal ayrıntı gerektiğinde kitaba, fonksiyonun güncel argümanları için paket belgelerine, tekrar için video derslerine bakın.

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="R programlamayı öğrenirken başvurulabilecek kitap, video ve resmî dokümantasyon bağlantıları.">
+<meta name="description" content="Uygulamalı R eğitimi için seçilmiş kitap, video ve resmî dokümantasyon bağlantıları.">
 
 <title>Öğrenme Kaynakları – R Programlama Eğitimi</title>
 <style>
@@ -101,6 +101,14 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="../resources/ogrenme-kaynaklari.html" aria-current="page"> 
 <span class="menu-text">Öğrenme Kaynakları</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lessons/01-r-ile-ilk-adimlar.html"> 
+<span class="menu-text">İlk Ders</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../slides/00-acilis.html"> 
+<span class="menu-text">Açılış Sunumu</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -128,11 +136,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Bu sayfada</h2>
    
   <ul class="collapse">
-  <li><a href="#türkçe-kitap-ve-ders-notları" id="toc-türkçe-kitap-ve-ders-notları" class="nav-link active" data-scroll-target="#türkçe-kitap-ve-ders-notları">Türkçe kitap ve ders notları</a></li>
+  <li><a href="#türkçe-başvuru-kaynağı" id="toc-türkçe-başvuru-kaynağı" class="nav-link active" data-scroll-target="#türkçe-başvuru-kaynağı">Türkçe başvuru kaynağı</a></li>
   <li><a href="#video-dersleri" id="toc-video-dersleri" class="nav-link" data-scroll-target="#video-dersleri">Video dersleri</a></li>
-  <li><a href="#modern-r-ve-veri-işleme" id="toc-modern-r-ve-veri-işleme" class="nav-link" data-scroll-target="#modern-r-ve-veri-işleme">Modern R ve veri işleme</a></li>
+  <li><a href="#veri-işleme-ve-paket-belgeleri" id="toc-veri-işleme-ve-paket-belgeleri" class="nav-link" data-scroll-target="#veri-işleme-ve-paket-belgeleri">Veri işleme ve paket belgeleri</a></li>
   <li><a href="#çalışma-ortamı-ve-yayınlama" id="toc-çalışma-ortamı-ve-yayınlama" class="nav-link" data-scroll-target="#çalışma-ortamı-ve-yayınlama">Çalışma ortamı ve yayınlama</a></li>
-  <li><a href="#kaynakları-nasıl-kullanmalı" id="toc-kaynakları-nasıl-kullanmalı" class="nav-link" data-scroll-target="#kaynakları-nasıl-kullanmalı">Kaynakları nasıl kullanmalı?</a></li>
+  <li><a href="#nasıl-kullanmalı" id="toc-nasıl-kullanmalı" class="nav-link" data-scroll-target="#nasıl-kullanmalı">Nasıl kullanmalı?</a></li>
   </ul>
 </nav>
     </div>
@@ -146,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    R programlamayı öğrenirken başvurulabilecek kitap, video ve resmî dokümantasyon bağlantıları.
+    Uygulamalı R eğitimi için seçilmiş kitap, video ve resmî dokümantasyon bağlantıları.
   </div>
 </div>
 
@@ -163,43 +171,39 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Bu sayfa, <strong>uygulama odaklı eğitim materyallerini destekleyen</strong> kaynakları bir araya getirir. Buradaki kaynakların tamamını 15 ders saatinde işlemeniz beklenmez. Eğitim sırasında ilgili başlıklara yönlendirmeler yapılır; eğitimden sonra kendi hızınızda çalışabilirsiniz.</p>
-<section id="türkçe-kitap-ve-ders-notları" class="level2">
-<h2 class="anchored" data-anchor-id="türkçe-kitap-ve-ders-notları">Türkçe kitap ve ders notları</h2>
+<p>Bu sayfa, eğitimde kullanılan uygulamaları destekler. Eğitim süresince bütün kaynakların okunması gerekmez; ihtiyaç duyduğunuz konuyu daha ayrıntılı öğrenmek için kullanabilirsiniz.</p>
+<section id="türkçe-başvuru-kaynağı" class="level2">
+<h2 class="anchored" data-anchor-id="türkçe-başvuru-kaynağı">Türkçe başvuru kaynağı</h2>
 <ul>
-<li><a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama — Muhammed Fatih Tüzen</a>: R temelleri, veri aktarımı, <code>dplyr</code>, <code>tidyr</code> ve veri analizine ilişkin ayrıntılı açıklamalar. Eğitim sitesindeki uygulamaların kavramsal tamamlayıcısıdır.</li>
+<li><a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama Kitabı — Muhammed Fatih Tüzen</a>: R temelleri, dosya aktarma, <code>dplyr</code>, <code>tidyr</code> ve veri analizi için ayrıntılı anlatımlar.</li>
 </ul>
 </section>
 <section id="video-dersleri" class="level2">
 <h2 class="anchored" data-anchor-id="video-dersleri">Video dersleri</h2>
 <ul>
-<li><a href="https://www.youtube.com/@RistatistikAkademi">R İstatistik Akademi — YouTube kanalı</a>: R programlamaya giriş konusunda video anlatımları için başvurulabilecek kanal. Özellikle RStudio ile tanışma, temel R kullanımı ve ders tekrarları için değerlendirilebilir.</li>
+<li><a href="https://www.youtube.com/@RistatistikAkademi">R İstatistik Akademi — YouTube</a>: R programlamaya giriş videoları ve video ile tekrar için kanal bağlantısı. Tekil video ve süreler doğrulanmadan burada listelenmez.</li>
 </ul>
-<blockquote class="blockquote">
-<p><strong>Not:</strong> Video içerikleri zamanla değişebilir. Burada kanal bağlantısı verilmiştir; belirli videoların başlıkları ve süreleri doğrulanmadan ders eşleştirmesi yapılmamıştır.</p>
-</blockquote>
 </section>
-<section id="modern-r-ve-veri-işleme" class="level2">
-<h2 class="anchored" data-anchor-id="modern-r-ve-veri-işleme">Modern R ve veri işleme</h2>
+<section id="veri-işleme-ve-paket-belgeleri" class="level2">
+<h2 class="anchored" data-anchor-id="veri-işleme-ve-paket-belgeleri">Veri işleme ve paket belgeleri</h2>
 <ul>
-<li><a href="https://r4ds.hadley.nz/">R for Data Science, 2. baskı</a>: Veri içe aktarma, dönüştürme ve tekrarlanabilir analiz iş akışı.</li>
-<li><a href="https://dplyr.tidyverse.org/">dplyr belgeleri</a>: Filtreleme, seçme, değişken üretme, gruplama ve tablo birleştirme.</li>
-<li><a href="https://tidyr.tidyverse.org/">tidyr belgeleri</a>: Uzun/geniş veri biçimleri ve düzenli veri ilkeleri.</li>
-<li><a href="https://readr.tidyverse.org/">readr</a>, <a href="https://readxl.tidyverse.org/">readxl</a> ve <a href="https://haven.tidyverse.org/">haven</a>: CSV, Excel, SAS ve SPSS aktarımı.</li>
-<li><a href="https://dbi.r-dbi.org/">DBI</a>: R ile veri tabanı bağlantılarının genel arayüzü.</li>
+<li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>: Modern R ile veri iş akışı.</li>
+<li><a href="https://dplyr.tidyverse.org/">dplyr</a> ve <a href="https://tidyr.tidyverse.org/">tidyr</a>: Veri dönüştürme ve düzenleme.</li>
+<li><a href="https://readr.tidyverse.org/">readr</a>, <a href="https://readxl.tidyverse.org/">readxl</a>, <a href="https://haven.tidyverse.org/">haven</a>: Dosya içe aktarma.</li>
+<li><a href="https://dbi.r-dbi.org/">DBI</a>: Veri tabanı arayüzü.</li>
 </ul>
 </section>
 <section id="çalışma-ortamı-ve-yayınlama" class="level2">
 <h2 class="anchored" data-anchor-id="çalışma-ortamı-ve-yayınlama">Çalışma ortamı ve yayınlama</h2>
 <ul>
-<li><a href="https://www.r-project.org/">R Project</a>: R yazılımı ve resmî belgeler.</li>
-<li><a href="https://posit.co/products/open-source/rstudio/">RStudio IDE</a>: Geliştirme ortamı.</li>
-<li><a href="https://quarto.org/docs/">Quarto</a>: R ile rapor, web sitesi ve sunum hazırlama.</li>
+<li><a href="https://www.r-project.org/">R</a>: R yazılımı ve belgeleri.</li>
+<li><a href="https://posit.co/products/open-source/rstudio/">RStudio</a>: Geliştirme ortamı.</li>
+<li><a href="https://quarto.org/docs/guide/">Quarto Rehberi</a>: Quarto belgeleri (web sayfaları ve sunumlar dahil).</li>
 </ul>
 </section>
-<section id="kaynakları-nasıl-kullanmalı" class="level2">
-<h2 class="anchored" data-anchor-id="kaynakları-nasıl-kullanmalı">Kaynakları nasıl kullanmalı?</h2>
-<p>Bir konuda zorlandığınızda önce ilgili <strong>eğitim scriptini</strong> yeniden çalıştırın, sonra açıklamalar için <strong>R Programlama Kitabı</strong> bölümüne bakın. Farklı çözüm yolları veya fonksiyon ayrıntıları için resmî paket belgelerini kullanın. Video derslerini konuyu yeniden görmek için değerlendirebilirsiniz.</p>
+<section id="nasıl-kullanmalı" class="level2">
+<h2 class="anchored" data-anchor-id="nasıl-kullanmalı">Nasıl kullanmalı?</h2>
+<p>Önce ilgili eğitim scriptini çalıştırın. Kavramsal ayrıntı gerektiğinde kitaba, fonksiyonun güncel argümanları için paket belgelerine, tekrar için video derslerine bakın.</p>
 
 
 </section>
