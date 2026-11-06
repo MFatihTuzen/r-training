@@ -1,0 +1,40 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - program/index.qmd
+
+website:
+  title: "R Programlama Eğitimi"
+  site-url: https://mfatihtuzen.github.io/r-training/
+  description: "R programlama ve veri manipülasyonuna uygulamalı giriş eğitimi"
+  navbar:
+    background: primary
+    left:
+      - text: "Ana Sayfa"
+        href: index.qmd
+      - text: "Eğitim Programı"
+        href: program/index.qmd
+    right:
+      - text: "R Programlama Kitabı"
+        href: https://mfatihtuzen.github.io/r-programlama/
+      - icon: github
+        href: https://github.com/MFatihTuzen/r-training
+        aria-label: GitHub deposu
+  page-footer:
+    left: "© 2026 Muhammed Fatih Tuzen"
+    right: "Quarto ile hazırlanmıştır."
+
+format:
+  html:
+    lang: tr
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    link-external-newwindow: true
+
+execute:
+  freeze: false

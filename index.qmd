@@ -1,0 +1,42 @@
+---
+title: "R Programlama ve Veri Manipülasyonuna Giriş"
+subtitle: "Başlangıç düzeyinde, uygulamalı R eğitimi"
+page-layout: full
+---
+
+::: {.hero-intro}
+**R ile veriyi okumaktan anlamlı bir çıktıya uzanan uygulamalı bir öğrenme yolu.**
+
+Bu açık eğitim sitesi, R'ye yeni başlayanlar ve veriyle çalışanlar için hazırlanmıştır. Konuları küçük örneklerle öğrenip [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) için hazırlanmış Dünya Bankası (WDI) verileriyle pekiştireceğiz.
+:::
+
+## Eğitim hakkında
+
+| Özellik | Açıklama |
+|---|---|
+| Düzey | Başlangıç |
+| Süre | 5 yarım gün, 15 ders oturumu (45'er dakika) |
+| Günlük saat | 09.30–12.30 (aralar ve esnek zaman dahil) |
+| Yaklaşım | Kısa anlatım, RStudio'da birlikte kodlama, egzersiz, mini proje |
+| Araçlar | R, RStudio, Quarto; `dplyr`, `tidyr` ve veri okuma paketleri |
+
+## Beş günlük öğrenme yolu
+
+1. **R'ye giriş:** RStudio, nesneler, veri tipleri, veri yapıları ve koşullar.
+2. **Programlama ve dosyalar:** `if/else`, `for`, `while`, fonksiyonlar; CSV, Excel, RDS, SAS/SPSS ve veri tabanlarına giriş.
+3. **Veri manipülasyonu I:** Seçme, filtreleme, sıralama ve yeni değişken oluşturma.
+4. **Veri manipülasyonu II:** Gruplama, özetleme, birleştirme ve uzun/geniş veri dönüşümü.
+5. **Modern R iş akışı ve mini proje:** Baştan sona bir WDI veri işleme uygulaması.
+
+[**Ayrıntılı eğitim programını incele**](program/index.qmd)
+
+## Materyallerin durumu
+
+Bu site **başlangıç iskeletidir**. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir.
+
+## Temel kaynaklar
+
+- [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/)
+- [R for Data Science, 2e](https://r4ds.hadley.nz/)
+- [dplyr belgeleri](https://dplyr.tidyverse.org/)
+- [Quarto belgeleri](https://quarto.org/docs/)

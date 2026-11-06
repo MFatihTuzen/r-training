@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "program/index.html",
+    "href": "program/index.html",
+    "title": "Eğitim Programı",
+    "section": "",
+    "text": "Bu genel program, farklı kurumlarda ve farklı tarihlerde yeniden kullanılabilecek şekilde tasarlanmıştır. Her günün zorunlu içeriği o gün tamamlanır; ek alıştırmalar süreye göre isteğe bağlıdır."
+  },
+  {
+    "objectID": "program/index.html#günlük-saatler",
+    "href": "program/index.html#günlük-saatler",
+    "title": "Eğitim Programı",
+    "section": "Günlük saatler",
+    "text": "Günlük saatler\n\n\n\nSaat\nEtkinlik\n\n\n\n\n09.30–10.15\n1. ders\n\n\n10.15–10.30\nAra\n\n\n10.30–11.15\n2. ders\n\n\n11.15–11.30\nAra\n\n\n11.30–12.15\n3. ders\n\n\n12.15–12.30\nEsnek uygulama, soru ve kapanış\n\n\n\n\n\n\n\n\n\nNot\n\n\n\nBeş günün toplam zaman aralığı 15 saattir. Bunun 11 saat 15 dakikası çekirdek ders, 1 saat 15 dakikası esnek zaman, 2 saat 30 dakikası aradır. Kurumsal “ders saati” tanımı ayrıca doğrulanmalıdır."
+  },
+  {
+    "objectID": "program/index.html#gün-r-ile-çalışma-ve-temel-veri-yapıları",
+    "href": "program/index.html#gün-r-ile-çalışma-ve-temel-veri-yapıları",
+    "title": "Eğitim Programı",
+    "section": "1. Gün — R ile çalışma ve temel veri yapıları",
+    "text": "1. Gün — R ile çalışma ve temel veri yapıları\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nR ekosistemi, R/RStudio farkı, Project, Console, Script, yardım ve paketler\n\n\n10.30–11.15\nNesneler, atama, operatörler, veri tipleri, vektörler, NA, temel fonksiyonlar\n\n\n11.30–12.15\ndata.frame, tibble, liste ve matris; inceleme, indeksleme, if/else giriş\n\n\n\nGün sonu kazanımı: Temel R scripti yazmak, küçük bir tablo kurmak ve koşullu işlem yapmak."
+  },
+  {
+    "objectID": "program/index.html#gün-kontrol-yapıları-fonksiyonlar-ve-dosyalar",
+    "href": "program/index.html#gün-kontrol-yapıları-fonksiyonlar-ve-dosyalar",
+    "title": "Eğitim Programı",
+    "section": "2. Gün — Kontrol yapıları, fonksiyonlar ve dosyalar",
+    "text": "2. Gün — Kontrol yapıları, fonksiyonlar ve dosyalar\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nif/else pekiştirme, for, while, vektörel yaklaşım, function()\n\n\n10.30–11.15\nGöreli yollar; CSV, Excel, RDS içe aktarma ve veri kontrolleri\n\n\n11.30–12.15\nSAS/SPSS okuma, etiketli veriler, dışa aktarma, veri tabanı yaklaşımı\n\n\n\nGün sonu kazanımı: Basit fonksiyon/döngü oluşturmak ve farklı dosya biçimlerini okuyabilmek."
+  },
+  {
+    "objectID": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-i",
+    "href": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-i",
+    "title": "Eğitim Programı",
+    "section": "3. Gün — dplyr ile veri manipülasyonu I",
+    "text": "3. Gün — dplyr ile veri manipülasyonu I\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nTidy veri, |&gt;, select(), rename(), filter()\n\n\n10.30–11.15\narrange(), mutate(), if_else(), case_when()\n\n\n11.30–12.15\ndistinct(), is.na(), coalesce() ve WDI uygulaması\n\n\n\nGün sonu kazanımı: WDI verisi üzerinde seçim, filtreleme ve değişken üretme."
+  },
+  {
+    "objectID": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-ii",
+    "href": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-ii",
+    "title": "Eğitim Programı",
+    "section": "4. Gün — dplyr ile veri manipülasyonu II",
+    "text": "4. Gün — dplyr ile veri manipülasyonu II\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\ngroup_by(), summarise(), count(), n()\n\n\n10.30–11.15\nJOIN mantığı, anahtarlar, left_join(), inner_join(), anti_join()\n\n\n11.30–12.15\npivot_longer(), pivot_wider() ve WDI uygulaması\n\n\n\nGün sonu kazanımı: Gruplu özet, güvenli birleştirme ve veri biçimi dönüşümü."
+  },
+  {
+    "objectID": "program/index.html#gün-modern-r-iş-akışı-ve-mini-proje",
+    "href": "program/index.html#gün-modern-r-iş-akışı-ve-mini-proje",
+    "title": "Eğitim Programı",
+    "section": "5. Gün — Modern R iş akışı ve mini proje",
+    "text": "5. Gün — Modern R iş akışı ve mini proje\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nTemiz script, proje düzeni, hata ayıklama, doğrulama, Quarto/GitHub/AI tanıtımı\n\n\n10.30–11.15\nMini proje I: WDI dosyalarını oku, filtrele, dönüştür, birleştir\n\n\n11.30–12.15\nMini proje II: Özetle, kontrol et, dosyaya yaz, sonuçları açıkla\n\n\n\nGün sonu kazanımı: Baştan sona tekrarlanabilir küçük bir veri işleme projesi."
+  },
+  {
+    "objectID": "program/index.html#eğitim-yaklaşımı",
+    "href": "program/index.html#eğitim-yaklaşımı",
+    "title": "Eğitim Programı",
+    "section": "Eğitim yaklaşımı",
+    "text": "Eğitim yaklaşımı\n\nA: Zorunlu çekirdek içerik.\nB: Zaman kalırsa pekiştirme ve ek alıştırma.\nC: Web sitesinde bağımsız çalışma kaynakları."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "",
+    "text": "R ile veriyi okumaktan anlamlı bir çıktıya uzanan uygulamalı bir öğrenme yolu.\nBu açık eğitim sitesi, R’ye yeni başlayanlar ve veriyle çalışanlar için hazırlanmıştır. Konuları küçük örneklerle öğrenip R Programlama Kitabı için hazırlanmış Dünya Bankası (WDI) verileriyle pekiştireceğiz."
+  },
+  {
+    "objectID": "index.html#eğitim-hakkında",
+    "href": "index.html#eğitim-hakkında",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "Eğitim hakkında",
+    "text": "Eğitim hakkında\n\n\n\n\n\n\n\nÖzellik\nAçıklama\n\n\n\n\nDüzey\nBaşlangıç\n\n\nSüre\n5 yarım gün, 15 ders oturumu (45’er dakika)\n\n\nGünlük saat\n09.30–12.30 (aralar ve esnek zaman dahil)\n\n\nYaklaşım\nKısa anlatım, RStudio’da birlikte kodlama, egzersiz, mini proje\n\n\nAraçlar\nR, RStudio, Quarto; dplyr, tidyr ve veri okuma paketleri"
+  },
+  {
+    "objectID": "index.html#beş-günlük-öğrenme-yolu",
+    "href": "index.html#beş-günlük-öğrenme-yolu",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "Beş günlük öğrenme yolu",
+    "text": "Beş günlük öğrenme yolu\n\nR’ye giriş: RStudio, nesneler, veri tipleri, veri yapıları ve koşullar.\nProgramlama ve dosyalar: if/else, for, while, fonksiyonlar; CSV, Excel, RDS, SAS/SPSS ve veri tabanlarına giriş.\nVeri manipülasyonu I: Seçme, filtreleme, sıralama ve yeni değişken oluşturma.\nVeri manipülasyonu II: Gruplama, özetleme, birleştirme ve uzun/geniş veri dönüşümü.\nModern R iş akışı ve mini proje: Baştan sona bir WDI veri işleme uygulaması.\n\nAyrıntılı eğitim programını incele"
+  },
+  {
+    "objectID": "index.html#materyallerin-durumu",
+    "href": "index.html#materyallerin-durumu",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "Materyallerin durumu",
+    "text": "Materyallerin durumu\nBu site başlangıç iskeletidir. Ders notları, sunumlar, R scriptleri, alıştırmalar, çözümler ve veri setleri sonraki aşamalarda eklenecektir. Henüz yayımlanmamış materyallere bağlantı verilmemiştir."
+  },
+  {
+    "objectID": "index.html#temel-kaynaklar",
+    "href": "index.html#temel-kaynaklar",
+    "title": "R Programlama ve Veri Manipülasyonuna Giriş",
+    "section": "Temel kaynaklar",
+    "text": "Temel kaynaklar\n\nR Programlama Kitabı\nR for Data Science, 2e\ndplyr belgeleri\nQuarto belgeleri"
+  }
+]

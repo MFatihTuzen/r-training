@@ -1,0 +1,12 @@
+/* Minimal, erişilebilir Quarto eğitim sitesi stilleri */
+body { line-height: 1.65; }
+.hero-intro {
+  padding: 1.1rem 1.35rem;
+  border-left: 4px solid #2563eb;
+  border-radius: 0.3rem;
+  background: rgba(37, 99, 235, 0.055);
+  margin: 1.25rem 0 1.75rem;
+}
+.hero-intro p:last-child { margin-bottom: 0; }
+main table { font-size: 0.94rem; }
+main h2 { margin-top: 2rem; }

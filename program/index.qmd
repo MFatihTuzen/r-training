@@ -1,0 +1,78 @@
+---
+title: "Eğitim Programı"
+subtitle: "Beş günlük uygulamalı eğitim · 09.30–12.30"
+---
+
+Bu genel program, farklı kurumlarda ve farklı tarihlerde yeniden kullanılabilecek şekilde tasarlanmıştır. Her günün zorunlu içeriği o gün tamamlanır; ek alıştırmalar süreye göre isteğe bağlıdır.
+
+## Günlük saatler
+
+| Saat | Etkinlik |
+|---|---|
+| 09.30–10.15 | 1. ders |
+| 10.15–10.30 | Ara |
+| 10.30–11.15 | 2. ders |
+| 11.15–11.30 | Ara |
+| 11.30–12.15 | 3. ders |
+| 12.15–12.30 | Esnek uygulama, soru ve kapanış |
+
+::: {.callout-note}
+Beş günün toplam zaman aralığı 15 saattir. Bunun 11 saat 15 dakikası çekirdek ders, 1 saat 15 dakikası esnek zaman, 2 saat 30 dakikası aradır. Kurumsal “ders saati” tanımı ayrıca doğrulanmalıdır.
+:::
+
+## 1. Gün — R ile çalışma ve temel veri yapıları
+
+| Oturum | Konu |
+|---|---|
+| 09.30–10.15 | R ekosistemi, R/RStudio farkı, Project, Console, Script, yardım ve paketler |
+| 10.30–11.15 | Nesneler, atama, operatörler, veri tipleri, vektörler, `NA`, temel fonksiyonlar |
+| 11.30–12.15 | `data.frame`, tibble, liste ve matris; inceleme, indeksleme, `if/else` giriş |
+
+**Gün sonu kazanımı:** Temel R scripti yazmak, küçük bir tablo kurmak ve koşullu işlem yapmak.
+
+## 2. Gün — Kontrol yapıları, fonksiyonlar ve dosyalar
+
+| Oturum | Konu |
+|---|---|
+| 09.30–10.15 | `if/else` pekiştirme, `for`, `while`, vektörel yaklaşım, `function()` |
+| 10.30–11.15 | Göreli yollar; CSV, Excel, RDS içe aktarma ve veri kontrolleri |
+| 11.30–12.15 | SAS/SPSS okuma, etiketli veriler, dışa aktarma, veri tabanı yaklaşımı |
+
+**Gün sonu kazanımı:** Basit fonksiyon/döngü oluşturmak ve farklı dosya biçimlerini okuyabilmek.
+
+## 3. Gün — `dplyr` ile veri manipülasyonu I
+
+| Oturum | Konu |
+|---|---|
+| 09.30–10.15 | Tidy veri, `|>`, `select()`, `rename()`, `filter()` |
+| 10.30–11.15 | `arrange()`, `mutate()`, `if_else()`, `case_when()` |
+| 11.30–12.15 | `distinct()`, `is.na()`, `coalesce()` ve WDI uygulaması |
+
+**Gün sonu kazanımı:** WDI verisi üzerinde seçim, filtreleme ve değişken üretme.
+
+## 4. Gün — `dplyr` ile veri manipülasyonu II
+
+| Oturum | Konu |
+|---|---|
+| 09.30–10.15 | `group_by()`, `summarise()`, `count()`, `n()` |
+| 10.30–11.15 | JOIN mantığı, anahtarlar, `left_join()`, `inner_join()`, `anti_join()` |
+| 11.30–12.15 | `pivot_longer()`, `pivot_wider()` ve WDI uygulaması |
+
+**Gün sonu kazanımı:** Gruplu özet, güvenli birleştirme ve veri biçimi dönüşümü.
+
+## 5. Gün — Modern R iş akışı ve mini proje
+
+| Oturum | Konu |
+|---|---|
+| 09.30–10.15 | Temiz script, proje düzeni, hata ayıklama, doğrulama, Quarto/GitHub/AI tanıtımı |
+| 10.30–11.15 | Mini proje I: WDI dosyalarını oku, filtrele, dönüştür, birleştir |
+| 11.30–12.15 | Mini proje II: Özetle, kontrol et, dosyaya yaz, sonuçları açıkla |
+
+**Gün sonu kazanımı:** Baştan sona tekrarlanabilir küçük bir veri işleme projesi.
+
+## Eğitim yaklaşımı
+
+- **A:** Zorunlu çekirdek içerik.
+- **B:** Zaman kalırsa pekiştirme ve ek alıştırma.
+- **C:** Web sitesinde bağımsız çalışma kaynakları.
+
