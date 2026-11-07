@@ -1,80 +1,439 @@
 [
   {
-    "objectID": "slides/00-acilis.html#hoş-geldiniz",
-    "href": "slides/00-acilis.html#hoş-geldiniz",
-    "title": "R Programlamaya Giriş",
-    "section": "Hoş geldiniz",
-    "text": "Hoş geldiniz\nR Programlama ve Veri Manipülasyonuna Giriş\nAmacımız komut ezberlemek değil: veriyi R ile okuyabilmek, işleyebilmek ve yaptığımız işlemleri tekrar edebilmek.\n\nKatılımcıların mevcut yazılım ve analiz deneyimlerini kısaca öğrenin."
+    "objectID": "lessons/15-uctan-uca-mini-proje.html",
+    "href": "lessons/15-uctan-uca-mini-proje.html",
+    "title": "15 · Uçtan Uca Veri Hazırlama — Mini Proje",
+    "section": "",
+    "text": "Bu bölümün amacı\n\n\n\nBu sayfa yeni bir komut öğretmekten çok, önceki konuları gerçek bir iş akışında birlikte kullanmayı amaçlar. Kodun çalışması tek başına yeterli değildir: doğru dosya, doğru anahtar, doğru gözlem kümesi ve doğru yorum da gereklidir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "15 · Uçtan uca mini proje"
+    ]
+  },
+  {
+    "objectID": "lessons/15-uctan-uca-mini-proje.html#çalışma-senaryosu",
+    "href": "lessons/15-uctan-uca-mini-proje.html#çalışma-senaryosu",
+    "title": "15 · Uçtan Uca Veri Hazırlama — Mini Proje",
+    "section": "Çalışma senaryosu",
+    "text": "Çalışma senaryosu\nBir analiz birimi, Dünya Bankası WDI eğitim verilerinden hareketle 2019 yılı ülkeler arası sosyoekonomik karşılaştırma tablosu istemektedir. Ülke başına bir satır içeren analize hazır tablo ve bölge bazında özet üretilecektir. Sonuçlar kontrol edilip ayrı dosyalar halinde kaydedilecektir.\nSüre: 2 × 45 dakika (eğitimin 5. günündeki son iki oturum). Çalışma biçimi: bireysel veya ikili. Yapay zekâ: kullanılabilir; fakat her işlem açıklanmalı, çıktı bağımsız kontrol edilmelidir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "15 · Uçtan uca mini proje"
+    ]
+  },
+  {
+    "objectID": "lessons/15-uctan-uca-mini-proje.html#hangi-becerileri-kullanacaksınız",
+    "href": "lessons/15-uctan-uca-mini-proje.html#hangi-becerileri-kullanacaksınız",
+    "title": "15 · Uçtan Uca Veri Hazırlama — Mini Proje",
+    "section": "Hangi becerileri kullanacaksınız?",
+    "text": "Hangi becerileri kullanacaksınız?\n\nProje kökünde göreli yollarla dosya okuma ve sütunları kontrol etme.\nÜlke-yıl gözlem birimini ve JOIN anahtarını tanımlama.\nfilter(), select(), mutate() ve case_when() ile analiz tablosu üretme.\nleft_join() ile ülke metadata bilgisini bağlama, eşleşmeyen ülkeleri denetleme.\ngroup_by() ve summarise() ile doğru etiketlenmiş bölgesel özet hazırlama.\nSonuçların satır sayısını, tekil anahtarları, eksik değerlerini ve çıktının yeniden okunabilirliğini kontrol etme.",
+    "crumbs": [
+      "Ana Sayfa",
+      "15 · Uçtan uca mini proje"
+    ]
+  },
+  {
+    "objectID": "lessons/15-uctan-uca-mini-proje.html#hazırlık-dosyalar-ve-klasörler",
+    "href": "lessons/15-uctan-uca-mini-proje.html#hazırlık-dosyalar-ve-klasörler",
+    "title": "15 · Uçtan Uca Veri Hazırlama — Mini Proje",
+    "section": "Hazırlık — Dosyalar ve klasörler",
+    "text": "Hazırlık — Dosyalar ve klasörler\nAşağıdaki dosyaların repo içinde bulunması gerekir. Dosyalar Veri kaynakları bölümündeki eğitim veri paketinden gelir; proje internet olmadan çalışır.\n\n\n\n\n\n\n\nDosya\nRolü\n\n\n\n\ndata/wdi/wdi_panel_2015_2022.csv\nÜlke-yıl gösterge paneli\n\n\ndata/wdi/country_metadata.csv\nÜlke kodu, bölge, gelir grubu\n\n\ndata/wdi/indicator_dictionary.csv\nGösterge tanımı ve ölçü birimleri\n\n\n\nGerekli paketler: readr, dplyr. Başlamadan önce RStudio’da r-training.Rproj dosyasını açın. getwd() proje kökünü göstermelidir. outputs/ klasörü script tarafından oluşturulur; Git’e gönderilmez.\n\n\n\n\n\n\nİstatistiksel yorum uyarısı\n\n\n\nÜlkelerin işsizlik oranlarının basit ortalaması, o bölgenin resmî/toplam işsizlik oranı değildir. Projede ürettiğiniz değer “verisi mevcut ülkelerin ağırlıksız ortalaması” olarak adlandırılmalıdır. Aynı şekilde ortalamaya alınan ülkelerin sayısı ayrıca gösterilmelidir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "15 · Uçtan uca mini proje"
+    ]
+  },
+  {
+    "objectID": "lessons/15-uctan-uca-mini-proje.html#uygulama-akışı",
+    "href": "lessons/15-uctan-uca-mini-proje.html#uygulama-akışı",
+    "title": "15 · Uçtan Uca Veri Hazırlama — Mini Proje",
+    "section": "Uygulama akışı",
+    "text": "Uygulama akışı\n\nA. Dosya ve kapsam kontrolü (10–15 dk)\nÜç CSV dosyasından panel ve metadata dosyalarını okuyun; sütun adlarını, toplam satır sayılarını, yıl aralığını ve eksik değerleri inceleyin. Panelde (country_code, year), metadata’da country_code anahtarının tekil olup olmadığını kontrol edin.\nlibrary(dplyr)\nlibrary(readr)\n\npanel &lt;- read_csv(\"data/wdi/wdi_panel_2015_2022.csv\", show_col_types = FALSE)\nmeta  &lt;- read_csv(\"data/wdi/country_metadata.csv\", show_col_types = FALSE)\n\nnrow(panel)\nnames(panel)\ncount(panel, year)\n\n\nB. Analiz tablosu oluşturma (20–25 dk)\n2019 yılını filtreleyin; gdp_per_capita_usd, unemployment_total_pct ve internet_users_pct göstergelerini seçin. gdp_per_capita_usd değerine göre sadece eğitim amaçlı bir gelir düzeyi sınıfı üretin: &gt;= 20000 ise \"20 bin USD ve üzeri\", diğer pozitif değerler için \"20 bin USD altı\", eksik veya geçersiz değerlerde NA_character_.\nBu eğitim sınıflaması, Dünya Bankası’nın resmî income_group değişkeni değildir; sonuçta iki değişkeni karıştırmayın.\n\n\nC. JOIN ve özetleme (20–25 dk)\nMetadata’dan region ve income_group alanlarını country_code ile birleştirin. Önce eşleşmeyen kayıtları anti_join() ile inceleyin; JOIN öncesi ve sonrası ülke sayısı aynı kalmalıdır. Ardından bölgelere göre ülke sayısını, işsizlik verisi bulunan ülke sayısını ve ağırlıksız işsizlik ortalamasını hesaplayın. Gözlem yoksa ortalama NA kalsın (NaN üretmeyin).\n\n\nD. Dosyaya yazma ve kontrol (15–20 dk)\nAnaliz tablosunu outputs/mini_proje_ulkeler_2019.csv, bölge özetini outputs/mini_proje_bolgeler_2019.csv olarak kaydedin. Birini tekrar okuyarak satır sayısını ve anahtarların tekilliğini doğrulayın. 3–4 cümlelik yöntem açıklaması yazın.",
+    "crumbs": [
+      "Ana Sayfa",
+      "15 · Uçtan uca mini proje"
+    ]
+  },
+  {
+    "objectID": "lessons/15-uctan-uca-mini-proje.html#teslim-edilecekler",
+    "href": "lessons/15-uctan-uca-mini-proje.html#teslim-edilecekler",
+    "title": "15 · Uçtan Uca Veri Hazırlama — Mini Proje",
+    "section": "Teslim edilecekler",
+    "text": "Teslim edilecekler\n\n16-mini-proje-baslangic.R dosyasının tamamlanmış hâli (kendi dosya adıyla kaydedilebilir).\noutputs/ altında iki CSV çıktı dosyası.\nKısa yöntem notu: hangi yıl, hangi anahtar, hangi eksikler, hangi ortalama?",
+    "crumbs": [
+      "Ana Sayfa",
+      "15 · Uçtan uca mini proje"
+    ]
+  },
+  {
+    "objectID": "lessons/15-uctan-uca-mini-proje.html#seviye-farkları",
+    "href": "lessons/15-uctan-uca-mini-proje.html#seviye-farkları",
+    "title": "15 · Uçtan Uca Veri Hazırlama — Mini Proje",
+    "section": "Seviye farkları",
+    "text": "Seviye farkları\n\n\n\n\n\n\nA — Öncelikli görev\n\n\n\nA–D adımlarını bitirin. Zaman kalmadıysa eksik kalan B/C görevlerini bağımsız çalışmaya bırakın.\n\n\nB — Pekiştirme: case_when() yerine if_else() ile sınıf üretin, seçilen göstergelerdeki NA sayılarını sütun bazında raporlayın.\nC — Ek çalışma: 2018 ve 2019’u karşılaştırın veya tabloyu pivot_longer() ile uzun biçime çevirin; ölçü birimlerini korumadan göstergeleri toplamayın.",
+    "crumbs": [
+      "Ana Sayfa",
+      "15 · Uçtan uca mini proje"
+    ]
+  },
+  {
+    "objectID": "lessons/15-uctan-uca-mini-proje.html#materyaller",
+    "href": "lessons/15-uctan-uca-mini-proje.html#materyaller",
+    "title": "15 · Uçtan Uca Veri Hazırlama — Mini Proje",
+    "section": "Materyaller",
+    "text": "Materyaller\nGörev yönergesini indir · Başlangıç scriptini indir · Kontrol listesini indir\nÖnceki ders: Uzun/geniş veri dönüşümü. Daha ayrıntılı başvuru: R Programlama Kitabı, dplyr belgeleri, R for Data Science — Data transformation.",
+    "crumbs": [
+      "Ana Sayfa",
+      "15 · Uçtan uca mini proje"
+    ]
+  },
+  {
+    "objectID": "lessons/13-dplyr-join.html",
+    "href": "lessons/13-dplyr-join.html",
+    "title": "13 · Tabloları Güvenle Birleştirme (JOIN)",
+    "section": "",
+    "text": "Bu bölüm nasıl kullanılmalı?\n\n\n\nÖnce kısa açıklamayı okuyun; kodun sonucunu tahmin edin; ardından RStudio’da satır satır çalıştırın. A temel sınıf içeriği, B pekiştirme, C ise bağımsız çalışmadır. Tüm kodları aynı gün bitirmek zorunda değilsiniz.\nUygulama dosyası: R scriptini indir · Alıştırmaları indir · Tüm materyaller\nÖn koşul: RStudio Project ile çalışma, veri okuma ve temel nesne/veri yapıları. Veri: data/wdi/ altındaki kitap kaynaklı WDI eğitim alt kümeleri. Dosya yolları proje köküne göredir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "13 · Veri birleştirme (JOIN)"
+    ]
+  },
+  {
+    "objectID": "lessons/13-dplyr-join.html#neden-iki-tabloyu-birleştiriyoruz-a",
+    "href": "lessons/13-dplyr-join.html#neden-iki-tabloyu-birleştiriyoruz-a",
+    "title": "13 · Tabloları Güvenle Birleştirme (JOIN)",
+    "section": "1. Neden iki tabloyu birleştiriyoruz? (A)",
+    "text": "1. Neden iki tabloyu birleştiriyoruz? (A)\nÖrneğin ülke–yıl göstergelerimiz bir tabloda, bölge ve gelir grubu metadata bilgilerimiz başka tabloda olabilir. JOIN, iki tabloyu ortak anahtarlar üzerinden ilişkilendirir. bind_rows() ise alt alta satır ekler; JOIN ile aynı işlem değildir.\nGözlem birimi: 2019 kesitinde her ülke tek satırdır. Panelde ise aynı ülke farklı yıllarda tekrar eder. Anahtarın tekilliği bağlama göre değişir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "13 · Veri birleştirme (JOIN)"
+    ]
+  },
+  {
+    "objectID": "lessons/13-dplyr-join.html#join-şeması-küçük-örnek-a",
+    "href": "lessons/13-dplyr-join.html#join-şeması-küçük-örnek-a",
+    "title": "13 · Tabloları Güvenle Birleştirme (JOIN)",
+    "section": "2. JOIN şeması — küçük örnek (A)",
+    "text": "2. JOIN şeması — küçük örnek (A)\n\n\n\nJOIN türlerinde hangi anahtarların korunduğunu gösteren özgün eğitim şeması.\n\n\nŞema eğitim için özgün olarak hazırlanmıştır. Kavramsal kaynak: R for Data Science 2e, Joins ve dplyr join belgeleri.\nlibrary(dplyr)\na &lt;- tibble(kod = c(\"A\", \"B\", \"C\"), sayi = c(10, 20, 30))\nb &lt;- tibble(kod = c(\"B\", \"C\", \"D\"), grup = c(\"X\", \"Y\", \"Z\"))\n\nleft_join(a, b, by = \"kod\")\ninner_join(a, b, by = \"kod\")\nanti_join(a, b, by = \"kod\")\n\n\n\n\n\n\n\n\nFonksiyon\nHangi satırlar kalır?\nKullanım örneği\n\n\n\n\nleft_join(x,y)\nx tarafının tüm satırları\nÜlke tablosuna bölge eklemek\n\n\ninner_join(x,y)\nİki tarafta da eşleşenler\nOrtak kapsamı bulmak\n\n\nfull_join(x,y)\nHer iki tablodaki satırlar\nKapsamları bir araya getirmek\n\n\nsemi_join(x,y)\nx içinden eşleşenler; y sütunları gelmez\nKapsam filtrelemek\n\n\nanti_join(x,y)\nx içinden eşleşmeyenler\nEşleşme hatası kontrolü\n\n\n\n\n\n\n\n\n\nYanlış JOIN sessiz bir veri hatası yaratabilir\n\n\n\nEşleşmeyen kayıtlar inner_join() ile düşebilir; birden fazla eşleşme ise satır sayısını büyütebilir. Kod hata vermese bile analiz bozulabilir. relationship = \"many-to-one\" gibi beklenti tanımları, yanlış ilişkiyi hata olarak yakalamaya yardımcı olur.",
+    "crumbs": [
+      "Ana Sayfa",
+      "13 · Veri birleştirme (JOIN)"
+    ]
+  },
+  {
+    "objectID": "lessons/13-dplyr-join.html#wdi-ile-güvenli-birleştirme-a",
+    "href": "lessons/13-dplyr-join.html#wdi-ile-güvenli-birleştirme-a",
+    "title": "13 · Tabloları Güvenle Birleştirme (JOIN)",
+    "section": "3. WDI ile güvenli birleştirme (A)",
+    "text": "3. WDI ile güvenli birleştirme (A)\nwdi &lt;- readr::read_csv(\"data/wdi/wdi_2019.csv\", show_col_types = FALSE)\nmeta &lt;- readr::read_csv(\"data/wdi/country_metadata.csv\", show_col_types = FALSE)\n\n# Metadata ülke kodu bakımından tekil mi?\nanyDuplicated(meta$country_code)\n\nsonuc &lt;- wdi |&gt;\n  left_join(meta |&gt; select(country_code, region, income_group),\n            by = \"country_code\", relationship = \"many-to-one\")\n\nstopifnot(nrow(sonuc) == nrow(wdi))\n\n# Eşleşmeyenleri görün:\nanti_join(wdi, meta, by = \"country_code\") |&gt; select(country_code)\nNot: relationship eşleşme çokluğunu denetler, eşleşmeyen satırların varlığını tek başına garanti etmez. anti_join() ayrıca gereklidir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "13 · Veri birleştirme (JOIN)"
+    ]
+  },
+  {
+    "objectID": "lessons/13-dplyr-join.html#ülkeyıl-anahtarı-ve-çoktan-çoğa-hata-ab",
+    "href": "lessons/13-dplyr-join.html#ülkeyıl-anahtarı-ve-çoktan-çoğa-hata-ab",
+    "title": "13 · Tabloları Güvenle Birleştirme (JOIN)",
+    "section": "4. Ülke–yıl anahtarı ve çoktan-çoğa hata (A/B)",
+    "text": "4. Ülke–yıl anahtarı ve çoktan-çoğa hata (A/B)\npanel &lt;- readr::read_csv(\"data/wdi/wdi_panel_2015_2022.csv\", show_col_types = FALSE)\n\n# Doğru eşsiz anahtar: country_code + year\nstopifnot(!anyDuplicated(panel[c(\"country_code\", \"year\")]))\n\n# Sadece country_code ile paneli panelle birleştirmek yanlış!\n# (aynı ülkenin birden fazla yılı birçok kez eşleşir)\nBu durumda many-to-many uyarısını sadece susturmak çözüm değildir. Önce hangi tablo düzeyinde çalışılması gerektiğini düşünün.",
+    "crumbs": [
+      "Ana Sayfa",
+      "13 · Veri birleştirme (JOIN)"
+    ]
+  },
+  {
+    "objectID": "lessons/13-dplyr-join.html#ileri-örnekler-bc",
+    "href": "lessons/13-dplyr-join.html#ileri-örnekler-bc",
+    "title": "13 · Tabloları Güvenle Birleştirme (JOIN)",
+    "section": "5. İleri örnekler (B/C)",
+    "text": "5. İleri örnekler (B/C)\n\njoin_by() iki tablodaki farklı isimli alanları eşleyebilir.\nright_join() ve full_join() kapsama sorularında kullanışlıdır.\nrelationship, unmatched, na_matches parametreleri belirli kontroller sunar.\nbind_rows() sütunları uyumlu tabloları alt alta getirir, anahtar eşleştirmesi yapmaz.\n\nKaynaklar: dplyr JOIN ayrıntıları · R for Data Science — Joins.",
+    "crumbs": [
+      "Ana Sayfa",
+      "13 · Veri birleştirme (JOIN)"
+    ]
+  },
+  {
+    "objectID": "lessons/13-dplyr-join.html#öğrendiklerinizi-kontrol-edin",
+    "href": "lessons/13-dplyr-join.html#öğrendiklerinizi-kontrol-edin",
+    "title": "13 · Tabloları Güvenle Birleştirme (JOIN)",
+    "section": "Öğrendiklerinizi kontrol edin",
+    "text": "Öğrendiklerinizi kontrol edin\n\nBu işlem hangi satırları veya sütunları değiştiriyor?\nEksik değerler sonuçları nasıl etkiliyor?\nBeklenen gözlem sayısını nasıl doğrularım?\n\nAlıştırma: Bu bölümün görevleri. Ek okuma: R Programlama Kitabı · dplyr · tidyr.\n\n← Önceki konu · Sonraki konu →",
+    "crumbs": [
+      "Ana Sayfa",
+      "13 · Veri birleştirme (JOIN)"
+    ]
+  },
+  {
+    "objectID": "lessons/11-dplyr-degisken-uretimi.html",
+    "href": "lessons/11-dplyr-degisken-uretimi.html",
+    "title": "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler",
+    "section": "",
+    "text": "Bu bölüm nasıl kullanılmalı?\n\n\n\nÖnce kısa açıklamayı okuyun; kodun sonucunu tahmin edin; ardından RStudio’da satır satır çalıştırın. A temel sınıf içeriği, B pekiştirme, C ise bağımsız çalışmadır. Tüm kodları aynı gün bitirmek zorunda değilsiniz.\nUygulama dosyası: R scriptini indir · Alıştırmaları indir · Tüm materyaller\nÖn koşul: RStudio Project ile çalışma, veri okuma ve temel nesne/veri yapıları. Veri: data/wdi/ altındaki kitap kaynaklı WDI eğitim alt kümeleri. Dosya yolları proje köküne göredir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "11 · Dönüşüm, case_when ve across"
+    ]
+  },
+  {
+    "objectID": "lessons/11-dplyr-degisken-uretimi.html#yeni-değişken-üretmek-ne-zaman-gerekir-a",
+    "href": "lessons/11-dplyr-degisken-uretimi.html#yeni-değişken-üretmek-ne-zaman-gerekir-a",
+    "title": "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler",
+    "section": "1. Yeni değişken üretmek ne zaman gerekir? (A)",
+    "text": "1. Yeni değişken üretmek ne zaman gerekir? (A)\nVerinin anlamını değiştirmeden sunum birimini düzenleyebiliriz (nüfusu kişi yerine milyon kişi göstermek gibi). Ancak sınıflandırma yapmak analiz tercihi gerektirir. Bir değişkene mutate() ile hesaplanan yeni değer eklemek ile hatalı kaydı onarmak farklı işlemlerdir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "11 · Dönüşüm, case_when ve across"
+    ]
+  },
+  {
+    "objectID": "lessons/11-dplyr-degisken-uretimi.html#mutate-ile-dönüşüm-a",
+    "href": "lessons/11-dplyr-degisken-uretimi.html#mutate-ile-dönüşüm-a",
+    "title": "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler",
+    "section": "2. mutate() ile dönüşüm (A)",
+    "text": "2. mutate() ile dönüşüm (A)\nlibrary(dplyr)\nwdi &lt;- readr::read_csv(\"data/wdi/wdi_2019.csv\", show_col_types = FALSE)\n\nwdi |&gt;\n  mutate(nufus_milyon = population_total / 1e6) |&gt;\n  select(country, nufus_milyon) |&gt;\n  head()\nBu dönüşümde ölçü birimi değişir; sonuç milyon kişi olarak etiketlenmelidir. Aynı nesneye birden çok mutate() uygulanabilir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "11 · Dönüşüm, case_when ve across"
+    ]
+  },
+  {
+    "objectID": "lessons/11-dplyr-degisken-uretimi.html#if_else-ve-case_when-a",
+    "href": "lessons/11-dplyr-degisken-uretimi.html#if_else-ve-case_when-a",
+    "title": "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler",
+    "section": "3. if_else() ve case_when() (A)",
+    "text": "3. if_else() ve case_when() (A)\nif bir tek koşullu karar için kullanılır; if_else() ve case_when() tüm satırlar boyunca vektörel karar verir. case_when() koşulları sırayla değerlendirir; ilk eşleşme kullanılır. Başka hiçbir koşula girmeyenler için .default verilebilir.\nwdi |&gt;\n  mutate(issizlik_sinifi = case_when(\n    is.na(unemployment_total_pct) ~ \"Veri yok\",\n    unemployment_total_pct &lt; 5 ~ \"Düşük (öğretici eşik)\",\n    unemployment_total_pct &lt; 10 ~ \"Orta (öğretici eşik)\",\n    .default = \"Yüksek (öğretici eşik)\"\n  )) |&gt;\n  count(issizlik_sinifi)\nBu eşikler resmî uluslararası işsizlik sınıfları değildir, yalnızca programlama örneğidir. İlk koşula unemployment_total_pct &lt; 10 yazılsaydı küçük değerler de orada eşleşecek ve sonraki koşulların anlamı değişecekti.",
+    "crumbs": [
+      "Ana Sayfa",
+      "11 · Dönüşüm, case_when ve across"
+    ]
+  },
+  {
+    "objectID": "lessons/11-dplyr-degisken-uretimi.html#across-birden-fazla-sütuna-aynı-işlem-ab",
+    "href": "lessons/11-dplyr-degisken-uretimi.html#across-birden-fazla-sütuna-aynı-işlem-ab",
+    "title": "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler",
+    "section": "4. across() — Birden fazla sütuna aynı işlem (A/B)",
+    "text": "4. across() — Birden fazla sütuna aynı işlem (A/B)\nBenzer işlemi tekrar tekrar yazmak yerine across() kullanabiliriz. Modern dplyr kullanımında ek argümanları lambda içinde ifade ederiz:\nwdi |&gt;\n  summarise(across(c(unemployment_total_pct, internet_users_pct),\n                   ~ mean(.x, na.rm = TRUE),\n                   .names = \"ortalama_{.col}\"))\n\n\n\n\n\n\nna.rm = TRUE ne yapmaz?\n\n\n\nEksikleri analizden dışlar, kayıp gözlemi doldurmaz. Sütunda hiç geçerli gözlem yoksa mean(..., na.rm = TRUE) sonucu NaN olabilir. Bu yüzden geçerli gözlem sayısını da raporlamak gerekir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "11 · Dönüşüm, case_when ve across"
+    ]
+  },
+  {
+    "objectID": "lessons/11-dplyr-degisken-uretimi.html#rename_with-if_any-coalesce-b",
+    "href": "lessons/11-dplyr-degisken-uretimi.html#rename_with-if_any-coalesce-b",
+    "title": "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler",
+    "section": "5. rename_with(), if_any(), coalesce() (B)",
+    "text": "5. rename_with(), if_any(), coalesce() (B)\n\nrename(yeni = eski): belirli bir sütunun adını değiştirir.\nrename_with(toupper, starts_with(\"gdp_\")): seçilen sütunların adını fonksiyonla değiştirir.\nif_any(c(a,b), is.na): seçilen sütunlardan en az birinde eksik değer var mı?\ncoalesce(x, y): x eksikse ilgili konumda y değerini alır; doldurmanın istatistiksel gerekçesi olmalıdır.",
+    "crumbs": [
+      "Ana Sayfa",
+      "11 · Dönüşüm, case_when ve across"
+    ]
+  },
+  {
+    "objectID": "lessons/11-dplyr-degisken-uretimi.html#sınıf-uygulaması-ve-kontrol-a",
+    "href": "lessons/11-dplyr-degisken-uretimi.html#sınıf-uygulaması-ve-kontrol-a",
+    "title": "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler",
+    "section": "6. Sınıf uygulaması ve kontrol (A)",
+    "text": "6. Sınıf uygulaması ve kontrol (A)\nİşsizlik oranını eksik bırakmadan raporlamak için üç ayrı çıktı üretin: bir sınıflama, bir eksik gösterge sütunu ve sınıflara göre gözlem sayısı. Sınıfların toplamının veri satır sayısına eşit olup olmadığını kontrol edin.\nKaynaklar: dplyr case_when() · dplyr across() · dplyr rename().",
+    "crumbs": [
+      "Ana Sayfa",
+      "11 · Dönüşüm, case_when ve across"
+    ]
+  },
+  {
+    "objectID": "lessons/11-dplyr-degisken-uretimi.html#öğrendiklerinizi-kontrol-edin",
+    "href": "lessons/11-dplyr-degisken-uretimi.html#öğrendiklerinizi-kontrol-edin",
+    "title": "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler",
+    "section": "Öğrendiklerinizi kontrol edin",
+    "text": "Öğrendiklerinizi kontrol edin\n\nBu işlem hangi satırları veya sütunları değiştiriyor?\nEksik değerler sonuçları nasıl etkiliyor?\nBeklenen gözlem sayısını nasıl doğrularım?\n\nAlıştırma: Bu bölümün görevleri. Ek okuma: R Programlama Kitabı · dplyr · tidyr.\n\n← Önceki konu · Sonraki konu →",
+    "crumbs": [
+      "Ana Sayfa",
+      "11 · Dönüşüm, case_when ve across"
+    ]
+  },
+  {
+    "objectID": "slides/00-acilis.html#veriyi-okumak-başka-anlamak-başka",
+    "href": "slides/00-acilis.html#veriyi-okumak-başka-anlamak-başka",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "Veriyi okumak başka, anlamak başka",
+    "text": "Veriyi okumak başka, anlamak başka\n\n\nR PROGRAMLAMA • VERİ BİLİMİ • UYGULAMA\n\nVeriyi okumak başka,anlamak başka.\n\nSoru sor → Kodla → Kontrol et → Paylaş\nR Programlama Kitabı · Eğitim sitesi\n\n\n\n\nAçılışta katılımcıların veriyle çalışma deneyimini sor. Bu slayt kod anlatımı değil, eğitim hedefinin çerçevesidir."
+  },
+  {
+    "objectID": "slides/00-acilis.html#günlük-bir-işi-düşünelim",
+    "href": "slides/00-acilis.html#günlük-bir-işi-düşünelim",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "Günlük bir işi düşünelim",
+    "text": "Günlük bir işi düşünelim\n\n\n\n\nHer ay aynı iş…\n\n\nDosyalar gelir.\nDeğişken adları değişebilir.\nEksikler ve tutarsızlıklar çıkar.\nAynı hesap tekrar yapılır.\n\n\n\n\n\nKodla kurulan iş akışı\n\n\nAdımları kaydet.\nSonucu kontrol et.\nHataları düzelt.\nBir sonraki ay yeniden çalıştır.\n\n\n\nR’nin asıl gücü: yalnızca hesaplamak değil, işlemi anlaşılır ve yeniden üretilebilir hâle getirmek."
   },
   {
     "objectID": "slides/00-acilis.html#r-nedir",
     "href": "slides/00-acilis.html#r-nedir",
-    "title": "R Programlamaya Giriş",
+    "title": "R ile Veriye Yeni Bir Bakış",
     "section": "R nedir?",
-    "text": "R nedir?\n\nÜcretsiz ve açık kaynak bir programlama dili.\nİstatistik, veri analizi ve görselleştirmede yaygın.\nAnaliz adımlarını kod olarak kaydetmeyi ve yeniden çalıştırmayı sağlar.\n\nTemel soru: Bir analizi gelecek ay aynı yöntemle nasıl tekrarlarız?"
+    "text": "R nedir?\n\n\n\nİstatistiksel hesaplama ve grafik için açık kaynak programlama dili ve çalışma ortamı.\nVeri düzenleme, modelleme, zaman serileri, görselleştirme ve raporlama.\nWindows, macOS ve Linux üzerinde kullanılabilir.\nR Foundation topluluğu ve geniş bir paket ekosistemiyle gelişir.\n\nKaynak: R Project — What is R?\n\n\n\nR\n\nAçık kaynak · Genişletilebilir"
   },
   {
-    "objectID": "slides/00-acilis.html#r-ile-neler-yapabiliriz",
-    "href": "slides/00-acilis.html#r-ile-neler-yapabiliriz",
-    "title": "R Programlamaya Giriş",
-    "section": "R ile neler yapabiliriz?",
-    "text": "R ile neler yapabiliriz?\n\nVeri dosyalarını okur ve düzenleriz.\nHesaplamalar, özet tablolar ve istatistiksel analizler yaparız.\nGrafikler, raporlar ve otomatik iş akışları oluşturabiliriz.\n\nBu eğitimde önce temel programlama ve veri işleme üzerinde duracağız."
+    "objectID": "slides/00-acilis.html#r-nerelerde-karşımıza-çıkar",
+    "href": "slides/00-acilis.html#r-nerelerde-karşımıza-çıkar",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "R nerelerde karşımıza çıkar?",
+    "text": "R nerelerde karşımıza çıkar?\n\n\n\n\nİstatistik ve araştırma\n\nÖrnekleme, çıkarım, regresyon, zaman serileri, deney tasarımı.\n\n\n\n\n\nResmî istatistik\n\nVeri doğrulama, gösterge üretme, otomasyon ve raporlama.\n\n\n\n\n\nVeri bilimi\n\nVeri hazırlama, keşif, model kurma, model değerlendirme.\n\n\n\n\n\nİletişim\n\nGrafikler, Quarto raporları, Shiny etkileşimli uygulamaları."
   },
   {
-    "objectID": "slides/00-acilis.html#rnin-güçlü-yönleri-ve-dikkat-edilmesi-gerekenler",
-    "href": "slides/00-acilis.html#rnin-güçlü-yönleri-ve-dikkat-edilmesi-gerekenler",
-    "title": "R Programlamaya Giriş",
-    "section": "R’nin güçlü yönleri ve dikkat edilmesi gerekenler",
-    "text": "R’nin güçlü yönleri ve dikkat edilmesi gerekenler\nGüçlü yönleri: Açık kaynak, geniş paket ekosistemi, tekrar üretilebilir analiz, farklı veri kaynakları.\nDikkat: Kod yazmayı öğrenmek gerekir; veri tipi, eksik değer ve sonuç kontrolleri hâlâ bizim sorumluluğumuzdadır."
+    "objectID": "slides/00-acilis.html#r-ve-python-bir-rakiplikten-fazlası",
+    "href": "slides/00-acilis.html#r-ve-python-bir-rakiplikten-fazlası",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "R ve Python: Bir rakiplikten fazlası",
+    "text": "R ve Python: Bir rakiplikten fazlası\n\n\n\n\n\n\n\n\n\nR\nPython\n\n\n\n\nKöken / güçlü gelenek\nİstatistik ve veri analizi\nGenel amaçlı yazılım geliştirme\n\n\nVeri araçları\ndplyr, tidyr, ggplot2\npandas, polars, scikit-learn\n\n\nÜretim / otomasyon\nR scriptleri, Quarto, Shiny\nScriptler, servisler, uygulamalar\n\n\nOrtak payda\nVeri hazırlama, modelleme, tekrarlanabilirlik\nVeri hazırlama, modelleme, tekrarlanabilirlik\n\n\n\nDoğru soru “hangisi daha iyi?” değil, “hangi iş için hangi araç uygun?”\n\nBu tablo bir performans sıralaması değildir. Her iki ekosistem de geniştir; seçim görev, ekip, veri ve altyapıya bağlıdır."
   },
   {
-    "objectID": "slides/00-acilis.html#r-ile-rstudio-aynı-şey-değil",
-    "href": "slides/00-acilis.html#r-ile-rstudio-aynı-şey-değil",
-    "title": "R Programlamaya Giriş",
-    "section": "R ile RStudio aynı şey değil",
-    "text": "R ile RStudio aynı şey değil\n\n\n\n\n\n\n\nR\nRStudio\n\n\n\n\nProgramlama dili ve hesaplama motoru\nR için geliştirme ortamı\n\n\nKomutları çalıştırır\nKodu yazmayı, yönetmeyi ve çalıştırmayı kolaylaştırır\n\n\n\nÖnce R, ardından RStudio kurulur."
+    "objectID": "slides/00-acilis.html#r-ve-rstudio-aynı-şey-değil",
+    "href": "slides/00-acilis.html#r-ve-rstudio-aynı-şey-değil",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "R ve RStudio aynı şey değil",
+    "text": "R ve RStudio aynı şey değil\n\n\n\n\nR\n\n\nR\n\nDili ve hesaplama motoru. Komutları yürütür.\nR Project\n\n\n\n\nRStudio\n\n\nRStudio\n\nKod editörü, Console, dosyalar, grafikler, yardım ve Git entegrasyonu sunan geliştirme ortamı.\nPosit — RStudio IDE\n\n\nKurulum sırası: Önce R, sonra RStudio. Kaynak: Posit kurulum rehberi"
   },
   {
-    "objectID": "slides/00-acilis.html#cran-ve-paketler",
-    "href": "slides/00-acilis.html#cran-ve-paketler",
-    "title": "R Programlamaya Giriş",
-    "section": "CRAN ve paketler",
-    "text": "CRAN ve paketler\nCRAN (Comprehensive R Archive Network)\n\nR’nin indirildiği resmî kaynak ağı.\nBirçok R paketinin de dağıtım yeridir.\nPaketler, hazır fonksiyonlar sağlayarak işimizi kolaylaştırır.\n\nPaket kurma ve kullanma işlemini RStudio’da canlı göstereceğiz."
+    "objectID": "slides/00-acilis.html#cran-ve-paket-ekosistemi",
+    "href": "slides/00-acilis.html#cran-ve-paket-ekosistemi",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "CRAN ve paket ekosistemi",
+    "text": "CRAN ve paket ekosistemi\n\n\n\n\nCRAN nedir?\n\nComprehensive R Archive Network: R dağıtımı, paketler ve dokümantasyon için resmî dağıtım ağı.\nCRAN\n\n\n\n\nPaketler ne sağlar?\n\nreadr · readxl · haven\ndplyr · tidyr · ggplot2\nDBI · quarto\n\n\nPaket kurmak ile oturuma yüklemek farklıdır; canlı uygulamada göreceğiz."
   },
   {
-    "objectID": "slides/00-acilis.html#r-ve-rstudio-nereden-indirilir",
-    "href": "slides/00-acilis.html#r-ve-rstudio-nereden-indirilir",
-    "title": "R Programlamaya Giriş",
-    "section": "R ve RStudio nereden indirilir?",
-    "text": "R ve RStudio nereden indirilir?\n\nR — CRAN\nRStudio Desktop — Posit\nRStudio’yu aç; Console’da &gt; işaretini gör.\n\n\nKurulumların önceden tamamlandığını varsayın; BT kısıtlarını çözmeye uzun süre ayırmayın."
+    "objectID": "slides/00-acilis.html#bir-veri-analizi-nerede-başlar",
+    "href": "slides/00-acilis.html#bir-veri-analizi-nerede-başlar",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "Bir veri analizi nerede başlar?",
+    "text": "Bir veri analizi nerede başlar?\n\nÇoğu zaman en zahmetli aşama: veriyi doğru okumak, tanımak ve hazırlamak. Kusurlu veriyle iyi bir model kurmak güçtür."
   },
   {
-    "objectID": "slides/00-acilis.html#rstudioyu-tanıyalım",
-    "href": "slides/00-acilis.html#rstudioyu-tanıyalım",
-    "title": "R Programlamaya Giriş",
-    "section": "RStudio’yu tanıyalım",
-    "text": "RStudio’yu tanıyalım\n\nSource: Script dosyası\nConsole: Çalışan komutlar ve sonuçları\nEnvironment: Nesneler\nFiles / Plots / Packages / Help: Dosyalar, grafikler, paketler ve yardım\n\n\nBurada RStudio’ya geçerek ekrandaki alanları gerçek arayüzde gösterin. Sunuma ekran görüntüsü eklemek şart değil; uygulama daha güncel kalır."
+    "objectID": "slides/00-acilis.html#yapay-zekâ-hız-kazandırır-sorumluluğu-almaz",
+    "href": "slides/00-acilis.html#yapay-zekâ-hız-kazandırır-sorumluluğu-almaz",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "Yapay zekâ: Hız kazandırır, sorumluluğu almaz",
+    "text": "Yapay zekâ: Hız kazandırır, sorumluluğu almaz\n\n\n\n\nYardımcı olabilir\n\n\nKod taslağı üretmek\nHata mesajını açıklamak\nAlternatif yöntem önermek\nBelgelere ulaşmayı kolaylaştırmak\n\n\n\n\n\nHâlâ kontrol etmeliyiz\n\n\nVeri ve tanım doğru mu?\nKod gerçekten çalışıyor mu?\nÇıktı beklediğimiz gibi mi?\nGizli veriler dışarı aktarıldı mı?\n\n\n\nİlke: Yapay zekâdan yararlan; doğrulamayı devretme."
   },
   {
-    "objectID": "slides/00-acilis.html#bu-eğitimde-ilerleyeceğimiz-yol",
-    "href": "slides/00-acilis.html#bu-eğitimde-ilerleyeceğimiz-yol",
-    "title": "R Programlamaya Giriş",
-    "section": "Bu eğitimde ilerleyeceğimiz yol",
-    "text": "Bu eğitimde ilerleyeceğimiz yol\nR ortamı → temel nesneler → koşullar/döngüler/fonksiyonlar → dosyalar → dplyr/tidyr → mini proje\n\nAçıklama ve canlı kodlama\nKısa egzersizler\nWDI verileriyle uygulamalar"
+    "objectID": "slides/00-acilis.html#ryi-nereden-kuracağız",
+    "href": "slides/00-acilis.html#ryi-nereden-kuracağız",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "R’yi nereden kuracağız?",
+    "text": "R’yi nereden kuracağız?\n\n\n\n\n1 · R\n\ncran.r-project.org\nİşletim sistemine uygun R kurulum dosyasını seç.\n\n\n\n\n2 · RStudio Desktop\n\nPosit — İndir\nR’nin kurulu olduğundan emin ol, ardından IDE’yi başlat.\n\n\n\nKatılımcı kurulumları önceden bitirmiş olmalı. Yetki veya paket kurulum sorunları bu eğitim akışını kesmemeli."
   },
   {
-    "objectID": "slides/00-acilis.html#materyallere-nasıl-erişeceğiz",
-    "href": "slides/00-acilis.html#materyallere-nasıl-erişeceğiz",
-    "title": "R Programlamaya Giriş",
-    "section": "Materyallere nasıl erişeceğiz?",
-    "text": "Materyallere nasıl erişeceğiz?\n\nEğitim web sitesi: öğrenme sırası ve ders notları\nMateryaller: R scriptleri ve egzersizler\nR Programlama Kitabı: ayrıntılı açıklamalar\nR İstatistik Akademi: video destek"
+    "objectID": "slides/00-acilis.html#rstudioda-neleri-göreceğiz",
+    "href": "slides/00-acilis.html#rstudioda-neleri-göreceğiz",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "RStudio’da neleri göreceğiz?",
+    "text": "RStudio’da neleri göreceğiz?\n\n\n\nSource · Düzenlenen .R dosyaları\n\n\n\n\nConsole · Komut ve sonuçlar\n\n\n\n\nEnvironment · Oturumdaki nesneler\n\n\n\n\nFiles / Plots / Help · Dosyalar, grafikler ve belgeler\n\n\n\nBir sonraki adım: RStudio’ya geçip bunları canlı olarak tanıyacağız."
   },
   {
-    "objectID": "slides/00-acilis.html#şimdi-rstudioya-geçiyoruz",
-    "href": "slides/00-acilis.html#şimdi-rstudioya-geçiyoruz",
-    "title": "R Programlamaya Giriş",
-    "section": "Şimdi RStudio’ya geçiyoruz",
-    "text": "Şimdi RStudio’ya geçiyoruz\nİlk denememiz: Console’da 2 + 3 yazmak.\nArdından aynı komutu .R scriptine kaydedip yeniden çalıştıracağız.\n\nSlayt burada biter. Sonraki kod ve nesne örnekleri ders sayfasında aşamalı olarak verilir."
+    "objectID": "slides/00-acilis.html#eğitim-kaynaklarımız",
+    "href": "slides/00-acilis.html#eğitim-kaynaklarımız",
+    "title": "R ile Veriye Yeni Bir Bakış",
+    "section": "Eğitim kaynaklarımız",
+    "text": "Eğitim kaynaklarımız\n\n\n\n\nÖğrenme ve tekrar\n\nR Programlama Kitabı\nR İstatistik Akademi — YouTube\n\n\n\n\nUygulama\n\nEğitim sitesi\nScriptler ve veri dosyaları\n\n\nTeknik başvuru: R Project · Posit RStudio IDE · R for Data Science"
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "",
+    "text": "Dersin sorusu\n\n\n\nBir CSV dosyasını R’ye okumak kolaydır. Peki yanlış klasörden, yanlış ayraçla veya yanlış sütun tipiyle okuduğumuzu nasıl fark ederiz? Bu dersin amacı dosya okuma komutlarını ezberlemek değil, doğru veri aktarımını doğrulamayı öğrenmektir.\nÖn koşul: 07 · Fonksiyonlar. Öğrenme hedefi: Proje köküne göre dosyayı bulmak, CSV/Excel/RDS okumak ve kaydetmek, SAS/SPSS dosyalarını tanımak, aktarım sonrası kalite kontrolü yapmak.\nDers materyalleri: 07 · Dosya yolları · 08 · CSV/Excel/RDS · 09 · SAS/SPSS · Alıştırmalar",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html#veri-aktarımı-neden-hata-üretir",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html#veri-aktarımı-neden-hata-üretir",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "1. Veri aktarımı neden hata üretir?",
+    "text": "1. Veri aktarımı neden hata üretir?\nFarklı türde dört problem ayıralım:\n\nDosya bulunamadı: Yol veya dosya adı yanlış (file.exists() ile kontrol).\nDosya yanlış çözümlendi: CSV ayıracı, ondalık işareti veya karakter kodlaması yanlış.\nDosya okundu ama tip yanlış: Baştaki sıfır kayboldu, tarih metin oldu, sayı karakter geldi.\nVeri doğru okundu ancak yanlış yorumlandı: Birim, kapsam, eksikler veya sütun açıklaması unutuldu.\n\nBir komutun hata vermemesi verinin doğru olduğu anlamına gelmez.",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html#rstudio-project-ve-göreli-dosya-yolu",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html#rstudio-project-ve-göreli-dosya-yolu",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "2. RStudio Project ve göreli dosya yolu",
+    "text": "2. RStudio Project ve göreli dosya yolu\nr-training.Rproj dosyasını açtığınızda RStudio’nun proje bağlamında çalışırsınız. Console’da getwd() ile etkin çalışma dizinini kontrol edin. Scriptteki yol scriptin bulunduğu klasöre değil çalışma dizinine göre çözülür.\ngetwd()\nfile.exists(\"data/toy/personel.csv\")\nlist.files(\"data/toy\")\n\n# Doğru proje dizinindeysek dosyayı burada buluruz\nveri_yolu &lt;- file.path(\"data\", \"toy\", \"personel.csv\")\nnormalizePath(veri_yolu, winslash = \"/\", mustWork = TRUE)\nMutlak yol C:/Users/.../R/r-training/data/toy/personel.csv gibi bilgisayara bağlıdır. Göreli yol data/toy/personel.csv aynı Git deposunun farklı bilgisayarlarda kullanılmasını sağlar. R kodunda Windows \\ yerine / ya da file.path() tercih edin. Sırf dosya bulunsun diye scriptlerin içine setwd(\"C:/...\") yazmayın.\n\n\n\n\n\n\nSık hata: cannot open file / does not exist\n\n\n\ngetwd() → file.exists() → list.files() → uzantı ve büyük/küçük harf denetimi sırasıyla ilerleyin. Windows’ta gizli uzantı nedeniyle veri.csv.csv gibi yanlış isimler oluşabilir. file.choose() yalnızca geçici etkileşimli çözüm, tekrar üretilebilir scriptin kalıcı yolu değildir.\n\n\nUygulama 1: file.exists(\"data/toy/personel.csv\") sonucunu tahmin edin. Sonra dosya adını bilerek bozup FALSE sonucunu yorumlayın.",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html#csv-okuma-base-r-ve-readr",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html#csv-okuma-base-r-ve-readr",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "3. CSV okuma: Base R ve readr",
+    "text": "3. CSV okuma: Base R ve readr\nCSV bir standart gibi görünse de farklı ayraç, ondalık işaret ve metin kodlamaları olabilir.\n\n\n\n\n\n\n\n\n\nİşlev\nAyracı\nOndalık\nÖrnek\n\n\n\n\nutils::read.csv()\nvirgül ,\nnokta .\nKlasik CSV\n\n\nutils::read.csv2()\nnoktalı virgül ;\nvirgül ,\nAvrupa biçimi\n\n\nreadr::read_csv()\nvirgül ,\nnokta .\nTibble\n\n\nreadr::read_csv2()\nnoktalı virgül ;\nvirgül ,\nTibble\n\n\nreadr::read_delim()\nbelirtilen ayraç\nlocale() ile\nÖzel dosyalar\n\n\n\n# Paket kurulu değilse önce ayrı olarak install.packages(\"readr\")\nd &lt;- utils::read.csv(\"data/toy/personel.csv\", stringsAsFactors = FALSE)\nstr(d)\n\n# readr ile aynı kaynağı okuma\n# (sınıfta paket mevcutsa)\nd2 &lt;- readr::read_csv(\"data/toy/personel.csv\", show_col_types = FALSE)\nreadr::spec(d2)\nreadr::problems(d2)\n\nCSV2: Doğru ayraç, doğru ondalık\n# Eğitim setindeki noktalı virgüllü dosya\ncsv2 &lt;- readr::read_csv2(\"data/toy/import_semicolon.csv\", show_col_types = FALSE)\nstr(csv2)\nprint(csv2)\nKarşılaştırma görevi: Aynı dosyayı read_csv() ile açmaya çalışırsanız ne değişiyor? Bozuk sonuçları düzeltmeden veri analizi yapmayın.\n\n\nSütun tipini açık tanımlama\nÜlke kodu ve kimlik numarası gibi değerler sayısal işlem için kullanılmayacaksa karakter olmalıdır. \"001\" ile 1 aynı kayıt kodu değildir.\n# Sözlük ve veri tipleri önceden doğrulanmalıdır\nkucuk &lt;- readr::read_csv(\n  \"data/toy/personel.csv\",\n  show_col_types = FALSE,\n  col_types = readr::cols(.default = readr::col_guess())\n)\nstr(kucuk)\nlocale(encoding = \"UTF-8\"), na = c(\"\", \"NA\", \"-\"), skip, n_max, col_types ve guess_max ayarlarını veri özelliklerine göre seçeriz. \"-\" her dosyada eksik veri sayılmaz; önce kaynağı inceleriz.",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html#excel-sayfa-başlık-satırı-ve-hücre-aralığı",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html#excel-sayfa-başlık-satırı-ve-hücre-aralığı",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "4. Excel: Sayfa, başlık satırı ve hücre aralığı",
+    "text": "4. Excel: Sayfa, başlık satırı ve hücre aralığı\nBu ders için özel hazırlanmış üç sayfalı Excel dosyasını indir. Baslikli_Rapor sayfasındaki gerçek sütun başlıkları 4. satırdadır.\nxlsx &lt;- \"data/toy/coklu_sayfa_rapor.xlsx\"\nreadxl::excel_sheets(xlsx)\n\n# İlk sayfa\nveri &lt;- readxl::read_excel(xlsx, sheet = \"Veri\", col_types = \"text\")\n\n# İlk üç satır rapor/açıklama. 4. satır sütun adı.\nrapor &lt;- readxl::read_excel(xlsx, sheet = \"Baslikli_Rapor\", skip = 3)\n\n# Hücre aralığı; range verildiğinde skip dikkate alınmaz\nsecilen &lt;- readxl::read_excel(xlsx, range = \"Baslikli_Rapor!A4:D8\")\n\n# İlk iki veri satırını almak\nilk_iki &lt;- readxl::read_excel(xlsx, sheet = \"Baslikli_Rapor\", skip = 3, n_max = 2)\nNeden col_types = \"text\"? Veri sayfasındaki 001 gibi kimlikleri rakama çevirip sıfır kaybetmemek için. Gerekirse tutar sütununu sonradan, kontrollü biçimde sayısala dönüştürürüz.\n\n\n\n\n\n\nNot\n\n\n\nread_excel() dosya okumak içindir. Excel dosyası üretmek veya çok sayfalı çıktı yazmak için openxlsx2 kullanacağız. readxl doğrudan Excel yazma işlevi sunmaz.",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html#dışa-aktarma-csv-csv2-rds-ve-excel",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html#dışa-aktarma-csv-csv2-rds-ve-excel",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "5. Dışa aktarma: CSV, CSV2, RDS ve Excel",
+    "text": "5. Dışa aktarma: CSV, CSV2, RDS ve Excel\ndir.create(\"outputs\", showWarnings = FALSE)\nreadr::write_csv(d2, \"outputs/personel_csv.csv\", na = \"\")\nreadr::write_csv2(d2, \"outputs/personel_csv2.csv\", na = \"\")\nsaveRDS(d2, \"outputs/personel.rds\")\n\n# Sınıflar ve R öznitelikleri RDS ile daha iyi korunur\ntekrar &lt;- readRDS(\"outputs/personel.rds\")\nstopifnot(nrow(tekrar) == nrow(d2))\n\n# openxlsx2 kurulmuşsa iki sayfa ile Excel çıktısı\nopenxlsx2::write_xlsx(\n  list(Personel = as.data.frame(d2), IlkKayitlar = head(as.data.frame(d2), 3)),\n  \"outputs/personel_rapor.xlsx\"\n)\nKontrol et: file.exists(), nrow(), names(), str(), sum(is.na(...)), all.equal() veya anahtar kodların kontrolü. CSV tek tablo ve genel veri değişimi için pratiktir, RDS R nesnelerini korumak için uygundur, Excel raporlama/çoklu sayfa için yararlıdır. CSV, değişken ve değer etiketlerini RDS gibi korumaz.",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html#sas-spss-ve-etiketler",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html#sas-spss-ve-etiketler",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "6. SAS, SPSS ve etiketler",
+    "text": "6. SAS, SPSS ve etiketler\nsas_yolu &lt;- system.file(\"examples\", \"iris.sas7bdat\", package = \"haven\")\nspss_yolu &lt;- system.file(\"examples\", \"iris.sav\", package = \"haven\")\n\nsas &lt;- haven::read_sas(sas_yolu)\nspss &lt;- haven::read_sav(spss_yolu)\nstr(sas)\nstr(spss)\n\n# Etiketli kategorilerin anlamını anlamadan as.numeric() yapmayın.\nhaven::as_factor(spss$Species)\nSAS .sas7bdat okuma, SAS XPT okuma/yazma, SPSS .sav okuma/yazma desteklenir. haven SAS .sas7bdat biçiminde doğrudan yazma işlevi sağlamaz. Etiketler, tarih alanları ve SPSS kullanıcı tanımlı özel eksikler dönüştürme öncesi incelenmelidir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html#hata-ayıklama-rehberi",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html#hata-ayıklama-rehberi",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "7. Hata ayıklama rehberi",
+    "text": "7. Hata ayıklama rehberi\n\n\n\n\n\n\n\n\nBelirti\nÖnce kontrol et\nMuhtemel düzeltme\n\n\n\n\nDosya bulunamadı\ngetwd(), file.exists(), list.files()\nProje kökünden göreli yol\n\n\nCSV tek sütun geldi\nİlk satır, ayraç\nread_csv2() veya read_delim()\n\n\nSayılar karakter oldu\nOndalık ve binlik işaret\nlocale()/doğru dosya biçimi\n\n\n001 → 1\nSütun tipi\ncol_character() / Excel col_types\n\n\nYanlış başlıklar\nRapor satırları\nskip, range, col_names\n\n\nTürkçe karakter bozuk\nKaynak kodlama\nlocale(encoding = ...)\n\n\nTarih beklenmedik\nExcel/R tarih türü\nclass(), format ve dönüşüm\n\n\nPaket bulunamıyor\nrequireNamespace()\nKurulum/erişim ve sürüm\n\n\nİzin reddedildi\nYazma klasörü, açık Excel\noutputs/ ve dosya kilidi",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
+  },
+  {
+    "objectID": "lessons/08-dosyalar-ve-veri-aktarimi.html#deneyelim",
+    "href": "lessons/08-dosyalar-ve-veri-aktarimi.html#deneyelim",
+    "title": "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma",
+    "section": "8. Deneyelim",
+    "text": "8. Deneyelim\n\nAynı veriyi Base R ve readr ile yükleyin. Sınıf ve sütun tiplerini karşılaştırın.\nCSV2’yi doğru ve yanlış okuyup farkı açıklayın.\nExcel’de skip = 3 ve range ile alınan satırları karşılaştırın.\nRDS kaydedip tekrar açarak eşitliği kontrol edin.\nSAS/SPSS örneklerinde str() ve etiketleri inceleyin.\n\nTüm uygulama ve bağımsız görevler\nAyrıntılı okuma: R Programlama Kitabı · readr · readxl · openxlsx2 · haven.\n\nÖnceki: 07 · Fonksiyonlar\nSonraki: 09 · API, SDMX ve veri tabanları",
+    "crumbs": [
+      "Ana Sayfa",
+      "08 · Dosyalar ve veri aktarımı"
+    ]
   },
   {
     "objectID": "lessons/06-donguler.html",
@@ -427,102 +786,116 @@
     "text": "Nasıl kullanmalı?\nÖnce ilgili eğitim scriptini çalıştırın. Kavramsal ayrıntı gerektiğinde kitaba, fonksiyonun güncel argümanları için paket belgelerine, tekrar için video derslerine bakın."
   },
   {
-    "objectID": "program/index.html",
-    "href": "program/index.html",
-    "title": "Eğitim Programı",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Eğitmen Hakkında",
     "section": "",
-    "text": "Bu genel program, farklı kurumlarda ve farklı tarihlerde yeniden kullanılabilecek şekilde tasarlanmıştır. Her günün zorunlu içeriği o gün tamamlanır; ek alıştırmalar süreye göre isteğe bağlıdır."
+    "text": "Dr. Muhammed Fatih Tüzen, istatistik, veri analizi ve R programlama alanlarında çalışan bir istatistikçidir. Çalışmaları özellikle zaman serileri, mevsimsel düzeltme, veri işleme ve R ile analiz süreçlerinin otomasyonu üzerinde yoğunlaşmaktadır.\nYıllar içinde farklı düzeylerde katılımcılara R programlama ve uygulamalı veri analizi eğitimleri vermiştir. Bu web sitesi, söz konusu eğitimlerin belirli bir kurum veya tarihle sınırlı kalmadan kullanılabilmesi amacıyla hazırlanmıştır."
   },
   {
-    "objectID": "program/index.html#günlük-saatler",
-    "href": "program/index.html#günlük-saatler",
-    "title": "Eğitim Programı",
-    "section": "Günlük saatler",
-    "text": "Günlük saatler\n\n\n\nSaat\nEtkinlik\n\n\n\n\n09.30–10.15\n1. ders\n\n\n10.15–10.30\nAra\n\n\n10.30–11.15\n2. ders\n\n\n11.15–11.30\nAra\n\n\n11.30–12.15\n3. ders\n\n\n12.15–12.30\nEsnek uygulama, soru ve kapanış\n\n\n\n\n\n\n\n\n\nNot\n\n\n\nBeş günün toplam zaman aralığı 15 saattir. Bunun 11 saat 15 dakikası çekirdek ders, 1 saat 15 dakikası esnek zaman, 2 saat 30 dakikası aradır. Kurumsal “ders saati” tanımı ayrıca doğrulanmalıdır."
+    "objectID": "about.html#kısaca",
+    "href": "about.html#kısaca",
+    "title": "Eğitmen Hakkında",
+    "section": "",
+    "text": "Dr. Muhammed Fatih Tüzen, istatistik, veri analizi ve R programlama alanlarında çalışan bir istatistikçidir. Çalışmaları özellikle zaman serileri, mevsimsel düzeltme, veri işleme ve R ile analiz süreçlerinin otomasyonu üzerinde yoğunlaşmaktadır.\nYıllar içinde farklı düzeylerde katılımcılara R programlama ve uygulamalı veri analizi eğitimleri vermiştir. Bu web sitesi, söz konusu eğitimlerin belirli bir kurum veya tarihle sınırlı kalmadan kullanılabilmesi amacıyla hazırlanmıştır."
   },
   {
-    "objectID": "program/index.html#gün-r-ile-çalışma-ve-temel-veri-yapıları",
-    "href": "program/index.html#gün-r-ile-çalışma-ve-temel-veri-yapıları",
-    "title": "Eğitim Programı",
-    "section": "1. Gün — R ile çalışma ve temel veri yapıları",
-    "text": "1. Gün — R ile çalışma ve temel veri yapıları\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nR ekosistemi, R/RStudio farkı, Project, Console, Script, yardım ve paketler\n\n\n10.30–11.15\nNesneler, atama, operatörler, veri tipleri, vektörler, NA, temel fonksiyonlar\n\n\n11.30–12.15\ndata.frame, tibble, liste ve matris; inceleme, indeksleme, if/else giriş\n\n\n\nGün sonu kazanımı: Temel R scripti yazmak, küçük bir tablo kurmak ve koşullu işlem yapmak."
-  },
-  {
-    "objectID": "program/index.html#gün-kontrol-yapıları-fonksiyonlar-ve-dosyalar",
-    "href": "program/index.html#gün-kontrol-yapıları-fonksiyonlar-ve-dosyalar",
-    "title": "Eğitim Programı",
-    "section": "2. Gün — Kontrol yapıları, fonksiyonlar ve dosyalar",
-    "text": "2. Gün — Kontrol yapıları, fonksiyonlar ve dosyalar\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nif/else pekiştirme, for, while, vektörel yaklaşım, function()\n\n\n10.30–11.15\nGöreli yollar; CSV, Excel, RDS içe aktarma ve veri kontrolleri\n\n\n11.30–12.15\nSAS/SPSS okuma, etiketli veriler, dışa aktarma, veri tabanı yaklaşımı\n\n\n\nGün sonu kazanımı: Basit fonksiyon/döngü oluşturmak ve farklı dosya biçimlerini okuyabilmek."
-  },
-  {
-    "objectID": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-i",
-    "href": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-i",
-    "title": "Eğitim Programı",
-    "section": "3. Gün — dplyr ile veri manipülasyonu I",
-    "text": "3. Gün — dplyr ile veri manipülasyonu I\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nTidy veri, |&gt;, select(), rename(), filter()\n\n\n10.30–11.15\narrange(), mutate(), if_else(), case_when()\n\n\n11.30–12.15\ndistinct(), is.na(), coalesce() ve WDI uygulaması\n\n\n\nGün sonu kazanımı: WDI verisi üzerinde seçim, filtreleme ve değişken üretme."
-  },
-  {
-    "objectID": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-ii",
-    "href": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-ii",
-    "title": "Eğitim Programı",
-    "section": "4. Gün — dplyr ile veri manipülasyonu II",
-    "text": "4. Gün — dplyr ile veri manipülasyonu II\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\ngroup_by(), summarise(), count(), n()\n\n\n10.30–11.15\nJOIN mantığı, anahtarlar, left_join(), inner_join(), anti_join()\n\n\n11.30–12.15\npivot_longer(), pivot_wider() ve WDI uygulaması\n\n\n\nGün sonu kazanımı: Gruplu özet, güvenli birleştirme ve veri biçimi dönüşümü."
-  },
-  {
-    "objectID": "program/index.html#gün-modern-r-iş-akışı-ve-mini-proje",
-    "href": "program/index.html#gün-modern-r-iş-akışı-ve-mini-proje",
-    "title": "Eğitim Programı",
-    "section": "5. Gün — Modern R iş akışı ve mini proje",
-    "text": "5. Gün — Modern R iş akışı ve mini proje\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nTemiz script, proje düzeni, hata ayıklama, doğrulama, Quarto/GitHub/AI tanıtımı\n\n\n10.30–11.15\nMini proje I: WDI dosyalarını oku, filtrele, dönüştür, birleştir\n\n\n11.30–12.15\nMini proje II: Özetle, kontrol et, dosyaya yaz, sonuçları açıkla\n\n\n\nGün sonu kazanımı: Baştan sona tekrarlanabilir küçük bir veri işleme projesi."
-  },
-  {
-    "objectID": "program/index.html#eğitim-yaklaşımı",
-    "href": "program/index.html#eğitim-yaklaşımı",
-    "title": "Eğitim Programı",
+    "objectID": "about.html#eğitim-yaklaşımı",
+    "href": "about.html#eğitim-yaklaşımı",
+    "title": "Eğitmen Hakkında",
     "section": "Eğitim yaklaşımı",
-    "text": "Eğitim yaklaşımı\n\nA: Zorunlu çekirdek içerik.\nB: Zaman kalırsa pekiştirme ve ek alıştırma.\nC: Web sitesinde bağımsız çalışma kaynakları."
+    "text": "Eğitim yaklaşımı\nBu eğitimde amaç, yalnızca R fonksiyonlarının kullanımını göstermek değil; bir veri problemini tanımlamak, uygun işlemi seçmek, kodu anlaşılır yazmak ve sonucu kontrol edebilmektir.\nÖrnekler, küçük öğretici veri setlerinden başlayarak gerçek açık veri kaynaklarına uzanır. Ayrıntılı teorik açıklamalar için R Programlama kitabına, uygulama ve tekrar için bu eğitim sitesindeki derslere ve scriptlere başvurulabilir."
+  },
+  {
+    "objectID": "about.html#bağlantılar",
+    "href": "about.html#bağlantılar",
+    "title": "Eğitmen Hakkında",
+    "section": "Bağlantılar",
+    "text": "Bağlantılar\n\nR Programlama Kitabı — Türkçe, açık erişimli başvuru kaynağı.\nR İstatistik Akademi — R programlamaya giriş videoları.\nGitHub — Açık kaynak çalışmalar.\nLinkedIn — Mesleki profil.\n\n\n\n\n\n\n\nNot\n\n\n\nBu sayfa kişisel eğitim ve öğrenme kaynaklarını tanıtır; belirli bir kurumun resmî eğitim duyurusu veya kurumsal görüşü niteliğinde değildir."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "R Programlama Eğitimi",
     "section": "",
-    "text": "R ile ilk komuttan başlayarak veri okuma, dönüştürme ve sonuç üretmeye uzanan uygulamalı bir öğrenme yolu. Konular mantıklı bir sırayla ilerler; örnekleri kendi RStudio ortamında çalıştırabilir, eğitime katıldıktan sonra da burada tekrar edebilirsin."
+    "text": "AÇIK • UYGULAMALI • TEKRAR KULLANILABİLİR\n\n\nR ile düşünmeyi, veriyi hazırlamayı ve sonuçları kontrol etmeyi öğrenin. İlk komuttan güvenilir bir analiz tablosuna uzanan uygulamalı bir öğrenme yolu.\nÖğrenmeye başla Eğitim materyallerini incele"
   },
   {
-    "objectID": "index.html#öğren-dene-kontrol-et",
-    "href": "index.html#öğren-dene-kontrol-et",
+    "objectID": "index.html#öğrenme-yolu",
+    "href": "index.html#öğrenme-yolu",
     "title": "R Programlama Eğitimi",
+    "section": "Öğrenme yolu",
+    "text": "Öğrenme yolu\nBu site tarihten, kurumdan ve eğitim süresinden bağımsız bir uygulama kütüphanesidir. Konuları sırayla izleyebilir veya ihtiyaç duyduğunuz uygulamaya doğrudan gidebilirsiniz.\n\n\n\n01 ### Ortamı tanı R, RStudio, ilk komutlar, veri tipleri ve paketler.\nBaşlangıç dersleri\n\n\n\n\n02 ### Programla Koşullar, döngüler, fonksiyonlar ve okunabilir kod.\nKoşullu ifadeler\n\n\n\n\n03 ### Veriyi hazırla Dosya aktarımı, dplyr, JOIN ve pivot uygulamaları.\nVeri hazırlama\n\n\n\n\n04 ### Uygula & doğrula WDI verileriyle uçtan uca bir veri işleme görevi.\nMini proje"
+  },
+  {
+    "objectID": "index.html#bu-kaynağı-nasıl-kullanabilirsiniz",
+    "href": "index.html#bu-kaynağı-nasıl-kullanabilirsiniz",
+    "title": "R Programlama Eğitimi",
+    "section": "Bu kaynağı nasıl kullanabilirsiniz?",
+    "text": "Bu kaynağı nasıl kullanabilirsiniz?\n\n\n\n1 · Önce anla\nKonu sayfasında neden ve ne zaman sorusunu okuyun. Yeni kavramlar bilinenlerin üzerine kurulur.\n\n\n\n\n2 · RStudio’da dene\nKodu sayfadan kopyalayın ya da ilgili .R scriptini indirin. Satır satır çalıştırın, çıktıyı tahmin edin.\n\n\n\n\n3 · Kontrol et\nEgzersizleri çözün; satır sayısı, veri tipi ve beklenen sonuçları doğrulayın. Yanlış sonuç da öğreticidir."
+  },
+  {
+    "objectID": "index.html#eğitimde-ve-eğitimden-sonra",
+    "href": "index.html#eğitimde-ve-eğitimden-sonra",
+    "title": "R Programlama Eğitimi",
+    "section": "Eğitimde ve eğitimden sonra",
+    "text": "Eğitimde ve eğitimden sonra\nEğitmen eşliğinde: Konuların çekirdek uygulamaları seçilir; süre ve katılımcı düzeyine göre örnekler uyarlanır. Örnek beş günlük program bir uygulama biçimidir, sitenin kullanım sınırı değildir.\nBağımsız öğrenmede: Her dersin açıklamaları, scriptleri, alıştırmaları ve ileri okuma bağlantıları kullanılabilir. Materyaller sayfasından dosyaları indirebilirsiniz.\n\nDaha fazlasını öğrenin: R Programlama Kitabı · R İstatistik Akademi — YouTube · Seçilmiş öğrenme kaynakları\n\nİlk bölüme geç: R ve RStudio →\n\n\n\n\n\n\nNot\n\n\n\nEğitmen ve içerik hakkında: Bu eğitim materyalleri Muhammed Fatih Tüzen tarafından hazırlanmıştır. Eğitmen hakkında sayfasında mesleki çalışma alanlarını ve diğer açık kaynaklarını bulabilirsiniz."
+  },
+  {
+    "objectID": "program/index.html",
+    "href": "program/index.html",
+    "title": "Örnek Eğitim Programı",
     "section": "",
-    "text": "R ile ilk komuttan başlayarak veri okuma, dönüştürme ve sonuç üretmeye uzanan uygulamalı bir öğrenme yolu. Konular mantıklı bir sırayla ilerler; örnekleri kendi RStudio ortamında çalıştırabilir, eğitime katıldıktan sonra da burada tekrar edebilirsin."
+    "text": "Bu sayfa, içerik kütüphanesinin beş günlük örnek uygulama planını gösterir. Saatler ve oturum dağılımı kurumun takvimine ve katılımcıların düzeyine göre uyarlanabilir. Her günün zorunlu içeriği o gün tamamlanır; ek alıştırmalar süreye göre isteğe bağlıdır."
   },
   {
-    "objectID": "index.html#nereden-başlamalıyım",
-    "href": "index.html#nereden-başlamalıyım",
-    "title": "R Programlama Eğitimi",
-    "section": "Nereden başlamalıyım?",
-    "text": "Nereden başlamalıyım?\nR’yi hiç bilmiyorsan: Önce 01 · R ve RStudio ile çalışma ortamını tanı, sonra 02 · İlk R komutları ile uygulamaya geç.\nEğitime katılıyorsan: Eğitim Programı sayfasından sınıfta işlenecek akışı gör. Materyaller sayfasından ilgili .R dosyasını al ve RStudio’da eğitmenle birlikte çalıştır."
+    "objectID": "program/index.html#örnek-günlük-saatler-09.3012.30",
+    "href": "program/index.html#örnek-günlük-saatler-09.3012.30",
+    "title": "Örnek Eğitim Programı",
+    "section": "Örnek günlük saatler (09.30–12.30)",
+    "text": "Örnek günlük saatler (09.30–12.30)\n\n\n\nSaat\nEtkinlik\n\n\n\n\n09.30–10.15\n1. ders\n\n\n10.15–10.30\nAra\n\n\n10.30–11.15\n2. ders\n\n\n11.15–11.30\nAra\n\n\n11.30–12.15\n3. ders\n\n\n12.15–12.30\nEsnek uygulama, soru ve kapanış\n\n\n\n\n\n\n\n\n\nNot\n\n\n\nBeş günün toplam zaman aralığı 15 saattir. Bunun 11 saat 15 dakikası çekirdek ders, 1 saat 15 dakikası esnek zaman, 2 saat 30 dakikası aradır. Kurumsal “ders saati” tanımı ayrıca doğrulanmalıdır."
   },
   {
-    "objectID": "index.html#nasıl-öğreniyoruz",
-    "href": "index.html#nasıl-öğreniyoruz",
-    "title": "R Programlama Eğitimi",
-    "section": "Nasıl öğreniyoruz?",
-    "text": "Nasıl öğreniyoruz?\n\n\n\n\n\n\n\nAdım\nNe yapıyoruz?\n\n\n\n\n1. Kavram\nYeni kavramı kısa bir açıklamayla tanıyoruz.\n\n\n2. Tahmin\nKodun ne yapacağını çalıştırmadan önce düşünüyoruz.\n\n\n3. Birlikte uygulama\nKodu RStudio’da satır satır çalıştırıyoruz.\n\n\n4. Kontrol\nSonucu doğruluyor, olası hataları tartışıyoruz.\n\n\n5. Sıra sende\nKüçük bir görevi kendimiz çözüyoruz."
+    "objectID": "program/index.html#gün-r-ile-çalışma-ve-temel-veri-yapıları",
+    "href": "program/index.html#gün-r-ile-çalışma-ve-temel-veri-yapıları",
+    "title": "Örnek Eğitim Programı",
+    "section": "1. Gün — R ile çalışma ve temel veri yapıları",
+    "text": "1. Gün — R ile çalışma ve temel veri yapıları\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nR ekosistemi, R/RStudio farkı, Project, Console, Script, yardım ve paketler\n\n\n10.30–11.15\nNesneler, atama, operatörler, veri tipleri, vektörler, NA, temel fonksiyonlar\n\n\n11.30–12.15\ndata.frame, tibble, liste ve matris; inceleme, indeksleme, if/else giriş\n\n\n\nGün sonu kazanımı: Temel R scripti yazmak, küçük bir tablo kurmak ve koşullu işlem yapmak."
   },
   {
-    "objectID": "index.html#içerik-ve-eğitim-süresi",
-    "href": "index.html#içerik-ve-eğitim-süresi",
-    "title": "R Programlama Eğitimi",
-    "section": "İçerik ve eğitim süresi",
-    "text": "İçerik ve eğitim süresi\nWeb sitesindeki kaynaklar, sınıfta ayrılan zamandan daha kapsamlı olabilir. 5 günlük program, bu kaynaklardan seçilen temel uygulamaları kapsar. Diğer örnekler bireysel tekrar ve farklı sürelerdeki eğitimler için tutulur. Günlere bağlı olmayan konu sırası korunur."
+    "objectID": "program/index.html#gün-kontrol-yapıları-fonksiyonlar-ve-dosyalar",
+    "href": "program/index.html#gün-kontrol-yapıları-fonksiyonlar-ve-dosyalar",
+    "title": "Örnek Eğitim Programı",
+    "section": "2. Gün — Kontrol yapıları, fonksiyonlar ve dosyalar",
+    "text": "2. Gün — Kontrol yapıları, fonksiyonlar ve dosyalar\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nif/else pekiştirme, for, while, vektörel yaklaşım, function()\n\n\n10.30–11.15\nGöreli yollar; CSV, Excel, RDS içe aktarma ve veri kontrolleri\n\n\n11.30–12.15\nSAS/SPSS okuma, etiketli veriler, dışa aktarma, veri tabanı yaklaşımı\n\n\n\nGün sonu kazanımı: Basit fonksiyon/döngü oluşturmak ve farklı dosya biçimlerini okuyabilmek."
   },
   {
-    "objectID": "index.html#kaynaklar",
-    "href": "index.html#kaynaklar",
-    "title": "R Programlama Eğitimi",
-    "section": "Kaynaklar",
-    "text": "Kaynaklar\nKavramsal ayrıntılar için R Programlama Kitabı, video tekrarları için R İstatistik Akademi ve diğer belgeler için Öğrenme Kaynakları sayfasını kullanabilirsin.\nÖğrenmeye başla: R ve RStudio →"
+    "objectID": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-i",
+    "href": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-i",
+    "title": "Örnek Eğitim Programı",
+    "section": "3. Gün — dplyr ile veri manipülasyonu I",
+    "text": "3. Gün — dplyr ile veri manipülasyonu I\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nTidy veri, |&gt;, select(), rename(), filter()\n\n\n10.30–11.15\narrange(), mutate(), if_else(), case_when()\n\n\n11.30–12.15\ndistinct(), is.na(), coalesce() ve WDI uygulaması\n\n\n\nGün sonu kazanımı: WDI verisi üzerinde seçim, filtreleme ve değişken üretme."
+  },
+  {
+    "objectID": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-ii",
+    "href": "program/index.html#gün-dplyr-ile-veri-manipülasyonu-ii",
+    "title": "Örnek Eğitim Programı",
+    "section": "4. Gün — dplyr ile veri manipülasyonu II",
+    "text": "4. Gün — dplyr ile veri manipülasyonu II\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\ngroup_by(), summarise(), count(), n()\n\n\n10.30–11.15\nJOIN mantığı, anahtarlar, left_join(), inner_join(), anti_join()\n\n\n11.30–12.15\npivot_longer(), pivot_wider() ve WDI uygulaması\n\n\n\nGün sonu kazanımı: Gruplu özet, güvenli birleştirme ve veri biçimi dönüşümü."
+  },
+  {
+    "objectID": "program/index.html#gün-modern-r-iş-akışı-ve-mini-proje",
+    "href": "program/index.html#gün-modern-r-iş-akışı-ve-mini-proje",
+    "title": "Örnek Eğitim Programı",
+    "section": "5. Gün — Modern R iş akışı ve mini proje",
+    "text": "5. Gün — Modern R iş akışı ve mini proje\n\n\n\n\n\n\n\nOturum\nKonu\n\n\n\n\n09.30–10.15\nTemiz script, proje düzeni, hata ayıklama, doğrulama, Quarto/GitHub/AI tanıtımı\n\n\n10.30–11.15\nMini proje I: WDI dosyalarını oku, filtrele, dönüştür, birleştir\n\n\n11.30–12.15\nMini proje II: Özetle, kontrol et, dosyaya yaz, sonuçları açıkla\n\n\n\nGün sonu kazanımı: Baştan sona tekrarlanabilir küçük bir veri işleme projesi."
+  },
+  {
+    "objectID": "program/index.html#eğitim-yaklaşımı",
+    "href": "program/index.html#eğitim-yaklaşımı",
+    "title": "Örnek Eğitim Programı",
+    "section": "Eğitim yaklaşımı",
+    "text": "Eğitim yaklaşımı\n\nA: Zorunlu çekirdek içerik.\nB: Zaman kalırsa pekiştirme ve ek alıştırma.\nC: Web sitesinde bağımsız çalışma kaynakları."
   },
   {
     "objectID": "materials/index.html",
@@ -546,18 +919,32 @@
     "text": "Sunumlar\nAçılış sunumunu görüntüle — R, RStudio, CRAN ve eğitimin kapsamı."
   },
   {
-    "objectID": "materials/index.html#veri-aktarımı-henüz-geliştirme-aşamasında",
-    "href": "materials/index.html#veri-aktarımı-henüz-geliştirme-aşamasında",
+    "objectID": "materials/index.html#veri-içe-ve-dışa-aktarma",
+    "href": "materials/index.html#veri-içe-ve-dışa-aktarma",
     "title": "Eğitim Materyalleri",
-    "section": "Veri aktarımı: Henüz geliştirme aşamasında",
-    "text": "Veri aktarımı: Henüz geliştirme aşamasında\nAşağıdaki iki script ilk taslaktır; veri içe/dışa aktarma dersindeki kapsamlı örneklerin yerini henüz tutmaz.\n\n08 · CSV, Excel ve RDS\n09 · SAS ve SPSS"
+    "section": "Veri içe ve dışa aktarma",
+    "text": "Veri içe ve dışa aktarma\n\n\n\n\n08 · Dosya yolları, CSV, Excel, RDS, SAS ve SPSS\nProje mantığı, doğru dosyayı bulma, ayraç/tip kontrolü, çok sayfalı Excel, dışa aktarma ve sorun çözme.\nDersi aç\nDosya yolları (.R) · CSV/Excel/RDS (.R) · SAS/SPSS (.R) · Alıştırmalar\n\n\n\n\n\n\n09 · İnternet, API, SDMX ve veri tabanları\nÇevrim içi veri kaynaklarını tanıma, JSON/SDMX mantığı ve yerel SQLite ile kontrollü örnek.\nDersi aç\nÖrnek script (.R) · Ek egzersizler"
   },
   {
     "objectID": "materials/index.html#eğitim-veri-setleri",
     "href": "materials/index.html#eğitim-veri-setleri",
     "title": "Eğitim Materyalleri",
     "section": "Eğitim veri setleri",
-    "text": "Eğitim veri setleri\nAçık kaynak ve sentetik örnekler GitHub’daki data klasöründe bulunur. İlgili uygulama derslerinde veri dosyalarına doğrudan indirme bağlantıları da eklenecektir.\nTüm çalışma dosyalarını almak: GitHub deposu → Code → Download ZIP. GitHub’daki güncel sürümün yerel önizleme ile aynı olması için değişikliklerin önce push edilmiş olması gerekir."
+    "text": "Eğitim veri setleri\nDers başlamadan önce: Sentetik çok sayfalı Excel · Noktalı virgüllü CSV · WDI 2019 kesiti\nTüm veri dosyalarının tamamı GitHub deposundaki data klasöründe bulunur. Dersler proje kökünden çalıştırılır."
+  },
+  {
+    "objectID": "materials/index.html#veri-hazırlama-ve-manipülasyon-wdi-uygulamaları",
+    "href": "materials/index.html#veri-hazırlama-ve-manipülasyon-wdi-uygulamaları",
+    "title": "Eğitim Materyalleri",
+    "section": "Veri hazırlama ve manipülasyon — WDI uygulamaları",
+    "text": "Veri hazırlama ve manipülasyon — WDI uygulamaları\nBu bölümde konular 10 → 14 sırasıyla ilerler. Önce temel dönüşümler, sonra gruplama, birleştirme ve pivot uygulanır. WDI veri setlerini data klasöründen edinebilirsiniz.\n\n\n\n\n10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri\nDersi aç · R scriptini indir · Alıştırmalar\n\n\n\n\n\n\n11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler\nDersi aç · R scriptini indir · Alıştırmalar\n\n\n\n\n\n\n12 · Gruplama ve Özet İstatistikler\nDersi aç · R scriptini indir · Alıştırmalar\n\n\n\n\n\n\n13 · Tabloları Güvenle Birleştirme (JOIN)\nDersi aç · R scriptini indir · Alıştırmalar\n\n\n\n\n\n\n14 · Uzun ve Geniş Veri Dönüşümü (Pivot)\nDersi aç · R scriptini indir · Alıştırmalar\n\n\n\n\nKaynaklı özgün görseller: JOIN şeması · Pivot şeması."
+  },
+  {
+    "objectID": "materials/index.html#uçtan-uca-mini-proje",
+    "href": "materials/index.html#uçtan-uca-mini-proje",
+    "title": "Eğitim Materyalleri",
+    "section": "15 · Uçtan Uca Mini Proje",
+    "text": "15 · Uçtan Uca Mini Proje\n\n\n\n\nWDI ile veri hazırlama görevi\nVeri okuma → kontrol → filtreleme → dönüştürme → JOIN → gruplama → çıktı doğrulama.\nProje rehberi · Görev yönergesi\nBaşlangıç scriptini indir · Kontrol listesi\nÇözüm dosyası katılımcı sayfasında paylaşılmaz; eğitimde değerlendirmenin ardından eğitmen tarafından kullanılabilir."
   },
   {
     "objectID": "lessons/01-r-ve-rstudio.html",
@@ -1037,10 +1424,318 @@
     "href": "lessons/07-fonksiyonlar.html#özet-ve-sonraki-adım",
     "title": "07 · Kullanıcı Tanımlı Fonksiyonlar",
     "section": "Özet ve sonraki adım",
-    "text": "Özet ve sonraki adım\nBir fonksiyon, girdilerle yapılan belirli bir işi tekrar kullanılabilir hâle getirir. function(), argümanlar, varsayılan değerler, sonuç döndürme, basit kontrol ve değişken kapsamını öğrendik. Bir sonraki bölümde farklı dosyalardaki verileri R’ye alıp bu bilgileri gerçek veri işleme sürecine taşıyacağız.\nDerinleşmek için: R Programlama Kitabı · R: Writing Your Own Functions\n\nÖnceki: 06 · Döngüler\nSonraki: Veri İçe / Dışa Aktarma — sonraki modülde bağlantı eklenecek.",
+    "text": "Özet ve sonraki adım\nBir fonksiyon, girdilerle yapılan belirli bir işi tekrar kullanılabilir hâle getirir. function(), argümanlar, varsayılan değerler, sonuç döndürme, basit kontrol ve değişken kapsamını öğrendik. Bir sonraki bölümde farklı dosyalardaki verileri R’ye alıp bu bilgileri gerçek veri işleme sürecine taşıyacağız.\nDerinleşmek için: R Programlama Kitabı · R: Writing Your Own Functions\n\nÖnceki: 06 · Döngüler\nSonraki: 08 · Dosyalar ve veri aktarımı.",
     "crumbs": [
       "Eğitim İçeriği",
       "07 · Fonksiyonlar"
+    ]
+  },
+  {
+    "objectID": "lessons/09-api-sdmx-veritabani.html",
+    "href": "lessons/09-api-sdmx-veritabani.html",
+    "title": "09 · İnternetten ve Veri Tabanından Veri Alma",
+    "section": "",
+    "text": "Sınıf içi durum\n\n\n\nBu bölüm genişletilmiş öğrenme kaynağıdır. İnternet, erişim izni, güvenlik duvarı ve kimlik doğrulaması canlı gösterimi engelleyebilir. Zorunlu 15 ders saatinde kısa tanıtım yeterlidir; örnekler kendi başınıza uygulanabilir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "09 · API, SDMX ve veri tabanları"
+    ]
+  },
+  {
+    "objectID": "lessons/09-api-sdmx-veritabani.html#internette-dosya-ile-api-arasındaki-fark",
+    "href": "lessons/09-api-sdmx-veritabani.html#internette-dosya-ile-api-arasındaki-fark",
+    "title": "09 · İnternetten ve Veri Tabanından Veri Alma",
+    "section": "1. İnternette dosya ile API arasındaki fark",
+    "text": "1. İnternette dosya ile API arasındaki fark\n\nDosya URL’si: Doğrudan CSV/ZIP gibi bir dosyayı sunar; indirilip yerel dosya gibi okunabilir.\nAPI uç noktası: Parametrelerle veri isteriz; sıklıkla JSON/XML/CSV döner. Her API’nin kullanım koşulları ve sürüm politikası farklıdır.\nSDMX: Özellikle resmî istatistiklerde veri ve metadata değişimi için kullanılan standarttır; SDMX-ML ve SDMX-CSV gibi temsil biçimleri bulunur.",
+    "crumbs": [
+      "Ana Sayfa",
+      "09 · API, SDMX ve veri tabanları"
+    ]
+  },
+  {
+    "objectID": "lessons/09-api-sdmx-veritabani.html#urlden-dosya-indirme",
+    "href": "lessons/09-api-sdmx-veritabani.html#urlden-dosya-indirme",
+    "title": "09 · İnternetten ve Veri Tabanından Veri Alma",
+    "section": "2. URL’den dosya indirme",
+    "text": "2. URL’den dosya indirme\n# Gerçek bir bağlantı ve internet erişimi olmadan çalıştırmayın.\n# url &lt;- \"https://kurum.example/veri.csv\"\n# dir.create(\"outputs\", showWarnings = FALSE)\n# utils::download.file(url, \"outputs/veri.csv\", mode = \"wb\")\n# veri &lt;- readr::read_csv(\"outputs/veri.csv\", show_col_types = FALSE)\nDosya yerel olarak saklandığında çalışmayı tekrar etmek kolaylaşır. Kaynak URL’sini, indirme tarihini, kapsamı ve varsa lisansı kaydedin. Ağ hatası, HTTP 403/404, proxy ve sertifika sorunları veri dosyası hatalarından farklıdır.",
+    "crumbs": [
+      "Ana Sayfa",
+      "09 · API, SDMX ve veri tabanları"
+    ]
+  },
+  {
+    "objectID": "lessons/09-api-sdmx-veritabani.html#json-api-mantığı",
+    "href": "lessons/09-api-sdmx-veritabani.html#json-api-mantığı",
+    "title": "09 · İnternetten ve Veri Tabanından Veri Alma",
+    "section": "3. JSON API mantığı",
+    "text": "3. JSON API mantığı\n# Offline JSON örneği: İnternet ve kimlik doğrulama gerektirmez.\njson &lt;- '{\"ulke\":\"TR\",\"yil\":2020,\"deger\":12.4}'\n# jsonlite paketi kuruluysa:\nif (requireNamespace(\"jsonlite\", quietly = TRUE)) {\n  jsonlite::fromJSON(json)\n}\n\n# Canlı bir API için genel desen (bilerek çalıştırılmaz):\n# yanit &lt;- httr2::request(\"https://api.example/endpoint\") |&gt;\n#   httr2::req_perform()\n# veri &lt;- httr2::resp_body_json(yanit)\nGerçek API kullanımında yetkilendirme, parametre, sayfalama, oran sınırlaması ve veri şeması dikkate alınmalıdır. API anahtarlarını GitHub deposuna yazmayın.",
+    "crumbs": [
+      "Ana Sayfa",
+      "09 · API, SDMX ve veri tabanları"
+    ]
+  },
+  {
+    "objectID": "lessons/09-api-sdmx-veritabani.html#sdmxe-giriş",
+    "href": "lessons/09-api-sdmx-veritabani.html#sdmxe-giriş",
+    "title": "09 · İnternetten ve Veri Tabanından Veri Alma",
+    "section": "4. SDMX’e giriş",
+    "text": "4. SDMX’e giriş\nSDMX yalnızca bir R paketi değildir; veri yapıları, kod listeleri, boyutlar, gösterge kimlikleri ve metadata içeren bir veri değişim yaklaşımıdır. rsdmx::readSDMX() SDMX belgelerini okumak için kullanılabilir; ancak sağlayıcı uç noktası ve servis biçimi doğrulanmalıdır.\n# Canlı servis örneği değil: API URL/akış kimliği sağlayıcıya göre değişir.\n# sdmx &lt;- rsdmx::readSDMX(file = \"https://...\", isURL = TRUE)\n# tablo &lt;- as.data.frame(sdmx)\nKurumların SDMX REST servislerinin sürümleri ve formatları farklılaşabilir; URL’leri doğrulamadan hazırmış gibi koda yazmayalım.",
+    "crumbs": [
+      "Ana Sayfa",
+      "09 · API, SDMX ve veri tabanları"
+    ]
+  },
+  {
+    "objectID": "lessons/09-api-sdmx-veritabani.html#veri-tabanından-veri-okuma-dbi-rsqlite",
+    "href": "lessons/09-api-sdmx-veritabani.html#veri-tabanından-veri-okuma-dbi-rsqlite",
+    "title": "09 · İnternetten ve Veri Tabanından Veri Alma",
+    "section": "5. Veri tabanından veri okuma: DBI / RSQLite",
+    "text": "5. Veri tabanından veri okuma: DBI / RSQLite\nVeri tabanı sistemi (PostgreSQL, Oracle, SQL Server vb.) ile R arasında sürücü gerekir. DBI ortak arayüz; RSQLite, RPostgres, odbc gibi paketler bağlantı arka ucunu sağlar.\nİsteğe bağlı çevrimdışı uygulama — SQLite:\nif (requireNamespace(\"DBI\", quietly = TRUE) &&\n    requireNamespace(\"RSQLite\", quietly = TRUE)) {\n  con &lt;- DBI::dbConnect(RSQLite::SQLite(), \":memory:\")\n  DBI::dbWriteTable(con, \"ornek\", data.frame(id = 1:3, tutar = c(10, 20, 30)))\n  sonuc &lt;- DBI::dbGetQuery(con, \"SELECT * FROM ornek WHERE tutar &gt;= 20\")\n  print(sonuc)\n  DBI::dbDisconnect(con)\n}\nKurumsal veri tabanına bağlantı için kullanıcı adı, güvenli kimlik doğrulama, sürücü/DSN ve ağ izni gerekir. Şifreyi .R dosyasına, Quarto sayfasına veya GitHub’a koymayın. Büyük tablolarda veriyi tümüyle indirmek yerine SQL ile gerekli satır ve sütunları seçin.",
+    "crumbs": [
+      "Ana Sayfa",
+      "09 · API, SDMX ve veri tabanları"
+    ]
+  },
+  {
+    "objectID": "lessons/09-api-sdmx-veritabani.html#kontrol-listesi",
+    "href": "lessons/09-api-sdmx-veritabani.html#kontrol-listesi",
+    "title": "09 · İnternetten ve Veri Tabanından Veri Alma",
+    "section": "6. Kontrol listesi",
+    "text": "6. Kontrol listesi\nDosyadan/API’den/DB’den veri aldıktan sonra: kayıt sayısı, sütun adları, veri tipleri, anahtar tekilliği, eksikler, birimler, tarih, kaynağın sürümü ve sorgu zamanı kontrol edilir.\nÖrnek scripti indir · Ek egzersizler\nDaha ayrıntılı kaynaklar: DBI · RSQLite · rsdmx · Quarto ve R Programlama Kitabı.\n\nÖnceki: 08 · Dosyalarla çalışma\nSonraki: dplyr ile veri manipülasyonu — sonraki modülde bağlantı eklenecek.\n\nSonraki konu: 10 · Veri hazırlama ve dplyr temelleri →",
+    "crumbs": [
+      "Ana Sayfa",
+      "09 · API, SDMX ve veri tabanları"
+    ]
+  },
+  {
+    "objectID": "lessons/10-dplyr-temelleri.html",
+    "href": "lessons/10-dplyr-temelleri.html",
+    "title": "10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri",
+    "section": "",
+    "text": "Bu bölüm nasıl kullanılmalı?\n\n\n\nÖnce kısa açıklamayı okuyun; kodun sonucunu tahmin edin; ardından RStudio’da satır satır çalıştırın. A temel sınıf içeriği, B pekiştirme, C ise bağımsız çalışmadır. Tüm kodları aynı gün bitirmek zorunda değilsiniz.\nUygulama dosyası: R scriptini indir · Alıştırmaları indir · Tüm materyaller\nÖn koşul: RStudio Project ile çalışma, veri okuma ve temel nesne/veri yapıları. Veri: data/wdi/ altındaki kitap kaynaklı WDI eğitim alt kümeleri. Dosya yolları proje köküne göredir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "10 · Veri hazırlama ve dplyr temelleri"
+    ]
+  },
+  {
+    "objectID": "lessons/10-dplyr-temelleri.html#veri-manipülasyonu-neden-gereklidir-a",
+    "href": "lessons/10-dplyr-temelleri.html#veri-manipülasyonu-neden-gereklidir-a",
+    "title": "10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri",
+    "section": "1. Veri manipülasyonu neden gereklidir? (A)",
+    "text": "1. Veri manipülasyonu neden gereklidir? (A)\nHam veri çoğu zaman doğrudan analize uygun değildir: gereksiz sütunlar, eksik kayıtlar, değişken adları, tekrarlanan anahtarlar, farklı ölçü birimleri ve uyumsuz tablo yapıları bulunabilir. Veri hazırlama yalnızca temizleme değil, araştırma sorusu için doğru analiz birimini oluşturmaktır.\nÖrnek soru: 2019 yılında işsizlik oranı %10’u aşan ülkeler hangileri? Bu soruyu yanıtlamak için önce ülke, yıl ve işsizlik sütunlarını tanır, sonra eksikliği kontrol edip satır filtreleriz.\n\nİş akışı\n\nVeriyi oku ve gözlem birimini belirle: bir satır = bir ülke mi, ülke-yıl mı?\nİhtiyaç duyulan sütunları seç.\nİlgili gözlemleri filtrele; eksikliği ayrı düşün.\nDönüşümleri uygula, beklenen satır/sütun sayısını kontrol et.\nKaydedilecek çıktının birimini, tarihini ve kapsamını belgeleyin.\n\n\n\n\n\n\n\nVeri hazırlama ve analitik doğruluk\n\n\n\nfilter() ile veri seçmek teknik bir işlem; veri seçim ölçütünün araştırma sorusuna uygunluğu ise analitik bir karardır. Çalışan bir kod mutlaka anlamlı bir analiz üretmez.",
+    "crumbs": [
+      "Ana Sayfa",
+      "10 · Veri hazırlama ve dplyr temelleri"
+    ]
+  },
+  {
+    "objectID": "lessons/10-dplyr-temelleri.html#tidy-veri-ve-dplyr-fiilleri-a",
+    "href": "lessons/10-dplyr-temelleri.html#tidy-veri-ve-dplyr-fiilleri-a",
+    "title": "10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri",
+    "section": "2. Tidy veri ve dplyr fiilleri (A)",
+    "text": "2. Tidy veri ve dplyr fiilleri (A)\nTidy data ilkesi: her değişken bir sütunda, her gözlem bir satırda, her gözlemsel birim ayrı tabloda. Geniş ve uzun biçimlerden hangisinin uygun olduğu yapılacak işleme bağlıdır. Kitapta ülke–yıl panelini kullanarak bunu daha sonra inceleyeceğiz.\n\n\n\nFonksiyon\nGörevi\nNeyi etkiler?\n\n\n\n\nselect()\nSütun seçmek\nSütunları\n\n\nfilter()\nKoşula göre satır seçmek\nSatırları\n\n\narrange()\nSatır sıralamak\nSatır sırasını\n\n\nrename()\nSütun adını değiştirmek\nİsimleri\n\n\ndistinct()\nTekil kayıtları seçmek\nSatırları\n\n\nmutate()\nYeni sütun üretmek/değiştirmek\nSütun değerlerini",
+    "crumbs": [
+      "Ana Sayfa",
+      "10 · Veri hazırlama ve dplyr temelleri"
+    ]
+  },
+  {
+    "objectID": "lessons/10-dplyr-temelleri.html#pipe-ile-işlem-sırası-a",
+    "href": "lessons/10-dplyr-temelleri.html#pipe-ile-işlem-sırası-a",
+    "title": "10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri",
+    "section": "3. Pipe |> ile işlem sırası (A)",
+    "text": "3. Pipe |&gt; ile işlem sırası (A)\nÖnce işlevleri tek tek, sonra zincir halinde kullanalım. Pipe soldaki veriyi sağdaki fonksiyona iletir; komutlar yukarıdan aşağıya okunur.\nlibrary(dplyr)\nwdi &lt;- readr::read_csv(\"data/wdi/wdi_2019.csv\", show_col_types = FALSE)\n\nwdi |&gt;\n  select(country, country_code, unemployment_total_pct) |&gt;\n  filter(!is.na(unemployment_total_pct), unemployment_total_pct &gt; 10) |&gt;\n  arrange(desc(unemployment_total_pct)) |&gt;\n  head(10)\nYorum: select() satır sayısını azaltmaz; filter() azaltabilir. arrange() satırların sırasını değiştirir. head(10) yalnızca ilk 10 satırı gösterir, veri nesnesini otomatik kaydetmez.",
+    "crumbs": [
+      "Ana Sayfa",
+      "10 · Veri hazırlama ve dplyr temelleri"
+    ]
+  },
+  {
+    "objectID": "lessons/10-dplyr-temelleri.html#select-filter-rename-ve-sıralama-a",
+    "href": "lessons/10-dplyr-temelleri.html#select-filter-rename-ve-sıralama-a",
+    "title": "10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri",
+    "section": "4. select(), filter(), rename() ve sıralama (A)",
+    "text": "4. select(), filter(), rename() ve sıralama (A)\n# Sütun seçme; seçmediğim sütunlar kaybolmaz, kaynak nesne korunur.\nwdi |&gt; select(country, year, starts_with(\"gdp_\")) |&gt; head()\n\n# Birkaç ülkeyi kodlarıyla seçme\nwdi |&gt; filter(country_code %in% c(\"TUR\", \"DEU\", \"FRA\")) |&gt;\n  select(country, year, population_total)\n\n# Yeni ad solda, eski ad sağda\nwdi |&gt; rename(ulke = country) |&gt; select(ulke, year) |&gt; head()\nÖnce tahmin edin: filter(population_total &gt; 1e7) uygulandığında NA nüfuslar ne olur? Neden önce eksik değerleri kontrol ediyoruz?",
+    "crumbs": [
+      "Ana Sayfa",
+      "10 · Veri hazırlama ve dplyr temelleri"
+    ]
+  },
+  {
+    "objectID": "lessons/10-dplyr-temelleri.html#hata-ve-kontrol-örnekleri-b",
+    "href": "lessons/10-dplyr-temelleri.html#hata-ve-kontrol-örnekleri-b",
+    "title": "10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri",
+    "section": "5. Hata ve kontrol örnekleri (B)",
+    "text": "5. Hata ve kontrol örnekleri (B)\n\ncountry = \"Turkey\" bir atama ifadesidir; karşılaştırma için country == \"Turkey\" gerekir. Ülke adlarının dil/değişim sorunlarına karşı kodlar daha güvenilirdir.\nfilter(year == 2019) ile filter(year = 2019) aynı değildir.\ndistinct(country_code) ülke kodlarının tekrarsız listesini verir; tekilliği ilgili gözlem anahtarında test edin.\nBir nesneyi değiştirmek için sonucu atayın: sonuc &lt;- wdi |&gt; filter(...).\n\n\n\n\n\n\n\nSınıf içi uygulama\n\n\n\nWDI 2019 verisinden nüfusu 10 milyonun üzerinde olan ülkelerin kodunu, adını ve nüfusunu seçin; nüfusa göre azalan sıralayın. Beklediğiniz satır sayısını not edin.\n\n\nKaynaklar: dplyr fonksiyon listesi · R for Data Science — Data transformation.",
+    "crumbs": [
+      "Ana Sayfa",
+      "10 · Veri hazırlama ve dplyr temelleri"
+    ]
+  },
+  {
+    "objectID": "lessons/10-dplyr-temelleri.html#öğrendiklerinizi-kontrol-edin",
+    "href": "lessons/10-dplyr-temelleri.html#öğrendiklerinizi-kontrol-edin",
+    "title": "10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri",
+    "section": "Öğrendiklerinizi kontrol edin",
+    "text": "Öğrendiklerinizi kontrol edin\n\nBu işlem hangi satırları veya sütunları değiştiriyor?\nEksik değerler sonuçları nasıl etkiliyor?\nBeklenen gözlem sayısını nasıl doğrularım?\n\nAlıştırma: Bu bölümün görevleri. Ek okuma: R Programlama Kitabı · dplyr · tidyr.\n\n← Önceki konu · Sonraki konu →",
+    "crumbs": [
+      "Ana Sayfa",
+      "10 · Veri hazırlama ve dplyr temelleri"
+    ]
+  },
+  {
+    "objectID": "lessons/12-dplyr-gruplama.html",
+    "href": "lessons/12-dplyr-gruplama.html",
+    "title": "12 · Gruplama ve Özet İstatistikler",
+    "section": "",
+    "text": "Bu bölüm nasıl kullanılmalı?\n\n\n\nÖnce kısa açıklamayı okuyun; kodun sonucunu tahmin edin; ardından RStudio’da satır satır çalıştırın. A temel sınıf içeriği, B pekiştirme, C ise bağımsız çalışmadır. Tüm kodları aynı gün bitirmek zorunda değilsiniz.\nUygulama dosyası: R scriptini indir · Alıştırmaları indir · Tüm materyaller\nÖn koşul: RStudio Project ile çalışma, veri okuma ve temel nesne/veri yapıları. Veri: data/wdi/ altındaki kitap kaynaklı WDI eğitim alt kümeleri. Dosya yolları proje köküne göredir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "12 · Gruplama ve özetleme"
+    ]
+  },
+  {
+    "objectID": "lessons/12-dplyr-gruplama.html#hangi-birimi-özetliyoruz-a",
+    "href": "lessons/12-dplyr-gruplama.html#hangi-birimi-özetliyoruz-a",
+    "title": "12 · Gruplama ve Özet İstatistikler",
+    "section": "1. Hangi birimi özetliyoruz? (A)",
+    "text": "1. Hangi birimi özetliyoruz? (A)\nTekil ülkelerle bir ülke–yıl paneli aynı gözlem birimine sahip değildir. Bir gruplama yapmadan önce “Hangi birimler, hangi dönem, nasıl ağırlıklandırılmış?” sorularını cevaplamalıyız. Ortalaması alınan ülke işsizlik oranları, bölgenin toplam işsizlik oranı değildir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "12 · Gruplama ve özetleme"
+    ]
+  },
+  {
+    "objectID": "lessons/12-dplyr-gruplama.html#group_by-ve-summarise-a",
+    "href": "lessons/12-dplyr-gruplama.html#group_by-ve-summarise-a",
+    "title": "12 · Gruplama ve Özet İstatistikler",
+    "section": "2. group_by() ve summarise() (A)",
+    "text": "2. group_by() ve summarise() (A)\nlibrary(dplyr)\npanel &lt;- readr::read_csv(\"data/wdi/wdi_panel_2015_2022.csv\", show_col_types = FALSE)\n\npanel |&gt;\n  group_by(year) |&gt;\n  summarise(\n    n_satir = n(),\n    n_gecerli = sum(!is.na(unemployment_total_pct)),\n    ort_issizlik = mean(unemployment_total_pct, na.rm = TRUE),\n    .groups = \"drop\"\n  )\nn() satır sayısını, sum(!is.na(...)) geçerli kayıt sayısını verir. .groups = \"drop\", sonuç üzerinde beklenmeyen sonraki gruplama etkilerinin kalmamasına yardımcı olur.",
+    "crumbs": [
+      "Ana Sayfa",
+      "12 · Gruplama ve özetleme"
+    ]
+  },
+  {
+    "objectID": "lessons/12-dplyr-gruplama.html#count-n_distinct-ve-birden-çok-grup-a",
+    "href": "lessons/12-dplyr-gruplama.html#count-n_distinct-ve-birden-çok-grup-a",
+    "title": "12 · Gruplama ve Özet İstatistikler",
+    "section": "3. count(), n_distinct() ve birden çok grup (A)",
+    "text": "3. count(), n_distinct() ve birden çok grup (A)\nmeta &lt;- readr::read_csv(\"data/wdi/country_metadata.csv\", show_col_types = FALSE)\npanel_bolge &lt;- panel |&gt;\n  left_join(meta |&gt; select(country_code, region),\n            by = \"country_code\", relationship = \"many-to-one\")\n\npanel_bolge |&gt; filter(year == 2019) |&gt; count(region, sort = TRUE)\n\npanel_bolge |&gt;\n  group_by(year, region) |&gt;\n  summarise(n_ulke = n_distinct(country_code), .groups = \"drop\") |&gt;\n  head()\nMetadata eşleştirmesinin neden güvenli olduğunu JOIN dersinde ayrıntılı öğreneceğiz. Burada yalnızca country_code alanıyla eklenen bölge bilgisi önceden hazırlanmış örnek gibi ele alınabilir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "12 · Gruplama ve özetleme"
+    ]
+  },
+  {
+    "objectID": "lessons/12-dplyr-gruplama.html#across-ile-çoklu-özet-b",
+    "href": "lessons/12-dplyr-gruplama.html#across-ile-çoklu-özet-b",
+    "title": "12 · Gruplama ve Özet İstatistikler",
+    "section": "4. across() ile çoklu özet (B)",
+    "text": "4. across() ile çoklu özet (B)\npanel |&gt;\n  group_by(year) |&gt;\n  summarise(across(c(unemployment_total_pct, internet_users_pct),\n                   ~ mean(.x, na.rm = TRUE),\n                   .names = \"ort_{.col}\"),\n            .groups = \"drop\")",
+    "crumbs": [
+      "Ana Sayfa",
+      "12 · Gruplama ve özetleme"
+    ]
+  },
+  {
+    "objectID": "lessons/12-dplyr-gruplama.html#yorumlama-hataları-a",
+    "href": "lessons/12-dplyr-gruplama.html#yorumlama-hataları-a",
+    "title": "12 · Gruplama ve Özet İstatistikler",
+    "section": "5. Yorumlama hataları (A)",
+    "text": "5. Yorumlama hataları (A)\n\nOrtalama alırken eksikleri görmezden gelmek, farklı yıllarda farklı ülke kümeleri kullanmak anlamına gelebilir.\n% birimli göstergelerin ülke ortalaması, kişi veya istihdam ağırlıklı bölgesel oran değildir.\nCari USD kişi başı GSYH ortalaması, dünya toplam GSYH / dünya nüfusu hesaplamasıyla aynı değildir.\nBirim ve yıl, tablo başlıklarında yer almalıdır.\n\n\n\n\n\n\n\nUygulama\n\n\n\n2019 ve 2020 yıllarında bölgelere göre kaç ülkede işsizlik göstergesi mevcut? Bölge başına veri kapsamı değişiyor mu? Önce gözlem sayısını, sonra geçerli gözlem sayısını hesaplayın.\n\n\nKaynak: dplyr grouped data.",
+    "crumbs": [
+      "Ana Sayfa",
+      "12 · Gruplama ve özetleme"
+    ]
+  },
+  {
+    "objectID": "lessons/12-dplyr-gruplama.html#öğrendiklerinizi-kontrol-edin",
+    "href": "lessons/12-dplyr-gruplama.html#öğrendiklerinizi-kontrol-edin",
+    "title": "12 · Gruplama ve Özet İstatistikler",
+    "section": "Öğrendiklerinizi kontrol edin",
+    "text": "Öğrendiklerinizi kontrol edin\n\nBu işlem hangi satırları veya sütunları değiştiriyor?\nEksik değerler sonuçları nasıl etkiliyor?\nBeklenen gözlem sayısını nasıl doğrularım?\n\nAlıştırma: Bu bölümün görevleri. Ek okuma: R Programlama Kitabı · dplyr · tidyr.\n\n← Önceki konu · Sonraki konu →",
+    "crumbs": [
+      "Ana Sayfa",
+      "12 · Gruplama ve özetleme"
+    ]
+  },
+  {
+    "objectID": "lessons/14-tidyr-pivot.html",
+    "href": "lessons/14-tidyr-pivot.html",
+    "title": "14 · Uzun ve Geniş Veri Dönüşümü (Pivot)",
+    "section": "",
+    "text": "Bu bölüm nasıl kullanılmalı?\n\n\n\nÖnce kısa açıklamayı okuyun; kodun sonucunu tahmin edin; ardından RStudio’da satır satır çalıştırın. A temel sınıf içeriği, B pekiştirme, C ise bağımsız çalışmadır. Tüm kodları aynı gün bitirmek zorunda değilsiniz.\nUygulama dosyası: R scriptini indir · Alıştırmaları indir · Tüm materyaller\nÖn koşul: RStudio Project ile çalışma, veri okuma ve temel nesne/veri yapıları. Veri: data/wdi/ altındaki kitap kaynaklı WDI eğitim alt kümeleri. Dosya yolları proje köküne göredir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "14 · Uzun/geniş veri dönüşümü"
+    ]
+  },
+  {
+    "objectID": "lessons/14-tidyr-pivot.html#tidy-veri-neden-biçim-değiştiriyoruz-a",
+    "href": "lessons/14-tidyr-pivot.html#tidy-veri-neden-biçim-değiştiriyoruz-a",
+    "title": "14 · Uzun ve Geniş Veri Dönüşümü (Pivot)",
+    "section": "1. Tidy veri: neden biçim değiştiriyoruz? (A)",
+    "text": "1. Tidy veri: neden biçim değiştiriyoruz? (A)\nBir veri setinin geniş biçiminde yıllar veya göstergeler sütun olabilir. Uzun biçimde ise aynı bilgi, yıl / gösterge / değer sütunlarına yerleşir. İşlemin amacı satır ve sütun yerini değiştirmek değil, gözlem birimini ve amaçlanan analizi uygun temsil etmektir.",
+    "crumbs": [
+      "Ana Sayfa",
+      "14 · Uzun/geniş veri dönüşümü"
+    ]
+  },
+  {
+    "objectID": "lessons/14-tidyr-pivot.html#özgün-pivot-şeması-a",
+    "href": "lessons/14-tidyr-pivot.html#özgün-pivot-şeması-a",
+    "title": "14 · Uzun ve Geniş Veri Dönüşümü (Pivot)",
+    "section": "2. Özgün pivot şeması (A)",
+    "text": "2. Özgün pivot şeması (A)\n\n\n\nGeniş ve uzun tablo biçimleri arasında pivot_longer ve pivot_wider geçişleri.\n\n\nŞema eğitim için özgün olarak hazırlanmıştır. Kavramsal kaynaklar: tidyr pivot rehberi, pivot_longer, pivot_wider.\nlibrary(dplyr)\nlibrary(tidyr)\ngenis &lt;- tibble(country = c(\"A\", \"B\"), `2020` = c(10, 20), `2021` = c(12, 25))\nuzun &lt;- genis |&gt;\n  pivot_longer(cols = c(`2020`, `2021`), names_to = \"year\", values_to = \"value\")\nuzun\n\nuzun |&gt;\n  pivot_wider(id_cols = country, names_from = year, values_from = value)",
+    "crumbs": [
+      "Ana Sayfa",
+      "14 · Uzun/geniş veri dönüşümü"
+    ]
+  },
+  {
+    "objectID": "lessons/14-tidyr-pivot.html#names_to-values_to-names_from-values_from-a",
+    "href": "lessons/14-tidyr-pivot.html#names_to-values_to-names_from-values_from-a",
+    "title": "14 · Uzun ve Geniş Veri Dönüşümü (Pivot)",
+    "section": "3. names_to, values_to, names_from, values_from (A)",
+    "text": "3. names_to, values_to, names_from, values_from (A)\n\n\n\n\n\n\n\n\nFonksiyon\nArgüman\nAnlamı\n\n\n\n\npivot_longer()\ncols\nUzun biçime taşınacak sütunlar\n\n\npivot_longer()\nnames_to\nKaynak sütun adlarının tutulacağı yeni sütun\n\n\npivot_longer()\nvalues_to\nDeğerleri taşıyan yeni sütun\n\n\npivot_wider()\nnames_from\nYeni sütun adlarını üretecek değişken\n\n\npivot_wider()\nvalues_from\nHücrelerde kullanılacak değer değişkeni\n\n\npivot_wider()\nid_cols\nSatırı tanımlayan gözlem anahtarı",
+    "crumbs": [
+      "Ana Sayfa",
+      "14 · Uzun/geniş veri dönüşümü"
+    ]
+  },
+  {
+    "objectID": "lessons/14-tidyr-pivot.html#wdi-panelini-dönüştürme-a",
+    "href": "lessons/14-tidyr-pivot.html#wdi-panelini-dönüştürme-a",
+    "title": "14 · Uzun ve Geniş Veri Dönüşümü (Pivot)",
+    "section": "4. WDI panelini dönüştürme (A)",
+    "text": "4. WDI panelini dönüştürme (A)\npanel &lt;- readr::read_csv(\"data/wdi/wdi_panel_2015_2022.csv\", show_col_types = FALSE)\n\nuzun_wdi &lt;- panel |&gt;\n  select(country_code, year, unemployment_total_pct, internet_users_pct) |&gt;\n  pivot_longer(cols = c(unemployment_total_pct, internet_users_pct),\n               names_to = \"indicator\", values_to = \"value\")\n\nuzun_wdi |&gt; head(8)\nWDI eğitim paketinde wdi_long_2015_2022.csv da bulunmaktadır. Bu dosyada indicator_label ve unit sütunları tutulur; farklı birimlerdeki değerleri tek ortalamada birleştirmek anlamsızdır.",
+    "crumbs": [
+      "Ana Sayfa",
+      "14 · Uzun/geniş veri dönüşümü"
+    ]
+  },
+  {
+    "objectID": "lessons/14-tidyr-pivot.html#tekrarlı-anahtar-ve-eksik-gözlemler-b",
+    "href": "lessons/14-tidyr-pivot.html#tekrarlı-anahtar-ve-eksik-gözlemler-b",
+    "title": "14 · Uzun ve Geniş Veri Dönüşümü (Pivot)",
+    "section": "5. Tekrarlı anahtar ve eksik gözlemler (B)",
+    "text": "5. Tekrarlı anahtar ve eksik gözlemler (B)\n\npivot_wider() için id_cols + names_from birleşimi çoğu uygulamada tekil olmalıdır.\nTekrarlı anahtarlar list-sütun üretebilir. values_fn = mean ancak tekrarların nedenini biliyorsanız kullanılmalıdır; aksi hâlde veri kaybını gizleyebilir.\nvalues_drop_na = TRUE açık eksikleri örtük eksiklere çevirebilir. Varsayılan davranışı anlamadan kullanmayın.\nnames_transform = list(year = as.integer) yıl adlarını dönüştürmek için kullanılabilir.\n\n\n\n\n\n\n\nUygulama\n\n\n\nÜlke-yıl gözlemlerinde iki göstergeyi uzun biçime dönüştürün, sonra geri çevirin. Gözlem sayısı ve seçilen sayısal değerlerin korunduğunu kontrol edin.\n\n\nKaynaklar: tidyr pivot rehberi · R for Data Science — Data tidying.",
+    "crumbs": [
+      "Ana Sayfa",
+      "14 · Uzun/geniş veri dönüşümü"
+    ]
+  },
+  {
+    "objectID": "lessons/14-tidyr-pivot.html#öğrendiklerinizi-kontrol-edin",
+    "href": "lessons/14-tidyr-pivot.html#öğrendiklerinizi-kontrol-edin",
+    "title": "14 · Uzun ve Geniş Veri Dönüşümü (Pivot)",
+    "section": "Öğrendiklerinizi kontrol edin",
+    "text": "Öğrendiklerinizi kontrol edin\n\nBu işlem hangi satırları veya sütunları değiştiriyor?\nEksik değerler sonuçları nasıl etkiliyor?\nBeklenen gözlem sayısını nasıl doğrularım?\n\nAlıştırma: Bu bölümün görevleri. Ek okuma: R Programlama Kitabı · dplyr · tidyr.\n\n← Önceki konu · Sonraki konu: Mini proje →",
+    "crumbs": [
+      "Ana Sayfa",
+      "14 · Uzun/geniş veri dönüşümü"
     ]
   }
 ]

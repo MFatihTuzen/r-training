@@ -241,4 +241,4 @@ Bir fonksiyon, girdilerle yapılan belirli bir işi tekrar kullanılabilir hâle
 ---
 
 **Önceki:** [06 · Döngüler](06-donguler.qmd)  
-**Sonraki:** Veri İçe / Dışa Aktarma — sonraki modülde bağlantı eklenecek.
+**Sonraki:** [08 · Dosyalar ve veri aktarımı](08-dosyalar-ve-veri-aktarimi.qmd).

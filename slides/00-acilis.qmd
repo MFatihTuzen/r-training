@@ -1,108 +1,282 @@
 ---
-title: "R Programlamaya Giriş"
-subtitle: "R, RStudio ve ilk çalışma ortamımız"
+title: "R ile Veriye Yeni Bir Bakış"
+subtitle: "Programlamadan güvenilir veri analizine"
 author: "Muhammed Fatih Tüzen"
+lang: tr
 format:
   revealjs:
     theme: simple
-    slide-number: true
+    css: acilis.css
     transition: fade
-    footer: "R Programlama Eğitimi"
+    slide-number: "c/t"
+    controls: true
+    progress: true
+    center: false
+    slide-level: 2
+    navigation-mode: linear
+    keyboard: true
+    footer: "R Programlama Eğitimi · Açık öğrenme materyali"
+    width: 1280
+    height: 720
 ---
 
-## Hoş geldiniz
+## Veriyi okumak başka, anlamak başka {.title-frame}
 
-**R Programlama ve Veri Manipülasyonuna Giriş**
+::: {.columns}
+::: {.column width="62%"}
+<span class="slide-kicker">R PROGRAMLAMA • VERİ BİLİMİ • UYGULAMA</span>
 
-Amacımız komut ezberlemek değil: veriyi R ile okuyabilmek, işleyebilmek ve yaptığımız işlemleri tekrar edebilmek.
+<div class="hero-statement">Veriyi okumak başka,<br>anlamak başka.</div>
+
+**Soru sor → Kodla → Kontrol et → Paylaş**
+
+[R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [Eğitim sitesi](https://mfatihtuzen.github.io/r-training/)
+:::
+::: {.column width="38%"}
+![](../images/egitim-akisi.svg){fig-alt="Veri analizinin dört temel adımı" width="100%"}
+:::
+:::
 
 ::: {.notes}
-Katılımcıların mevcut yazılım ve analiz deneyimlerini kısaca öğrenin.
+Açılışta katılımcıların veriyle çalışma deneyimini sor. Bu slayt kod anlatımı değil, eğitim hedefinin çerçevesidir.
 :::
+
+## Günlük bir işi düşünelim
+
+::: {.columns}
+::: {.column width="48%"}
+::: {.slide-panel}
+<div class="panel-heading">Her ay aynı iş...</div>
+- Dosyalar gelir.
+- Değişken adları değişebilir.
+- Eksikler ve tutarsızlıklar çıkar.
+- Aynı hesap tekrar yapılır.
+:::
+:::
+::: {.column width="48%"}
+::: {.slide-panel .accent-panel}
+<div class="panel-heading">Kodla kurulan iş akışı</div>
+- Adımları kaydet.
+- Sonucu kontrol et.
+- Hataları düzelt.
+- Bir sonraki ay yeniden çalıştır.
+:::
+:::
+:::
+
+**R'nin asıl gücü:** yalnızca hesaplamak değil, işlemi anlaşılır ve yeniden üretilebilir hâle getirmek.
 
 ## R nedir?
 
-- Ücretsiz ve açık kaynak bir **programlama dili**.
-- İstatistik, veri analizi ve görselleştirmede yaygın.
-- Analiz adımlarını **kod olarak kaydetmeyi ve yeniden çalıştırmayı** sağlar.
+::: {.columns}
+::: {.column width="66%"}
+- İstatistiksel hesaplama ve grafik için **açık kaynak programlama dili ve çalışma ortamı**.
+- Veri düzenleme, modelleme, zaman serileri, görselleştirme ve raporlama.
+- Windows, macOS ve Linux üzerinde kullanılabilir.
+- R Foundation topluluğu ve geniş bir paket ekosistemiyle gelişir.
 
-**Temel soru:** Bir analizi gelecek ay aynı yöntemle nasıl tekrarlarız?
-
-## R ile neler yapabiliriz?
-
-- Veri dosyalarını okur ve düzenleriz.
-- Hesaplamalar, özet tablolar ve istatistiksel analizler yaparız.
-- Grafikler, raporlar ve otomatik iş akışları oluşturabiliriz.
-
-Bu eğitimde önce **temel programlama ve veri işleme** üzerinde duracağız.
-
-## R'nin güçlü yönleri ve dikkat edilmesi gerekenler
-
-**Güçlü yönleri:** Açık kaynak, geniş paket ekosistemi, tekrar üretilebilir analiz, farklı veri kaynakları.
-
-**Dikkat:** Kod yazmayı öğrenmek gerekir; veri tipi, eksik değer ve sonuç kontrolleri hâlâ bizim sorumluluğumuzdadır.
-
-## R ile RStudio aynı şey değil
-
-| R | RStudio |
-|---|---|
-| Programlama dili ve hesaplama motoru | R için geliştirme ortamı |
-| Komutları çalıştırır | Kodu yazmayı, yönetmeyi ve çalıştırmayı kolaylaştırır |
-
-**Önce R, ardından RStudio kurulur.**
-
-## CRAN ve paketler
-
-**CRAN (Comprehensive R Archive Network)**
-
-- R'nin indirildiği resmî kaynak ağı.
-- Birçok R paketinin de dağıtım yeridir.
-- Paketler, hazır fonksiyonlar sağlayarak işimizi kolaylaştırır.
-
-Paket kurma ve kullanma işlemini RStudio'da canlı göstereceğiz.
-
-## R ve RStudio nereden indirilir?
-
-1. [R — CRAN](https://cran.r-project.org/)
-2. [RStudio Desktop — Posit](https://posit.co/download/rstudio-desktop/)
-3. RStudio'yu aç; Console'da `>` işaretini gör.
-
-::: {.notes}
-Kurulumların önceden tamamlandığını varsayın; BT kısıtlarını çözmeye uzun süre ayırmayın.
+<small>Kaynak: [R Project — What is R?](https://www.r-project.org/about.html)</small>
+:::
+::: {.column width="34%"}
+::: {.logo-panel}
+<div class="big-r">R</div>
+<span>Açık kaynak · Genişletilebilir</span>
+:::
+:::
 :::
 
-## RStudio'yu tanıyalım
+## R nerelerde karşımıza çıkar?
 
-- **Source:** Script dosyası
-- **Console:** Çalışan komutlar ve sonuçları
-- **Environment:** Nesneler
-- **Files / Plots / Packages / Help:** Dosyalar, grafikler, paketler ve yardım
-
-::: {.notes}
-Burada RStudio'ya geçerek ekrandaki alanları gerçek arayüzde gösterin. Sunuma ekran görüntüsü eklemek şart değil; uygulama daha güncel kalır.
+::: {.grid}
+::: {.g-col-6}
+::: {.slide-panel}
+<div class="panel-heading">İstatistik ve araştırma</div>
+Örnekleme, çıkarım, regresyon, zaman serileri, deney tasarımı.
+:::
+:::
+::: {.g-col-6}
+::: {.slide-panel}
+<div class="panel-heading">Resmî istatistik</div>
+Veri doğrulama, gösterge üretme, otomasyon ve raporlama.
+:::
+:::
+::: {.g-col-6}
+::: {.slide-panel}
+<div class="panel-heading">Veri bilimi</div>
+Veri hazırlama, keşif, model kurma, model değerlendirme.
+:::
+:::
+::: {.g-col-6}
+::: {.slide-panel}
+<div class="panel-heading">İletişim</div>
+Grafikler, Quarto raporları, Shiny etkileşimli uygulamaları.
+:::
+:::
 :::
 
-## Bu eğitimde ilerleyeceğimiz yol
+## R ve Python: Bir rakiplikten fazlası
 
-**R ortamı → temel nesneler → koşullar/döngüler/fonksiyonlar → dosyalar → dplyr/tidyr → mini proje**
+| | R | Python |
+|---|---|---|
+| Köken / güçlü gelenek | İstatistik ve veri analizi | Genel amaçlı yazılım geliştirme |
+| Veri araçları | `dplyr`, `tidyr`, `ggplot2` | `pandas`, `polars`, `scikit-learn` |
+| Üretim / otomasyon | R scriptleri, Quarto, Shiny | Scriptler, servisler, uygulamalar |
+| Ortak payda | **Veri hazırlama, modelleme, tekrarlanabilirlik** | **Veri hazırlama, modelleme, tekrarlanabilirlik** |
 
-- Açıklama ve canlı kodlama
-- Kısa egzersizler
-- WDI verileriyle uygulamalar
-
-## Materyallere nasıl erişeceğiz?
-
-- [Eğitim web sitesi](https://mfatihtuzen.github.io/r-training/): öğrenme sırası ve ders notları
-- [Materyaller](https://mfatihtuzen.github.io/r-training/materials/): R scriptleri ve egzersizler
-- [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/): ayrıntılı açıklamalar
-- [R İstatistik Akademi](https://www.youtube.com/@RistatistikAkademi): video destek
-
-## Şimdi RStudio'ya geçiyoruz
-
-**İlk denememiz:** Console'da `2 + 3` yazmak.
-
-Ardından aynı komutu `.R` scriptine kaydedip yeniden çalıştıracağız.
+**Doğru soru “hangisi daha iyi?” değil, “hangi iş için hangi araç uygun?”**
 
 ::: {.notes}
-Slayt burada biter. Sonraki kod ve nesne örnekleri ders sayfasında aşamalı olarak verilir.
+Bu tablo bir performans sıralaması değildir. Her iki ekosistem de geniştir; seçim görev, ekip, veri ve altyapıya bağlıdır.
 :::
+
+## R ve RStudio aynı şey değil
+
+::: {.columns}
+::: {.column width="48%"}
+::: {.slide-panel}
+<div class="tool-mark r-mark">R</div>
+<div class="panel-heading">R</div>
+Dili ve hesaplama motoru. Komutları yürütür.
+
+[R Project](https://www.r-project.org/)
+:::
+:::
+::: {.column width="48%"}
+::: {.slide-panel}
+<div class="tool-mark studio-mark">RStudio</div>
+<div class="panel-heading">RStudio</div>
+Kod editörü, Console, dosyalar, grafikler, yardım ve Git entegrasyonu sunan geliştirme ortamı.
+
+[Posit — RStudio IDE](https://posit.co/products/open-source/rstudio/)
+:::
+:::
+:::
+
+**Kurulum sırası:** Önce R, sonra RStudio. <small>Kaynak: [Posit kurulum rehberi](https://docs.posit.co/ide/user/download.html)</small>
+
+## CRAN ve paket ekosistemi
+
+::: {.columns}
+::: {.column width="54%"}
+::: {.slide-panel}
+<div class="panel-heading">CRAN nedir?</div>
+Comprehensive R Archive Network: R dağıtımı, paketler ve dokümantasyon için resmî dağıtım ağı.
+
+[CRAN](https://cran.r-project.org/)
+:::
+:::
+::: {.column width="44%"}
+::: {.slide-panel}
+<div class="panel-heading">Paketler ne sağlar?</div>
+`readr` · `readxl` · `haven`  
+`dplyr` · `tidyr` · `ggplot2`  
+`DBI` · `quarto`
+:::
+:::
+:::
+
+Paket kurmak ile oturuma yüklemek farklıdır; canlı uygulamada göreceğiz.
+
+## Bir veri analizi nerede başlar?
+
+![](../images/egitim-akisi.svg){fig-alt="Veriden kontrole uzanan analiz süreci" width="72%"}
+
+**Çoğu zaman en zahmetli aşama: veriyi doğru okumak, tanımak ve hazırlamak.** Kusurlu veriyle iyi bir model kurmak güçtür.
+
+## Yapay zekâ: Hız kazandırır, sorumluluğu almaz
+
+::: {.columns}
+::: {.column width="48%"}
+::: {.slide-panel .accent-panel}
+<div class="panel-heading">Yardımcı olabilir</div>
+- Kod taslağı üretmek
+- Hata mesajını açıklamak
+- Alternatif yöntem önermek
+- Belgelere ulaşmayı kolaylaştırmak
+:::
+:::
+::: {.column width="48%"}
+::: {.slide-panel}
+<div class="panel-heading">Hâlâ kontrol etmeliyiz</div>
+- Veri ve tanım doğru mu?
+- Kod gerçekten çalışıyor mu?
+- Çıktı beklediğimiz gibi mi?
+- Gizli veriler dışarı aktarıldı mı?
+:::
+:::
+:::
+
+**İlke:** Yapay zekâdan yararlan; doğrulamayı devretme.
+
+## R'yi nereden kuracağız?
+
+::: {.columns}
+::: {.column width="48%"}
+::: {.slide-panel}
+<div class="panel-heading">1 · R</div>
+[cran.r-project.org](https://cran.r-project.org/)
+
+İşletim sistemine uygun R kurulum dosyasını seç.
+:::
+:::
+::: {.column width="48%"}
+::: {.slide-panel}
+<div class="panel-heading">2 · RStudio Desktop</div>
+[Posit — İndir](https://posit.co/downloads)
+
+R'nin kurulu olduğundan emin ol, ardından IDE'yi başlat.
+:::
+:::
+:::
+
+::: {.notes}
+Katılımcı kurulumları önceden bitirmiş olmalı. Yetki veya paket kurulum sorunları bu eğitim akışını kesmemeli.
+:::
+
+## RStudio'da neleri göreceğiz?
+
+::: {.grid}
+::: {.g-col-6}
+::: {.slide-panel}
+**Source** · Düzenlenen `.R` dosyaları
+:::
+:::
+::: {.g-col-6}
+::: {.slide-panel}
+**Console** · Komut ve sonuçlar
+:::
+:::
+::: {.g-col-6}
+::: {.slide-panel}
+**Environment** · Oturumdaki nesneler
+:::
+:::
+::: {.g-col-6}
+::: {.slide-panel}
+**Files / Plots / Help** · Dosyalar, grafikler ve belgeler
+:::
+:::
+:::
+
+**Bir sonraki adım:** RStudio'ya geçip bunları canlı olarak tanıyacağız.
+
+## Eğitim kaynaklarımız
+
+::: {.columns}
+::: {.column width="48%"}
+::: {.slide-panel}
+<div class="panel-heading">Öğrenme ve tekrar</div>
+[R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/)  
+[R İstatistik Akademi — YouTube](https://www.youtube.com/@RistatistikAkademi)
+:::
+:::
+::: {.column width="48%"}
+::: {.slide-panel}
+<div class="panel-heading">Uygulama</div>
+[Eğitim sitesi](https://mfatihtuzen.github.io/r-training/)  
+[Scriptler ve veri dosyaları](https://mfatihtuzen.github.io/r-training/materials/)
+:::
+:::
+:::
+
+<small>Teknik başvuru: [R Project](https://www.r-project.org/) · [Posit RStudio IDE](https://docs.posit.co/ide/user/) · [R for Data Science](https://r4ds.hadley.nz/)</small>

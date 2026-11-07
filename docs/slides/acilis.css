@@ -1,0 +1,32 @@
+:root { --r-main-font: "Aptos", "Segoe UI", "Arial", sans-serif; --r-heading-font: "Aptos Display", "Segoe UI", sans-serif; --r-main-color: #23354a; --r-heading-color: #143a62; --r-link-color: #1675b8; }
+.reveal { font-size: 29px; }
+.reveal .slides section { text-align: left; }
+.reveal h2 { font-size: 1.55em; font-weight: 750; text-transform:none; letter-spacing:-.025em; }
+.reveal h1 { font-size: 2.10em; letter-spacing:-.04em; text-transform:none; font-weight:800; }
+.reveal p, .reveal li { line-height:1.3; }
+.reveal small { font-size:.53em; color:#536879; }
+.reveal a {text-decoration:none; border-bottom: 1px solid #9fcee7; }
+.reveal .columns { align-items:stretch; }
+.reveal .slide-kicker { color:#1588b5; font-size:.55em; letter-spacing:.13em; font-weight:800; }
+.reveal .title-frame { background:linear-gradient(140deg,#f5fbff,#e3f1f8 70%,#d6e9f4); border-radius:26px; padding:36px 44px !important; }
+.reveal .title-frame img { background:white; border-radius:22px; box-shadow:0 15px 40px #1c567019; }
+.reveal .slide-panel { background:#f2f7fa; border:1px solid #d9e7ee; padding:22px; border-radius:18px; min-height:145px; box-sizing:border-box; }
+.reveal .slide-panel h3 { font-size:1em; margin:0 0 .35em; color:#135b88; text-transform:none; }
+.reveal .slide-panel p { font-size:.81em; }
+.reveal .accent-panel { background:#e7f3fa; border-color:#b6deec; }
+.reveal .logo-panel { display:flex; align-items:center; flex-direction:column; justify-content:center; background:#f3f7fa; border-radius:24px; height:320px; }
+.reveal .big-r { color:#1e6dad; font-size:6em; line-height:1; font-weight:800; text-shadow: 7px 7px 0 #d0dce5; }
+.reveal .logo-panel span {font-size:.6em; color:#64748b;}
+.reveal .tool-mark { font-weight:850; font-size:2.2em; margin-bottom:8px; }
+.reveal .r-mark {color:#2370b3;}
+.reveal .studio-mark {color:#457b9d; font-size:1.75em;}
+.reveal table {font-size:.69em;}
+.reveal table td, .reveal table th { padding:.35em .5em; }
+.reveal .footer {font-size:12px;}
+.reveal .slide-number {font-size:13px;}
+
+/* İlk slayt: başlık metni semantik bir üst düzey Markdown başlığı değildir. */
+.reveal .hero-statement {font-size:2.05em; line-height:1.1; font-weight:800; letter-spacing:-.04em; color:#143a62; margin: .35em 0 .5em;}
+
+/* Kart başlıkları slayt başlığı değildir: RevealJS bunları ayrı slayt saymamalı. */
+.reveal .slide-panel .panel-heading { font-size: 1em; font-weight: 750; color:#135b88; margin:0 0 .35em; line-height:1.2; }

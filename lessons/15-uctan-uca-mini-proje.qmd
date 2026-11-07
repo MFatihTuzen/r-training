@@ -1,0 +1,97 @@
+---
+title: "15 · Uçtan Uca Veri Hazırlama — Mini Proje"
+subtitle: "WDI verileriyle bağımsız uygulama: ham dosyadan doğrulanmış tabloya"
+sidebar: lessons
+---
+
+::: {.callout-note}
+## Bu bölümün amacı
+Bu sayfa yeni bir komut öğretmekten çok, önceki konuları **gerçek bir iş akışında birlikte kullanmayı** amaçlar. Kodun çalışması tek başına yeterli değildir: doğru dosya, doğru anahtar, doğru gözlem kümesi ve doğru yorum da gereklidir.
+:::
+
+## Çalışma senaryosu
+
+Bir analiz birimi, Dünya Bankası WDI eğitim verilerinden hareketle **2019 yılı ülkeler arası sosyoekonomik karşılaştırma tablosu** istemektedir. Ülke başına bir satır içeren analize hazır tablo ve bölge bazında özet üretilecektir. Sonuçlar kontrol edilip ayrı dosyalar halinde kaydedilecektir.
+
+**Süre:** 2 × 45 dakika (eğitimin 5. günündeki son iki oturum). **Çalışma biçimi:** bireysel veya ikili. **Yapay zekâ:** kullanılabilir; fakat her işlem açıklanmalı, çıktı bağımsız kontrol edilmelidir.
+
+## Hangi becerileri kullanacaksınız?
+
+1. Proje kökünde göreli yollarla dosya okuma ve sütunları kontrol etme.
+2. Ülke-yıl gözlem birimini ve JOIN anahtarını tanımlama.
+3. `filter()`, `select()`, `mutate()` ve `case_when()` ile analiz tablosu üretme.
+4. `left_join()` ile ülke metadata bilgisini bağlama, eşleşmeyen ülkeleri denetleme.
+5. `group_by()` ve `summarise()` ile doğru etiketlenmiş bölgesel özet hazırlama.
+6. Sonuçların satır sayısını, tekil anahtarları, eksik değerlerini ve çıktının yeniden okunabilirliğini kontrol etme.
+
+## Hazırlık — Dosyalar ve klasörler
+
+Aşağıdaki dosyaların repo içinde bulunması gerekir. Dosyalar [Veri kaynakları](../materials/index.qmd) bölümündeki eğitim veri paketinden gelir; proje **internet olmadan** çalışır.
+
+| Dosya | Rolü |
+|---|---|
+| `data/wdi/wdi_panel_2015_2022.csv` | Ülke-yıl gösterge paneli |
+| `data/wdi/country_metadata.csv` | Ülke kodu, bölge, gelir grubu |
+| `data/wdi/indicator_dictionary.csv` | Gösterge tanımı ve ölçü birimleri |
+
+**Gerekli paketler:** `readr`, `dplyr`. Başlamadan önce RStudio'da `r-training.Rproj` dosyasını açın. `getwd()` proje kökünü göstermelidir. `outputs/` klasörü script tarafından oluşturulur; Git'e gönderilmez.
+
+::: {.callout-important}
+## İstatistiksel yorum uyarısı
+Ülkelerin işsizlik oranlarının basit ortalaması, o bölgenin resmî/toplam işsizlik oranı değildir. Projede ürettiğiniz değer **"verisi mevcut ülkelerin ağırlıksız ortalaması"** olarak adlandırılmalıdır. Aynı şekilde ortalamaya alınan ülkelerin sayısı ayrıca gösterilmelidir.
+:::
+
+## Uygulama akışı
+
+### A. Dosya ve kapsam kontrolü (10–15 dk)
+
+Üç CSV dosyasından panel ve metadata dosyalarını okuyun; sütun adlarını, toplam satır sayılarını, yıl aralığını ve eksik değerleri inceleyin. Panelde `(country_code, year)`, metadata'da `country_code` anahtarının tekil olup olmadığını kontrol edin.
+
+```r
+library(dplyr)
+library(readr)
+
+panel <- read_csv("data/wdi/wdi_panel_2015_2022.csv", show_col_types = FALSE)
+meta  <- read_csv("data/wdi/country_metadata.csv", show_col_types = FALSE)
+
+nrow(panel)
+names(panel)
+count(panel, year)
+```
+
+### B. Analiz tablosu oluşturma (20–25 dk)
+
+2019 yılını filtreleyin; `gdp_per_capita_usd`, `unemployment_total_pct` ve `internet_users_pct` göstergelerini seçin. `gdp_per_capita_usd` değerine göre *sadece eğitim amaçlı* bir gelir düzeyi sınıfı üretin: `>= 20000` ise `"20 bin USD ve üzeri"`, diğer pozitif değerler için `"20 bin USD altı"`, eksik veya geçersiz değerlerde `NA_character_`.
+
+Bu **eğitim sınıflaması**, Dünya Bankası'nın resmî `income_group` değişkeni değildir; sonuçta iki değişkeni karıştırmayın.
+
+### C. JOIN ve özetleme (20–25 dk)
+
+Metadata'dan `region` ve `income_group` alanlarını `country_code` ile birleştirin. Önce eşleşmeyen kayıtları `anti_join()` ile inceleyin; JOIN öncesi ve sonrası ülke sayısı aynı kalmalıdır. Ardından bölgelere göre ülke sayısını, işsizlik verisi bulunan ülke sayısını ve **ağırlıksız** işsizlik ortalamasını hesaplayın. Gözlem yoksa ortalama `NA` kalsın (`NaN` üretmeyin).
+
+### D. Dosyaya yazma ve kontrol (15–20 dk)
+
+Analiz tablosunu `outputs/mini_proje_ulkeler_2019.csv`, bölge özetini `outputs/mini_proje_bolgeler_2019.csv` olarak kaydedin. Birini tekrar okuyarak satır sayısını ve anahtarların tekilliğini doğrulayın. 3–4 cümlelik yöntem açıklaması yazın.
+
+## Teslim edilecekler
+
+- `16-mini-proje-baslangic.R` dosyasının tamamlanmış hâli (kendi dosya adıyla kaydedilebilir).
+- `outputs/` altında iki CSV çıktı dosyası.
+- Kısa yöntem notu: hangi yıl, hangi anahtar, hangi eksikler, hangi ortalama?
+
+## Seviye farkları
+
+::: {.callout-tip}
+## A — Öncelikli görev
+A–D adımlarını bitirin. Zaman kalmadıysa eksik kalan B/C görevlerini bağımsız çalışmaya bırakın.
+:::
+
+**B — Pekiştirme:** `case_when()` yerine `if_else()` ile sınıf üretin, seçilen göstergelerdeki `NA` sayılarını sütun bazında raporlayın.
+
+**C — Ek çalışma:** 2018 ve 2019'u karşılaştırın veya tabloyu `pivot_longer()` ile uzun biçime çevirin; ölçü birimlerini korumadan göstergeleri toplamayın.
+
+## Materyaller
+
+[Görev yönergesini indir](../projects/mini-project/GOREVLER.md){download="GOREVLER.md"} · [Başlangıç scriptini indir](../projects/mini-project/16-mini-proje-baslangic.R){download="16-mini-proje-baslangic.R"} · [Kontrol listesini indir](../projects/mini-project/KONTROL_LISTESI.md){download="KONTROL_LISTESI.md"}
+
+**Önceki ders:** [Uzun/geniş veri dönüşümü](14-tidyr-pivot.qmd). **Daha ayrıntılı başvuru:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/), [dplyr belgeleri](https://dplyr.tidyverse.org/), [R for Data Science — Data transformation](https://r4ds.hadley.nz/data-transform.html).

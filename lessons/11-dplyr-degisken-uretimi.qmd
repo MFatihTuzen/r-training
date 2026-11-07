@@ -1,0 +1,91 @@
+---
+title: "11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler"
+subtitle: "Kavram → soru → kod → kontrol → uygulama"
+sidebar: lessons
+---
+
+::: {.callout-note}
+## Bu bölüm nasıl kullanılmalı?
+Önce kısa açıklamayı okuyun; kodun sonucunu tahmin edin; ardından RStudio'da satır satır çalıştırın. **A** temel sınıf içeriği, **B** pekiştirme, **C** ise bağımsız çalışmadır. Tüm kodları aynı gün bitirmek zorunda değilsiniz.
+:::
+
+**Uygulama dosyası:** [R scriptini indir](../scripts/12-dplyr-donusum-ve-across.R){download="12-dplyr-donusum-ve-across.R"} · [Alıştırmaları indir](../exercises/11-dplyr-degisken-uretimi.md){download="11-dplyr-degisken-uretimi.md"} · [Tüm materyaller](../materials/index.qmd)
+
+**Ön koşul:** RStudio Project ile çalışma, veri okuma ve temel nesne/veri yapıları. **Veri:** `data/wdi/` altındaki kitap kaynaklı WDI eğitim alt kümeleri. Dosya yolları proje köküne göredir.
+
+## 1. Yeni değişken üretmek ne zaman gerekir? (A)
+
+Verinin anlamını değiştirmeden sunum birimini düzenleyebiliriz (nüfusu kişi yerine milyon kişi göstermek gibi). Ancak sınıflandırma yapmak analiz tercihi gerektirir. Bir değişkene `mutate()` ile hesaplanan yeni değer eklemek ile hatalı kaydı onarmak farklı işlemlerdir.
+
+## 2. `mutate()` ile dönüşüm (A)
+
+```{.r}
+library(dplyr)
+wdi <- readr::read_csv("data/wdi/wdi_2019.csv", show_col_types = FALSE)
+
+wdi |>
+  mutate(nufus_milyon = population_total / 1e6) |>
+  select(country, nufus_milyon) |>
+  head()
+```
+
+Bu dönüşümde ölçü birimi değişir; sonuç **milyon kişi** olarak etiketlenmelidir. Aynı nesneye birden çok `mutate()` uygulanabilir.
+
+## 3. `if_else()` ve `case_when()` (A)
+
+`if` bir **tek koşullu karar** için kullanılır; `if_else()` ve `case_when()` tüm satırlar boyunca **vektörel** karar verir. `case_when()` koşulları sırayla değerlendirir; **ilk eşleşme** kullanılır. Başka hiçbir koşula girmeyenler için `.default` verilebilir.
+
+```{.r}
+wdi |>
+  mutate(issizlik_sinifi = case_when(
+    is.na(unemployment_total_pct) ~ "Veri yok",
+    unemployment_total_pct < 5 ~ "Düşük (öğretici eşik)",
+    unemployment_total_pct < 10 ~ "Orta (öğretici eşik)",
+    .default = "Yüksek (öğretici eşik)"
+  )) |>
+  count(issizlik_sinifi)
+```
+
+Bu eşikler **resmî uluslararası işsizlik sınıfları değildir**, yalnızca programlama örneğidir. İlk koşula `unemployment_total_pct < 10` yazılsaydı küçük değerler de orada eşleşecek ve sonraki koşulların anlamı değişecekti.
+
+## 4. `across()` — Birden fazla sütuna aynı işlem (A/B)
+
+Benzer işlemi tekrar tekrar yazmak yerine `across()` kullanabiliriz. Modern `dplyr` kullanımında ek argümanları lambda içinde ifade ederiz:
+
+```{.r}
+wdi |>
+  summarise(across(c(unemployment_total_pct, internet_users_pct),
+                   ~ mean(.x, na.rm = TRUE),
+                   .names = "ortalama_{.col}"))
+```
+
+::: {.callout-warning}
+## `na.rm = TRUE` ne yapmaz?
+Eksikleri analizden dışlar, kayıp gözlemi doldurmaz. Sütunda hiç geçerli gözlem yoksa `mean(..., na.rm = TRUE)` sonucu `NaN` olabilir. Bu yüzden geçerli gözlem sayısını da raporlamak gerekir.
+:::
+
+## 5. `rename_with()`, `if_any()`, `coalesce()` (B)
+
+- `rename(yeni = eski)`: belirli bir sütunun adını değiştirir.
+- `rename_with(toupper, starts_with("gdp_"))`: seçilen sütunların adını fonksiyonla değiştirir.
+- `if_any(c(a,b), is.na)`: seçilen sütunlardan **en az birinde** eksik değer var mı?
+- `coalesce(x, y)`: `x` eksikse ilgili konumda `y` değerini alır; doldurmanın istatistiksel gerekçesi olmalıdır.
+
+## 6. Sınıf uygulaması ve kontrol (A)
+
+İşsizlik oranını eksik bırakmadan raporlamak için üç ayrı çıktı üretin: bir sınıflama, bir eksik gösterge sütunu ve sınıflara göre gözlem sayısı. Sınıfların toplamının veri satır sayısına eşit olup olmadığını kontrol edin.
+
+**Kaynaklar:** [dplyr `case_when()`](https://dplyr.tidyverse.org/reference/case_when.html) · [dplyr `across()`](https://dplyr.tidyverse.org/reference/across.html) · [dplyr `rename()`](https://dplyr.tidyverse.org/reference/rename.html).
+
+
+## Öğrendiklerinizi kontrol edin
+
+- Bu işlem hangi satırları veya sütunları değiştiriyor?
+- Eksik değerler sonuçları nasıl etkiliyor?
+- Beklenen gözlem sayısını nasıl doğrularım?
+
+**Alıştırma:** [Bu bölümün görevleri](../exercises/11-dplyr-degisken-uretimi.md){download="11-dplyr-degisken-uretimi.md"}. **Ek okuma:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [dplyr](https://dplyr.tidyverse.org/) · [tidyr](https://tidyr.tidyverse.org/).
+
+---
+
+[← Önceki konu](10-dplyr-temelleri.qmd) · [Sonraki konu →](12-dplyr-gruplama.qmd)

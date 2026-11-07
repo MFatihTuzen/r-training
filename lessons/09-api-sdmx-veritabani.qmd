@@ -1,0 +1,95 @@
+---
+title: "09 · İnternetten ve Veri Tabanından Veri Alma"
+subtitle: "URL, API, JSON, SDMX ve DBI ile güvenli başlangıç"
+sidebar: lessons
+---
+
+::: {.callout-tip}
+## Sınıf içi durum
+Bu bölüm **genişletilmiş öğrenme kaynağıdır**. İnternet, erişim izni, güvenlik duvarı ve kimlik doğrulaması canlı gösterimi engelleyebilir. Zorunlu 15 ders saatinde kısa tanıtım yeterlidir; örnekler kendi başınıza uygulanabilir.
+:::
+
+## 1. İnternette dosya ile API arasındaki fark
+
+- **Dosya URL'si:** Doğrudan CSV/ZIP gibi bir dosyayı sunar; indirilip yerel dosya gibi okunabilir.
+- **API uç noktası:** Parametrelerle veri isteriz; sıklıkla JSON/XML/CSV döner. Her API'nin kullanım koşulları ve sürüm politikası farklıdır.
+- **SDMX:** Özellikle resmî istatistiklerde veri ve metadata değişimi için kullanılan standarttır; SDMX-ML ve SDMX-CSV gibi temsil biçimleri bulunur.
+
+## 2. URL'den dosya indirme
+
+```{.r}
+# Gerçek bir bağlantı ve internet erişimi olmadan çalıştırmayın.
+# url <- "https://kurum.example/veri.csv"
+# dir.create("outputs", showWarnings = FALSE)
+# utils::download.file(url, "outputs/veri.csv", mode = "wb")
+# veri <- readr::read_csv("outputs/veri.csv", show_col_types = FALSE)
+```
+
+Dosya yerel olarak saklandığında çalışmayı tekrar etmek kolaylaşır. Kaynak URL'sini, indirme tarihini, kapsamı ve varsa lisansı kaydedin. Ağ hatası, HTTP 403/404, proxy ve sertifika sorunları veri dosyası hatalarından farklıdır.
+
+## 3. JSON API mantığı
+
+```{.r}
+# Offline JSON örneği: İnternet ve kimlik doğrulama gerektirmez.
+json <- '{"ulke":"TR","yil":2020,"deger":12.4}'
+# jsonlite paketi kuruluysa:
+if (requireNamespace("jsonlite", quietly = TRUE)) {
+  jsonlite::fromJSON(json)
+}
+
+# Canlı bir API için genel desen (bilerek çalıştırılmaz):
+# yanit <- httr2::request("https://api.example/endpoint") |>
+#   httr2::req_perform()
+# veri <- httr2::resp_body_json(yanit)
+```
+
+Gerçek API kullanımında yetkilendirme, parametre, sayfalama, oran sınırlaması ve veri şeması dikkate alınmalıdır. API anahtarlarını GitHub deposuna yazmayın.
+
+## 4. SDMX'e giriş
+
+SDMX yalnızca bir R paketi değildir; veri yapıları, kod listeleri, boyutlar, gösterge kimlikleri ve metadata içeren bir veri değişim yaklaşımıdır. `rsdmx::readSDMX()` SDMX belgelerini okumak için kullanılabilir; ancak sağlayıcı uç noktası ve servis biçimi doğrulanmalıdır.
+
+```{.r}
+# Canlı servis örneği değil: API URL/akış kimliği sağlayıcıya göre değişir.
+# sdmx <- rsdmx::readSDMX(file = "https://...", isURL = TRUE)
+# tablo <- as.data.frame(sdmx)
+```
+
+Kurumların SDMX REST servislerinin sürümleri ve formatları farklılaşabilir; URL'leri doğrulamadan hazırmış gibi koda yazmayalım.
+
+## 5. Veri tabanından veri okuma: DBI / RSQLite
+
+Veri tabanı sistemi (PostgreSQL, Oracle, SQL Server vb.) ile R arasında sürücü gerekir. `DBI` ortak arayüz; `RSQLite`, `RPostgres`, `odbc` gibi paketler bağlantı arka ucunu sağlar.
+
+**İsteğe bağlı çevrimdışı uygulama — SQLite:**
+
+```{.r}
+if (requireNamespace("DBI", quietly = TRUE) &&
+    requireNamespace("RSQLite", quietly = TRUE)) {
+  con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+  DBI::dbWriteTable(con, "ornek", data.frame(id = 1:3, tutar = c(10, 20, 30)))
+  sonuc <- DBI::dbGetQuery(con, "SELECT * FROM ornek WHERE tutar >= 20")
+  print(sonuc)
+  DBI::dbDisconnect(con)
+}
+```
+
+Kurumsal veri tabanına bağlantı için kullanıcı adı, güvenli kimlik doğrulama, sürücü/DSN ve ağ izni gerekir. Şifreyi `.R` dosyasına, Quarto sayfasına veya GitHub'a koymayın. Büyük tablolarda veriyi tümüyle indirmek yerine SQL ile gerekli satır ve sütunları seçin.
+
+## 6. Kontrol listesi
+
+**Dosyadan/API'den/DB'den veri aldıktan sonra:** kayıt sayısı, sütun adları, veri tipleri, anahtar tekilliği, eksikler, birimler, tarih, kaynağın sürümü ve sorgu zamanı kontrol edilir.
+
+[Örnek scripti indir](../scripts/10-api-sdmx-veritabani.R){download="10-api-sdmx-veritabani.R"} · [Ek egzersizler](../exercises/08-api-veritabani.md){download="08-api-veritabani.md"}
+
+**Daha ayrıntılı kaynaklar:** [DBI](https://dbi.r-dbi.org/) · [RSQLite](https://rsqlite.r-dbi.org/) · [rsdmx](https://cran.r-project.org/package=rsdmx) · [Quarto ve R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/).
+
+---
+
+**Önceki:** [08 · Dosyalarla çalışma](08-dosyalar-ve-veri-aktarimi.qmd)  
+**Sonraki:** dplyr ile veri manipülasyonu — sonraki modülde bağlantı eklenecek.
+
+
+---
+
+[Sonraki konu: 10 · Veri hazırlama ve dplyr temelleri →](10-dplyr-temelleri.qmd)

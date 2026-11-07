@@ -4,6 +4,7 @@ project:
   render:
   - index.qmd
   - program/index.qmd
+  - about.qmd
   - materials/index.qmd
   - resources/ogrenme-kaynaklari.qmd
   - lessons/01-r-ve-rstudio.qmd
@@ -13,10 +14,25 @@ project:
   - lessons/05-kosullu-ifadeler.qmd
   - lessons/06-donguler.qmd
   - lessons/07-fonksiyonlar.qmd
+  - lessons/08-dosyalar-ve-veri-aktarimi.qmd
+  - lessons/09-api-sdmx-veritabani.qmd
   - slides/00-acilis.qmd
+  - lessons/10-dplyr-temelleri.qmd
+  - lessons/11-dplyr-degisken-uretimi.qmd
+  - lessons/12-dplyr-gruplama.qmd
+  - lessons/13-dplyr-join.qmd
+  - lessons/14-tidyr-pivot.qmd
+  - lessons/15-uctan-uca-mini-proje.qmd
   resources:
   - scripts/*.R
   - exercises/*.md
+  - data/toy/*.csv
+  - data/toy/*.xlsx
+  - data/wdi/*.csv
+  - images/*.svg
+  - slides/acilis.css
+  - projects/mini-project/*.R
+  - projects/mini-project/*.md
 website:
   title: R Programlama Eğitimi
   site-url: https://mfatihtuzen.github.io/r-training/
@@ -34,6 +50,8 @@ website:
       href: materials/index.qmd
     - text: Öğrenme Kaynakları
       href: resources/ogrenme-kaynaklari.qmd
+    - text: Eğitmen Hakkında
+      href: about.qmd
     right:
     - text: R Programlama Kitabı
       href: https://mfatihtuzen.github.io/r-programlama/
@@ -59,6 +77,22 @@ website:
       href: lessons/06-donguler.qmd
     - text: 07 · Fonksiyonlar
       href: lessons/07-fonksiyonlar.qmd
+    - text: 08 · Dosyalar ve veri aktarımı
+      href: lessons/08-dosyalar-ve-veri-aktarimi.qmd
+    - text: 09 · API, SDMX ve veri tabanları
+      href: lessons/09-api-sdmx-veritabani.qmd
+    - text: 10 · Veri hazırlama ve dplyr temelleri
+      href: lessons/10-dplyr-temelleri.qmd
+    - text: 11 · Dönüşüm, case_when ve across
+      href: lessons/11-dplyr-degisken-uretimi.qmd
+    - text: 12 · Gruplama ve özetleme
+      href: lessons/12-dplyr-gruplama.qmd
+    - text: 13 · Veri birleştirme (JOIN)
+      href: lessons/13-dplyr-join.qmd
+    - text: 14 · Uzun/geniş veri dönüşümü
+      href: lessons/14-tidyr-pivot.qmd
+    - text: 15 · Uçtan uca mini proje
+      href: lessons/15-uctan-uca-mini-proje.qmd
   page-footer:
     left: © 2026 Muhammed Fatih Tüzen
     right: Quarto ile hazırlanmıştır.

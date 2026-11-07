@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="tr"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Muhammed Fatih Tüzen">
-  <title>R Programlama Eğitimi – R Programlamaya Giriş</title>
+  <title>R Programlama Eğitimi – R ile Veriye Yeni Bir Bakış</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,6 +30,7 @@
     }
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-8f3eebe07241f08526c91a7e9cbef8fd.css">
+  <link rel="stylesheet" href="acilis.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -127,8 +128,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">R Programlamaya Giriş</h1>
-  <p class="subtitle">R, RStudio ve ilk çalışma ortamımız</p>
+  <h1 class="title">R ile Veriye Yeni Bir Bakış</h1>
+  <p class="subtitle">Programlamadan güvenilir veri analizine</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -139,12 +140,21 @@ Muhammed Fatih Tüzen
 </div>
 
 </section>
-<section id="hoş-geldiniz" class="slide level2">
-<h2>Hoş geldiniz</h2>
-<p><strong>R Programlama ve Veri Manipülasyonuna Giriş</strong></p>
-<p>Amacımız komut ezberlemek değil: veriyi R ile okuyabilmek, işleyebilmek ve yaptığımız işlemleri tekrar edebilmek.</p>
+<section id="veriyi-okumak-başka-anlamak-başka" class="slide level2 title-frame">
+<h2>Veriyi okumak başka, anlamak başka</h2>
+<div class="columns">
+<div class="column" style="width:62%;">
+<p><span class="slide-kicker">R PROGRAMLAMA • VERİ BİLİMİ • UYGULAMA</span></p>
+<div class="hero-statement">
+Veriyi okumak başka,<br>anlamak başka.
+</div>
+<p><strong>Soru sor → Kodla → Kontrol et → Paylaş</strong></p>
+<p><a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama Kitabı</a> · <a href="https://mfatihtuzen.github.io/r-training/">Eğitim sitesi</a></p>
+</div><div class="column" style="width:38%;">
+<p><img data-src="../images/egitim-akisi.svg" style="width:100.0%" alt="Veri analizinin dört temel adımı"></p>
+</div></div>
 <aside class="notes">
-<p>Katılımcıların mevcut yazılım ve analiz deneyimlerini kısaca öğrenin.</p>
+<p>Açılışta katılımcıların veriyle çalışma deneyimini sor. Bu slayt kod anlatımı değil, eğitim hedefinin çerçevesidir.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -157,74 +167,134 @@ Muhammed Fatih Tüzen
           display:block!important;
       }</style></aside>
 </section>
+<section id="günlük-bir-işi-düşünelim" class="slide level2">
+<h2>Günlük bir işi düşünelim</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="slide-panel">
+<div class="panel-heading">
+Her ay aynı iş…
+</div>
+<ul>
+<li>Dosyalar gelir.</li>
+<li>Değişken adları değişebilir.</li>
+<li>Eksikler ve tutarsızlıklar çıkar.</li>
+<li>Aynı hesap tekrar yapılır.</li>
+</ul>
+</div>
+</div><div class="column" style="width:48%;">
+<div class="slide-panel accent-panel">
+<div class="panel-heading">
+Kodla kurulan iş akışı
+</div>
+<ul>
+<li>Adımları kaydet.</li>
+<li>Sonucu kontrol et.</li>
+<li>Hataları düzelt.</li>
+<li>Bir sonraki ay yeniden çalıştır.</li>
+</ul>
+</div>
+</div></div>
+<p><strong>R’nin asıl gücü:</strong> yalnızca hesaplamak değil, işlemi anlaşılır ve yeniden üretilebilir hâle getirmek.</p>
+</section>
 <section id="r-nedir" class="slide level2">
 <h2>R nedir?</h2>
+<div class="columns">
+<div class="column" style="width:66%;">
 <ul>
-<li>Ücretsiz ve açık kaynak bir <strong>programlama dili</strong>.</li>
-<li>İstatistik, veri analizi ve görselleştirmede yaygın.</li>
-<li>Analiz adımlarını <strong>kod olarak kaydetmeyi ve yeniden çalıştırmayı</strong> sağlar.</li>
+<li>İstatistiksel hesaplama ve grafik için <strong>açık kaynak programlama dili ve çalışma ortamı</strong>.</li>
+<li>Veri düzenleme, modelleme, zaman serileri, görselleştirme ve raporlama.</li>
+<li>Windows, macOS ve Linux üzerinde kullanılabilir.</li>
+<li>R Foundation topluluğu ve geniş bir paket ekosistemiyle gelişir.</li>
 </ul>
-<p><strong>Temel soru:</strong> Bir analizi gelecek ay aynı yöntemle nasıl tekrarlarız?</p>
+<p><small>Kaynak: <a href="https://www.r-project.org/about.html">R Project — What is R?</a></small></p>
+</div><div class="column" style="width:34%;">
+<div class="logo-panel">
+<div class="big-r">
+R
+</div>
+<p><span>Açık kaynak · Genişletilebilir</span></p>
+</div>
+</div></div>
 </section>
-<section id="r-ile-neler-yapabiliriz" class="slide level2">
-<h2>R ile neler yapabiliriz?</h2>
-<ul>
-<li>Veri dosyalarını okur ve düzenleriz.</li>
-<li>Hesaplamalar, özet tablolar ve istatistiksel analizler yaparız.</li>
-<li>Grafikler, raporlar ve otomatik iş akışları oluşturabiliriz.</li>
-</ul>
-<p>Bu eğitimde önce <strong>temel programlama ve veri işleme</strong> üzerinde duracağız.</p>
+<section id="r-nerelerde-karşımıza-çıkar" class="slide level2">
+<h2>R nerelerde karşımıza çıkar?</h2>
+<div class="grid">
+<div class="g-col-6">
+<div class="slide-panel">
+<div class="panel-heading">
+İstatistik ve araştırma
+</div>
+<p>Örnekleme, çıkarım, regresyon, zaman serileri, deney tasarımı.</p>
+</div>
+</div>
+<div class="g-col-6">
+<div class="slide-panel">
+<div class="panel-heading">
+Resmî istatistik
+</div>
+<p>Veri doğrulama, gösterge üretme, otomasyon ve raporlama.</p>
+</div>
+</div>
+<div class="g-col-6">
+<div class="slide-panel">
+<div class="panel-heading">
+Veri bilimi
+</div>
+<p>Veri hazırlama, keşif, model kurma, model değerlendirme.</p>
+</div>
+</div>
+<div class="g-col-6">
+<div class="slide-panel">
+<div class="panel-heading">
+İletişim
+</div>
+<p>Grafikler, Quarto raporları, Shiny etkileşimli uygulamaları.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="rnin-güçlü-yönleri-ve-dikkat-edilmesi-gerekenler" class="slide level2">
-<h2>R’nin güçlü yönleri ve dikkat edilmesi gerekenler</h2>
-<p><strong>Güçlü yönleri:</strong> Açık kaynak, geniş paket ekosistemi, tekrar üretilebilir analiz, farklı veri kaynakları.</p>
-<p><strong>Dikkat:</strong> Kod yazmayı öğrenmek gerekir; veri tipi, eksik değer ve sonuç kontrolleri hâlâ bizim sorumluluğumuzdadır.</p>
-</section>
-<section id="r-ile-rstudio-aynı-şey-değil" class="slide level2">
-<h2>R ile RStudio aynı şey değil</h2>
+<section id="r-ve-python-bir-rakiplikten-fazlası" class="slide level2">
+<h2>R ve Python: Bir rakiplikten fazlası</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
+<th></th>
 <th>R</th>
-<th>RStudio</th>
+<th>Python</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Programlama dili ve hesaplama motoru</td>
-<td>R için geliştirme ortamı</td>
+<td>Köken / güçlü gelenek</td>
+<td>İstatistik ve veri analizi</td>
+<td>Genel amaçlı yazılım geliştirme</td>
 </tr>
 <tr class="even">
-<td>Komutları çalıştırır</td>
-<td>Kodu yazmayı, yönetmeyi ve çalıştırmayı kolaylaştırır</td>
+<td>Veri araçları</td>
+<td><code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code></td>
+<td><code>pandas</code>, <code>polars</code>, <code>scikit-learn</code></td>
+</tr>
+<tr class="odd">
+<td>Üretim / otomasyon</td>
+<td>R scriptleri, Quarto, Shiny</td>
+<td>Scriptler, servisler, uygulamalar</td>
+</tr>
+<tr class="even">
+<td>Ortak payda</td>
+<td><strong>Veri hazırlama, modelleme, tekrarlanabilirlik</strong></td>
+<td><strong>Veri hazırlama, modelleme, tekrarlanabilirlik</strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Önce R, ardından RStudio kurulur.</strong></p>
-</section>
-<section id="cran-ve-paketler" class="slide level2">
-<h2>CRAN ve paketler</h2>
-<p><strong>CRAN (Comprehensive R Archive Network)</strong></p>
-<ul>
-<li>R’nin indirildiği resmî kaynak ağı.</li>
-<li>Birçok R paketinin de dağıtım yeridir.</li>
-<li>Paketler, hazır fonksiyonlar sağlayarak işimizi kolaylaştırır.</li>
-</ul>
-<p>Paket kurma ve kullanma işlemini RStudio’da canlı göstereceğiz.</p>
-</section>
-<section id="r-ve-rstudio-nereden-indirilir" class="slide level2">
-<h2>R ve RStudio nereden indirilir?</h2>
-<ol type="1">
-<li><a href="https://cran.r-project.org/">R — CRAN</a></li>
-<li><a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop — Posit</a></li>
-<li>RStudio’yu aç; Console’da <code>&gt;</code> işaretini gör.</li>
-</ol>
+<p><strong>Doğru soru “hangisi daha iyi?” değil, “hangi iş için hangi araç uygun?”</strong></p>
 <aside class="notes">
-<p>Kurulumların önceden tamamlandığını varsayın; BT kısıtlarını çözmeye uzun süre ayırmayın.</p>
+<p>Bu tablo bir performans sıralaması değildir. Her iki ekosistem de geniştir; seçim görev, ekip, veri ve altyapıya bağlıdır.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -237,16 +307,114 @@ Muhammed Fatih Tüzen
           display:block!important;
       }</style></aside>
 </section>
-<section id="rstudioyu-tanıyalım" class="slide level2">
-<h2>RStudio’yu tanıyalım</h2>
+<section id="r-ve-rstudio-aynı-şey-değil" class="slide level2">
+<h2>R ve RStudio aynı şey değil</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="slide-panel">
+<div class="tool-mark r-mark">
+R
+</div>
+<div class="panel-heading">
+R
+</div>
+<p>Dili ve hesaplama motoru. Komutları yürütür.</p>
+<p><a href="https://www.r-project.org/">R Project</a></p>
+</div>
+</div><div class="column" style="width:48%;">
+<div class="slide-panel">
+<div class="tool-mark studio-mark">
+RStudio
+</div>
+<div class="panel-heading">
+RStudio
+</div>
+<p>Kod editörü, Console, dosyalar, grafikler, yardım ve Git entegrasyonu sunan geliştirme ortamı.</p>
+<p><a href="https://posit.co/products/open-source/rstudio/">Posit — RStudio IDE</a></p>
+</div>
+</div></div>
+<p><strong>Kurulum sırası:</strong> Önce R, sonra RStudio. <small>Kaynak: <a href="https://docs.posit.co/ide/user/download.html">Posit kurulum rehberi</a></small></p>
+</section>
+<section id="cran-ve-paket-ekosistemi" class="slide level2">
+<h2>CRAN ve paket ekosistemi</h2>
+<div class="columns">
+<div class="column" style="width:54%;">
+<div class="slide-panel">
+<div class="panel-heading">
+CRAN nedir?
+</div>
+<p>Comprehensive R Archive Network: R dağıtımı, paketler ve dokümantasyon için resmî dağıtım ağı.</p>
+<p><a href="https://cran.r-project.org/">CRAN</a></p>
+</div>
+</div><div class="column" style="width:44%;">
+<div class="slide-panel">
+<div class="panel-heading">
+Paketler ne sağlar?
+</div>
+<p><code>readr</code> · <code>readxl</code> · <code>haven</code><br>
+<code>dplyr</code> · <code>tidyr</code> · <code>ggplot2</code><br>
+<code>DBI</code> · <code>quarto</code></p>
+</div>
+</div></div>
+<p>Paket kurmak ile oturuma yüklemek farklıdır; canlı uygulamada göreceğiz.</p>
+</section>
+<section id="bir-veri-analizi-nerede-başlar" class="slide level2">
+<h2>Bir veri analizi nerede başlar?</h2>
+
+<img data-src="../images/egitim-akisi.svg" style="width:72.0%" alt="Veriden kontrole uzanan analiz süreci" class="r-stretch"><p><strong>Çoğu zaman en zahmetli aşama: veriyi doğru okumak, tanımak ve hazırlamak.</strong> Kusurlu veriyle iyi bir model kurmak güçtür.</p>
+</section>
+<section id="yapay-zekâ-hız-kazandırır-sorumluluğu-almaz" class="slide level2">
+<h2>Yapay zekâ: Hız kazandırır, sorumluluğu almaz</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="slide-panel accent-panel">
+<div class="panel-heading">
+Yardımcı olabilir
+</div>
 <ul>
-<li><strong>Source:</strong> Script dosyası</li>
-<li><strong>Console:</strong> Çalışan komutlar ve sonuçları</li>
-<li><strong>Environment:</strong> Nesneler</li>
-<li><strong>Files / Plots / Packages / Help:</strong> Dosyalar, grafikler, paketler ve yardım</li>
+<li>Kod taslağı üretmek</li>
+<li>Hata mesajını açıklamak</li>
+<li>Alternatif yöntem önermek</li>
+<li>Belgelere ulaşmayı kolaylaştırmak</li>
 </ul>
+</div>
+</div><div class="column" style="width:48%;">
+<div class="slide-panel">
+<div class="panel-heading">
+Hâlâ kontrol etmeliyiz
+</div>
+<ul>
+<li>Veri ve tanım doğru mu?</li>
+<li>Kod gerçekten çalışıyor mu?</li>
+<li>Çıktı beklediğimiz gibi mi?</li>
+<li>Gizli veriler dışarı aktarıldı mı?</li>
+</ul>
+</div>
+</div></div>
+<p><strong>İlke:</strong> Yapay zekâdan yararlan; doğrulamayı devretme.</p>
+</section>
+<section id="ryi-nereden-kuracağız" class="slide level2">
+<h2>R’yi nereden kuracağız?</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="slide-panel">
+<div class="panel-heading">
+1 · R
+</div>
+<p><a href="https://cran.r-project.org/">cran.r-project.org</a></p>
+<p>İşletim sistemine uygun R kurulum dosyasını seç.</p>
+</div>
+</div><div class="column" style="width:48%;">
+<div class="slide-panel">
+<div class="panel-heading">
+2 · RStudio Desktop
+</div>
+<p><a href="https://posit.co/downloads">Posit — İndir</a></p>
+<p>R’nin kurulu olduğundan emin ol, ardından IDE’yi başlat.</p>
+</div>
+</div></div>
 <aside class="notes">
-<p>Burada RStudio’ya geçerek ekrandaki alanları gerçek arayüzde gösterin. Sunuma ekran görüntüsü eklemek şart değil; uygulama daha güncel kalır.</p>
+<p>Katılımcı kurulumları önceden bitirmiş olmalı. Yetki veya paket kurulum sorunları bu eğitim akışını kesmemeli.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -259,48 +427,60 @@ Muhammed Fatih Tüzen
           display:block!important;
       }</style></aside>
 </section>
-<section id="bu-eğitimde-ilerleyeceğimiz-yol" class="slide level2">
-<h2>Bu eğitimde ilerleyeceğimiz yol</h2>
-<p><strong>R ortamı → temel nesneler → koşullar/döngüler/fonksiyonlar → dosyalar → dplyr/tidyr → mini proje</strong></p>
-<ul>
-<li>Açıklama ve canlı kodlama</li>
-<li>Kısa egzersizler</li>
-<li>WDI verileriyle uygulamalar</li>
-</ul>
+<section id="rstudioda-neleri-göreceğiz" class="slide level2">
+<h2>RStudio’da neleri göreceğiz?</h2>
+<div class="grid">
+<div class="g-col-6">
+<div class="slide-panel">
+<p><strong>Source</strong> · Düzenlenen <code>.R</code> dosyaları</p>
+</div>
+</div>
+<div class="g-col-6">
+<div class="slide-panel">
+<p><strong>Console</strong> · Komut ve sonuçlar</p>
+</div>
+</div>
+<div class="g-col-6">
+<div class="slide-panel">
+<p><strong>Environment</strong> · Oturumdaki nesneler</p>
+</div>
+</div>
+<div class="g-col-6">
+<div class="slide-panel">
+<p><strong>Files / Plots / Help</strong> · Dosyalar, grafikler ve belgeler</p>
+</div>
+</div>
+</div>
+<p><strong>Bir sonraki adım:</strong> RStudio’ya geçip bunları canlı olarak tanıyacağız.</p>
 </section>
-<section id="materyallere-nasıl-erişeceğiz" class="slide level2">
-<h2>Materyallere nasıl erişeceğiz?</h2>
-<ul>
-<li><a href="https://mfatihtuzen.github.io/r-training/">Eğitim web sitesi</a>: öğrenme sırası ve ders notları</li>
-<li><a href="https://mfatihtuzen.github.io/r-training/materials/">Materyaller</a>: R scriptleri ve egzersizler</li>
-<li><a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama Kitabı</a>: ayrıntılı açıklamalar</li>
-<li><a href="https://www.youtube.com/@RistatistikAkademi">R İstatistik Akademi</a>: video destek</li>
-</ul>
-</section>
-<section id="şimdi-rstudioya-geçiyoruz" class="slide level2">
-<h2>Şimdi RStudio’ya geçiyoruz</h2>
-<p><strong>İlk denememiz:</strong> Console’da <code>2 + 3</code> yazmak.</p>
-<p>Ardından aynı komutu <code>.R</code> scriptine kaydedip yeniden çalıştıracağız.</p>
-<aside class="notes">
-<p>Slayt burada biter. Sonraki kod ve nesne örnekleri ders sayfasında aşamalı olarak verilir.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section id="eğitim-kaynaklarımız" class="slide level2">
+<h2>Eğitim kaynaklarımız</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="slide-panel">
+<div class="panel-heading">
+Öğrenme ve tekrar
+</div>
+<p><a href="https://mfatihtuzen.github.io/r-programlama/">R Programlama Kitabı</a><br>
+<a href="https://www.youtube.com/@RistatistikAkademi">R İstatistik Akademi — YouTube</a></p>
+</div>
+</div><div class="column" style="width:48%;">
+<div class="slide-panel">
+<div class="panel-heading">
+Uygulama
+</div>
+<p><a href="https://mfatihtuzen.github.io/r-training/">Eğitim sitesi</a><br>
+<a href="https://mfatihtuzen.github.io/r-training/materials/">Scriptler ve veri dosyaları</a></p>
+</div>
+</div></div>
+<p><small>Teknik başvuru: <a href="https://www.r-project.org/">R Project</a> · <a href="https://docs.posit.co/ide/user/">Posit RStudio IDE</a> · <a href="https://r4ds.hadley.nz/">R for Data Science</a></small></p>
 
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>R Programlama Eğitimi</p>
+<p>R Programlama Eğitimi · Açık öğrenme materyali</p>
 </div>
 </div></div>
 
@@ -325,7 +505,7 @@ Muhammed Fatih Tüzen
       // Full list of configuration options available at:
       // https://revealjs.com/config/
       Reveal.initialize({
-'controlsAuto': true,
+'controlsAuto': false,
 'previewLinksAuto': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
@@ -336,7 +516,7 @@ Muhammed Fatih Tüzen
 'smaller': false,
  
         // Display controls in the bottom right corner
-        controls: false,
+        controls: true,
 
         // Help the user learn the controls by providing hints, for example by
         // bouncing the down arrow when they first encounter a vertical slide
@@ -478,9 +658,9 @@ Muhammed Fatih Tüzen
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1280,
 
-        height: 700,
+        height: 720,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
@@ -552,12 +732,12 @@ Muhammed Fatih Tüzen
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Kopyalandı");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Kopyalandı");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",

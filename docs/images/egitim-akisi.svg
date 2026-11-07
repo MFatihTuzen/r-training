@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 410" role="img" aria-labelledby="a b">
+<title id="a">R ile veri iş akışı</title><desc id="b">Kaynak veriden kontrol edilen sonuca uzanan dört adım</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#e7f4fb"/></linearGradient></defs>
+<rect x="9" y="8" width="622" height="394" rx="28" fill="url(#bg)" stroke="#d8e8f0" stroke-width="2"/>
+<g font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">
+<rect x="43" y="44" width="250" height="124" rx="19" fill="#eaf4fc" stroke="#82b9dd"/><text x="168" y="94" fill="#185b8c">1 · Veri oku</text><text x="168" y="127" fill="#55758d" font-weight="400" font-size="15">CSV · Excel · API</text>
+<rect x="348" y="44" width="250" height="124" rx="19" fill="#e4f6ef" stroke="#76c2a1"/><text x="473" y="94" fill="#176f56">2 · Hazırla</text><text x="473" y="127" fill="#578272" font-weight="400" font-size="15">Filtre · JOIN · Pivot</text>
+<rect x="43" y="244" width="250" height="124" rx="19" fill="#fff4e2" stroke="#efc47f"/><text x="168" y="293" fill="#946421">4 · Paylaş</text><text x="168" y="328" fill="#8c7b61" font-weight="400" font-size="15">Rapor · Grafik · Çıktı</text>
+<rect x="348" y="244" width="250" height="124" rx="19" fill="#eef0fe" stroke="#a5abe4"/><text x="473" y="293" fill="#50569b">3 · Kontrol et</text><text x="473" y="328" fill="#7275a0" font-weight="400" font-size="15">Tip · Eksik · Sonuç</text>
+</g>
+<path d="M293 105h55" stroke="#498cab" stroke-width="6" stroke-linecap="round"/><path d="m337 95 15 10-15 10" fill="none" stroke="#498cab" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M473 168v76" stroke="#498cab" stroke-width="6" stroke-linecap="round"/><path d="m463 233 10 15 10-15" fill="none" stroke="#498cab" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M348 306h-55" stroke="#498cab" stroke-width="6" stroke-linecap="round"/><path d="m304 296-15 10 15 10" fill="none" stroke="#498cab" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

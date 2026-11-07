@@ -1,44 +1,44 @@
-# ========================================
-# RStudio ve R oturum dosyaları
-# ========================================
+# R / RStudio — kullanıcıya özel ve oturum dosyaları
 .Rhistory
+.Rapp.history
 .RData
 .RDataTmp
 .Ruserdata
 .Rproj.user/
+*.Rcheck/
+*-Ex.R
 
-# ========================================
-# Gizli bilgiler ve yerel ayarlar
-# ========================================
+# Gizli bilgiler / kimlik doğrulama
 .Renviron
 .env
 .env.*
 !.env.example
 .httr-oauth
+*.pem
+*.key
 
-# ========================================
-# Quarto geçici dosyaları
-# ========================================
+# Quarto / R Markdown geçici dosyaları
 .quarto/
 *_cache/
 *_files/
 *.knit.md
 *.utf8.md
+/cache/
 
-# ========================================
-# Eğitim sırasında üretilen çıktılar
-# ========================================
+# Eğitim sırasında otomatik üretilen çıktılar
 /outputs/
 /temp/
 /tmp/
 
-# ========================================
-# İşletim sistemi ve editör dosyaları
-# ========================================
+# Sistem ve editör artıkları
 .DS_Store
 Thumbs.db
 ~$*
-*.Rproj.user
+*.swp
+*.swo
+.vscode/
 
+# NOT: /docs/ GitHub Pages yayını için GIT'E DAHİL EDİLİR.
+# NOT: /data/, /scripts/, /slides/, /lessons/ kaynak dosyaları korunur.
 
 /.quarto/

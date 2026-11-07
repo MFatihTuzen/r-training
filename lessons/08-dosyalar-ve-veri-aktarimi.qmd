@@ -1,0 +1,200 @@
+---
+title: "08 · Dosyalarla Çalışma: İçe ve Dışa Aktarma"
+subtitle: "Doğru dosyayı bul, doğru oku, kontrol et ve güvenle kaydet"
+sidebar: lessons
+---
+
+::: {.callout-important}
+## Dersin sorusu
+Bir CSV dosyasını R'ye okumak kolaydır. **Peki yanlış klasörden, yanlış ayraçla veya yanlış sütun tipiyle okuduğumuzu nasıl fark ederiz?** Bu dersin amacı dosya okuma komutlarını ezberlemek değil, *doğru veri aktarımını doğrulamayı* öğrenmektir.
+:::
+
+**Ön koşul:** [07 · Fonksiyonlar](07-fonksiyonlar.qmd). **Öğrenme hedefi:** Proje köküne göre dosyayı bulmak, CSV/Excel/RDS okumak ve kaydetmek, SAS/SPSS dosyalarını tanımak, aktarım sonrası kalite kontrolü yapmak.
+
+**Ders materyalleri:** [07 · Dosya yolları](../scripts/07-proje-ve-dosya-yollari.R){download="07-proje-ve-dosya-yollari.R"} · [08 · CSV/Excel/RDS](../scripts/08-csv-excel-rds-aktarimi.R){download="08-csv-excel-rds-aktarimi.R"} · [09 · SAS/SPSS](../scripts/09-sas-spss-aktarimi.R){download="09-sas-spss-aktarimi.R"} · [Alıştırmalar](../exercises/07-veri-aktarimi.md){download="07-veri-aktarimi.md"}
+
+::: {.callout-tip}
+## Sınıf içi seçim
+**A · Temel:** Dosya yolları, CSV, Excel'de `sheet`/`skip`, RDS, kontrol. **B · Uygulama:** CSV2, tipleri koruma, çoklu Excel çıktısı, SAS/SPSS etiketleri. **C · Ek kaynak:** Tarih, kodlama, ileri `openxlsx2`, veri tabanı ve API. İşlenen süreye göre B kısaltılır; A başka güne sarkmaz.
+:::
+
+## 1. Veri aktarımı neden hata üretir?
+
+Farklı türde dört problem ayıralım:
+
+1. **Dosya bulunamadı:** Yol veya dosya adı yanlış (`file.exists()` ile kontrol).
+2. **Dosya yanlış çözümlendi:** CSV ayıracı, ondalık işareti veya karakter kodlaması yanlış.
+3. **Dosya okundu ama tip yanlış:** Baştaki sıfır kayboldu, tarih metin oldu, sayı karakter geldi.
+4. **Veri doğru okundu ancak yanlış yorumlandı:** Birim, kapsam, eksikler veya sütun açıklaması unutuldu.
+
+Bir komutun hata vermemesi verinin doğru olduğu anlamına gelmez.
+
+## 2. RStudio Project ve göreli dosya yolu
+
+`r-training.Rproj` dosyasını açtığınızda RStudio'nun proje bağlamında çalışırsınız. Console'da `getwd()` ile etkin çalışma dizinini kontrol edin. Scriptteki yol **scriptin bulunduğu klasöre değil çalışma dizinine göre** çözülür.
+
+```{.r}
+getwd()
+file.exists("data/toy/personel.csv")
+list.files("data/toy")
+
+# Doğru proje dizinindeysek dosyayı burada buluruz
+veri_yolu <- file.path("data", "toy", "personel.csv")
+normalizePath(veri_yolu, winslash = "/", mustWork = TRUE)
+```
+
+**Mutlak yol** `C:/Users/.../R/r-training/data/toy/personel.csv` gibi bilgisayara bağlıdır. **Göreli yol** `data/toy/personel.csv` aynı Git deposunun farklı bilgisayarlarda kullanılmasını sağlar. R kodunda Windows `\` yerine `/` ya da `file.path()` tercih edin. Sırf dosya bulunsun diye scriptlerin içine `setwd("C:/...")` yazmayın.
+
+::: {.callout-warning}
+## Sık hata: `cannot open file` / `does not exist`
+`getwd()` → `file.exists()` → `list.files()` → uzantı ve büyük/küçük harf denetimi sırasıyla ilerleyin. Windows'ta gizli uzantı nedeniyle `veri.csv.csv` gibi yanlış isimler oluşabilir. `file.choose()` yalnızca geçici etkileşimli çözüm, tekrar üretilebilir scriptin kalıcı yolu değildir.
+:::
+
+**Uygulama 1:** `file.exists("data/toy/personel.csv")` sonucunu tahmin edin. Sonra dosya adını bilerek bozup `FALSE` sonucunu yorumlayın.
+
+## 3. CSV okuma: Base R ve readr
+
+CSV bir standart gibi görünse de farklı ayraç, ondalık işaret ve metin kodlamaları olabilir.
+
+| İşlev | Ayracı | Ondalık | Örnek |
+|---|---|---|---|
+| `utils::read.csv()` | virgül `,` | nokta `.` | Klasik CSV |
+| `utils::read.csv2()` | noktalı virgül `;` | virgül `,` | Avrupa biçimi |
+| `readr::read_csv()` | virgül `,` | nokta `.` | Tibble |
+| `readr::read_csv2()` | noktalı virgül `;` | virgül `,` | Tibble |
+| `readr::read_delim()` | belirtilen ayraç | `locale()` ile | Özel dosyalar |
+
+```{.r}
+# Paket kurulu değilse önce ayrı olarak install.packages("readr")
+d <- utils::read.csv("data/toy/personel.csv", stringsAsFactors = FALSE)
+str(d)
+
+# readr ile aynı kaynağı okuma
+# (sınıfta paket mevcutsa)
+d2 <- readr::read_csv("data/toy/personel.csv", show_col_types = FALSE)
+readr::spec(d2)
+readr::problems(d2)
+```
+
+### CSV2: Doğru ayraç, doğru ondalık
+
+```{.r}
+# Eğitim setindeki noktalı virgüllü dosya
+csv2 <- readr::read_csv2("data/toy/import_semicolon.csv", show_col_types = FALSE)
+str(csv2)
+print(csv2)
+```
+
+**Karşılaştırma görevi:** Aynı dosyayı `read_csv()` ile açmaya çalışırsanız ne değişiyor? Bozuk sonuçları *düzeltmeden* veri analizi yapmayın.
+
+### Sütun tipini açık tanımlama
+
+Ülke kodu ve kimlik numarası gibi değerler sayısal işlem için kullanılmayacaksa **karakter** olmalıdır. `"001"` ile `1` aynı kayıt kodu değildir.
+
+```{.r}
+# Sözlük ve veri tipleri önceden doğrulanmalıdır
+kucuk <- readr::read_csv(
+  "data/toy/personel.csv",
+  show_col_types = FALSE,
+  col_types = readr::cols(.default = readr::col_guess())
+)
+str(kucuk)
+```
+
+`locale(encoding = "UTF-8")`, `na = c("", "NA", "-")`, `skip`, `n_max`, `col_types` ve `guess_max` ayarlarını veri özelliklerine göre seçeriz. `"-"` her dosyada eksik veri sayılmaz; önce kaynağı inceleriz.
+
+## 4. Excel: Sayfa, başlık satırı ve hücre aralığı
+
+Bu ders için özel hazırlanmış [üç sayfalı Excel dosyasını indir](../data/toy/coklu_sayfa_rapor.xlsx){download="coklu_sayfa_rapor.xlsx"}. `Baslikli_Rapor` sayfasındaki gerçek sütun başlıkları **4. satırdadır**.
+
+```{.r}
+xlsx <- "data/toy/coklu_sayfa_rapor.xlsx"
+readxl::excel_sheets(xlsx)
+
+# İlk sayfa
+veri <- readxl::read_excel(xlsx, sheet = "Veri", col_types = "text")
+
+# İlk üç satır rapor/açıklama. 4. satır sütun adı.
+rapor <- readxl::read_excel(xlsx, sheet = "Baslikli_Rapor", skip = 3)
+
+# Hücre aralığı; range verildiğinde skip dikkate alınmaz
+secilen <- readxl::read_excel(xlsx, range = "Baslikli_Rapor!A4:D8")
+
+# İlk iki veri satırını almak
+ilk_iki <- readxl::read_excel(xlsx, sheet = "Baslikli_Rapor", skip = 3, n_max = 2)
+```
+
+**Neden `col_types = "text"`?** `Veri` sayfasındaki `001` gibi kimlikleri rakama çevirip sıfır kaybetmemek için. Gerekirse tutar sütununu sonradan, kontrollü biçimde sayısala dönüştürürüz.
+
+::: {.callout-note}
+`read_excel()` dosya okumak içindir. Excel dosyası üretmek veya çok sayfalı çıktı yazmak için `openxlsx2` kullanacağız. `readxl` doğrudan Excel yazma işlevi sunmaz.
+:::
+
+## 5. Dışa aktarma: CSV, CSV2, RDS ve Excel
+
+```{.r}
+dir.create("outputs", showWarnings = FALSE)
+readr::write_csv(d2, "outputs/personel_csv.csv", na = "")
+readr::write_csv2(d2, "outputs/personel_csv2.csv", na = "")
+saveRDS(d2, "outputs/personel.rds")
+
+# Sınıflar ve R öznitelikleri RDS ile daha iyi korunur
+tekrar <- readRDS("outputs/personel.rds")
+stopifnot(nrow(tekrar) == nrow(d2))
+
+# openxlsx2 kurulmuşsa iki sayfa ile Excel çıktısı
+openxlsx2::write_xlsx(
+  list(Personel = as.data.frame(d2), IlkKayitlar = head(as.data.frame(d2), 3)),
+  "outputs/personel_rapor.xlsx"
+)
+```
+
+**Kontrol et:** `file.exists()`, `nrow()`, `names()`, `str()`, `sum(is.na(...))`, `all.equal()` veya anahtar kodların kontrolü. CSV tek tablo ve genel veri değişimi için pratiktir, RDS R nesnelerini korumak için uygundur, Excel raporlama/çoklu sayfa için yararlıdır. CSV, değişken ve değer etiketlerini RDS gibi korumaz.
+
+## 6. SAS, SPSS ve etiketler
+
+```{.r}
+sas_yolu <- system.file("examples", "iris.sas7bdat", package = "haven")
+spss_yolu <- system.file("examples", "iris.sav", package = "haven")
+
+sas <- haven::read_sas(sas_yolu)
+spss <- haven::read_sav(spss_yolu)
+str(sas)
+str(spss)
+
+# Etiketli kategorilerin anlamını anlamadan as.numeric() yapmayın.
+haven::as_factor(spss$Species)
+```
+
+SAS `.sas7bdat` **okuma**, SAS XPT **okuma/yazma**, SPSS `.sav` **okuma/yazma** desteklenir. `haven` SAS `.sas7bdat` biçiminde doğrudan yazma işlevi sağlamaz. Etiketler, tarih alanları ve SPSS kullanıcı tanımlı özel eksikler dönüştürme öncesi incelenmelidir.
+
+## 7. Hata ayıklama rehberi
+
+| Belirti | Önce kontrol et | Muhtemel düzeltme |
+|---|---|---|
+| Dosya bulunamadı | `getwd()`, `file.exists()`, `list.files()` | Proje kökünden göreli yol |
+| CSV tek sütun geldi | İlk satır, ayraç | `read_csv2()` veya `read_delim()` |
+| Sayılar karakter oldu | Ondalık ve binlik işaret | `locale()`/doğru dosya biçimi |
+| `001` → `1` | Sütun tipi | `col_character()` / Excel `col_types` |
+| Yanlış başlıklar | Rapor satırları | `skip`, `range`, `col_names` |
+| Türkçe karakter bozuk | Kaynak kodlama | `locale(encoding = ...)` |
+| Tarih beklenmedik | Excel/R tarih türü | `class()`, format ve dönüşüm |
+| Paket bulunamıyor | `requireNamespace()` | Kurulum/erişim ve sürüm |
+| İzin reddedildi | Yazma klasörü, açık Excel | `outputs/` ve dosya kilidi |
+
+## 8. Deneyelim
+
+1. Aynı veriyi Base R ve `readr` ile yükleyin. Sınıf ve sütun tiplerini karşılaştırın.
+2. CSV2'yi doğru ve yanlış okuyup farkı açıklayın.
+3. Excel'de `skip = 3` ve `range` ile alınan satırları karşılaştırın.
+4. RDS kaydedip tekrar açarak eşitliği kontrol edin.
+5. SAS/SPSS örneklerinde `str()` ve etiketleri inceleyin.
+
+[**Tüm uygulama ve bağımsız görevler**](../exercises/07-veri-aktarimi.md){download="07-veri-aktarimi.md"}
+
+**Ayrıntılı okuma:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [readr](https://readr.tidyverse.org/) · [readxl](https://readxl.tidyverse.org/) · [openxlsx2](https://janmarvin.github.io/openxlsx2/) · [haven](https://haven.tidyverse.org/).
+
+---
+
+**Önceki:** [07 · Fonksiyonlar](07-fonksiyonlar.qmd)  
+**Sonraki:** [09 · API, SDMX ve veri tabanları](09-api-sdmx-veritabani.qmd)

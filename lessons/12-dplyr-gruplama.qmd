@@ -1,0 +1,92 @@
+---
+title: "12 · Gruplama ve Özet İstatistikler"
+subtitle: "Kavram → soru → kod → kontrol → uygulama"
+sidebar: lessons
+---
+
+::: {.callout-note}
+## Bu bölüm nasıl kullanılmalı?
+Önce kısa açıklamayı okuyun; kodun sonucunu tahmin edin; ardından RStudio'da satır satır çalıştırın. **A** temel sınıf içeriği, **B** pekiştirme, **C** ise bağımsız çalışmadır. Tüm kodları aynı gün bitirmek zorunda değilsiniz.
+:::
+
+**Uygulama dosyası:** [R scriptini indir](../scripts/13-dplyr-gruplama-ve-ozet.R){download="13-dplyr-gruplama-ve-ozet.R"} · [Alıştırmaları indir](../exercises/12-dplyr-gruplama.md){download="12-dplyr-gruplama.md"} · [Tüm materyaller](../materials/index.qmd)
+
+**Ön koşul:** RStudio Project ile çalışma, veri okuma ve temel nesne/veri yapıları. **Veri:** `data/wdi/` altındaki kitap kaynaklı WDI eğitim alt kümeleri. Dosya yolları proje köküne göredir.
+
+## 1. Hangi birimi özetliyoruz? (A)
+
+Tekil ülkelerle bir ülke–yıl paneli aynı gözlem birimine sahip değildir. Bir gruplama yapmadan önce "Hangi birimler, hangi dönem, nasıl ağırlıklandırılmış?" sorularını cevaplamalıyız. Ortalaması alınan ülke işsizlik oranları, **bölgenin toplam işsizlik oranı değildir**.
+
+## 2. `group_by()` ve `summarise()` (A)
+
+```{.r}
+library(dplyr)
+panel <- readr::read_csv("data/wdi/wdi_panel_2015_2022.csv", show_col_types = FALSE)
+
+panel |>
+  group_by(year) |>
+  summarise(
+    n_satir = n(),
+    n_gecerli = sum(!is.na(unemployment_total_pct)),
+    ort_issizlik = mean(unemployment_total_pct, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+`n()` satır sayısını, `sum(!is.na(...))` geçerli kayıt sayısını verir. `.groups = "drop"`, sonuç üzerinde beklenmeyen sonraki gruplama etkilerinin kalmamasına yardımcı olur.
+
+## 3. `count()`, `n_distinct()` ve birden çok grup (A)
+
+```{.r}
+meta <- readr::read_csv("data/wdi/country_metadata.csv", show_col_types = FALSE)
+panel_bolge <- panel |>
+  left_join(meta |> select(country_code, region),
+            by = "country_code", relationship = "many-to-one")
+
+panel_bolge |> filter(year == 2019) |> count(region, sort = TRUE)
+
+panel_bolge |>
+  group_by(year, region) |>
+  summarise(n_ulke = n_distinct(country_code), .groups = "drop") |>
+  head()
+```
+
+Metadata eşleştirmesinin neden güvenli olduğunu JOIN dersinde ayrıntılı öğreneceğiz. Burada yalnızca `country_code` alanıyla eklenen bölge bilgisi önceden hazırlanmış örnek gibi ele alınabilir.
+
+## 4. `across()` ile çoklu özet (B)
+
+```{.r}
+panel |>
+  group_by(year) |>
+  summarise(across(c(unemployment_total_pct, internet_users_pct),
+                   ~ mean(.x, na.rm = TRUE),
+                   .names = "ort_{.col}"),
+            .groups = "drop")
+```
+
+## 5. Yorumlama hataları (A)
+
+- Ortalama alırken eksikleri görmezden gelmek, farklı yıllarda farklı ülke kümeleri kullanmak anlamına gelebilir.
+- `%` birimli göstergelerin ülke ortalaması, kişi veya istihdam ağırlıklı bölgesel oran değildir.
+- Cari USD kişi başı GSYH ortalaması, dünya toplam GSYH / dünya nüfusu hesaplamasıyla aynı değildir.
+- Birim ve yıl, tablo başlıklarında yer almalıdır.
+
+::: {.callout-tip}
+## Uygulama
+2019 ve 2020 yıllarında bölgelere göre kaç ülkede işsizlik göstergesi mevcut? Bölge başına veri kapsamı değişiyor mu? Önce gözlem sayısını, sonra geçerli gözlem sayısını hesaplayın.
+:::
+
+**Kaynak:** [dplyr grouped data](https://dplyr.tidyverse.org/articles/grouping.html).
+
+
+## Öğrendiklerinizi kontrol edin
+
+- Bu işlem hangi satırları veya sütunları değiştiriyor?
+- Eksik değerler sonuçları nasıl etkiliyor?
+- Beklenen gözlem sayısını nasıl doğrularım?
+
+**Alıştırma:** [Bu bölümün görevleri](../exercises/12-dplyr-gruplama.md){download="12-dplyr-gruplama.md"}. **Ek okuma:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [dplyr](https://dplyr.tidyverse.org/) · [tidyr](https://tidyr.tidyverse.org/).
+
+---
+
+[← Önceki konu](11-dplyr-degisken-uretimi.qmd) · [Sonraki konu →](13-dplyr-join.qmd)

@@ -1,37 +1,106 @@
 ---
 title: "R Programlama Eğitimi"
-subtitle: "R programlama ve veri manipülasyonuna uygulamalı giriş"
+subtitle: "Veriye giden yolu kodla: öğren, uygula, doğrula"
 page-layout: full
+toc: false
 ---
 
-::: {.hero-intro}
-## Öğren, dene, kontrol et
+::: {.training-hero}
+::: {.hero-copy}
+<span class="eyebrow">AÇIK • UYGULAMALI • TEKRAR KULLANILABİLİR</span>
 
-R ile ilk komuttan başlayarak veri okuma, dönüştürme ve sonuç üretmeye uzanan **uygulamalı bir öğrenme yolu**. Konular mantıklı bir sırayla ilerler; örnekleri kendi RStudio ortamında çalıştırabilir, eğitime katıldıktan sonra da burada tekrar edebilirsin.
+# Veriden içgörüye, adım adım.
+
+**R ile düşünmeyi, veriyi hazırlamayı ve sonuçları kontrol etmeyi öğrenin.** İlk komuttan güvenilir bir analiz tablosuna uzanan uygulamalı bir öğrenme yolu.
+
+[**Öğrenmeye başla**](lessons/01-r-ve-rstudio.qmd){.btn .btn-primary .btn-lg} [Eğitim materyallerini incele](materials/index.qmd){.btn .btn-outline-secondary .btn-lg}
+
+
+:::
+::: {.hero-art}
+![](images/egitim-akisi.svg){fig-alt="Veri okuma, hazırlama ve kontrol etme adımlarını gösteren öğretici akış"}
+:::
 :::
 
-## Nereden başlamalıyım?
+## Öğrenme yolu
 
-**R'yi hiç bilmiyorsan:** Önce [01 · R ve RStudio](lessons/01-r-ve-rstudio.qmd) ile çalışma ortamını tanı, sonra [02 · İlk R komutları](lessons/02-ilk-r-komutlari.qmd) ile uygulamaya geç.
+Bu site tarihten, kurumdan ve eğitim süresinden bağımsız bir **uygulama kütüphanesidir**. Konuları sırayla izleyebilir veya ihtiyaç duyduğunuz uygulamaya doğrudan gidebilirsiniz.
 
-**Eğitime katılıyorsan:** [Eğitim Programı](program/index.qmd) sayfasından sınıfta işlenecek akışı gör. [Materyaller](materials/index.qmd) sayfasından ilgili `.R` dosyasını al ve RStudio'da eğitmenle birlikte çalıştır.
+::: {.grid}
+::: {.g-col-12 .g-col-md-6 .g-col-xl-3}
+::: {.path-card}
+<span class="step-number">01</span>
+### Ortamı tanı
+R, RStudio, ilk komutlar, veri tipleri ve paketler.
 
-## Nasıl öğreniyoruz?
+[Başlangıç dersleri](lessons/01-r-ve-rstudio.qmd)
+:::
+:::
+::: {.g-col-12 .g-col-md-6 .g-col-xl-3}
+::: {.path-card}
+<span class="step-number">02</span>
+### Programla
+Koşullar, döngüler, fonksiyonlar ve okunabilir kod.
 
-| Adım | Ne yapıyoruz? |
-|---|---|
-| **1. Kavram** | Yeni kavramı kısa bir açıklamayla tanıyoruz. |
-| **2. Tahmin** | Kodun ne yapacağını çalıştırmadan önce düşünüyoruz. |
-| **3. Birlikte uygulama** | Kodu RStudio'da satır satır çalıştırıyoruz. |
-| **4. Kontrol** | Sonucu doğruluyor, olası hataları tartışıyoruz. |
-| **5. Sıra sende** | Küçük bir görevi kendimiz çözüyoruz. |
+[Koşullu ifadeler](lessons/05-kosullu-ifadeler.qmd)
+:::
+:::
+::: {.g-col-12 .g-col-md-6 .g-col-xl-3}
+::: {.path-card}
+<span class="step-number">03</span>
+### Veriyi hazırla
+Dosya aktarımı, `dplyr`, JOIN ve pivot uygulamaları.
 
-## İçerik ve eğitim süresi
+[Veri hazırlama](lessons/10-dplyr-temelleri.qmd)
+:::
+:::
+::: {.g-col-12 .g-col-md-6 .g-col-xl-3}
+::: {.path-card}
+<span class="step-number">04</span>
+### Uygula & doğrula
+WDI verileriyle uçtan uca bir veri işleme görevi.
 
-Web sitesindeki kaynaklar, sınıfta ayrılan zamandan daha kapsamlı olabilir. **5 günlük program**, bu kaynaklardan seçilen temel uygulamaları kapsar. Diğer örnekler bireysel tekrar ve farklı sürelerdeki eğitimler için tutulur. Günlere bağlı olmayan konu sırası korunur.
+[Mini proje](lessons/15-uctan-uca-mini-proje.qmd)
+:::
+:::
+:::
 
-## Kaynaklar
+## Bu kaynağı nasıl kullanabilirsiniz?
 
-Kavramsal ayrıntılar için [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/), video tekrarları için [R İstatistik Akademi](https://www.youtube.com/@RistatistikAkademi) ve diğer belgeler için [Öğrenme Kaynakları](resources/ogrenme-kaynaklari.qmd) sayfasını kullanabilirsin.
+::: {.grid}
+::: {.g-col-12 .g-col-md-4}
+::: {.method-card}
+### 1 · Önce anla
+Konu sayfasında **neden ve ne zaman** sorusunu okuyun. Yeni kavramlar bilinenlerin üzerine kurulur.
+:::
+:::
+::: {.g-col-12 .g-col-md-4}
+::: {.method-card}
+### 2 · RStudio'da dene
+Kodu sayfadan kopyalayın ya da ilgili `.R` scriptini indirin. Satır satır çalıştırın, çıktıyı tahmin edin.
+:::
+:::
+::: {.g-col-12 .g-col-md-4}
+::: {.method-card}
+### 3 · Kontrol et
+Egzersizleri çözün; satır sayısı, veri tipi ve beklenen sonuçları doğrulayın. Yanlış sonuç da öğreticidir.
+:::
+:::
+:::
 
-[**Öğrenmeye başla: R ve RStudio →**](lessons/01-r-ve-rstudio.qmd)
+## Eğitimde ve eğitimden sonra
+
+**Eğitmen eşliğinde:** Konuların çekirdek uygulamaları seçilir; süre ve katılımcı düzeyine göre örnekler uyarlanır. [Örnek beş günlük program](program/index.qmd) bir uygulama biçimidir, sitenin kullanım sınırı değildir.
+
+**Bağımsız öğrenmede:** Her dersin açıklamaları, scriptleri, alıştırmaları ve ileri okuma bağlantıları kullanılabilir. [Materyaller](materials/index.qmd) sayfasından dosyaları indirebilirsiniz.
+
+::: {.resource-strip}
+**Daha fazlasını öğrenin:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [R İstatistik Akademi — YouTube](https://www.youtube.com/@RistatistikAkademi) · [Seçilmiş öğrenme kaynakları](resources/ogrenme-kaynaklari.qmd)
+:::
+
+[**İlk bölüme geç: R ve RStudio →**](lessons/01-r-ve-rstudio.qmd){.btn .btn-primary}
+
+
+::: {.callout-note}
+**Eğitmen ve içerik hakkında:** Bu eğitim materyalleri Muhammed Fatih Tüzen tarafından hazırlanmıştır. [Eğitmen hakkında](about.qmd) sayfasında mesleki çalışma alanlarını ve diğer açık kaynaklarını bulabilirsiniz.
+:::

@@ -1,0 +1,106 @@
+---
+title: "10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri"
+subtitle: "Kavram → soru → kod → kontrol → uygulama"
+sidebar: lessons
+---
+
+::: {.callout-note}
+## Bu bölüm nasıl kullanılmalı?
+Önce kısa açıklamayı okuyun; kodun sonucunu tahmin edin; ardından RStudio'da satır satır çalıştırın. **A** temel sınıf içeriği, **B** pekiştirme, **C** ise bağımsız çalışmadır. Tüm kodları aynı gün bitirmek zorunda değilsiniz.
+:::
+
+**Uygulama dosyası:** [R scriptini indir](../scripts/11-dplyr-temelleri.R){download="11-dplyr-temelleri.R"} · [Alıştırmaları indir](../exercises/10-dplyr-temelleri.md){download="10-dplyr-temelleri.md"} · [Tüm materyaller](../materials/index.qmd)
+
+**Ön koşul:** RStudio Project ile çalışma, veri okuma ve temel nesne/veri yapıları. **Veri:** `data/wdi/` altındaki kitap kaynaklı WDI eğitim alt kümeleri. Dosya yolları proje köküne göredir.
+
+## 1. Veri manipülasyonu neden gereklidir? (A)
+
+Ham veri çoğu zaman doğrudan analize uygun değildir: gereksiz sütunlar, eksik kayıtlar, değişken adları, tekrarlanan anahtarlar, farklı ölçü birimleri ve uyumsuz tablo yapıları bulunabilir. Veri hazırlama yalnızca **temizleme** değil, araştırma sorusu için doğru analiz birimini oluşturmaktır.
+
+**Örnek soru:** 2019 yılında işsizlik oranı %10'u aşan ülkeler hangileri? Bu soruyu yanıtlamak için önce ülke, yıl ve işsizlik sütunlarını tanır, sonra eksikliği kontrol edip satır filtreleriz.
+
+### İş akışı
+
+1. Veriyi oku ve gözlem birimini belirle: bir satır = bir ülke mi, ülke-yıl mı?
+2. İhtiyaç duyulan sütunları seç.
+3. İlgili gözlemleri filtrele; eksikliği ayrı düşün.
+4. Dönüşümleri uygula, beklenen satır/sütun sayısını kontrol et.
+5. Kaydedilecek çıktının birimini, tarihini ve kapsamını belgeleyin.
+
+::: {.callout-warning}
+## Veri hazırlama ve analitik doğruluk
+`filter()` ile veri seçmek teknik bir işlem; veri seçim ölçütünün araştırma sorusuna uygunluğu ise analitik bir karardır. Çalışan bir kod mutlaka anlamlı bir analiz üretmez.
+:::
+
+## 2. Tidy veri ve `dplyr` fiilleri (A)
+
+*Tidy data* ilkesi: her değişken bir sütunda, her gözlem bir satırda, her gözlemsel birim ayrı tabloda. Geniş ve uzun biçimlerden hangisinin uygun olduğu yapılacak işleme bağlıdır. Kitapta ülke–yıl panelini kullanarak bunu daha sonra inceleyeceğiz.
+
+| Fonksiyon | Görevi | Neyi etkiler? |
+|---|---|---|
+| `select()` | Sütun seçmek | Sütunları |
+| `filter()` | Koşula göre satır seçmek | Satırları |
+| `arrange()` | Satır sıralamak | Satır sırasını |
+| `rename()` | Sütun adını değiştirmek | İsimleri |
+| `distinct()` | Tekil kayıtları seçmek | Satırları |
+| `mutate()` | Yeni sütun üretmek/değiştirmek | Sütun değerlerini |
+
+## 3. Pipe `|>` ile işlem sırası (A)
+
+Önce işlevleri tek tek, sonra zincir halinde kullanalım. Pipe soldaki veriyi sağdaki fonksiyona iletir; **komutlar yukarıdan aşağıya** okunur.
+
+```{.r}
+library(dplyr)
+wdi <- readr::read_csv("data/wdi/wdi_2019.csv", show_col_types = FALSE)
+
+wdi |>
+  select(country, country_code, unemployment_total_pct) |>
+  filter(!is.na(unemployment_total_pct), unemployment_total_pct > 10) |>
+  arrange(desc(unemployment_total_pct)) |>
+  head(10)
+```
+
+**Yorum:** `select()` satır sayısını azaltmaz; `filter()` azaltabilir. `arrange()` satırların sırasını değiştirir. `head(10)` yalnızca ilk 10 satırı gösterir, veri nesnesini otomatik kaydetmez.
+
+## 4. `select()`, `filter()`, `rename()` ve sıralama (A)
+
+```{.r}
+# Sütun seçme; seçmediğim sütunlar kaybolmaz, kaynak nesne korunur.
+wdi |> select(country, year, starts_with("gdp_")) |> head()
+
+# Birkaç ülkeyi kodlarıyla seçme
+wdi |> filter(country_code %in% c("TUR", "DEU", "FRA")) |>
+  select(country, year, population_total)
+
+# Yeni ad solda, eski ad sağda
+wdi |> rename(ulke = country) |> select(ulke, year) |> head()
+```
+
+**Önce tahmin edin:** `filter(population_total > 1e7)` uygulandığında `NA` nüfuslar ne olur? Neden önce eksik değerleri kontrol ediyoruz?
+
+## 5. Hata ve kontrol örnekleri (B)
+
+- `country = "Turkey"` bir atama ifadesidir; karşılaştırma için `country == "Turkey"` gerekir. Ülke adlarının dil/değişim sorunlarına karşı kodlar daha güvenilirdir.
+- `filter(year == 2019)` ile `filter(year = 2019)` aynı değildir.
+- `distinct(country_code)` ülke kodlarının tekrarsız listesini verir; tekilliği ilgili **gözlem anahtarında** test edin.
+- Bir nesneyi değiştirmek için sonucu atayın: `sonuc <- wdi |> filter(...)`.
+
+::: {.callout-tip}
+## Sınıf içi uygulama
+WDI 2019 verisinden nüfusu 10 milyonun üzerinde olan ülkelerin kodunu, adını ve nüfusunu seçin; nüfusa göre azalan sıralayın. Beklediğiniz satır sayısını not edin.
+:::
+
+**Kaynaklar:** [dplyr fonksiyon listesi](https://dplyr.tidyverse.org/reference/) · [R for Data Science — Data transformation](https://r4ds.hadley.nz/data-transform.html).
+
+
+## Öğrendiklerinizi kontrol edin
+
+- Bu işlem hangi satırları veya sütunları değiştiriyor?
+- Eksik değerler sonuçları nasıl etkiliyor?
+- Beklenen gözlem sayısını nasıl doğrularım?
+
+**Alıştırma:** [Bu bölümün görevleri](../exercises/10-dplyr-temelleri.md){download="10-dplyr-temelleri.md"}. **Ek okuma:** [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) · [dplyr](https://dplyr.tidyverse.org/) · [tidyr](https://tidyr.tidyverse.org/).
+
+---
+
+[← Önceki konu](09-api-sdmx-veritabani.qmd) · [Sonraki konu →](11-dplyr-degisken-uretimi.qmd)

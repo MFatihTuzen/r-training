@@ -103,15 +103,120 @@ Tekrarlama, sayaç, sonuç saklama, döngüyü sonlandırma ve vektörel alterna
 
 [**Açılış sunumunu görüntüle**](../slides/00-acilis.html) — R, RStudio, CRAN ve eğitimin kapsamı.
 
-## Veri aktarımı: Henüz geliştirme aşamasında
+## Veri içe ve dışa aktarma
 
-Aşağıdaki iki script **ilk taslaktır**; veri içe/dışa aktarma dersindeki kapsamlı örneklerin yerini henüz tutmaz.
+::: {.grid}
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 08 · Dosya yolları, CSV, Excel, RDS, SAS ve SPSS
 
-- [08 · CSV, Excel ve RDS](../scripts/08-csv-excel-rds-aktarimi.R){download="08-csv-excel-rds-aktarimi.R"}
-- [09 · SAS ve SPSS](../scripts/09-sas-spss-aktarimi.R){download="09-sas-spss-aktarimi.R"}
+Proje mantığı, doğru dosyayı bulma, ayraç/tip kontrolü, çok sayfalı Excel, dışa aktarma ve sorun çözme.
+
+[**Dersi aç**](../lessons/08-dosyalar-ve-veri-aktarimi.qmd)
+
+[Dosya yolları (.R)](../scripts/07-proje-ve-dosya-yollari.R){download="07-proje-ve-dosya-yollari.R"} · [CSV/Excel/RDS (.R)](../scripts/08-csv-excel-rds-aktarimi.R){download="08-csv-excel-rds-aktarimi.R"} · [SAS/SPSS (.R)](../scripts/09-sas-spss-aktarimi.R){download="09-sas-spss-aktarimi.R"} · [Alıştırmalar](../exercises/07-veri-aktarimi.md){download="07-veri-aktarimi.md"}
+:::
+:::
+:::
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 09 · İnternet, API, SDMX ve veri tabanları
+
+Çevrim içi veri kaynaklarını tanıma, JSON/SDMX mantığı ve yerel SQLite ile kontrollü örnek.
+
+[**Dersi aç**](../lessons/09-api-sdmx-veritabani.qmd)
+
+[Örnek script (.R)](../scripts/10-api-sdmx-veritabani.R){download="10-api-sdmx-veritabani.R"} · [Ek egzersizler](../exercises/08-api-veritabani.md){download="08-api-veritabani.md"}
+:::
+:::
+:::
+:::
 
 ## Eğitim veri setleri
 
-Açık kaynak ve sentetik örnekler [GitHub'daki data klasöründe](https://github.com/MFatihTuzen/r-training/tree/main/data) bulunur. İlgili uygulama derslerinde veri dosyalarına doğrudan indirme bağlantıları da eklenecektir.
+**Ders başlamadan önce:** [Sentetik çok sayfalı Excel](../data/toy/coklu_sayfa_rapor.xlsx){download="coklu_sayfa_rapor.xlsx"} · [Noktalı virgüllü CSV](../data/toy/import_semicolon.csv){download="import_semicolon.csv"} · [WDI 2019 kesiti](../data/wdi/wdi_2019.csv){download="wdi_2019.csv"}
 
-**Tüm çalışma dosyalarını almak:** [GitHub deposu](https://github.com/MFatihTuzen/r-training) → **Code → Download ZIP**. GitHub'daki güncel sürümün yerel önizleme ile aynı olması için değişikliklerin önce push edilmiş olması gerekir.
+Tüm veri dosyalarının tamamı [GitHub deposundaki data klasöründe](https://github.com/MFatihTuzen/r-training/tree/main/data) bulunur. Dersler proje kökünden çalıştırılır.
+
+
+## Veri hazırlama ve manipülasyon — WDI uygulamaları
+
+Bu bölümde konular **10 → 14** sırasıyla ilerler. Önce temel dönüşümler, sonra gruplama, birleştirme ve pivot uygulanır. WDI veri setlerini [data klasöründen](https://github.com/MFatihTuzen/r-training/tree/main/data/wdi) edinebilirsiniz.
+
+::: {.grid}
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri
+
+[Dersi aç](../lessons/10-dplyr-temelleri.qmd) · [R scriptini indir](../scripts/11-dplyr-temelleri.R){download="11-dplyr-temelleri.R"} · [Alıştırmalar](../exercises/10-dplyr-temelleri.md){download="10-dplyr-temelleri.md"}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler
+
+[Dersi aç](../lessons/11-dplyr-degisken-uretimi.qmd) · [R scriptini indir](../scripts/12-dplyr-donusum-ve-across.R){download="12-dplyr-donusum-ve-across.R"} · [Alıştırmalar](../exercises/11-dplyr-degisken-uretimi.md){download="11-dplyr-degisken-uretimi.md"}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 12 · Gruplama ve Özet İstatistikler
+
+[Dersi aç](../lessons/12-dplyr-gruplama.qmd) · [R scriptini indir](../scripts/13-dplyr-gruplama-ve-ozet.R){download="13-dplyr-gruplama-ve-ozet.R"} · [Alıştırmalar](../exercises/12-dplyr-gruplama.md){download="12-dplyr-gruplama.md"}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 13 · Tabloları Güvenle Birleştirme (JOIN)
+
+[Dersi aç](../lessons/13-dplyr-join.qmd) · [R scriptini indir](../scripts/14-dplyr-join-ve-kontrol.R){download="14-dplyr-join-ve-kontrol.R"} · [Alıştırmalar](../exercises/13-dplyr-join.md){download="13-dplyr-join.md"}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### 14 · Uzun ve Geniş Veri Dönüşümü (Pivot)
+
+[Dersi aç](../lessons/14-tidyr-pivot.qmd) · [R scriptini indir](../scripts/15-tidyr-pivot-ve-tidy-veri.R){download="15-tidyr-pivot-ve-tidy-veri.R"} · [Alıştırmalar](../exercises/14-tidyr-pivot.md){download="14-tidyr-pivot.md"}
+:::
+:::
+:::
+
+:::
+
+**Kaynaklı özgün görseller:** [JOIN şeması](../images/join-turleri.svg) · [Pivot şeması](../images/pivot-uzun-genis.svg).
+
+
+## 15 · Uçtan Uca Mini Proje
+
+::: {.grid}
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+### WDI ile veri hazırlama görevi
+
+Veri okuma → kontrol → filtreleme → dönüştürme → JOIN → gruplama → çıktı doğrulama.
+
+[**Proje rehberi**](../lessons/15-uctan-uca-mini-proje.qmd) · [**Görev yönergesi**](../projects/mini-project/GOREVLER.md){download="GOREVLER.md"}
+
+[**Başlangıç scriptini indir**](../projects/mini-project/16-mini-proje-baslangic.R){download="16-mini-proje-baslangic.R"} · [**Kontrol listesi**](../projects/mini-project/KONTROL_LISTESI.md){download="KONTROL_LISTESI.md"}
+
+*Çözüm dosyası katılımcı sayfasında paylaşılmaz; eğitimde değerlendirmenin ardından eğitmen tarafından kullanılabilir.*
+:::
+:::
+:::
+:::

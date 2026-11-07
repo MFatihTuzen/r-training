@@ -1,11 +1,11 @@
 ---
-title: "Eğitim Programı"
-subtitle: "Beş günlük uygulamalı eğitim · 09.30–12.30"
+title: "Örnek Eğitim Programı"
+subtitle: "Beş günlük örnek uygulama · kurum ve takvime göre uyarlanabilir"
 ---
 
-Bu genel program, farklı kurumlarda ve farklı tarihlerde yeniden kullanılabilecek şekilde tasarlanmıştır. Her günün zorunlu içeriği o gün tamamlanır; ek alıştırmalar süreye göre isteğe bağlıdır.
+Bu sayfa, içerik kütüphanesinin **beş günlük örnek uygulama planını** gösterir. Saatler ve oturum dağılımı kurumun takvimine ve katılımcıların düzeyine göre uyarlanabilir. Her günün zorunlu içeriği o gün tamamlanır; ek alıştırmalar süreye göre isteğe bağlıdır.
 
-## Günlük saatler
+## Örnek günlük saatler (09.30–12.30)
 
 | Saat | Etkinlik |
 |---|---|

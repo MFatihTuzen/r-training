@@ -1,0 +1,28 @@
+---
+title: "Eğitmen Hakkında"
+subtitle: "Muhammed Fatih Tüzen"
+toc: false
+---
+
+## Kısaca
+
+**Dr. Muhammed Fatih Tüzen**, istatistik, veri analizi ve R programlama alanlarında çalışan bir istatistikçidir. Çalışmaları özellikle zaman serileri, mevsimsel düzeltme, veri işleme ve R ile analiz süreçlerinin otomasyonu üzerinde yoğunlaşmaktadır.
+
+Yıllar içinde farklı düzeylerde katılımcılara R programlama ve uygulamalı veri analizi eğitimleri vermiştir. Bu web sitesi, söz konusu eğitimlerin belirli bir kurum veya tarihle sınırlı kalmadan kullanılabilmesi amacıyla hazırlanmıştır.
+
+## Eğitim yaklaşımı
+
+Bu eğitimde amaç, yalnızca R fonksiyonlarının kullanımını göstermek değil; bir veri problemini tanımlamak, uygun işlemi seçmek, kodu anlaşılır yazmak ve sonucu kontrol edebilmektir.
+
+Örnekler, küçük öğretici veri setlerinden başlayarak gerçek açık veri kaynaklarına uzanır. Ayrıntılı teorik açıklamalar için *R Programlama* kitabına, uygulama ve tekrar için bu eğitim sitesindeki derslere ve scriptlere başvurulabilir.
+
+## Bağlantılar
+
+- [R Programlama Kitabı](https://mfatihtuzen.github.io/r-programlama/) — Türkçe, açık erişimli başvuru kaynağı.
+- [R İstatistik Akademi](https://www.youtube.com/@RistatistikAkademi) — R programlamaya giriş videoları.
+- [GitHub](https://github.com/MFatihTuzen) — Açık kaynak çalışmalar.
+- [LinkedIn](https://www.linkedin.com/in/dr-m-fatih-t-2b2a4328/) — Mesleki profil.
+
+::: {.callout-note}
+Bu sayfa kişisel eğitim ve öğrenme kaynaklarını tanıtır; belirli bir kurumun resmî eğitim duyurusu veya kurumsal görüşü niteliğinde değildir.
+:::

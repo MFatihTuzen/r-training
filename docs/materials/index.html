@@ -108,6 +108,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../resources/ogrenme-kaynaklari.html"> 
 <span class="menu-text">Öğrenme Kaynakları</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Eğitmen Hakkında</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -137,8 +141,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#başlangıç-ve-programlama-temelleri" id="toc-başlangıç-ve-programlama-temelleri" class="nav-link active" data-scroll-target="#başlangıç-ve-programlama-temelleri">Başlangıç ve programlama temelleri</a></li>
   <li><a href="#sunumlar" id="toc-sunumlar" class="nav-link" data-scroll-target="#sunumlar">Sunumlar</a></li>
-  <li><a href="#veri-aktarımı-henüz-geliştirme-aşamasında" id="toc-veri-aktarımı-henüz-geliştirme-aşamasında" class="nav-link" data-scroll-target="#veri-aktarımı-henüz-geliştirme-aşamasında">Veri aktarımı: Henüz geliştirme aşamasında</a></li>
+  <li><a href="#veri-içe-ve-dışa-aktarma" id="toc-veri-içe-ve-dışa-aktarma" class="nav-link" data-scroll-target="#veri-içe-ve-dışa-aktarma">Veri içe ve dışa aktarma</a></li>
   <li><a href="#eğitim-veri-setleri" id="toc-eğitim-veri-setleri" class="nav-link" data-scroll-target="#eğitim-veri-setleri">Eğitim veri setleri</a></li>
+  <li><a href="#veri-hazırlama-ve-manipülasyon-wdi-uygulamaları" id="toc-veri-hazırlama-ve-manipülasyon-wdi-uygulamaları" class="nav-link" data-scroll-target="#veri-hazırlama-ve-manipülasyon-wdi-uygulamaları">Veri hazırlama ve manipülasyon — WDI uygulamaları</a></li>
+  <li><a href="#uçtan-uca-mini-proje" id="toc-uçtan-uca-mini-proje" class="nav-link" data-scroll-target="#uçtan-uca-mini-proje">15 · Uçtan Uca Mini Proje</a>
+  <ul class="collapse">
+  <li><a href="#wdi-ile-veri-hazırlama-görevi" id="toc-wdi-ile-veri-hazırlama-görevi" class="nav-link" data-scroll-target="#wdi-ile-veri-hazırlama-görevi">WDI ile veri hazırlama görevi</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -247,18 +256,98 @@ Nasıl kullanılır?
 <h2 class="anchored" data-anchor-id="sunumlar">Sunumlar</h2>
 <p><a href="../slides/00-acilis.html"><strong>Açılış sunumunu görüntüle</strong></a> — R, RStudio, CRAN ve eğitimin kapsamı.</p>
 </section>
-<section id="veri-aktarımı-henüz-geliştirme-aşamasında" class="level2">
-<h2 class="anchored" data-anchor-id="veri-aktarımı-henüz-geliştirme-aşamasında">Veri aktarımı: Henüz geliştirme aşamasında</h2>
-<p>Aşağıdaki iki script <strong>ilk taslaktır</strong>; veri içe/dışa aktarma dersindeki kapsamlı örneklerin yerini henüz tutmaz.</p>
-<ul>
-<li><a href="../scripts/08-csv-excel-rds-aktarimi.R" download="08-csv-excel-rds-aktarimi.R">08 · CSV, Excel ve RDS</a></li>
-<li><a href="../scripts/09-sas-spss-aktarimi.R" download="09-sas-spss-aktarimi.R">09 · SAS ve SPSS</a></li>
-</ul>
+<section id="veri-içe-ve-dışa-aktarma" class="level2">
+<h2 class="anchored" data-anchor-id="veri-içe-ve-dışa-aktarma">Veri içe ve dışa aktarma</h2>
+<div class="grid">
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="dosya-yolları-csv-excel-rds-sas-ve-spss" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="dosya-yolları-csv-excel-rds-sas-ve-spss">08 · Dosya yolları, CSV, Excel, RDS, SAS ve SPSS</h3>
+<p>Proje mantığı, doğru dosyayı bulma, ayraç/tip kontrolü, çok sayfalı Excel, dışa aktarma ve sorun çözme.</p>
+<p><a href="../lessons/08-dosyalar-ve-veri-aktarimi.html"><strong>Dersi aç</strong></a></p>
+<p><a href="../scripts/07-proje-ve-dosya-yollari.R" download="07-proje-ve-dosya-yollari.R">Dosya yolları (.R)</a> · <a href="../scripts/08-csv-excel-rds-aktarimi.R" download="08-csv-excel-rds-aktarimi.R">CSV/Excel/RDS (.R)</a> · <a href="../scripts/09-sas-spss-aktarimi.R" download="09-sas-spss-aktarimi.R">SAS/SPSS (.R)</a> · <a href="../exercises/07-veri-aktarimi.md" download="07-veri-aktarimi.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="internet-api-sdmx-ve-veri-tabanları" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="internet-api-sdmx-ve-veri-tabanları">09 · İnternet, API, SDMX ve veri tabanları</h3>
+<p>Çevrim içi veri kaynaklarını tanıma, JSON/SDMX mantığı ve yerel SQLite ile kontrollü örnek.</p>
+<p><a href="../lessons/09-api-sdmx-veritabani.html"><strong>Dersi aç</strong></a></p>
+<p><a href="../scripts/10-api-sdmx-veritabani.R" download="10-api-sdmx-veritabani.R">Örnek script (.R)</a> · <a href="../exercises/08-api-veritabani.md" download="08-api-veritabani.md">Ek egzersizler</a></p>
+</section>
+</div>
+</div>
+</div>
 </section>
 <section id="eğitim-veri-setleri" class="level2">
 <h2 class="anchored" data-anchor-id="eğitim-veri-setleri">Eğitim veri setleri</h2>
-<p>Açık kaynak ve sentetik örnekler <a href="https://github.com/MFatihTuzen/r-training/tree/main/data">GitHub’daki data klasöründe</a> bulunur. İlgili uygulama derslerinde veri dosyalarına doğrudan indirme bağlantıları da eklenecektir.</p>
-<p><strong>Tüm çalışma dosyalarını almak:</strong> <a href="https://github.com/MFatihTuzen/r-training">GitHub deposu</a> → <strong>Code → Download ZIP</strong>. GitHub’daki güncel sürümün yerel önizleme ile aynı olması için değişikliklerin önce push edilmiş olması gerekir.</p>
+<p><strong>Ders başlamadan önce:</strong> <a href="../data/toy/coklu_sayfa_rapor.xlsx" download="coklu_sayfa_rapor.xlsx">Sentetik çok sayfalı Excel</a> · <a href="../data/toy/import_semicolon.csv" download="import_semicolon.csv">Noktalı virgüllü CSV</a> · <a href="../data/wdi/wdi_2019.csv" download="wdi_2019.csv">WDI 2019 kesiti</a></p>
+<p>Tüm veri dosyalarının tamamı <a href="https://github.com/MFatihTuzen/r-training/tree/main/data">GitHub deposundaki data klasöründe</a> bulunur. Dersler proje kökünden çalıştırılır.</p>
+</section>
+<section id="veri-hazırlama-ve-manipülasyon-wdi-uygulamaları" class="level2">
+<h2 class="anchored" data-anchor-id="veri-hazırlama-ve-manipülasyon-wdi-uygulamaları">Veri hazırlama ve manipülasyon — WDI uygulamaları</h2>
+<p>Bu bölümde konular <strong>10 → 14</strong> sırasıyla ilerler. Önce temel dönüşümler, sonra gruplama, birleştirme ve pivot uygulanır. WDI veri setlerini <a href="https://github.com/MFatihTuzen/r-training/tree/main/data/wdi">data klasöründen</a> edinebilirsiniz.</p>
+<div class="grid">
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="veriyi-hazırlamaya-giriş-ve-dplyr-temelleri" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="veriyi-hazırlamaya-giriş-ve-dplyr-temelleri">10 · Veriyi Hazırlamaya Giriş ve dplyr Temelleri</h3>
+<p><a href="../lessons/10-dplyr-temelleri.html">Dersi aç</a> · <a href="../scripts/11-dplyr-temelleri.R" download="11-dplyr-temelleri.R">R scriptini indir</a> · <a href="../exercises/10-dplyr-temelleri.md" download="10-dplyr-temelleri.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="değişken-üretme-koşullar-ve-çoklu-dönüşümler" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="değişken-üretme-koşullar-ve-çoklu-dönüşümler">11 · Değişken Üretme, Koşullar ve Çoklu Dönüşümler</h3>
+<p><a href="../lessons/11-dplyr-degisken-uretimi.html">Dersi aç</a> · <a href="../scripts/12-dplyr-donusum-ve-across.R" download="12-dplyr-donusum-ve-across.R">R scriptini indir</a> · <a href="../exercises/11-dplyr-degisken-uretimi.md" download="11-dplyr-degisken-uretimi.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="gruplama-ve-özet-istatistikler" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="gruplama-ve-özet-istatistikler">12 · Gruplama ve Özet İstatistikler</h3>
+<p><a href="../lessons/12-dplyr-gruplama.html">Dersi aç</a> · <a href="../scripts/13-dplyr-gruplama-ve-ozet.R" download="13-dplyr-gruplama-ve-ozet.R">R scriptini indir</a> · <a href="../exercises/12-dplyr-gruplama.md" download="12-dplyr-gruplama.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="tabloları-güvenle-birleştirme-join" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="tabloları-güvenle-birleştirme-join">13 · Tabloları Güvenle Birleştirme (JOIN)</h3>
+<p><a href="../lessons/13-dplyr-join.html">Dersi aç</a> · <a href="../scripts/14-dplyr-join-ve-kontrol.R" download="14-dplyr-join-ve-kontrol.R">R scriptini indir</a> · <a href="../exercises/13-dplyr-join.md" download="13-dplyr-join.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="uzun-ve-geniş-veri-dönüşümü-pivot" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="uzun-ve-geniş-veri-dönüşümü-pivot">14 · Uzun ve Geniş Veri Dönüşümü (Pivot)</h3>
+<p><a href="../lessons/14-tidyr-pivot.html">Dersi aç</a> · <a href="../scripts/15-tidyr-pivot-ve-tidy-veri.R" download="15-tidyr-pivot-ve-tidy-veri.R">R scriptini indir</a> · <a href="../exercises/14-tidyr-pivot.md" download="14-tidyr-pivot.md">Alıştırmalar</a></p>
+</section>
+</div>
+</div>
+</div>
+<p><strong>Kaynaklı özgün görseller:</strong> <a href="../images/join-turleri.svg">JOIN şeması</a> · <a href="../images/pivot-uzun-genis.svg">Pivot şeması</a>.</p>
+</section>
+<section id="uçtan-uca-mini-proje" class="level2">
+<h2 class="anchored" data-anchor-id="uçtan-uca-mini-proje">15 · Uçtan Uca Mini Proje</h2>
+<div class="grid">
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<section id="wdi-ile-veri-hazırlama-görevi" class="level3 card-body">
+<h3 class="anchored" data-anchor-id="wdi-ile-veri-hazırlama-görevi">WDI ile veri hazırlama görevi</h3>
+<p>Veri okuma → kontrol → filtreleme → dönüştürme → JOIN → gruplama → çıktı doğrulama.</p>
+<p><a href="../lessons/15-uctan-uca-mini-proje.html"><strong>Proje rehberi</strong></a> · <a href="../projects/mini-project/GOREVLER.md" download="GOREVLER.md"><strong>Görev yönergesi</strong></a></p>
+<p><a href="../projects/mini-project/16-mini-proje-baslangic.R" download="16-mini-proje-baslangic.R"><strong>Başlangıç scriptini indir</strong></a> · <a href="../projects/mini-project/KONTROL_LISTESI.md" download="KONTROL_LISTESI.md"><strong>Kontrol listesi</strong></a></p>
+<p><em>Çözüm dosyası katılımcı sayfasında paylaşılmaz; eğitimde değerlendirmenin ardından eğitmen tarafından kullanılabilir.</em></p>
+</section>
+</div>
+</div>
+</div>
 
 
 </section>
